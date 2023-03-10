@@ -18,52 +18,20 @@
 		
 		echo $usuario;	echo '</br>'; echo $senha; echo '</br>';
 		
-		$result_usuario = oci_parse($conn_ora, "SELECT portal_relatorios.VALIDA_SENHA_FUNC_LOGIN(:usuario,:senha) AS RESP_LOGIN,
+		$result_usuario = oci_parse($conn_ora, "SELECT portal_check_car.VALIDA_SENHA_FUNC_LOGIN(:usuario,:senha) AS RESP_LOGIN,
 												(SELECT INITCAP(usu.NM_USUARIO)
 													FROM dbasgu.USUARIOS usu
 													WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,													
 													CASE
 														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
 																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 428) THEN 'S' --PAPEL GERAL
+																			WHERE puia.CD_PAPEL = 450) THEN 'S' --PAPEL GERAL CHECK_CAR
 													END SN_USUARIO,
-
 													CASE
 														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
 																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 429) THEN 'S' --PAPEL CUSTOS
-													END SN_CUSTOS,
-
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 430) THEN 'S' --PAPEL SEPSE
-													END SN_SEPSE,
-
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 435) THEN 'S' --PAPEL REPASSE
-													END SN_REPASSE,
-
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 436) THEN 'S' --PAPEL SAE
-													END SN_SAE,
-
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 440) THEN 'S' --EXAMES REALIZADOS
-													END SN_RX,
-
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 444) THEN 'S' --PROCEDIMENTO SUS
-													END SN_PROC_SUS
-
+																			WHERE puia.CD_PAPEL = 451) THEN 'S' --PAPEL ADM CHECK_CAR
+													END SN_USUARIO_ADM
 
 												FROM DUAL");																															
 												
@@ -84,8 +52,8 @@
 
 				$cons_acesso_login="INSERT INTO portal_projetos.ACESSO
 				SELECT portal_projetos.SEQ_CD_ACESSO.NEXTVAL AS CD_ACESSO,
-				24 AS CD_PORTFOLIO,
-				'PORTAL RELATORIOS' AS DS_PROJETO,
+				39 AS CD_PORTFOLIO,
+				'PORTAL CHECK CAR' AS DS_PROJETO,
 				'$usuario' AS CD_USUARIO_ACESSO,
 				SYSDATE AS HR_ACESSO
 				FROM DUAL";
@@ -99,12 +67,7 @@
 					$_SESSION['usuarioLogin'] = $usuario;
 					$_SESSION['usuarioNome'] = $resultado[1];
 					$_SESSION['SN_USUARIO'] = $resultado[2];
-					$_SESSION['SN_CUSTOS'] = $resultado[3];
-					$_SESSION['SN_SEPSE'] = $resultado[4];
-					$_SESSION['SN_REPASSE'] = $resultado[5];
-					$_SESSION['SN_SAE'] = $resultado[6];
-					$_SESSION['SN_RX'] = $resultado[7];
-					$_SESSION['SN_PROC_SUS'] = $resultado[8];
+					$_SESSION['SN_USUARIO_ADM'] = $resultado[3];
 
 					header("Location: $pag_apos");
 
@@ -124,7 +87,3 @@
 		
 	}
 ?>
-
-<!--LISTA DE PAPEIS -->
-
-<!--PAPEL PORTAL CUSTOS : 429-->
