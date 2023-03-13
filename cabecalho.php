@@ -184,7 +184,7 @@ session_start();
                                                                             max-height: 90%;
                                                                             max-width: 90%;">
 
-                    <div style="margin: 0 auto; padding-top: 35%; color: rgba(254,254,254,0.6); font-size: 25px;">
+                    <div style="margin: 0 auto; padding-top: 160px; color: rgba(254,254,254,0.6); font-size: 25px;">
 
 
                         <div style="border-radius: 30px; border: solid 1px rgba(254,254,254,0.6); width: 40px; height: 40px; text-align: center;">
