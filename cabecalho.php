@@ -31,6 +31,32 @@ session_start();
         include 'css/style_mobile.php';
     ?>
 
+    <script>
+        function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+
+        }
+
+        function aumentarImagem() {
+        var imagem = document.getElementById("imagem");
+        var divImagemAmpliada = document.getElementById("imagem-ampliada");
+        var imagemAmpliada = document.getElementById("imagem-ampliada-img");
+        imagemAmpliada.src = imagem.style.backgroundImage.slice(4, -1).replace(/"/g, "");
+        divImagemAmpliada.style.display = "flex";
+        }
+
+        function fecharImagem() {
+        var divImagemAmpliada = document.getElementById("imagem-ampliada");
+        divImagemAmpliada.style.display = "none";
+        }
+
+
+    </script>
+
     </script>
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,10 +75,13 @@ session_start();
 <body>
     <header>    
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-color">
+
+        <!--APARECER NO DESKTOP-->
+        <nav class="navbar navbar-expand-md navbar-dark bg-color navbar_desktop">
+
             <a class="navbar-brand" href="home.php">
                 <img src="img/logo/icone_santa_casa_sjc_branco.png" height="28px" width="28px" class="d-inline-block align-top efeito-zoom" alt="Santa Casa de São José dos Campos">
-                <h10>Portal Relatórios</h10>
+                <h10>Check Car</h10>
             </a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,74 +90,131 @@ session_start();
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarsExample06">
                 <ul class="navbar-nav">          
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                </li>
-                <div class="menu_azul_claro">
-                    <li class="nav-item">
-                        <h10><a class="nav-link" onclick="ajax_redireciona_easter_egg('1')"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Faq</a></h10>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
                     </li>
-                </div>
-                <div class="menu_preto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="conta_click('2')">
-                        <i class="fa fa-bars" aria-hidden="true"></i> Menu</a></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
+                    <div class="menu_azul_claro">
+                        <li class="nav-item">
+                            <h10><a class="nav-link" onclick="ajax_redireciona_easter_egg('1')"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Faq</a></h10>
+                        </li>
+                    </div>
 
-                        <!--MENU-->      
+                    <div class="menu_preto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="conta_click('2')">
+                            <i class="fa fa-bars" aria-hidden="true"></i> Menu</a></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
 
-                        <?php if($_SESSION['SN_CUSTOS'] == 'S'){?>
+                            <!--MENU-->      
 
-                            <a class="dropdown-item" href="custos.php"><i class="fas fa-file-import"></i>  Custos</a>
-                        
-                        <?php } ?>
+                                <a class="dropdown-item" href="check_list.php"><i class="fas fa-file-import"></i>  Check List</a>
+                            
 
-                        <?php if($_SESSION['SN_SEPSE'] == 'S'){?>
 
-                            <a class="dropdown-item" href="relatorio_sepse.php"><i class="fas fa-file-import"></i>  Sepse</a>  
-
-                        <?php } ?>
-
-                        <?php if($_SESSION['SN_REPASSE'] == 'S'){?>
-
-                            <a class="dropdown-item" href="relatorio_repasse.php"><i class="fas fa-file-import"></i>  Repasse</a>  
-
-                        <?php } ?>
-
-                        <?php if($_SESSION['SN_SAE'] == 'S'){?>
-
-                            <a class="dropdown-item" href="relatorio_sae.php"><i class="fas fa-file-import"></i>  SAE</a>  
-                        
-                        <?php } ?>
-
-                        <?php if($_SESSION['SN_RX'] == 'S'){?>
-
-                            <a class="dropdown-item" href="relatorio_exa_realizados.php"><i class="fas fa-file-import"></i>  Exames Realizados</a>  
-                        
-                        <?php } ?>
-
-                        <?php if($_SESSION['SN_PROC_SUS'] == 'S'){?>
-
-                            <a class="dropdown-item" href="relatorio_procedimento_sus.php"><i class="fas fa-file-import"></i>  Procedimento SUS</a>  
-                        
-                        <?php } ?>
-
-                        </div>
+                            </div>
+                        </li>
+                    </div>
+                    
                     </li>
-                </div>
-                </li>
-                <div class="menu_perfil">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo $pri_nome ?></a></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
-                        <a class="dropdown-item" href="sair.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
-                        </div>
-                    </li>
-                <div class="menu_vermelho">
+                    <div class="menu_perfil">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo $pri_nome ?></a></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
+                            <a class="dropdown-item" href="sair.php"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
+                            </div>
+                        </li>
+                    <div class="menu_vermelho">
+                        
                 </ul>
+                
             </div>
+            
         </nav>
+
+        <!--APARECER NO MOBILE-->
+
+        <div class="mobile_nav_bar">
+
+
+            <nav class="navbar navbar-dark bg-color">
+
+                <a class="navbar-brand" href="home.php">
+
+                    <img src="img/logo/icone_santa_casa_sjc_branco.png" height="28px" width="28px" class="d-inline-block align-top efeito-zoom" alt="Santa Casa de São José dos Campos">
+                    <h10>Check Car</h10>
+
+                </a>
+
+                <button class="navbar-toggler" type="button" onclick="openNav()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="mySidebar" class="sidebar">
+
+
+                <div style="width: 300; height: 180px; padding-top: 15px">
+
+                    <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
+                                                                                    background-repeat: no-repeat;
+                                                                                    background-position: center; 
+                                                                                    background-size: cover;
+                                                                                    width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
+
+                    </div>
+                        </div>
+
+                    <div id="imagem-ampliada" style="display: none;
+                                                                        position: fixed;
+                                                                        top: 0;
+                                                                        left: 0;
+                                                                        height: 100%;
+                                                                        width: 100%;
+                                                                        background-color: rgba(0, 0, 0, 0.5);
+                                                                        z-index: 999;">
+
+                        
+
+                    <img id="imagem-ampliada-img" style="position: absolute;
+                                                                            top: 50%;
+                                                                            left: 50%;
+                                                                            border-radius: 25px;
+                                                                            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+                                                                            transform: translate(-50%, -50%);
+                                                                            max-height: 90%;
+                                                                            max-width: 90%;">
+
+                    <div style="margin: 0 auto; padding-top: 35%; color: rgba(254,254,254,0.6); font-size: 25px;">
+
+
+                        <div style="border-radius: 30px; border: solid 1px rgba(254,254,254,0.6); width: 40px; height: 40px; text-align: center;">
+
+                            <i onclick="fecharImagem()" class="fa-solid fa-xmark"></i>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                     <div style="color: white; text-align: center; font-size: 18px;">
+                        
+                        <?php echo $pri_nome;?>
+
+                    </div>
+
+                    <div class="div_br"> </div>
+
+
+                    <a href="javascript:void(0)" class="closebtn"><i onclick="closeNav()" class="fa-solid fa-xmark"></i></a>
+                    <a href="check_list.php" style="background-color: #46a5d4; color: white; "><i class="fa-solid fa-check"></i> Check List</a>
+
+                </div>
+                
+            </nav>
+
+        </div>
+
 
     </header>
     <main>

@@ -35,7 +35,7 @@
                 <div class="row justify-content-center " style="" >
                     <div class="col-10" style="border-bottom: 1px solid #e7e7e7; border-top-left-radius: 5px; border-top-right-radius: 5px;">
                         
-                        <h14>Portal Relatórios</h14>
+                        <h14>Check Car</h14>
 
                     </div>
                 </div>

@@ -1013,4 +1013,20 @@ object-fit: cover;
   display: block;
 }
 
+.mobile_nav_bar{
+
+    display: none;
+
+}
+
+
+.navbar{
+
+    display: block;
+
+
+}
+
+
 </style>
+
