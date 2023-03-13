@@ -153,7 +153,7 @@ session_start();
                 <div id="mySidebar" class="sidebar">
 
 
-                <div style="width: 300; height: 180px; padding-top: 15px">
+                <div style="width: 200; height: 180px; padding-top: 15px">
 
                     <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
                                                                                     background-repeat: no-repeat;
@@ -197,6 +197,7 @@ session_start();
                     </div>
 
                 </div>
+
                      <div style="color: white; text-align: center; font-size: 18px;">
                         
                         <?php echo $pri_nome;?>
@@ -207,7 +208,10 @@ session_start();
 
 
                     <a href="javascript:void(0)" class="closebtn"><i onclick="closeNav()" class="fa-solid fa-xmark"></i></a>
-                    <a href="check_list.php" style="background-color: #46a5d4; color: white; "><i class="fa-solid fa-check"></i> Check List</a>
+
+
+                    <a href="check_list.php" style="background-color: #46a5d4; font-size: 20px; color: white; "><i class="fa-solid fa-check"></i> Check List</a>
+
 
                 </div>
                 
