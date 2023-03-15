@@ -152,8 +152,7 @@ session_start();
 
                 <div id="mySidebar" class="sidebar">
 
-
-                <div style="width: 200; height: 180px; padding-top: 15px">
+                    <div style="width: 200; height: 180px; padding-top: 15px">
 
                     <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
                                                                                     background-repeat: no-repeat;
@@ -162,27 +161,26 @@ session_start();
                                                                                     width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
 
                     </div>
+
                         </div>
 
                     <div id="imagem-ampliada" style="display: none;
-                                                                        position: fixed;
-                                                                        top: 0;
-                                                                        left: 0;
-                                                                        height: 100%;
-                                                                        width: 100%;
-                                                                        background-color: rgba(0, 0, 0, 0.5);
-                                                                        z-index: 999;">
-
-                        
+                                                    position: fixed;
+                                                    top: 0;
+                                                    left: 0;
+                                                    height: 100%;
+                                                    width: 100%;
+                                                    background-color: rgba(0, 0, 0, 0.5);
+                                                    z-index: 999;">
 
                     <img id="imagem-ampliada-img" style="position: absolute;
-                                                                            top: 50%;
-                                                                            left: 50%;
-                                                                            border-radius: 25px;
-                                                                            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-                                                                            transform: translate(-50%, -50%);
-                                                                            max-height: 90%;
-                                                                            max-width: 90%;">
+                                                        top: 50%;
+                                                        left: 50%;
+                                                        border-radius: 25px;
+                                                        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+                                                        transform: translate(-50%, -50%);
+                                                        max-height: 90%;
+                                                        max-width: 90%;">
 
                     <div style="margin: 0 auto; padding-top: 160px; color: rgba(254,254,254,0.6); font-size: 25px;">
 
@@ -196,7 +194,7 @@ session_start();
 
                     </div>
 
-                </div>
+                    </div>
 
                      <div style="color: white; text-align: center; font-size: 18px;">
                         
@@ -211,8 +209,9 @@ session_start();
 
 
                     <a href="check_list.php" style="background-color: #46a5d4; font-size: 20px; color: white; "><i class="fa-solid fa-check"></i> Check List</a>
-
-
+                    <div style="position: absolute; bottom: 60px;">
+                        <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-caret-left"></i> Sair</a>
+                    </div>
                 </div>
                 
             </nav>
