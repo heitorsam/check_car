@@ -151,6 +151,7 @@
 	right: 25px;
 	font-size: 36px;
 	margin-left: 50px;
+	
 	}
 
 	@media screen and (max-height: 450px) {
