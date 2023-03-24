@@ -1027,6 +1027,17 @@ object-fit: cover;
 
 }
 
+.display_none_mobile{
+
+    display: block;
+
+}
+
+.title_mob{
+
+    display: none;
+
+}
 
 </style>
 

@@ -25,35 +25,35 @@
 
     </div>
 
-        <div class="div_br"> </div>
+    <div class="div_br"> </div>
 
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-3 col-12" style="text-align: center;">
+        <div class="col-md-3 col-12" style="text-align: center;">
 
-            <a href="check_list.php" class="botao_home" type="submit"><i class="fa-solid fa-car-side"></i>  Check List</a>
-
-            </div>
+        <a href="check_list.php" class="botao_home" type="submit"><i class="fa-solid fa-car-side"></i>  Check List</a>
 
         </div>
 
-    <!--ADMINISTRADORES-->
+    </div>
 
-        <div class="row">
+<!--ADMINISTRADORES-->
 
-            <div class="col-md-3 col-12" style="text-align: center;">
+    <div class="row">
 
-            <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
+        <div class="col-md-3 col-12" style="text-align: center;">
 
-            </div>
-
-            <div class="col-md-3 col-12" style="text-align: center;">
-
-            <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Motoristas</a>
-
-            </div>
+        <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
 
         </div>
+
+        <div class="col-md-3 col-12" style="text-align: center;">
+
+        <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-user"></i> Motoristas</a>
+
+        </div>
+
+    </div>
 
 
 

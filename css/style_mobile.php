@@ -20,6 +20,17 @@
 
 @media (max-width: 768px) {
 
+	.display_esconder_mobile{
+
+		display: none;
+	}
+
+	.title_mob{
+
+		display: block;
+
+	}
+
 	/********/
 	/*BOTOES*/
 	/********/
@@ -171,8 +182,16 @@
 
 	}
 
+	.display_none_mobile{
+
+		display: none;
+
+	}
+
 
 }
+
+
 	
 
 
