@@ -24,7 +24,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/logo/icone_santa_casa_sjc_colorido.png">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Portal Relatórios</title>
+    <title>Check Car</title>
     <!--CSS-->
     <?php 
         include 'css/style.php';
@@ -204,13 +204,12 @@ session_start();
 
                     <div class="div_br"> </div>
 
-
                     <a href="javascript:void(0)" class="closebtn"><i onclick="closeNav()" class="fa-solid fa-xmark"></i></a>
 
 
                     <a href="check_list.php" style="background-color: #46a5d4; font-size: 20px; color: white; "><i class="fa-solid fa-check"></i> Check List</a>
                     <div style="position: absolute; bottom: 60px;">
-                        <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-caret-left"></i> Sair</a>
+                        <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-person-running"></i> Sair</a>
                     </div>
                 </div>
                 

@@ -25,18 +25,40 @@
 
     </div>
 
-         <div class="div_br"> </div>
+        <div class="div_br"> </div>
 
-    <?php //if($_SESSION['SN_CUSTOS'] == 'S'){?>
+        <div class="row">
 
-    <a href="relatorio_custos.php" class="botao_home" type="submit"><i class="fa-solid fa-coins"></i>  Check List</a></td></tr>
-    <span class="espaco_pequeno"></span>
+            <div class="col-md-3 col-12" style="text-align: center;">
 
-    <?php //} ?>
+            <a href="check_list.php" class="botao_home" type="submit"><i class="fa-solid fa-car-side"></i>  Check List</a>
 
-    <div class='espaco_vertical_medio'></div>
+            </div>
 
-    
+        </div>
+
+    <!--ADMINISTRADORES-->
+
+        <div class="row">
+
+            <div class="col-md-3 col-12" style="text-align: center;">
+
+            <a href="Veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
+
+            </div>
+
+            <div class="col-md-3 col-12" style="text-align: center;">
+
+            <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Motoristas</a>
+
+            </div>
+
+        </div>
+
+
+
+
+
 
 <?php
     //RODAPE

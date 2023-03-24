@@ -24,8 +24,8 @@ body{
 
 .container{
     padding-top: 20px;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
     padding-bottom: 20px;
     min-height: 91vh;
     /*max-width: 90% !important;*/

@@ -27,28 +27,30 @@
 	/*BOTAO HOME */
 
 	.botao_home { 
-		width: 130px;
+		width: 180px;
 		font-size: 12px;
 		
 	}
 
+
+
 	.botao_home:hover{ 
-		width: 130px;
+		width: 180px;
 		font-size: 12px;
-		
+		width: 130px; margin: 0 auto;
 	}
 
 	/*BOTAO HOME ADM */
 
 	.botao_home_adm { 
 
-		width: 130px;
+		width: 180px;
 		font-size: 12px;
 
 	}
 
 	.botao_home_adm:hover { 
-		width: 130px;
+		width: 180px;
 		font-size: 12px;
 
 	}
