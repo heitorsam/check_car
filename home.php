@@ -43,7 +43,7 @@
 
             <div class="col-md-3 col-12" style="text-align: center;">
 
-            <a href="Veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
+            <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
 
             </div>
 

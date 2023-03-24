@@ -37,7 +37,6 @@
 	.botao_home:hover{ 
 		width: 180px;
 		font-size: 12px;
-		width: 130px; margin: 0 auto;
 	}
 
 	/*BOTAO HOME ADM */
