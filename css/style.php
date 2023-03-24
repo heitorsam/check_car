@@ -1037,6 +1037,21 @@ object-fit: cover;
 
     display: none;
 
+    
+}
+
+
+.esconde{
+
+display: block;
+
+}
+
+
+.esconde_btn{
+
+display:none;
+
 }
 
 </style>

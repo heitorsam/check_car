@@ -31,6 +31,18 @@
 
 	}
 
+	.esconde{
+
+		display: none;
+
+	}
+
+	.esconde_btn{
+
+		display:block;
+
+	}
+
 	/********/
 	/*BOTOES*/
 	/********/
