@@ -1,171 +1,101 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-
-<iframe src="https://pageloot.com/qr-code-scanner/" height="500" width="500" title="Iframe Example"></iframe>
-  
-<title>Web QR</title>
-
-<script type="text/javascript" src="https://webqr.com/llqrcode.js"></script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script type="text/javascript" src="https://webqr.com/webqr.js"></script>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/logo/icone_santa_casa_sjc_colorido.png">
+    <title>Portal Relatórios</title>
+    <!--SESSION-->
+    <?php 
+        session_start();
+    ?>
+    <!--CSS-->
+    <?php 
+        include 'css/style.php';
+        include 'css/style_mobile.php';
+    ?>
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome --> 
+    <script src="https://kit.fontawesome.com/a3000fd09d.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-<div id="main">
-<div id="header">
-<div style="position:relative;top:+20px;left:0px;">
-<p id="mp1">
-QR Code scanner
-</p>
+    <header> 
+    </header>
+    
+    <main>
 
-</div>
-<div id="mainbody">
-<table class="tsel" border="0" width="100%">
-<tr>
-<td valign="top" align="center" width="50%">
-<table class="tsel" border="0">
-<tr>
-<td><img class="selector" id="webcamimg" src="https://webqr.com/vid.png" onclick="setwebcam()" align="left" /></td>
-<td><img class="selector" id="qrimg" src="https://webqr.com/cam.png" onclick="setimg()" align="right"/></td></tr>
-<tr><td colspan="2" align="center">
-<div id="outdiv">
-</div></td></tr>
-</table>
-</td>
-</tr>
+        <div class="conteudo_login" style="min-height: 100vh; height: 100vh;">
+            <div class="container" style="position: relative; top: 50%; transform: translateY(-50%); 
+            min-height: 1vh !important;">
 
-<tr><td colspan="3" align="center">
-<div id="result"></div>
-</td></tr>
-</table>
+                <!--TELA LOGIN -->
 
-<!-- webqr_2016 -->
+                <div class="row justify-content-center " style="" >
+                    <div class="col-10" style="border-bottom: 1px solid #e7e7e7; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                        
+                        <h14>Check Car</h14>
 
-</div>&nbsp;
-<div id="footer">
+                    </div>
+                </div>
+                <div class="row justify-content-center ">
+                    <div class="col-md-5 col-lg-5 d-none d-md-block" style="border-right: 1px solid #e7e7e7; border-bottom-left-radius: 5px;">
 
-<h5 align="center">Copyright &copy; 2011 <a target="_blank" href="http://www.lazarsoft.info">Lazar Laszlo</a></h5>
-</div>
-</div>
-<canvas id="qr-canvas" width="800" height="600"></canvas>
+                        <img class="img_redimensionada efeito-zoom" src="img/logo_santa_casa_sjc.gif" />
+
+                    </div>
+                    <div class="col-10 col-sm-10 col-md-5 col-lg-5 col-xl-5" style="text-align: left; border-bottom-right-radius: 5px;">
+                        <form method="POST" action="valida_login.php">
+                            <div class="form-group">
+
+                                <!--TITULO-->
+                                <div class="centralizar">
+                                    <h13><i class="fa fa-user-o efeito-zoom" aria-hidden="true"></i> Acesso</h13>
+                                </div>
+
+                                <div class="div_br"> </div>
+
+                                <label for="login"><h12>Login:</h12></label>
+                                <input type="text" class="form-control" id="login" name="login" required autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="senha"><h12>Senha:</h12></label>
+                                <input type="password" class="form-control" id="senha" name="senha" required>
+                            </div>
+                            <button type="submit" class="botao_home" style="padding-top: 14px; padding-bottom: 14px;"> <i class="fa fa-key" aria-hidden="true"></i> Acessar</button>
+                        </form>
+
+                        <!--MENSAGENS-->
+                        <?php
+                            include 'js/mensagens.php';
+                            include 'js/mensagens_usuario.php';
+                        ?>
+
+                    </div>
+                </div>         
+
+            </div> <!-- FIM CLASS CONTEUDO -->
+        </div> <!-- FIM CLASS CONTAINER -->
+
+
+    </main>
+
+    <!--RODAPE -->
+    <footer>
+    </footer>
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+     <!-- Bootstrap JAVASCRIPT -->  
+     <script src="bootstrap/js/bootstrap.min.js"></script> 
+
+    <!--JAVASCRIPTS-->
+    <script src="js/scripts.js"></script>  
+   
+    <!-- Paralax -->
+    <script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js"></script>
+
 </body>
-
 </html>
-
-<style>
-
-body{
-    width:100%;
-    text-align:center;
-}
-img{
-    border:0;
-}
-#main{
-    margin: 15px auto;
-    background:white;
-    overflow: auto;
-	width: 100%;
-}
-#header{
-    background:white;
-    margin-bottom:15px;
-}
-#mainbody{
-    background: white;
-    width:100%;
-	display:none;
-}
-#footer{
-    background:white;
-}
-#v{
-    width:640px;
-    height:480px;
-}
-#qr-canvas{
-    display:none;
-}
-#qrfile{
-    width:1600px;
-    height:1200px;
-}
-#mp1{
-    text-align:center;
-    font-size:35px;
-}
-#imghelp{
-    position:relative;
-    left:0px;
-    top:-160px;
-    z-index:100;
-    font:18px arial,sans-serif;
-    background:#f0f0f0;
-	margin-left:35px;
-	margin-right:35px;
-	padding-top:10px;
-	padding-bottom:10px;
-	border-radius:20px;
-}
-.selector{
-    margin:0;
-    padding:0;
-    cursor:pointer;
-    margin-bottom:-5px;
-}
-#outdiv
-{
-    width:640px;
-    height:480px;
-	border: solid;
-	border-width: 3px 3px 3px 3px;
-}
-#result{
-    border: solid;
-	border-width: 1px 1px 1px 1px;
-	padding:20px;
-	width:70%;
-}
-
-ul{
-    margin-bottom:0;
-    margin-right:40px;
-}
-li{
-    display:inline;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-    font-weight: bold;
-    border-right: 1px solid #333333;
-}
-li a{
-    text-decoration: none;
-    color: black;
-}
-
-#footer a{
-	color: black;
-}
-.tsel{
-    padding:0;
-}
-
-</style>
-
-<script>
-
-load();
-var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-24451557-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
