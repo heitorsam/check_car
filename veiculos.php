@@ -64,6 +64,18 @@ include 'cabecalho.php';
 
         </div>
 
+                
+        <div class="col-md-2 esconde">
+                Cor:
+                <select class="form form-control" id="cor">
+
+                    <option value="All">Selecione</option>
+
+
+
+                </select>
+        </div>
+
 
         <div class='col-md-3 esconde'>
 
@@ -91,10 +103,58 @@ include 'cabecalho.php';
             </button>
         </div>
         <div class="modal-body">
-            ...
+
+            
+
+            <div class="col-md-3">
+
+                Modelo:
+                <input type="text" id="modelo" class="form form-control">
+
+            </div>
+            <div class="div_br"> </div> 
+            <div class="col-md-2">
+
+                Ano:
+                <input type="number" id="ano" class="form form-control">
+
+            </div>
+            <div class="div_br"> </div> 
+            <div class="col-md-2">
+
+                Placa:
+                <input type="number" id="Placa" class="form form-control">
+
+            </div>
+            <div class="div_br"> </div> 
+            <div class="col-md-2 ">
+
+                Km:
+                <input type="number" id="km" class="form form-control">
+
+            </div>
+            <div class="div_br"> </div>
+
+        
+            <div class="col-md-2 ">
+                Cor:
+                <select class="form form-control" id="cor">
+
+                    <option value="All">Selecione</option>
+
+
+
+                </select>
+            </div>
+
+
+
+    
+
         </div>
+
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             <button type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>

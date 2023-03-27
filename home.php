@@ -53,6 +53,14 @@
 
         </div>
 
+        
+        <div class="col-md-3 col-12" style="text-align: center;">
+
+        <a href="cor.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-palette"></i> Cores</a>
+
+        </div>
+
+
     </div>
 
 
