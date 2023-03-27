@@ -5,7 +5,8 @@
     $cons_tabela_cor = "SELECT cor.CD_COR,
                                cor.DS_COR,
                                cor.DS_RGB
-                        FROM portal_check_car.COR cor";
+                        FROM portal_check_car.COR cor
+                        ORDER BY 1 ASC";
 
     $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                            oci_execute($res_cons_tabela_cor);
@@ -35,7 +36,7 @@
 
             echo '<tr style="text-align: center;">';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row['DS_COR'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">' . "<i class='fa-solid fa-circle-minus' style='text-shadow: 1px 1px 1px #4f5050ab; color: " . $row['DS_RGB'] . "'></i> " . '</td>';
+            echo '<td class="align-middle" style="text-align: center;">' . "<i class='fa-solid fa-circle' style='text-shadow: 1px 1px 1px #4f5050ab; color: " . $row['DS_RGB'] . "'></i> " . '</td>';
 
 
             

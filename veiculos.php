@@ -2,6 +2,17 @@
 
 include 'cabecalho.php';
 
+include 'conexao.php';
+
+$cons_tabela_cor = "SELECT cor.CD_COR,
+                            cor.DS_COR,
+                            cor.DS_RGB
+                            FROM portal_check_car.COR cor
+                            ORDER BY 1 ASC";
+
+$res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
+                       $valida = oci_execute($res_cons_tabela_cor);
+     
 
 ?>
 
@@ -32,21 +43,21 @@ include 'cabecalho.php';
         <div class="col-md-3 esconde">
 
             Modelo:
-            <input type="text" id="modelo" class="form form-control">
+            <input type="text" id="modelo_desktop" class="form form-control">
 
         </div>
 
         <div class="col-md-2 esconde">
 
             Ano:
-            <input type="number" id="ano" class="form form-control">
+            <input type="number" id="ano_desktop" class="form form-control">
 
         </div>
 
         <div class="col-md-2 esconde">
 
             Placa:
-            <input type="number" id="Placa" class="form form-control">
+            <input type="text" id="Placa_desktop" class="form form-control">
 
         </div>
 
@@ -60,20 +71,31 @@ include 'cabecalho.php';
         <div class="col-md-2 esconde">
 
             Km:
-            <input type="number" id="km" class="form form-control">
+            <input type="number" id="km_desktop" class="form form-control">
 
         </div>
 
                 
         <div class="col-md-2 esconde">
-                Cor:
-                <select class="form form-control" id="cor">
 
-                    <option value="All">Selecione</option>
+            Cor:
+            <select class="form form-control" id="cor_desktop">
+
+                <option value="All">Selecione</option>
+
+                <?php
+
+                    while($row = oci_fetch_array($res_cons_tabela_cor)){
+
+                        echo'<option value="' .  $row['CD_COR'] . '">'. $row['DS_COR'] . '</option>';
 
 
+                    };
 
-                </select>
+                ?>
+
+            </select>
+
         </div>
 
 
@@ -104,58 +126,73 @@ include 'cabecalho.php';
         </div>
         <div class="modal-body">
 
-            
+            <div class="col-md-2 ">
+                
+                Cor:
+                <select class="form-control" id="cor_mob">
+                    
+                    <option value="All">Selecione</option>
+                    <?php
+
+                        $tabela_cor = "SELECT cor.CD_COR,
+                        cor.DS_COR,
+                        cor.DS_RGB
+                        FROM portal_check_car.COR cor
+                        ORDER BY 1 ASC";
+
+                        $res_tabela_cor = oci_parse($conn_ora, $tabela_cor);
+                        $valida = oci_execute($res_tabela_cor);
+
+                        while($row_mob = oci_fetch_array($res_tabela_cor)){
+
+                            echo '<option value="' . $row_mob['CD_COR'] . '">' . $row_mob['DS_COR'] . '</option>';
+
+                        }
+
+                    ?>
+
+                </select>
+
+            </div>
+
+            <div class="div_br"> </div> 
 
             <div class="col-md-3">
 
                 Modelo:
-                <input type="text" id="modelo" class="form form-control">
+                <input type="text" id="modelo_mob" class="form form-control">
 
             </div>
             <div class="div_br"> </div> 
             <div class="col-md-2">
 
                 Ano:
-                <input type="number" id="ano" class="form form-control">
+                <input type="number" id="ano_mob" class="form form-control">
 
             </div>
             <div class="div_br"> </div> 
             <div class="col-md-2">
 
                 Placa:
-                <input type="number" id="Placa" class="form form-control">
+                <input type="text" id="Placa_mob" class="form form-control">
 
             </div>
             <div class="div_br"> </div> 
             <div class="col-md-2 ">
 
                 Km:
-                <input type="number" id="km" class="form form-control">
+                <input type="number" id="km_mob" class="form form-control">
 
             </div>
+
             <div class="div_br"> </div>
 
-        
-            <div class="col-md-2 ">
-                Cor:
-                <select class="form form-control" id="cor">
-
-                    <option value="All">Selecione</option>
-
-
-
-                </select>
-            </div>
-
-
-
-    
 
         </div>
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary">Cadastrar</button>
+            <button onclick="ajax_insert_veiculo()" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>
     </div>
@@ -178,6 +215,88 @@ include 'cabecalho.php';
         function ajax_abre_modal(){
 
             $('#cad_veiculo').modal('show');
+
+        }
+
+        function ajax_insert_veiculo(){
+
+
+            //MOBILE
+            var cd_cores_mob = document.getElementById('cor_mob').value;
+            var modelo_mob = document.getElementById('modelo_mob').value;
+            var ano_mob = document.getElementById('ano_mob').value;
+            var placa_mob = document.getElementById('Placa_mob').value;
+            var km_mob = document.getElementById('km_mob').value;
+
+            alert(cd_cores_mob);
+            alert(modelo_mob);
+            alert(ano_mob);
+            alert(placa_mob);
+            alert(km_mob);
+
+
+            //DESKTOP
+            var cd_cores_desk = document.getElementById('cor_desktop').value;
+            var modelo_desk = document.getElementById('km_desktop').value;
+            var ano_desk = document.getElementById('Placa_desktop').value;
+            var placa_desk = document.getElementById('ano_desktop').value;
+            var km_desk = document.getElementById('modelo_desktop').value;
+
+            $.ajax({
+            
+                url: "funcoes/veiculos/ajax_insert_veiculos.php",
+                type: "POST",
+                data: {
+                    
+                    //MOBILE
+                    cor_mob : cd_cores_mob,
+                    mod_mob : modelo_mob,
+                    ano_mob : ano_mob,
+                    pla_mob : placa_mob,
+                    km_mob : km_mob,
+
+                    //DESKTOP
+                    cor_desk : cd_cores_desk,
+                    mod_desk : modelo_desk,
+                    ano_desk : ano_desk,
+                    placa_desk : placa_desk,
+                    km_desk : km_desk
+                    
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }
+
+
+            }
+
+        });  
+
 
         }
 
