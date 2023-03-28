@@ -45,7 +45,7 @@
                 if($row['TP_STATUS'] == 'A'){
 
 
-                    echo '<td class="align-middle" style="text-align: center;">' . '<i style=" color: #9ee162; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-on"' ;
+                    echo '<td class="align-middle" style="text-align: center;">' . '<i style=" color: #79c332; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-on"' ;
 
                     ?>
 

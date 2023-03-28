@@ -134,36 +134,46 @@ include 'cabecalho.php';
                 cache: false,
                 success: function(dataResult){
 
-                console.log(dataResult);
+                    console.log(dataResult);
 
-                if(dataResult == 'Sucesso'){
+                    if(dataResult == 'Sucesso'){
 
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
-                }else{
+                    }else if(dataResult == '1'){
 
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Cor%20possui%20vínculo%20com%20veiculo!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
 
+                    }else{
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    
+
+                    }
+                    
+                    ajax_constroi_tabela();
                 }
 
-                ajax_constroi_tabela();
-
-            }
-
-        });  
+             });  
         
 
         }
