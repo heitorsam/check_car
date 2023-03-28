@@ -3,6 +3,7 @@
 --CRIADAS POR: RAFAEL YASSER
 
 --DISATIVANDO TODAS AS FK'S
+
 ALTER TABLE portal_check_car.VEICULO DISABLE CONSTRAINT FK_CD_COR;
 ALTER TABLE portal_check_car.ITCHECKLIST DISABLE CONSTRAINT FK_CD_CHECKLIST;
 ALTER TABLE portal_check_car.ITCHECKLIST DISABLE CONSTRAINT FK_CD_ITEM_VEICULO;
@@ -87,7 +88,7 @@ NOCACHE
 NOCYCLE;
 
 ---------------------------------------------
-DROP TABLE portal_check_car.PAPEL
+DROP TABLE portal_check_car.PAPEL;
 
 CREATE TABLE portal_check_car.PAPEL(
        CD_PAPEL INT NOT NULL,
@@ -112,7 +113,7 @@ NOCACHE
 NOCYCLE;
 
 ----------------------------------------------
-DROP TABLE portal_check_car.CHECKLIST 
+DROP TABLE portal_check_car.CHECKLIST;
 
 CREATE TABLE portal_check_car.CHECKLIST(
        CD_CHECKLIST INT NOT NULL,
@@ -137,7 +138,7 @@ NOCACHE
 NOCYCLE;
 
 -----------------------------------------------
-DROP TABLE portal_check_car.ITEM_VEICULO
+DROP TABLE portal_check_car.ITEM_VEICULO;
 
 CREATE TABLE portal_check_car.ITEM_VEICULO(
        CD_ITEM_VEICULO INT NOT NULL,
@@ -160,7 +161,7 @@ NOCACHE
 NOCYCLE;
 
 -------------------------------------------------
-DROP TABLE portal_check_car.ITCHECKLIST
+DROP TABLE portal_check_car.ITCHECKLIST;
 
 CREATE TABLE portal_check_car.ITCHECKLIST(
        CD_ITCHECKLIST INT NOT NULL,
@@ -190,4 +191,3 @@ INCREMENT BY 1
 NOCACHE
 NOCYCLE;
 
-portal_check_car.

@@ -9,22 +9,21 @@ $usuario = $_SESSION['usuarioLogin'];
 include '../../conexao.php';
 
 //RECEBENDO VARIAVEIS MOBILE 
-$cor_mob = $_POST['cor_mob'];
-$modelo_mob = $_POST['mod_mob'];
-$ano_mob = $_POST['ano_mob'];
-$placa_mob = $_POST['pla_mob'];
-$km_mob = $_POST['km_mob'];
+$cor_desk = $_POST['cor_desk'];
+$modelo_desk = $_POST['mod_desk'];
+$ano_desk = $_POST['ano_desk'];
+$placa_desk = $_POST['placa_desk'];
+$km_desk = $_POST['km_desk'];
 
 //INSERT
-
-echo $insert_veiculo = "INSERT INTO portal_check_car.VEICULO 
+$insert_veiculo = "INSERT INTO portal_check_car.VEICULO 
                     SELECT 
                     portal_check_car.SEQ_CD_VEICULO.NEXTVAL AS CD_VEICULO,
-                    UPPER('$modelo_mob') AS DS_MODELO,
-                    '$ano_mob' AS DS_ANO,
-                    UPPER('$placa_mob') AS DS_PLACA,
-                    '$cor_mob' AS CD_COR,
-                    '$km_mob' AS KM,
+                    UPPER('$modelo_desk') AS DS_MODELO,
+                    '$ano_desk' AS DS_ANO,
+                    UPPER('$placa_desk') AS DS_PLACA,
+                    '$cor_desk' AS CD_COR,
+                    '$km_desk' AS KM,
                     'A' AS TP_STATUS,
                     '$usuario' AS CD_USUARIO_CADASTRO,
                     SYSDATE AS HR_CADASTRO,

@@ -102,7 +102,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
         <div class='col-md-3 esconde'>
 
             </br>
-            <button class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+            <button onclick="ajax_insert_veiculo_desktop()"class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
         </div>
 
@@ -192,7 +192,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button onclick="ajax_insert_veiculo()" type="button" class="btn btn-primary">Cadastrar</button>
+            <button onclick="ajax_insert_veiculo(), ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>
     </div>
@@ -208,9 +208,83 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
     </div>
 
+    <div class="div_br"> </div>  
+    
+    <div id="veiculos"></div>
+
 
 
     <script>
+
+        //DELETAR VEICULO
+
+        function ajax_inativa_veiculo(cd_veiculo, status){
+
+            alert(cd_veiculo);
+            alert(status);
+
+            $.ajax({
+            
+                url: "funcoes/veiculos/ajax_inativa_veiculos.php",
+                type: "POST",
+                data: {
+                    
+                    //MOBILE
+                    cd_veiculo : cd_veiculo
+
+                    
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }
+                
+                ajax_constroi_tabela_veiculos();
+
+                }
+
+            }); 
+        }
+
+        //EXIBE TABELAS RESULTADOS
+        window.onload = function(){
+
+            ajax_constroi_tabela_veiculos();
+
+        }
+
+
+        function ajax_constroi_tabela_veiculos(){
+
+            $('#veiculos').load('funcoes/veiculos/ajax_tabela_veiculos.php'); 
+
+        }
+
+
 
         function ajax_abre_modal(){
 
@@ -218,6 +292,13 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
         }
 
+        function ajax_fecha_modal(){
+
+            $('#cad_veiculo').modal('hide');
+
+        }
+
+        //INSERT MOBILE
         function ajax_insert_veiculo(){
 
 
@@ -228,19 +309,6 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
             var placa_mob = document.getElementById('Placa_mob').value;
             var km_mob = document.getElementById('km_mob').value;
 
-            alert(cd_cores_mob);
-            alert(modelo_mob);
-            alert(ano_mob);
-            alert(placa_mob);
-            alert(km_mob);
-
-
-            //DESKTOP
-            var cd_cores_desk = document.getElementById('cor_desktop').value;
-            var modelo_desk = document.getElementById('km_desktop').value;
-            var ano_desk = document.getElementById('Placa_desktop').value;
-            var placa_desk = document.getElementById('ano_desktop').value;
-            var km_desk = document.getElementById('modelo_desktop').value;
 
             $.ajax({
             
@@ -253,8 +321,73 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                     mod_mob : modelo_mob,
                     ano_mob : ano_mob,
                     pla_mob : placa_mob,
-                    km_mob : km_mob,
+                    km_mob : km_mob
+                    
+                },
 
+                cache: false,
+                success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }
+                
+                ajax_constroi_tabela_veiculos();
+
+                //MOBILE
+                document.getElementById('cor_mob').value = '';
+                document.getElementById('modelo_mob').value = '';
+                document.getElementById('ano_mob').value = '';
+                document.getElementById('Placa_mob').value = '';
+                document.getElementById('km_mob').value = '';
+
+
+                }
+
+        });  
+
+
+        }
+
+
+        //INSERT DESKTOP
+        function ajax_insert_veiculo_desktop(){
+
+            //DESKTOP
+            var cd_cores_desk = document.getElementById('cor_desktop').value;
+            var modelo_desk = document.getElementById('modelo_desktop').value;
+            var ano_desk = document.getElementById('ano_desktop').value;
+            var placa_desk = document.getElementById('Placa_desktop').value;
+
+            var km_desk = document.getElementById('km_desktop').value;
+
+            $.ajax({
+
+                url: "funcoes/veiculos/ajax_insert_veiculos_desktop.php",
+                type: "POST",
+                data: {
+                    
                     //DESKTOP
                     cor_desk : cd_cores_desk,
                     mod_desk : modelo_desk,
@@ -291,12 +424,19 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
 
                 }
+                    ajax_constroi_tabela_veiculos();
+
+                      //DESKTOP
+                      document.getElementById('cor_desktop').value = '';
+                      document.getElementById('modelo_desktop').value = '';
+                      document.getElementById('Placa_desktop').value = '';
+                      document.getElementById('ano_desktop').value = '';
+                      document.getElementById('km_desktop').value = '';
 
 
             }
 
-        });  
-
+            });  
 
         }
 

@@ -42,13 +42,13 @@ include 'cabecalho.php';
 
             RGB:
             <input value="#ffffff" type="color" id="rgb_desktop" class="form form-control">
-
+            
         </div>
 
         <div class='col-md-3 esconde'>
-
+            
             </br>
-            <button onclick="ajax_insert_tabela_cor()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+            <button onclick="ajax_insert_tabela_cor_desktop()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
         </div>
 
@@ -198,15 +198,12 @@ include 'cabecalho.php';
         }
 
 
+        //INSERT MOBILE
         function ajax_insert_tabela_cor(){  
 
             //MOBILE
             var rgba_mob = document.getElementById('rgb').value;
             var nome_mob = document.getElementById('cor').value;
-
-            //DESKTOP
-            var rgba_desk = document.getElementById('rgb_desktop').value;
-            var nome_desk = document.getElementById('cor_desktop').value;
 
             $.ajax({
                 
@@ -215,9 +212,7 @@ include 'cabecalho.php';
                 data: {
 
                     rgba_mobile : rgba_mob,
-                    nome_cor_mob: nome_mob,
-                    rgba_desktop: rgba_desk,
-                    nome_cor_desktop: nome_desk
+                    nome_cor_mob: nome_mob
 
                 },
 
@@ -254,6 +249,59 @@ include 'cabecalho.php';
                     //MOBILE
                     document.getElementById('rgb').value = '';
                     document.getElementById('cor').value = '';
+
+                }
+
+            });  
+        }
+
+        //INSERT DESKTOP
+        function ajax_insert_tabela_cor_desktop(){  
+
+            //DESKTOP
+            var rgba_desk = document.getElementById('rgb_desktop').value;
+            var nome_desk = document.getElementById('cor_desktop').value;
+
+            $.ajax({
+                
+                url: "funcoes/cor/ajax_cadastro_cor_desktop.php",
+                type: "POST",
+                data: {
+
+                    rgba_desktop : rgba_desk,
+                    nome_cor_desktop: nome_desk
+
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    if(dataResult == 'Sucesso'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Cor%20Cadastrada%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }else{
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }
+
+                    ajax_constroi_tabela();
 
                     //DESKTOP
                     document.getElementById('rgb_desktop').value = '';

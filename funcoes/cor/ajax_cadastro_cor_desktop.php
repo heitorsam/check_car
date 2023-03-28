@@ -10,8 +10,8 @@ include '../../conexao.php';
 
 //RECEBENDO VARIAVEIS
 
-$var_cor_mob = $_POST['rgba_mobile'];
-$var_nome_mob =  $_POST['nome_cor_mob'];
+$var_cor_mob = $_POST['rgba_desktop'];
+$var_nome_mob =  $_POST['nome_cor_desktop'];
 
 $insert_cor = "INSERT INTO portal_check_car.COR
                SELECT 
