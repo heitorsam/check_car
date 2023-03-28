@@ -45,47 +45,52 @@ include 'cabecalho.php';
 
                 <div class="modal-body">
 
-                    <div class="col-md-3">
+                    <form id="form">
 
-                        Login Mv:
-                        <input type="text" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
+                        <div class="col-md-3">
 
-                    </div>
-                    <div class="div_br"> </div> 
+                            Login Mv:
+                            <input type="text" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
 
-                    <div class="col-md-3">
-                        
-                        Plantão:
-                        <select class="form-control" id="tp_plantao">
-
-                            <option value="All">Selecione</option>
-
-
-                        </select>
-
-                    </div>
-                    <div class="div_br"> </div> 
-
-                    <div class="col-md-3">
-                        Foto:
-                        <div style="background-color: #eff0f1; border: dashed 1px #cbced1; text-align: center;">  
-                            <label style="padding-top: 10px;"class="btn btn-default btn-sm center-block btn-file">
-
-                                <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
-                                 Selecine um Arquivo!
-                                <input type="file" id="foto_usuario" style="display: none;">
-
-                            </label>
                         </div>
+                        <div class="div_br"> </div> 
 
-                    </div>
+                        <div class="col-md-3">
+                            
+                            Plantão:
+                            <select class="form-control" id="tp_plantao">
+
+                                <option value="All">Selecione</option>
+                                <option value="D">Dia</option>
+                                <option value="N">Noite</option>
+
+
+                            </select>
+
+                        </div>
+                        <div class="div_br"> </div> 
+
+                        <div class="col-md-3">
+                            Foto:
+                            <div style="background-color: #eff0f1; border: dashed 1px #cbced1; text-align: center;">  
+                                <label style="padding-top: 10px;"class="btn btn-default btn-sm center-block btn-file">
+
+                                    <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
+                                    Selecine um Arquivo!
+                                    <input type="file" id="foto_usuario" style="display: none;">
+
+                                </label>
+                            </div>
+
+                        </div>
+                    </form>
                                     
                                
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button onclick="ajax_insert_tabela_cor(), ajax_fecha_modal()"type="button" class="btn btn-primary">Cadastrar</button>
+                    <button onclick="ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -109,12 +114,35 @@ include 'cabecalho.php';
 
 <script>
 
+    let form = document.getElementById('form')
+
+    // Inicializa com os dados do Form
+    let formData = new FormData(form)
+
+    $.ajax({
+
+        url: "https://httpbin.org/post",
+        type: 'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+
+    }).then(response => console.log("- Dados enviados", response.form));
+
+
+    //MOBILE
+    function ajax_abre_modal(){
+
+        $('#motorista').modal('show');
+
+    }
+
         //MOBILE
-        function ajax_abre_modal(){
+        function ajax_fecha_modal(){
 
-         $('#motorista').modal('show');
+        $('#motorista').modal('hide');
 
-        }
+    }
 
 
 </script>
