@@ -219,10 +219,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
         //DELETAR VEICULO
 
         function ajax_inativa_veiculo(cd_veiculo, status){
-
-            alert(cd_veiculo);
-            alert(status);
-
+            
             $.ajax({
             
                 url: "funcoes/veiculos/ajax_inativa_veiculos.php",
@@ -230,7 +227,8 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                 data: {
                     
                     //MOBILE
-                    cd_veiculo : cd_veiculo
+                    cd_veiculo : cd_veiculo,
+                    status : status
 
                     
                 },
