@@ -37,7 +37,7 @@ include 'cabecalho.php';
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Cores</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastro de Motorista</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -45,20 +45,21 @@ include 'cabecalho.php';
 
                 <div class="modal-body">
 
-                    <form id="form">
+                    <form id="form" method="POST" enctype='multipart/form-data'>
 
                         <div class="col-md-3">
 
                             Login Mv:
-                            <input type="text" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
+                            <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
 
                         </div>
+
                         <div class="div_br"> </div> 
 
                         <div class="col-md-3">
                             
                             Plantão:
-                            <select class="form-control" id="tp_plantao">
+                            <select class="form-control" name="plantao" id="tp_plantao">
 
                                 <option value="All">Selecione</option>
                                 <option value="D">Dia</option>
@@ -77,12 +78,13 @@ include 'cabecalho.php';
 
                                     <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
                                     Selecine um Arquivo!
-                                    <input type="file" id="foto_usuario" style="display: none;">
+                                    <input name="foto" type="file" id="foto_usuario" style="display: none;">
 
                                 </label>
                             </div>
 
                         </div>
+
                     </form>
                                     
                                
@@ -90,7 +92,7 @@ include 'cabecalho.php';
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button onclick="ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
+                    <button onclick="ajax_insert_form_motorista(), " type="button" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -108,27 +110,103 @@ include 'cabecalho.php';
 
     </div>
 
-
-
+    <div id="constroi_tabela_motorista"></div>
 
 
 <script>
 
-    let form = document.getElementById('form')
+    function ajax_deleta_usu(cd_usuario){
 
-    // Inicializa com os dados do Form
-    let formData = new FormData(form)
+        alert(cd_usuario);
 
-    $.ajax({
+        $.ajax({
+            
+            url: "funcoes/motorista/ajax_deletar_motorista.php",
+            type: "POST",
+            data: {
 
-        url: "https://httpbin.org/post",
-        type: 'post',
-        data: formData,
-        processData: false,
-        contentType: false,
+                cd_usuario : cd_usuario,
+            },
 
-    }).then(response => console.log("- Dados enviados", response.form));
+            cache: false,
+            success: function(dataResult){
 
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else if(dataResult == '1'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Cor%20possui%20vínculo%20com%20veiculo!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }else{
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                
+
+                }
+                
+                ajax_constroi_tabela();
+            }
+
+        });  
+
+    }
+
+    window.onload = function(){
+
+        ajax_tabela_motorista();
+
+    }
+
+
+    function ajax_tabela_motorista(){
+
+        $('#constroi_tabela_motorista').load('funcoes/motorista/tabela_motorista.php');
+
+    }
+
+    function ajax_insert_form_motorista(){
+
+        let form = document.getElementById('form')
+
+        // Inicializa com os dados do Form
+        let formData = new FormData(form)
+
+        $.ajax({
+
+            url: "funcoes/motorista/insert_form_motorista.php",
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false
+
+        }).then(response => console.log("- Dados enviados", response.form));
+
+        ajax_fecha_modal();
+
+    }
 
     //MOBILE
     function ajax_abre_modal(){
