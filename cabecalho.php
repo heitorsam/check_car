@@ -16,6 +16,36 @@ session_start();
     //include 'acesso_restrito.php';    
 ?>
 
+<?php
+
+//CONEXÃO
+include 'conexao.php';
+
+$var_usuario = $_SESSION['usuarioLogin'];
+
+$cons_tabela_detalhe = "SELECT usu.NM_USUARIO,
+                                usu.CPF,
+                                usux.BLOB_FOTO,
+                                usu.TP_STATUS
+                                FROM dbasgu.USUARIOS usu
+                                LEFT JOIN portal_check_car.USUARIO usux
+                                    ON usux.CD_USUARIO_MV = usu.CD_USUARIO
+                                WHERE usu.CD_USUARIO = '$var_usuario'";
+
+$res_tabela_detalhe = oci_parse($conn_ora, $cons_tabela_detalhe);
+oci_execute($res_tabela_detalhe);
+
+$row = oci_fetch_array($res_tabela_detalhe);
+
+if(isset($row['BLOB_FOTO'])){
+
+    $imagem = $row['BLOB_FOTO'] ->load(); // (1000) = 1kB
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -154,10 +184,11 @@ session_start();
 
                     <div style="width: 200; height: 180px; padding-top: 15px">
 
-                        <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
+                        <div onclick="aumentarImagem()" id="imagem" style="background-image: url(data:image/gif;base64,<?php echo $imagem; ?>);
                                                                                         background-repeat: no-repeat;
                                                                                         background-position: center; 
                                                                                         background-size: cover;
+                                                                                        background-size: contain;
                                                                                         width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
 
                         </div>

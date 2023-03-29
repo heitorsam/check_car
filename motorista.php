@@ -6,8 +6,6 @@ include 'cabecalho.php';
 ?>
 
 
-
-
 <div class="div_br"> </div>
     
     <h11 class="display_esconder_mobile"><i  style="cursor: pointer;" class="fa-solid fa-user efeito-zoom"></i> <label class="display_esconder_mobile"> Motoristas</label></h11>
