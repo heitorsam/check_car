@@ -154,15 +154,15 @@ session_start();
 
                     <div style="width: 200; height: 180px; padding-top: 15px">
 
-                    <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
-                                                                                    background-repeat: no-repeat;
-                                                                                    background-position: center; 
-                                                                                    background-size: cover;
-                                                                                    width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
-
-                    </div>
+                        <div onclick="aumentarImagem()" id="imagem" style="background-image: url('img/outros/CANGURU.jpeg');
+                                                                                        background-repeat: no-repeat;
+                                                                                        background-position: center; 
+                                                                                        background-size: cover;
+                                                                                        width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
 
                         </div>
+
+                    </div>
 
                     <div id="imagem-ampliada" style="display: none;
                                                     position: fixed;

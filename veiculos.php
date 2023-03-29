@@ -210,6 +210,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
     <div class="div_br"> </div>  
     
+    <div id="mensagem_acoes"></div>
     <div id="veiculos"></div>
 
 
@@ -220,52 +221,55 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
         function ajax_inativa_veiculo(cd_veiculo, status){
 
-            $.ajax({
-            
-                url: "funcoes/veiculos/ajax_inativa_veiculos.php",
-                type: "POST",
-                data: {
-                    
-                    //MOBILE
-                    cd_veiculo : cd_veiculo,
-                    status : status
-
-                    
-                },
-
-                cache: false,
-                success: function(dataResult){
-
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }else {
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                }
+            if (confirm("Realmente deseja alterar o status?") == true) {
                 
-                ajax_constroi_tabela_veiculos();
+                $.ajax({
+                
+                    url: "funcoes/veiculos/ajax_inativa_veiculos.php",
+                    type: "POST",
+                    data: {
+                        
+                        //MOBILE
+                        cd_veiculo : cd_veiculo,
+                        status : status
 
-                }
+                        
+                    },
 
-            }); 
+                    cache: false,
+                    success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    if(dataResult == 'Sucesso'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Status%20Alterado%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }else {
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20alterar%20status!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }
+                    
+                    ajax_constroi_tabela_veiculos();
+
+                    }
+
+                }); 
+            }
         }
 
         //EXIBE TABELAS RESULTADOS

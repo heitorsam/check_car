@@ -17,7 +17,7 @@ include 'cabecalho.php';
     <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply efeito-zoom" aria-hidden="true"></i> Voltar</a></h27>
 
 <div class="div_br"> </div>  
-<div class="div_br"> </div>  
+  
 
 
     <!--DESKTOP-->
@@ -31,8 +31,64 @@ include 'cabecalho.php';
 
     </div>
 
-    <!--MODAL-->
+    <form id="form_deskt" method="POST" enctype='multipart/form-data'>
+        
+        <div class="row">
 
+            <div class="col-md-3 esconde">
+
+                Login Mv:
+                <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
+
+            </div>
+
+            <div class="div_br"> </div> 
+
+            <div class="col-md-3 esconde">
+                
+                Plantão:
+                <select class="form-control" name="plantao" id="tp_plantao">
+
+                    <option value="All">Selecione</option>
+                    <option value="D">Dia</option>
+                    <option value="N">Noite</option>
+
+
+                </select>
+
+            </div>
+            <div class="div_br"> </div> 
+
+            <div class="col-md-3 esconde">
+                Foto:
+                <div style="background-color: #eff0f1; border: dashed 1px #cbced1; text-align: center;">  
+                    <label style="padding-top: 10px;"class="btn btn-default btn-sm center-block btn-file">
+
+                        <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
+                        Selecine um Arquivo!
+                        <input name="foto" type="file" id="foto_usuario" style="display: none;">
+
+                    </label>
+                </div>
+
+            </div>
+            
+        
+
+            <div class='col-md-3 esconde'>
+                
+                </br>
+                <button onclick="ajax_insert_form_motorista_deskt()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+    <div class="div_br"> </div>
+
+    <!--MODAL CADASTRO MOTORISTA-->
     <div class="modal fade" id="motorista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -92,7 +148,35 @@ include 'cabecalho.php';
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button onclick="ajax_insert_form_motorista(), " type="button" class="btn btn-primary">Cadastrar</button>
+                    <button onclick="ajax_insert_form_motorista()" type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--DETALHES MOTORISTA-->
+
+    <div class="modal fade" id="det_motoroista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 100%; text-align: center;">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhe Motorista</h5>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                            
+                    <div id="det_moto"></div>
+                               
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
                 </div>
             </div>
         </div>
@@ -110,67 +194,176 @@ include 'cabecalho.php';
 
     </div>
 
+    <div id="mensagem_acoes"></div>
     <div id="constroi_tabela_motorista"></div>
 
 
 <script>
 
-    function ajax_deleta_usu(cd_usuario){
+    function ajax_insert_form_motorista_deskt(){
 
-        alert(cd_usuario);
+        let form = document.getElementById('form_deskt')
+
+        // Inicializa com os dados do Form
+        let formData = new FormData(form)
 
         $.ajax({
+
+            url: "funcoes/motorista/insert_form_deskt_motorista.php",
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false
+
             
-            url: "funcoes/motorista/ajax_deletar_motorista.php",
-            type: "POST",
-            data: {
 
-                cd_usuario : cd_usuario,
-            },
+        }).then(response => console.log("- Dados enviados", response.form));
 
-            cache: false,
-            success: function(dataResult){
+        location.reload();
 
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }else if(dataResult == '1'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20possui%20vínculo%20com%20veiculo!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+    }
 
 
-                }else{
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+    function ajax_chama_detalhes_motorista(cd_usuario){
+        
+        $('#det_motoroista').modal('show');
+        $('#det_moto').load('funcoes/motorista/detalhes_motorista.php?cd_usuario='+cd_usuario);
 
+    }
+
+    function ajax_mensagem(){
+
+        //MENSAGEM            
+        var_ds_msg = 'Motorista%20possui%20vinculo%20com%20serviços!';
+        //var_tp_msg = 'alert-success';
+        var_tp_msg = 'alert-danger';
+        //var_tp_msg = 'alert-primary';
+        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+    }
+
+
+    function ajax_deletar_motorista(cd_motorista){
+
+        if (confirm("Realmente deseja alterar o status?") == true) {
+
+            $.ajax({
                 
+                url: "funcoes/motorista/ajax_deletar_motorista.php",
+                type: "POST",
+                data: {
 
+                    cd_motorista : cd_motorista
+
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    if(dataResult == 'Sucesso'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Motorista%20Deletado%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }else if(dataResult == '1'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20deletar%20Motorista!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }else{
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    
+
+                    }
+                    
+                    ajax_tabela_motorista();
                 }
-                
-                ajax_constroi_tabela();
-            }
 
-        });  
+            });  
+
+        }
+    }
+
+
+
+    function ajax_inativar_motorista(cd_usuario,status){
+
+        if (confirm("Realmente deseja alterar o status?") == true) {
+
+            $.ajax({
+                
+                url: "funcoes/motorista/ajax_inativar_motorista.php",
+                type: "POST",
+                data: {
+
+                    cd_usuario : cd_usuario,
+                    status : status,
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    if(dataResult == 'Sucesso'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Status%20Alterado%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }else if(dataResult == '1'){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20alterar%20status!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }else{
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    
+
+                    }
+                    
+                    ajax_tabela_motorista();
+                }
+
+            });  
+        }
 
     }
 
@@ -202,9 +395,13 @@ include 'cabecalho.php';
             processData: false,
             contentType: false
 
+            
+
         }).then(response => console.log("- Dados enviados", response.form));
 
         ajax_fecha_modal();
+
+        location.reload();
 
     }
 
@@ -219,6 +416,7 @@ include 'cabecalho.php';
         function ajax_fecha_modal(){
 
         $('#motorista').modal('hide');
+    
 
     }
 
