@@ -7,6 +7,25 @@ $datahoje = date('Y-m-d', time());
 //CONEXÃO
 include 'conexao.php';
 
+//CONSULTA VEICULO
+$cons_veiculo = "SELECT vei.CD_VEICULO,
+                        vei.DS_MODELO,
+                        vei.DS_PLACA,
+                        vei.CD_COR,
+                        (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
+                        FROM portal_check_car.VEICULO vei";
+$res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
+                    oci_execute($res_cons_veiculo);
+
+//CONSULTA CONDUTOR
+$cons_veiculo = "SELECT vei.CD_VEICULO,
+                        vei.DS_MODELO,
+                        vei.DS_PLACA,
+                        vei.CD_COR,
+                        (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
+                        FROM portal_check_car.VEICULO vei";
+                        $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
+                        oci_execute($res_cons_veiculo);
 
 ?>
     
@@ -72,6 +91,16 @@ include 'conexao.php';
             <select class="form-control">
 
                 <option value="All">Selecione</option>
+                
+                <?php
+
+                        while($row = oci_fetch_array($res_cons_veiculo)){
+
+                            echo '<option value="'. $row['CD_VEICULO'] .'">'. $row['DS_MODELO'] .'</option>';
+
+                        }
+
+                ?>
 
 
             </select>
