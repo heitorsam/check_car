@@ -1075,5 +1075,11 @@ input[type=file]::file-selector-button:hover {
   border-right: 1px solid #e5e5e5;
 }
 
+.carro_check{
+
+    width: 30%;
+
+}
+
 </style>
 
