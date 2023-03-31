@@ -93,50 +93,54 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
     <div>
 
+        
+
         <div class="carro_check" style="margin: 0 auto; ">
 
-
-
             <div class="row">
+                
+                <div style="text-align: center; " class="col-4"></div>
 
-                <div style="text-align: center; "class="col-1"></div>
-                <div style="text-align: center;" class="col-1"></div>
-                <div style="text-align: center; " class="col-3">
-                    <select class="form-control">
+                <div style="text-align: center; " class="col-8">
 
-                        <option value="OK">OK</option>
-                        <option value="GI">GI</option>
-                        <option value="LS">LS</option>
-                        <option value="LC">LC</option>
-                        <option value="CR">CR</option>
-                        <option value="VZ">VZ</option>
+                    <div style="float: left; width: 50%;" >
 
-                    </select>
+                        <select class="form-control">
+
+                            <option value="OK">OK</option>
+                            <option value="GI">GI</option>
+                            <option value="LS">LS</option>
+                            <option value="LC">LC</option>
+                            <option value="CR">CR</option>
+                            <option value="VZ">VZ</option>
+
+                        </select>
+
+                    </div>
+
+                    <div style="float: left; width: 50%;">
+
+                        <select class="form-control">
+
+                            <option value="OK">OK</option>
+                            <option value="GI">GI</option>
+                            <option value="LS">LS</option>
+                            <option value="LC">LC</option>
+                            <option value="CR">CR</option>
+                            <option value="VZ">VZ</option>
+
+                        </select>
+
+                    </div>
+
                 </div>
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-3">
-                    <select class="form-control">
-
-                        <option value="OK">OK</option>
-                        <option value="GI">GI</option>
-                        <option value="LS">LS</option>
-                        <option value="LC">LC</option>
-                        <option value="CR">CR</option>
-                        <option value="VZ">VZ</option>
-
-                    </select>
-                </div>
-                <div style="text-align: center; " class="col-2"></div>
-                <div style="text-align: center; " class="col-1"></div>
 
             </div>
 
-
-
             <div class="row">
 
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-3">
+                <div style="text-align: center; " class="col-4">
+                    <div class="div_br"> </div> 
                     <select class="form-control">
 
                         <option value="OK">OK</option>
@@ -147,9 +151,10 @@ $res_item  = oci_parse($conn_ora, $cons_item);
                         <option value="VZ">VZ</option>
 
                     </select>
+
                 </div>
 
-                <div  class="col-6">
+                <div class="col-8">
 
                     <div class="div_br"> </div> 
                     <div style=" width: 150px; height: 60px; margin: 0 auto;">
@@ -157,43 +162,48 @@ $res_item  = oci_parse($conn_ora, $cons_item);
                     </div>
 
                 </div>
-                
-                <div style=" text-align: center; line-height: 60px; " class="col-1"></div>
-                <div style=" text-align: center; " class="col-1"></div>
-                
+
+  
             </div>
 
+
             <div class="row">
+                
+                <div style="text-align: center; " class="col-4"></div>
 
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-3">
-                    <select class="form-control">
+                <div style="text-align: center; " class="col-8">
 
-                        <option value="OK">OK</option>
-                        <option value="GI">GI</option>
-                        <option value="LS">LS</option>
-                        <option value="LC">LC</option>
-                        <option value="CR">CR</option>
-                        <option value="VZ">VZ</option>
+                    <div style="float: left; width: 50%;" >
 
-                    </select>
+                        <select class="form-control">
+
+                            <option value="OK">OK</option>
+                            <option value="GI">GI</option>
+                            <option value="LS">LS</option>
+                            <option value="LC">LC</option>
+                            <option value="CR">CR</option>
+                            <option value="VZ">VZ</option>
+
+                        </select>
+
+                    </div>
+
+                    <div style="float: left; width: 50%;">
+
+                        <select class="form-control">
+
+                            <option value="OK">OK</option>
+                            <option value="GI">GI</option>
+                            <option value="LS">LS</option>
+                            <option value="LC">LC</option>
+                            <option value="CR">CR</option>
+                            <option value="VZ">VZ</option>
+
+                        </select>
+
+                    </div>
+
                 </div>
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-3">
-                    <select class="form-control">
-
-                        <option value="OK">OK</option>
-                        <option value="GI">GI</option>
-                        <option value="LS">LS</option>
-                        <option value="LC">LC</option>
-                        <option value="CR">CR</option>
-                        <option value="VZ">VZ</option>
-
-                    </select>
-                </div>
-                <div style="text-align: center; " class="col-2"></div>
-                <div style="text-align: center; " class="col-1"></div>
 
             </div>
 
