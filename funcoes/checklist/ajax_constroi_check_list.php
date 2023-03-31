@@ -19,7 +19,13 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
 $row = oci_fetch_array($res_cons_veiculo);
 
+//CONSULTA ITEM
+$cons_item = "SELECT itvei.CD_ITEM_VEICULO,
+                     itvei.DS_ITEM_VEICULO
+                 FROM portal_check_car.item_veiculo itvei";
 
+$res_item  = oci_parse($conn_ora, $cons_item);
+             oci_execute($res_item);
 
 ?>
    
@@ -81,7 +87,7 @@ $row = oci_fetch_array($res_cons_veiculo);
     <div class="div_br"> </div> 
 
     <div style="text-align: center;">
-        <label style="font-weight: bold">Legenda: (GI) = Gastos Irregulares / (LS) =  Liso / (LC) = Danificado / (CR) = Cortes / (VZ) = Vazio</label>
+        <label style="font-weight: bold">(GI) = Gastos Irregulares / (LS) =  Liso / (LC) = Danificado / (CR) = Cortes / (VZ) = Vazio</label>
     </div>
 
 
@@ -144,9 +150,10 @@ $row = oci_fetch_array($res_cons_veiculo);
                 </div>
 
                 <div  class="col-6">
+
                     <div class="div_br"> </div> 
-                    <div style=" background-color: <?php echo $row['COR']; ?>; width: 150px; height: 60px; margin: 0 auto;">
-                        <img src="img/car.png">
+                    <div style=" width: 150px; height: 60px; margin: 0 auto;">
+                        <img src="img/chassi.png">
                     </div>
 
                 </div>
@@ -242,14 +249,63 @@ $row = oci_fetch_array($res_cons_veiculo);
     <!--DESKTOP E MOBILE-->
     <div style="background-color: #46a5d4; color: #ffffff; font-weight: bold; border-radius: 15px;"> <label style="padding-left: 15px; padding-top: 10px;">Inspeção/Vistoria Equipamentos:</label></div>
 
+    <div class="div_br"> </div> 
+
+
+    <div class="row">
+
+        <div class="col-md-3 esconde">
+
+            Items:
+            <select class="form-control" id="tp_status">
+                <option value="">Selecione</option>
+
+                <?php
+
+                    while($row_item = oci_fetch_array($res_item)){
+
+                        echo '<option value="'. $row_item['CD_ITEM_VEICULO'] .'">'. $row_item['DS_ITEM_VEICULO'] .'</option>';
+
+                    }
+
+                ?>
+
+            </select>
+
+        </div> 
+
+        <div class='col-md-2 esconde'>
+
+            </br>
+            <button onclick="ajax_adiciona_item_inspecao()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+
+        </div>
+
+    </div>
+
     
-    <div class="col-md-3 esconde">
+    <div class="div_br"> </div> 
 
-        :
-        <select class="form-control" id="tp_status">
-            <option value="">Selecione</option>
-            <option value="S">Saida</option>
-            <option value="R">Retorno</option>
-        </select>
 
-    </div> 
+    <div class="row">
+
+        <div class='col-md-12 esconde'>
+             Observações:
+            <input type="text" class="form-control" id="obs_geral">
+
+        </div>
+
+    </div>
+
+    <div class="div_br"> </div>  
+
+        <div class="row">
+        <div class='col-md-2 esconde'>
+
+            </br>
+            <button class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
+
+        </div>
+
+    </div>
+
