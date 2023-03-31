@@ -48,27 +48,27 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         <div class="col-md-3 esconde">
 
             Tipo:
-            <select class="form-control">
-                <option value="All">Selecione</option>
+            <select class="form-control" id="tp_status">
+                <option value="">Selecione</option>
                 <option value="S">Saida</option>
                 <option value="R">Retorno</option>
             </select>
 
         </div> 
 
-        <div class="col-md-3 esconde">
+        <div class="col-md-2 esconde">
 
             Data:
             <input min="<?php echo $datahoje; ?>" type="date" id="dt_check_list" class="form form-control">
 
         </div>
 
-        <div class="col-md-3 esconde">
+        <div class="col-md-2 esconde">
 
             Veiculo:
-            <select class="form-control" id="veiculo" onchange="ajax_constroi_check_list()">
+            <select class="form-control" id="veiculo">
 
-                <option value="All">Selecione</option>
+                <option value="">Selecione</option>
                 
                 <?php
 
@@ -82,6 +82,48 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
 
             </select>
+
+        </div>
+
+
+        <div class="col-md-3 esconde">
+
+            Condutor:
+            <select class="form-control" id="condutor">
+
+                <option value="">Selecione</option>
+                                
+                <?php
+
+                        
+                        //CONSULTA MOTORISTA
+                    $cons_motorista = "SELECT usu.CD_USUARIO,
+                        usu.CD_USUARIO_MV,
+                        (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
+                        FROM portal_check_car.USUARIO usu
+                        WHERE usu.TP_STATUS = 'A'";
+                        $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
+                        oci_execute($res_cons_motorista);    
+
+                        $row_motorista = oci_fetch_array($res_cons_motorista);
+
+                        while($row_motorista = oci_fetch_array($res_cons_motorista)){
+
+                            echo '<option value="'. $row_motorista['CD_USUARIO'] .'">'. $row_motorista['NM_USUARIO'] .'</option>';
+
+                        }
+
+                ?>
+
+
+            </select>
+
+        </div>
+
+        <div class='col-md-2 esconde'>
+
+            </br>
+            <button onclick="ajax_constroi_check_list()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
 
         </div>
 
@@ -100,11 +142,32 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         //RESTANTE DO CHECKLIST
         function ajax_constroi_check_list(){
 
+            var condutor = document.getElementById('condutor').value;
+            if(condutor == ''){
+                document.getElementById('condutor').focus();
+            }
+
             var veiculo = document.getElementById('veiculo').value;
+            if(veiculo == ''){
+                document.getElementById('veiculo').focus();
+            }
+            
+            var data = document.getElementById('dt_check_list').value;
+            if(data == ''){
+                document.getElementById('dt_check_list').focus();
+            }
 
-            alert(veiculo);
+            var status = document.getElementById('tp_status').value;
+            if(status == ''){
+                document.getElementById('tp_status').focus();
+            }
 
-           $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo);
+            if(status != '' && data != '' && veiculo != '' && condutor != ''){
+
+                $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo);
+
+            }
+           
 
         }
 
@@ -112,12 +175,6 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
         //FUEL
         var global_js_valor_gal = 'x';
-
-        function js_exibe_valor_gal(){
-
-            alert(global_js_valor_gal);
-            
-        }
 
         function js_gal_sel(js_vl_sel){
 
@@ -129,7 +186,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
             global_js_valor_gal = js_vl_sel;
 
-            alert(global_js_valor_gal);
+            //alert(global_js_valor_gal);
         }
 
     </script>

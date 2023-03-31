@@ -12,58 +12,17 @@ $cons_veiculo = "SELECT vei.CD_VEICULO,
                         vei.DS_PLACA,
                         vei.CD_COR,
                         (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
-                        FROM portal_check_car.VEICULO vei";
+                        FROM portal_check_car.VEICULO vei
+                        WHERE vei.CD_VEICULO = $var_cd_veiculo";
 $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     oci_execute($res_cons_veiculo);
 
 $row = oci_fetch_array($res_cons_veiculo);
 
 
-//CONSULTA MOTORISTA
-$cons_motorista = "SELECT usu.CD_USUARIO,
-                          usu.CD_USUARIO_MV,
-                          (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
-                          FROM portal_check_car.USUARIO usu
-                          WHERE usu.TP_STATUS = 'A'";
-$res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
-oci_execute($res_cons_motorista);    
-
-$row_motorista = oci_fetch_array($res_cons_motorista);
 
 ?>
-
-<!--DESKTOP E MOBILE-->
-<div style="background-color: #46a5d4; color: #ffffff; font-weight: bold; border-radius: 15px;"> <label style="padding-left: 15px; padding-top: 10px;">Identificação do Condutor:</label></div>
-    
-    <div class="div_br"> </div> 
-
-    <!--DESKTOP-->
-    <div class="row">
-
-        <div class="col-md-3 esconde">
-
-            Condutor:
-            <select class="form-control">
-
-                <option value="All">Selecione</option>
-                                
-                <?php
-
-                        while($row_motorista = oci_fetch_array($res_cons_motorista)){
-
-                            echo '<option value="'. $row_motorista['CD_USUARIO'] .'">'. $row_motorista['NM_USUARIO'] .'</option>';
-
-                        }
-
-                ?>
-
-
-            </select>
-
-        </div>
-
-    </div>
-
+   
     <div class="div_br"> </div> 
 
     <!--DESKTOP E MOBILE-->
@@ -74,41 +33,41 @@ $row_motorista = oci_fetch_array($res_cons_motorista);
 
     <div>
 
-        <div class="carro_check" style="margin: 0 auto;">
+        <div class="carro_check" style="margin: 0 auto; ">
 
             <div class="row">
                 <div style="text-align: center; "class="col-1"></div>
-                <div style="text-align: center;" class="col-2">02</div>
-                <div style="text-align: center; " class="col-2">03</div>
-                <div style="text-align: center; " class="col-2">04</div>
-                <div style="text-align: center; " class="col-2">05</div>
-                <div style="text-align: center; " class="col-2">06</div>
+                <div style="text-align: center;" class="col-2"> 02 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">03 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">04 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">05 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">06 <input style="zoom: 2.0;" type="checkbox"></div>
                 <div style="text-align: center; " class="col-1"></div>
             </div>
 
             <div class="row">
                 <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; line-height: 60px; " class="col-2">01</div>
+                <div style="text-align: center; line-height: 60px; " class="col-2">01 <input style="zoom: 2.0;" type="checkbox"></div>
 
                 <div  class="col-6">
-
+                    <br><br>
                     <div style=" background-color: <?php echo $row['COR']; ?>; width: 150px; height: 60px; margin: 0 auto;">
                         <img src="img/car.png">
                     </div>
 
                 </div>
                 
-                <div style=" text-align: center; line-height: 60px; " class="col-2">07</div>
+                <div style=" text-align: center; line-height: 60px; " class="col-2">07 <input style="zoom: 2.0;" type="checkbox"></div>
                 <div style=" text-align: center; " class="col-1"></div>
             </div>
 
             <div class="row">
                 <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-2">12</div>
-                <div style="text-align: center; " class="col-2">11</div>
-                <div style="text-align: center; " class="col-2">10</div>
-                <div style="text-align: center; " class="col-2">09</div>
-                <div style="text-align: center; " class="col-2">08</div>
+                <div style="text-align: center; " class="col-2">12 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">11 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">10 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">09 <input style="zoom: 2.0;" type="checkbox"></div>
+                <div style="text-align: center; " class="col-2">08 <input style="zoom: 2.0;" type="checkbox"></div>
                 <div style="text-align: center; " class="col-1"></div>
             </div>
 
