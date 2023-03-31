@@ -43,20 +43,28 @@
 
         <div class="col-md-3 col-12" style="text-align: center;">
 
-        <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
-
-        </div>
-
-        <div class="col-md-3 col-12" style="text-align: center;">
-
-        <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-user"></i> Motoristas</a>
+            <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
 
         </div>
 
         
         <div class="col-md-3 col-12" style="text-align: center;">
 
-        <a href="cor.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-palette"></i> Cores</a>
+            <a href="item_veiculo.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-list-ul"></i> Itens Veiculo</a>
+
+        </div>
+
+
+        <div class="col-md-3 col-12" style="text-align: center;">
+
+            <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-user"></i> Motoristas</a>
+
+        </div>
+
+        
+        <div class="col-md-3 col-12" style="text-align: center;">
+
+            <a href="cor.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-palette"></i> Cores</a>
 
         </div>
 

@@ -78,6 +78,122 @@ $row = oci_fetch_array($res_cons_veiculo);
     <!--DESKTOP E MOBILE-->
     <div style="background-color: #46a5d4; color: #ffffff; font-weight: bold; border-radius: 15px;"> <label style="padding-left: 15px; padding-top: 10px;">Controle Pneus:</label></div>
 
+    <div class="div_br"> </div> 
+
+    <div style="text-align: center;">
+        <label style="font-weight: bold">Legenda: (GI) = Gastos Irregulares / (LS) =  Liso / (LC) = Danificado / (CR) = Cortes / (VZ) = Vazio</label>
+    </div>
+
+
+    <div>
+
+        <div class="carro_check" style="margin: 0 auto; ">
+
+
+
+            <div class="row">
+
+                <div style="text-align: center; "class="col-1"></div>
+                <div style="text-align: center;" class="col-1"></div>
+                <div style="text-align: center; " class="col-3">
+                    <select class="form-control">
+
+                        <option value="OK">OK</option>
+                        <option value="GI">GI</option>
+                        <option value="LS">LS</option>
+                        <option value="LC">LC</option>
+                        <option value="CR">CR</option>
+                        <option value="VZ">VZ</option>
+
+                    </select>
+                </div>
+                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center; " class="col-3">
+                    <select class="form-control">
+
+                        <option value="OK">OK</option>
+                        <option value="GI">GI</option>
+                        <option value="LS">LS</option>
+                        <option value="LC">LC</option>
+                        <option value="CR">CR</option>
+                        <option value="VZ">VZ</option>
+
+                    </select>
+                </div>
+                <div style="text-align: center; " class="col-2"></div>
+                <div style="text-align: center; " class="col-1"></div>
+
+            </div>
+
+
+
+            <div class="row">
+
+                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center; " class="col-3">
+                    <select class="form-control">
+
+                        <option value="OK">OK</option>
+                        <option value="GI">GI</option>
+                        <option value="LS">LS</option>
+                        <option value="LC">LC</option>
+                        <option value="CR">CR</option>
+                        <option value="VZ">VZ</option>
+
+                    </select>
+                </div>
+
+                <div  class="col-6">
+                    <div class="div_br"> </div> 
+                    <div style=" background-color: <?php echo $row['COR']; ?>; width: 150px; height: 60px; margin: 0 auto;">
+                        <img src="img/car.png">
+                    </div>
+
+                </div>
+                
+                <div style=" text-align: center; line-height: 60px; " class="col-1"></div>
+                <div style=" text-align: center; " class="col-1"></div>
+                
+            </div>
+
+            <div class="row">
+
+                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center; " class="col-3">
+                    <select class="form-control">
+
+                        <option value="OK">OK</option>
+                        <option value="GI">GI</option>
+                        <option value="LS">LS</option>
+                        <option value="LC">LC</option>
+                        <option value="CR">CR</option>
+                        <option value="VZ">VZ</option>
+
+                    </select>
+                </div>
+                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center; " class="col-3">
+                    <select class="form-control">
+
+                        <option value="OK">OK</option>
+                        <option value="GI">GI</option>
+                        <option value="LS">LS</option>
+                        <option value="LC">LC</option>
+                        <option value="CR">CR</option>
+                        <option value="VZ">VZ</option>
+
+                    </select>
+                </div>
+                <div style="text-align: center; " class="col-2"></div>
+                <div style="text-align: center; " class="col-1"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     <div class="div_br"> </div>
 
     <!--DESKTOP E MOBILE-->
@@ -120,3 +236,20 @@ $row = oci_fetch_array($res_cons_veiculo);
 
 
     </div>
+
+    <div class="div_br"> </div>
+
+    <!--DESKTOP E MOBILE-->
+    <div style="background-color: #46a5d4; color: #ffffff; font-weight: bold; border-radius: 15px;"> <label style="padding-left: 15px; padding-top: 10px;">Inspeção/Vistoria Equipamentos:</label></div>
+
+    
+    <div class="col-md-3 esconde">
+
+        :
+        <select class="form-control" id="tp_status">
+            <option value="">Selecione</option>
+            <option value="S">Saida</option>
+            <option value="R">Retorno</option>
+        </select>
+
+    </div> 
