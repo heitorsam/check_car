@@ -7,6 +7,15 @@ $datahoje = date('Y-m-d', time());
 //CONEXÃO
 include 'conexao.php';
 
+//RODANDO SEQUENCE 
+$cons_seq = "SELECT
+             portal_check_car.SEQ_CD_CHECKLIST.NEXTVAL AS SEQ_CK
+             FROM DUAL";
+$res_seq = oci_parse($conn_ora, $cons_seq);
+           oci_execute($res_seq);
+$row_seq = oci_fetch_array($res_seq);
+
+
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
                         vei.DS_MODELO,
@@ -44,6 +53,10 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
     <!--DESKTOP-->
     <div class="row">
+        
+        <!--INPUT PARA PEGAR VALOR DA SEQUENCE NO JAVASCRIPT-->
+        <input type="text" id="seq" value="<?php echo $row_seq['SEQ_CK']; ?>" hidden>
+
 
         <div class="col-md-3 esconde">
 
@@ -74,7 +87,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
                         while($row = oci_fetch_array($res_cons_veiculo)){
 
-                            echo '<option value="'. $row['CD_VEICULO'] .'">'. $row['DS_MODELO'] .'</option>';
+                            echo '<option value="'. $row['CD_VEICULO'] .'">'. $row['DS_MODELO'] . ' / ' . $row['DS_PLACA'] .'</option>';
 
                         }
 
@@ -97,7 +110,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
                         
                         //CONSULTA MOTORISTA
-                    $cons_motorista = "SELECT usu.CD_USUARIO,
+                        $cons_motorista = "SELECT usu.CD_USUARIO,
                         usu.CD_USUARIO_MV,
                         (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
                         FROM portal_check_car.USUARIO usu
@@ -123,7 +136,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         <div class='col-md-2 esconde'>
 
             </br>
-            <button onclick="ajax_constroi_check_list()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
 
         </div>
 
@@ -138,6 +151,83 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
     <div id="restante_check_list"></div>
 
     <script>
+
+        //INSER TABELA ITCHECKLIST
+        function ajax_insert_tabela_itchecklist(){
+
+            sequence = document.getElementById('seq').value;
+            defeito_1 =  document.getElementById('1').checked == true;
+
+
+            /*
+            $.ajax({
+                
+                url: "funcoes/checklist/ajax_insert_tabela_checklist.php",
+                type: "POST",
+                data: {
+
+                    tipo : tipo,
+                    data : data,
+                    veiculo : veiculo,
+                    condutor : condutor,
+                    sequence : sequence
+
+
+                },
+                
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    
+                }
+
+            });  */
+
+        }
+
+        //INSER TABELA CHECKLIST
+        function ajax_insert_tabela_checklist(){
+
+            tipo = document.getElementById('tp_status').value;
+            data = document.getElementById('dt_check_list').value;
+            veiculo = document.getElementById('veiculo').value;
+            condutor = document.getElementById('condutor').value;
+            sequence = document.getElementById('seq').value;
+
+            alert(tipo);
+            alert(data);
+            alert(veiculo);
+            alert(condutor);
+            alert(sequence);
+
+            $.ajax({
+                
+                url: "funcoes/checklist/ajax_insert_tabela_checklist.php",
+                type: "POST",
+                data: {
+
+                    tipo : tipo,
+                    data : data,
+                    veiculo : veiculo,
+                    condutor : condutor,
+                    sequence : sequence
+
+
+                },
+                
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    
+                }
+
+            });  
+
+        }
 
         //RESTANTE DO CHECKLIST
         function ajax_constroi_check_list(){
