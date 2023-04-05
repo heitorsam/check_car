@@ -155,6 +155,13 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         //INSER TABELA ITCHECKLIST
         function ajax_insert_tabela_itchecklist(js_cd_item,js_resposta){
 
+            //RECEBENDO VALORES PNEUS
+            if(js_resposta == 'PNEU'){
+
+                js_resposta = document.getElementById('select_pneu_'+js_cd_item).value;
+            }
+             
+
             var js_sequence = document.getElementById('seq').value;
             var js_apenas_exclui = 'N';
 
@@ -187,6 +194,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                 }
 
             });  
+            
 
         }
 

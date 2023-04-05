@@ -22,7 +22,8 @@ $row = oci_fetch_array($res_cons_veiculo);
 //CONSULTA ITEM
 $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
                      itvei.DS_ITEM_VEICULO
-                 FROM portal_check_car.item_veiculo itvei";
+                 FROM portal_check_car.item_veiculo itvei
+                 WHERE itvei.SN_PADRAO <> 'S'";
 
 $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);
@@ -105,7 +106,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                     <div style="float: left; width: 50%;" >
 
-                        <select class="form-control">
+                        <select class="form-control" id="select_pneu_13" onchange="ajax_insert_tabela_itchecklist('13','PNEU')">
 
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
@@ -120,7 +121,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                     <div style="float: left; width: 50%;">
 
-                        <select class="form-control">
+                        <select class="form-control" id="select_pneu_14" onchange="ajax_insert_tabela_itchecklist('14','PNEU')">
 
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
@@ -141,7 +142,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                 <div style="text-align: center; " class="col-4">
                     <div class="div_br"> </div> 
-                    <select class="form-control">
+                    <select class="form-control" id="select_pneu_15" onchange="ajax_insert_tabela_itchecklist('15','PNEU')">
 
                         <option value="OK">OK</option>
                         <option value="GI">GI</option>
@@ -175,7 +176,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                     <div style="float: left; width: 50%;" >
 
-                        <select class="form-control">
+                        <select class="form-control" id="select_pneu_16" onchange="ajax_insert_tabela_itchecklist('16','PNEU')">
 
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
@@ -190,7 +191,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                     <div style="float: left; width: 50%;">
 
-                        <select class="form-control">
+                        <select class="form-control" id="select_pneu_17"onchange="ajax_insert_tabela_itchecklist('17','PNEU')">
 
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
