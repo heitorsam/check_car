@@ -43,17 +43,17 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
             <div class="row">
                 <div style="text-align: center; "class="col-1"></div>
-                <div style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('2')"></div>
-                <div style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('3')"></div>
-                <div style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('4')"></div>
-                <div style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('5')"></div>
-                <div style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('6')"></div>
+                <div style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('2','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('3','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('4','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('5','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('6','DANIFICADO')"></div>
                 <div style="text-align: center; " class="col-1"></div>
             </div>
 
             <div class="row">
                 <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('1')"></div>
+                <div style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('1','DANIFICADO')"></div>
 
                 <div  class="col-6">
                     <br><br>
@@ -63,17 +63,17 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                 </div>
                 
-                <div style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('7')"></div>
+                <div style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('7','DANIFICADO')"></div>
                 <div style=" text-align: center; " class="col-1"></div>
             </div>
 
             <div class="row">
                 <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('12')"></div>
-                <div style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('11')"></div>
-                <div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('10')"></div>
-                <div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('9')"></div>
-                <div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('8')"></div>
+                <div style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('12','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('11','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('10','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('9','DANIFICADO')"></div>
+                <div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('8','DANIFICADO')"></div>
                 <div style="text-align: center; " class="col-1"></div>
             </div>
 

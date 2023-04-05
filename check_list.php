@@ -153,24 +153,27 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
     <script>
 
         //INSER TABELA ITCHECKLIST
-        function ajax_insert_tabela_itchecklist(){
+        function ajax_insert_tabela_itchecklist(js_cd_item,js_resposta){
 
-            sequence = document.getElementById('seq').value;
-            defeito_1 =  document.getElementById('1').checked == true;
+            var js_sequence = document.getElementById('seq').value;
+            var js_apenas_exclui = 'N';
 
+            if(js_cd_item >= 1 && js_cd_item <= 12 && document.getElementById(''+js_cd_item+'').checked == false){
 
-            /*
+                var js_apenas_exclui = 'S';
+
+            }
+            
             $.ajax({
                 
-                url: "funcoes/checklist/ajax_insert_tabela_checklist.php",
+                url: "funcoes/checklist/ajax_insert_tabela_itchecklist.php",
                 type: "POST",
                 data: {
 
-                    tipo : tipo,
-                    data : data,
-                    veiculo : veiculo,
-                    condutor : condutor,
-                    sequence : sequence
+                    sequence : js_sequence,
+                    cd_item : js_cd_item,
+                    resposta : js_resposta,
+                    sn_apenas_exclui : js_apenas_exclui
 
 
                 },
@@ -183,7 +186,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     
                 }
 
-            });  */
+            });  
 
         }
 
@@ -196,11 +199,11 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
             condutor = document.getElementById('condutor').value;
             sequence = document.getElementById('seq').value;
 
-            alert(tipo);
-            alert(data);
-            alert(veiculo);
-            alert(condutor);
-            alert(sequence);
+            //alert(tipo);
+            //alert(data);
+            //alert(veiculo);
+            //alert(condutor);
+            //alert(sequence);
 
             $.ajax({
                 
