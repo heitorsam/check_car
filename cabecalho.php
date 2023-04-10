@@ -189,7 +189,7 @@ if(isset($row['BLOB_FOTO'])){
                                                                                         background-position: center; 
                                                                                         background-size: cover;
                                                                                         background-size: contain;
-                                                                                        width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #bfbdbd; ">
+                                                                                        width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #4cafe7; ">
 
                         </div>
 
@@ -238,11 +238,11 @@ if(isset($row['BLOB_FOTO'])){
                     <a href="javascript:void(0)" class="closebtn"><i onclick="closeNav()" class="fa-solid fa-xmark"></i></a>
 
 
-                    <a href="check_list.php" style="background-color: #4f7fa2; font-size: 20px; color: white; border-bottom: solid 1px white;"><i class="fa-solid fa-check"></i>  Check List</a>
-                    <a href="veiculos.php" style="background-color: #4f7fa2; font-size: 20px; color: white; border-bottom: solid 1px white;"><i class="fa-solid fa-car"></i>  Veiculo</a>
-                    <a href="item_veiculo.php" style="background-color: #4f7fa2; font-size: 20px; color: white; border-bottom: solid 1px white;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
-                    <a href="motorista.php" style="background-color: #4f7fa2; font-size: 20px; color: white; border-bottom: solid 1px white;"><i class="fa-solid fa-user"></i>  Motorista</a>
-                    <a href="cor.php" style="background-color: #4f7fa2; font-size: 20px; color: white;"><i class="fa-solid fa-palette"></i>  Cores</a>
+                    <a href="check_list.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7; border-top: solid 2px #4cafe7;"><i class="fa-solid fa-check"></i>  Check List</a>
+                    <a href="veiculos.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-car"></i>  Veiculo</a>
+                    <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
+                    <a href="motorista.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-user"></i>  Motorista</a>
+                    <a href="cor.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-palette"></i>  Cores</a>
 
                     <div style="position: absolute; bottom: 60px;">
                         <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-person-running"></i> Sair</a>
