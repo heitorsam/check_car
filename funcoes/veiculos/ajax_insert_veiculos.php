@@ -17,7 +17,7 @@ $km_mob = $_POST['km_mob'];
 
 //INSERT
 
-echo $insert_veiculo = "INSERT INTO portal_check_car.VEICULO 
+$insert_veiculo = "INSERT INTO portal_check_car.VEICULO 
                     SELECT 
                     portal_check_car.SEQ_CD_VEICULO.NEXTVAL AS CD_VEICULO,
                     UPPER('$modelo_mob') AS DS_MODELO,
@@ -35,5 +35,19 @@ echo $insert_veiculo = "INSERT INTO portal_check_car.VEICULO
 $res_insert_veiculo = oci_parse($conn_ora, $insert_veiculo);
 $valida = oci_execute($res_insert_veiculo);
 
+    //VALIDACAO
+    if (!$valida) {   
+    
+        $erro = oci_error($res_insert_veiculo);																							
+        $msg_erro = htmlentities($erro['message']);
+        //header("Location: $pag_login");
+        //echo $erro;
+        echo $msg_erro;
+
+    }else{
+
+        echo 'Sucesso';
+        
+    }
 
 ?>

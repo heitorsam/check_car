@@ -1,8 +1,13 @@
 <?php
 
+//CABECALHO
 include 'cabecalho.php';
 
+//CONEXÃO
 include 'conexao.php';
+
+//AJAX ALERTA
+include 'config/mensagem/ajax_mensagem_alert.php';
 
 $cons_tabela_cor = "SELECT cor.CD_COR,
                             cor.DS_COR,
@@ -218,10 +223,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
     <script>
 
         //DELETAR VEICULO
-
         function ajax_inativa_veiculo(cd_veiculo, status){
-
-            if (confirm("Realmente deseja alterar o status?") == true) {
                 
                 $.ajax({
                 
@@ -269,7 +271,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                     }
 
                 }); 
-            }
+            
         }
 
         //EXIBE TABELAS RESULTADOS
@@ -336,7 +338,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
                     //alert(var_beep);
                     //MENSAGEM            
-                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
+                    var_ds_msg = 'Veiculo%20Cadastradi%20com%20sucesso!';
                     var_tp_msg = 'alert-success';
                     //var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -346,7 +348,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
                     //alert(var_beep);
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                    var_ds_msg = 'Erro%20ao%20excluir%20veiculo!';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';

@@ -49,8 +49,6 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
     </div>
 
-    <div class="div_br"> </div> 
-
     <!--DESKTOP-->
     <div class="row">
         
@@ -58,7 +56,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         <input type="text" id="seq" value="<?php echo $row_seq['SEQ_CK']; ?>" hidden>
 
 
-        <div class="col-md-3 esconde">
+        <div class="col-md-3 col-12">
 
             Tipo:
             <select class="form-control" id="tp_status">
@@ -69,7 +67,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
         </div> 
 
-        <div class="col-md-2 esconde">
+        <div class="col-md-3 col-12">
 
             Veiculo:
             <select class="form-control" id="veiculo">
@@ -92,7 +90,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         </div>
 
 
-        <div class="col-md-3 esconde">
+        <div class="col-md-3 col-12">
 
             Condutor:
             <select class="form-control" id="condutor">
@@ -104,10 +102,11 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                         
                         //CONSULTA MOTORISTA
                         $cons_motorista = "SELECT usu.CD_USUARIO,
-                        usu.CD_USUARIO_MV,
-                        (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
-                        FROM portal_check_car.USUARIO usu
-                        WHERE usu.TP_STATUS = 'A'";
+                                                  usu.CD_USUARIO_MV,
+                                                  (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
+                                           FROM portal_check_car.USUARIO usu
+                                           WHERE usu.TP_STATUS = 'A'";
+
                         $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
                         oci_execute($res_cons_motorista);    
 
@@ -126,12 +125,21 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
         </div>
 
-        <div class='col-md-2 esconde'>
+        <div class='col-md-3 col-12 esconde'>
 
             </br>
             <button onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
 
         </div>
+
+                
+        <div class='col-md-3 esconde_btn_desktop'>
+
+            </br>
+            <button style="width: 100%;" onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        </div>
+
 
 
 
@@ -149,13 +157,9 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         //UPDATE QUE REALIZA AO FINALIZAR CHECKLIST
         function ajax_roda_update(){
 
-            
-
             var sequence = document.getElementById('seq').value;
             var tipo = document.getElementById('tp_status').value;
             var obs_geral = document.getElementById('obs_geral_final').value;
-            
-            alert(obs_geral);
 
             $.ajax({
                 

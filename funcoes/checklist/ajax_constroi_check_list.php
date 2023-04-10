@@ -3,6 +3,9 @@
 //CONEXÃO
 include '../../conexao.php';
 
+//INCLUDE AJAX ALERT
+include '../../config/mensagem/ajax_mensagem_alert.php';
+
 //RECEBENDO VARIAVEL
 $var_cd_veiculo = $_GET['cd_veiculo'];
 
@@ -272,7 +275,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
     <div class="row">
 
-        <div class="col-md-3 esconde">
+        <div class="col-md-3 col-12">
 
             Items:
             <select class="form-control" id="tp_item_cadastrado">
@@ -293,12 +296,22 @@ $res_item  = oci_parse($conn_ora, $cons_item);
         </div> 
 
         
-        <div class='col-md-2 esconde'>
+        <div class='col-md-3 col-12 esconde'>
 
             </br>
             <button onclick="ajax_insert_tabela_itchecklist('0')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
         </div>
+
+                        
+        <div class='col-12 esconde_btn_desktop'>
+
+            <div>
+                <button style="width: 50%;" onclick="ajax_insert_tabela_itchecklist('0')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+        </div>
+
 
 
     </div>
@@ -311,7 +324,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
     <div class="row">
 
-        <div class='col-md-12 esconde'>
+        <div class='col-md-12 col-12'>
 
              Observações:
             <input type="text" class="form-control" id="obs_geral_final">
@@ -322,7 +335,8 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
     <div class="div_br"> </div>  
 
-        <div class="row">
+    <div class="row">
+
         <div class='col-md-2 esconde'>
 
             </br>
@@ -330,5 +344,17 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
         </div>
 
+                                
+        <div class='col-12 esconde_btn_desktop'>
+
+            <div>
+                <button style="width: 50%;" onclick="ajax_alert('Deseja alterar o status?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
+                
+            </div>
+
+        </div>
+
+
     </div>
+
 

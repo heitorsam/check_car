@@ -1081,6 +1081,12 @@ input[type=file]::file-selector-button:hover {
 
 }
 
+.esconde_btn_desktop{
+
+    display:none;
+
+}
+
 
 
 </style>

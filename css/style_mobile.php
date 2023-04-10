@@ -20,6 +20,12 @@
 
 @media (max-width: 768px) {
 
+	.esconde_btn_desktop{
+
+		display:block;
+
+	}
+
 	.display_esconder_mobile{
 
 		display: none;

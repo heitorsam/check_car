@@ -35,4 +35,20 @@ $res_insert_veiculo = oci_parse($conn_ora, $insert_veiculo);
 $valida = oci_execute($res_insert_veiculo);
 
 
+    //VALIDACAO
+    if (!$valida) {   
+    
+        $erro = oci_error($res_insert_veiculo);																							
+        $msg_erro = htmlentities($erro['message']);
+        //header("Location: $pag_login");
+        //echo $erro;
+        echo $msg_erro;
+
+    }else{
+
+        echo 'Sucesso';
+        
+    }
+
+
 ?>

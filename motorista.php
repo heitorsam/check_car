@@ -306,8 +306,6 @@ include 'cabecalho.php';
 
     function ajax_inativar_motorista(cd_usuario,status){
 
-        if (confirm("Realmente deseja alterar o status?") == true) {
-
             $.ajax({
                 
                 url: "funcoes/motorista/ajax_inativar_motorista.php",
@@ -361,7 +359,7 @@ include 'cabecalho.php';
                 }
 
             });  
-        }
+        
 
     }
 
