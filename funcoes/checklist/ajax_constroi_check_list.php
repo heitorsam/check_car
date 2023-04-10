@@ -6,6 +6,7 @@ include '../../conexao.php';
 //RECEBENDO VARIAVEL
 $var_cd_veiculo = $_GET['cd_veiculo'];
 
+
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
                         vei.DS_MODELO,
@@ -19,7 +20,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
 $row = oci_fetch_array($res_cons_veiculo);
 
-//CONSULTA ITEM
+//CONSULTA ITEM PARA SELECT 
 $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
                      itvei.DS_ITEM_VEICULO
                  FROM portal_check_car.item_veiculo itvei
@@ -27,6 +28,7 @@ $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
 
 $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);
+
 
 ?>
    
@@ -108,6 +110,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                         <select class="form-control" id="select_pneu_13" onchange="ajax_insert_tabela_itchecklist('13','PNEU')">
 
+                            <option value="">Selecione</option>
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
                             <option value="LS">LS</option>
@@ -123,6 +126,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                         <select class="form-control" id="select_pneu_14" onchange="ajax_insert_tabela_itchecklist('14','PNEU')">
 
+                            <option value="">Selecione</option>
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
                             <option value="LS">LS</option>
@@ -142,8 +146,9 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                 <div style="text-align: center; " class="col-4">
                     <div class="div_br"> </div> 
-                    <select class="form-control" id="select_pneu_15" onchange="ajax_insert_tabela_itchecklist('15','PNEU')">
+                    <select class="form-control" id="select_pneu_17" onchange="ajax_insert_tabela_itchecklist('17','PNEU')">
 
+                        <option value="">Selecione</option>
                         <option value="OK">OK</option>
                         <option value="GI">GI</option>
                         <option value="LS">LS</option>
@@ -178,6 +183,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                         <select class="form-control" id="select_pneu_16" onchange="ajax_insert_tabela_itchecklist('16','PNEU')">
 
+                            <option value="">Selecione</option>
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
                             <option value="LS">LS</option>
@@ -191,8 +197,9 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
                     <div style="float: left; width: 50%;">
 
-                        <select class="form-control" id="select_pneu_17"onchange="ajax_insert_tabela_itchecklist('17','PNEU')">
+                        <select class="form-control" id="select_pneu_15" onchange="ajax_insert_tabela_itchecklist('15','PNEU')">
 
+                            <option value="">Selecione</option>
                             <option value="OK">OK</option>
                             <option value="GI">GI</option>
                             <option value="LS">LS</option>
@@ -224,7 +231,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
             <div style="margin: 0 auto; border: ridge 1px #999999; border-radius: 5px; width: 152px; height: 60px !important; padding: 0px; background-image: url('img/veloc_leo.png');">
 
-                <div onclick="js_gal_sel(1)" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
+                <div onclick="js_gal_sel(1), ajax_insert_tabela_itchecklist('18','0')" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
 
                     <img id="gal_1" style="width: 30px; height: 58px; display: none;" src="img/veloc_opt_leo.png"> 
 
@@ -233,7 +240,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
                 <div style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
                 </div>
 
-                <div onclick="js_gal_sel(3)" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
+                <div onclick="js_gal_sel(3), ajax_insert_tabela_itchecklist('18','50')" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
         
                     <img id="gal_3" style="width: 30px; height: 58px; display: none;" src="img/veloc_opt_leo.png"> 
         
@@ -242,7 +249,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
                 <div style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">     
                 </div> 
         
-                <div onclick="js_gal_sel(5)" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
+                <div onclick="js_gal_sel(5), ajax_insert_tabela_itchecklist('18','100')" style="float: left; width: 30px; height: 60px; background-color: rgba(1,1,1,0) !important; padding: 0px; text-align: center;">
         
                     <img id="gal_5" style="width: 30px; height: 58px; display: none;" src="img/veloc_opt_leo.png"> 
 
@@ -268,7 +275,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
         <div class="col-md-3 esconde">
 
             Items:
-            <select class="form-control" id="tp_status">
+            <select class="form-control" id="tp_item_cadastrado">
                 <option value="">Selecione</option>
 
                 <?php
@@ -276,7 +283,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
                     while($row_item = oci_fetch_array($res_item)){
 
                         echo '<option value="'. $row_item['CD_ITEM_VEICULO'] .'">'. $row_item['DS_ITEM_VEICULO'] .'</option>';
-
+                
                     }
 
                 ?>
@@ -285,24 +292,29 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 
         </div> 
 
+        
         <div class='col-md-2 esconde'>
 
             </br>
-            <button onclick="ajax_adiciona_item_inspecao()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+            <button onclick="ajax_insert_tabela_itchecklist('0')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
         </div>
+
 
     </div>
 
     
     <div class="div_br"> </div> 
 
+    <div id="tabela_items"></div>
+
 
     <div class="row">
 
         <div class='col-md-12 esconde'>
+
              Observações:
-            <input type="text" class="form-control" id="obs_geral">
+            <input type="text" class="form-control" id="obs_geral_final">
 
         </div>
 
@@ -314,7 +326,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
         <div class='col-md-2 esconde'>
 
             </br>
-            <button onclick="ajax_insert_tabelas_check_list()" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
+            <button onclick="ajax_roda_update()" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
 
         </div>
 

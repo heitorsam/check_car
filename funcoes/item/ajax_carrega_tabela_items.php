@@ -8,6 +8,7 @@ $cons_tabela = "SELECT vei.CD_ITEM_VEICULO,
                        vei.DS_ITEM_VEICULO,
                        TO_CHAR(vei.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO 
                 FROM portal_check_car.item_veiculo vei
+                WHERE vei.SN_PADRAO <> 'S'
                 ORDER BY 1 ASC";
 $res_tabela = oci_parse($conn_ora, $cons_tabela);
               oci_execute($res_tabela);

@@ -15,7 +15,7 @@
     $var_resposta = $_POST['resposta'];
     $var_sn_apenas_exclui = $_POST['sn_apenas_exclui'];
 
-    //INICIANDO O INSERT
+    //INICIANDO O DELETEs
     $delete_checklist = "DELETE FROM portal_check_car.ITCHECKLIST itc
                          WHERE itc.CD_CHECKLIST = '$var_sequence'
                          AND itc.CD_ITEM_VEICULO = '$var_cd_item'";

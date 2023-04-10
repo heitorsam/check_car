@@ -11,18 +11,17 @@
 
     //RECEBENDO VARIAVEIS 
     $var_tipo = $_POST['tipo'];
-    $var_data = $_POST['data'];
     $var_veiculo = $_POST['veiculo'];
     $var_condutor = $_POST['condutor'];
     $var_sequence = $_POST['sequence'];
 
     if($var_tipo == 'S'){
 
-        $var_tp_plantao = 'Z';
+        $var_tp_var_tipo = 'Z';
 
     }else{
 
-        $var_tp_plantao = 'X';
+        $var_tp_var_tipo = 'X';
 
     }
     
@@ -30,9 +29,9 @@
     $insert_checklist="INSERT INTO portal_check_car.CHECKLIST ck
                         SELECT 
                         $var_sequence AS CD_CHECKLIST,
-                        '$var_tipo' AS TP_CHECKLIST,
+                        '$var_tp_var_tipo' AS TP_CHECKLIST,
                         '$var_veiculo' AS CD_VEICULO,
-                        '$var_tp_plantao' AS TP_PLANTAO,
+                        'D' AS TP_PLANTAO,
                         NULL AS OBS_GERAL,
                         '$usuario' AS CD_USUARIO_CADASTRO,
                         SYSDATE AS HR_CADASTRO,
