@@ -33,7 +33,6 @@ $cons_motorista = "SELECT usu.CD_USUARIO,
                             (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
                     FROM portal_check_car.USUARIO usu
                     WHERE usu.TP_STATUS = 'A'";
-
 $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
                       oci_execute($res_cons_motorista);
 
@@ -139,8 +138,6 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
         </div>
 
 
-
-
     </div>
     
     <div class="div_br"> </div> 
@@ -189,7 +186,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
         }
 
 
-        //FUNCTION CHAMA MENSAGEM 
+        //FUNCTION CHAMA MENSAGEM E RELOAD NA PAGINA
         function ajax_reload_pagina(){
 
             //MENSAGEM            
