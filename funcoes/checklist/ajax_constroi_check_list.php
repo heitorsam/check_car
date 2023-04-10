@@ -6,9 +6,10 @@ include '../../conexao.php';
 //INCLUDE AJAX ALERT
 include '../../config/mensagem/ajax_mensagem_alert.php';
 
-//RECEBENDO VARIAVEL
+//RECEBENDO VARIAVEIS
 $var_cd_veiculo = $_GET['cd_veiculo'];
-
+$seq = $_GET['cd_seq'];
+$cd_condutor = $_GET['condutor'];
 
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
@@ -33,8 +34,18 @@ $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);
 
 
+//CONSULTA PARA PEGAR PLANTÃO DO MOTORISTA
+$cons_plantao ="SELECT usu.TP_PLANTAO
+                  FROM portal_check_car.USUARIO usu
+                WHERE usu.CD_USUARIO = $cd_condutor";
+$res_plantao  = oci_parse($conn_ora, $cons_plantao);
+                oci_execute($res_plantao);
+     $row_plantao = oci_fetch_array($res_plantao);
+
 ?>
-   
+    <!--INPUT PARA PEGAR VALOR DO MOTORISTA -->
+    <input type="text" id="plantao" value="<?php echo $row_plantao['TP_PLANTAO']; ?>" hidden>
+
     <div class="div_br"> </div> 
 
     <!--DESKTOP E MOBILE-->
@@ -340,7 +351,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
         <div class='col-md-2 esconde'>
 
             </br>
-            <button onclick="ajax_roda_update()" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
+            <button onclick="ajax_alert('Deseja confirmar o Checklist?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
 
         </div>
 
@@ -348,7 +359,7 @@ $res_item  = oci_parse($conn_ora, $cons_item);
         <div class='col-12 esconde_btn_desktop'>
 
             <div>
-                <button style="width: 50%;" onclick="ajax_alert('Deseja alterar o status?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
+                <button style="width: 50%;" onclick="ajax_alert('Deseja confirmar o Checklist?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
                 
             </div>
 

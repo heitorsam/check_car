@@ -31,7 +31,7 @@
                         $var_sequence AS CD_CHECKLIST,
                         '$var_tp_var_tipo' AS TP_CHECKLIST,
                         '$var_veiculo' AS CD_VEICULO,
-                        'D' AS TP_PLANTAO,
+                        NULL AS TP_PLANTAO,
                         NULL AS OBS_GERAL,
                         '$usuario' AS CD_USUARIO_CADASTRO,
                         SYSDATE AS HR_CADASTRO,

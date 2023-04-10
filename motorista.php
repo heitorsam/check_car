@@ -243,8 +243,6 @@ include 'cabecalho.php';
 
     function ajax_deletar_motorista(cd_motorista){
 
-        if (confirm("Realmente deseja alterar o status?") == true) {
-
             $.ajax({
                 
                 url: "funcoes/motorista/ajax_deletar_motorista.php",
@@ -299,7 +297,7 @@ include 'cabecalho.php';
 
             });  
 
-        }
+        
     }
 
 

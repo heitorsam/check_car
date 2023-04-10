@@ -22,9 +22,21 @@ $cons_veiculo = "SELECT vei.CD_VEICULO,
                         vei.DS_PLACA,
                         vei.CD_COR,
                         (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
-                        FROM portal_check_car.VEICULO vei";
+                        FROM portal_check_car.VEICULO vei
+                        WHERE vei.TP_STATUS <> 'I' ";
 $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     oci_execute($res_cons_veiculo);
+
+//CONSULTA MOTORISTA      
+$cons_motorista = "SELECT usu.CD_USUARIO,
+                            usu.CD_USUARIO_MV,
+                            (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
+                    FROM portal_check_car.USUARIO usu
+                    WHERE usu.TP_STATUS = 'A'";
+
+$res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
+                      oci_execute($res_cons_motorista);
+
 
 ?>
     
@@ -54,7 +66,6 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         
         <!--INPUT PARA PEGAR VALOR DA SEQUENCE NO JAVASCRIPT-->
         <input type="text" id="seq" value="<?php echo $row_seq['SEQ_CK']; ?>" hidden>
-
 
         <div class="col-md-3 col-12">
 
@@ -99,24 +110,11 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                                 
                 <?php
 
-                        
-                        //CONSULTA MOTORISTA
-                        $cons_motorista = "SELECT usu.CD_USUARIO,
-                                                  usu.CD_USUARIO_MV,
-                                                  (SELECT usux.NM_USUARIO FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
-                                           FROM portal_check_car.USUARIO usu
-                                           WHERE usu.TP_STATUS = 'A'";
+                    while($row_motorista = oci_fetch_array($res_cons_motorista)){
 
-                        $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
-                        oci_execute($res_cons_motorista);    
+                        echo '<option value="'. $row_motorista['CD_USUARIO'] .'">'. $row_motorista['NM_USUARIO'] .'</option>';
 
-                        $row_motorista = oci_fetch_array($res_cons_motorista);
-
-                        while($row_motorista = oci_fetch_array($res_cons_motorista)){
-
-                            echo '<option value="'. $row_motorista['CD_USUARIO'] .'">'. $row_motorista['NM_USUARIO'] .'</option>';
-
-                        }
+                    }
 
                 ?>
 
@@ -133,10 +131,10 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         </div>
 
                 
-        <div class='col-md-3 esconde_btn_desktop'>
+        <div class='col-12 esconde_btn_desktop'>
 
             </br>
-            <button style="width: 100%;" onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button style="width: 50%;" onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
 
         </div>
 
@@ -150,9 +148,9 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
     <div class="div_br"> </div> 
 
     <div id="restante_check_list"></div>
+    <div id="mensagem_acoes"></div>
 
     <script>
-
 
         //UPDATE QUE REALIZA AO FINALIZAR CHECKLIST
         function ajax_roda_update(){
@@ -160,6 +158,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
             var sequence = document.getElementById('seq').value;
             var tipo = document.getElementById('tp_status').value;
             var obs_geral = document.getElementById('obs_geral_final').value;
+            var plantao = document.getElementById('plantao').value;
 
             $.ajax({
                 
@@ -169,7 +168,8 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
                     sequence : sequence,
                     tipo : tipo,
-                    obs_geral : obs_geral
+                    obs_geral : obs_geral,
+                    plantao : plantao
 
                 },
                 
@@ -177,7 +177,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                 success: function(dataResult){
 
                     console.log(dataResult);
-
+                    ajax_reload_pagina();
                     
                 }
 
@@ -188,6 +188,25 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
         }
 
+
+        //FUNCTION CHAMA MENSAGEM 
+        function ajax_reload_pagina(){
+
+            //MENSAGEM            
+            var_ds_msg = 'Checklist%20realizado%20com%20sucesso!';
+            var_tp_msg = 'alert-success';
+            //var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+           
+            //RELOAD NA PAGINA DEPOIS DE 3SEG!
+            setTimeout(function() {
+                window.location.reload(1);
+            }, 3000)
+
+        }
+
+        
         //DELETE TABELA ITCHECKLIST DESKTOP
         function ajax_deleta_item_table(cd_item){
 
@@ -322,6 +341,8 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
         //RESTANTE DO CHECKLIST DESKTOP
         function ajax_constroi_check_list(){
 
+            var seq = document.getElementById('seq').value;
+
             var condutor = document.getElementById('condutor').value;
             if(condutor == ''){
                 document.getElementById('condutor').focus();
@@ -339,7 +360,7 @@ $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
 
             if(status != ''  && veiculo != '' && condutor != ''){
 
-                $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo);
+                $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo+'&cd_seq='+seq+'&condutor='+condutor);
 
             }
            
