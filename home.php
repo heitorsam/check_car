@@ -35,6 +35,12 @@
 
         </div>
 
+        <div class="col-md-3 col-12" style="text-align: center;">
+
+        <a href="abastecimento.php" class="botao_home" type="submit"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
+
+        </div>
+
     </div>
 
 <!--ADMINISTRADORES-->

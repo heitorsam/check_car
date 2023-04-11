@@ -239,10 +239,12 @@ if(isset($row['BLOB_FOTO'])){
 
 
                     <a href="check_list.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7; border-top: solid 2px #4cafe7;"><i class="fa-solid fa-check"></i>  Check List</a>
+                    <a href="abastecimento.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
                     <a href="veiculos.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-car"></i>  Veiculo</a>
                     <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
                     <a href="motorista.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-user"></i>  Motorista</a>
                     <a href="cor.php" style="font-size: 20px; color: white; border-bottom: solid 2px #4cafe7;"><i class="fa-solid fa-palette"></i>  Cores</a>
+                    
 
                     <div style="position: absolute; bottom: 60px;">
                         <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-person-running"></i> Sair</a>
