@@ -14,6 +14,18 @@
         include 'js/mensagens_usuario.php';
     ?>
 
+        
+    <?php
+
+    echo '<div style="text-align: center; background-color: ">';
+    echo 'Bem vindo  <label style="font-weight: bold;">' . $pri_nome . '</label>';
+    echo '</div>';
+
+    ?>
+
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
+
     <!--DESKTOP-->
     <div>
 
@@ -26,60 +38,31 @@
     </div>
 
     <div class="div_br"> </div>
+    <div class="div_br"> </div>
 
-    <div class="row">
+    <div>
 
-        <div class="col-md-3 col-12" style="text-align: center;">
+        <div class= "title_mob">
 
-        <a href="check_list.php" class="botao_home" type="submit"><i class="fa-solid fa-car-side"></i>  Check List</a>
-
-        </div>
-
-        <div class="col-md-3 col-12" style="text-align: center;">
-
-        <a href="abastecimento.php" class="botao_home" type="submit"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Pendentes</h11>
 
         </div>
 
     </div>
 
-<!--ADMINISTRADORES-->
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
 
-    <div class="row">
+   
+    <div>
 
-        <div class="col-md-3 col-12" style="text-align: center;">
+        <div class= "title_mob">
 
-            <a href="veiculos.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-car"></i> Veiculos</a>
-
-        </div>
-
-        
-        <div class="col-md-3 col-12" style="text-align: center;">
-
-            <a href="item_veiculo.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-list-ul"></i> Itens Veiculo</a>
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Concluidos</h11>
 
         </div>
-
-
-        <div class="col-md-3 col-12" style="text-align: center;">
-
-            <a href="motorista.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-user"></i> Motoristas</a>
-
-        </div>
-
-        
-        <div class="col-md-3 col-12" style="text-align: center;">
-
-            <a href="cor.php" class="botao_home_adm" type="submit"><i class="fa-solid fa-palette"></i> Cores</a>
-
-        </div>
-
 
     </div>
-
-
-
-
 
 
 <?php

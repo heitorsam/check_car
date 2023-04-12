@@ -89,7 +89,7 @@
 <div class='col-12 esconde_btn_desktop'>
 
 <div>
-    <button style="width: 50%;" onclick="ajax_alert('Deseja confirmar o Checklist?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Confirmar</button>
+    <button style="width: 50%;" class='btn btn-primary'><i class="fa-solid fa-check"></i> Confirmar</button>
     
 </div>
 
