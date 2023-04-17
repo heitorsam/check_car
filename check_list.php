@@ -53,8 +53,6 @@ $row_seq = oci_fetch_array($res_seq);
     <!--INPUT PARA PEGAR VALOR DA SEQUENCE NO JAVASCRIPT-->
     <input type="text" id="seq" value="<?php echo $row_seq['SEQ_CK']; ?>" hidden>
 
-    <div class="div_br"> </div>  
-
     <div id="paginas"></div>
 
     <div class="div_br"> </div> 
@@ -64,6 +62,35 @@ $row_seq = oci_fetch_array($res_seq);
     <div id="mensagem_acoes"></div>
 
     <script>
+        
+        //ABRE MODAL COM DETALHES DO QUE FOI FEITO NO CHECKLIST
+        function ajax_modal_check_list(checklist){
+
+            $('#checklist').modal('show')
+            $('#checklist_det').load('funcoes/checklist/ajax_det_checklist.php?cd_checklist='+checklist);
+
+        }
+
+        //CONSTRUINDO REALIZADOS COM BASE NO VEICULO
+        function ajax_constroi_realizados(){
+
+            var cd_veiculo = document.getElementById('veiculo_realizados').value;
+            var data_realizados = document.getElementById('data_realizados').value;
+            $('#constroi_realizado').load('funcoes/checklist/ajax_constroi_detalhes_realizados.php?cd_veiculo='+cd_veiculo+'&data='+data_realizados);
+
+        }
+        
+
+
+
+        //CHAMANDO DIV PAGINAS ASSIM QUE ABRE A PAGINA!
+        window.onload = function(){
+
+            $('#paginas').load('funcoes/checklist/ajax_constroi_pagina_pesquisa.php');
+
+        }
+
+        
 
         //CHAMANDO PAGINA
         function ajax_chama_pagina(pagina){

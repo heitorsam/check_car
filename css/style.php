@@ -1088,48 +1088,18 @@ input[type=file]::file-selector-button:hover {
 }
 
 
-.loader-line:hover {
-            width: 50px;
-            height: px;
-            position: relative;
-            overflow: hidden;
-            background-color: #ddd;
-            margin: 0 auto;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            border-radius: 20px;
-            padding-top:300px !important;
-        }
+.lista_home_itens {
 
-        .loader-line:before {
-            content: "";
-            position: absolute;
-            left: -50%;
-            height: 3px;
-            width: 40%;
-            background-color: coral;
-            -webkit-animation: lineAnim 1s linear infinite;
-            -moz-animation: lineAnim 1s linear infinite;
-            animation: lineAnim 1s linear infinite;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            border-radius: 20px;
-        }
+width: 90%;
+background-color: #ffffff !important;
+border-radius: 5px 5px 5px 5px;
+border: solid 1px #46a5d4;
+padding: 4px;
+font-size: 13px;
+margin-bottom: 8px;
+margin: 0 auto;
 
-        @keyframes lineAnim {
-            0% {
-                left: -40%;
-            }
-            50% {
-                left: 20%;
-                width: 80%;
-            }
-            100% {
-                left: 100%;
-                width: 100%;
-            }
-        }
-
+}
 
 </style>
 

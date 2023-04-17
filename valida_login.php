@@ -88,6 +88,3 @@
 	}
 ?>
 
-<!--LISTA DE PAPEIS -->
-
-<!--PAPEL PORTAL CUSTOS : 429-->
