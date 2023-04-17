@@ -17,7 +17,7 @@
         
     <?php
 
-    echo '<div style="text-align: center; background-color: ">';
+    echo '<div style="text-align: center;" class="esconde_btn_desktop">';
     echo 'Bem vindo  <label style="font-weight: bold;">' . $pri_nome . '</label>';
     echo '</div>';
 
