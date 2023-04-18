@@ -181,13 +181,41 @@
 
                     }
 
+                    
+                    if(@$array[10] == 'DANIFICADO'){
+
+                        echo '<div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" checked></div>';
+
+                    }else{
+
+                        echo '<div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox"></div>';
+
+                    }
+
+                                        
+                    if(@$array[9] == 'DANIFICADO'){
+
+                        echo '<div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" checked></div>';
+
+                    }else{
+
+                        echo '<div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox"></div>';
+
+                    }
+
+                    if(@$array[8] == 'DANIFICADO'){
+
+                        echo '<div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" checked></div>';
+
+                    }else{
+
+                        echo '<div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox"></div>';
+
+                    }
+
                 ?>
-
-
-                <div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox"></div>
-                <div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox"></div>
-                <div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox"></div>
                 <div style="text-align: center; " class="col-1"></div>
+
             </div>
 
         </div>
