@@ -7,17 +7,21 @@
     $var_check = $_GET['cd_checklist'];
 
     //CONSULTA CHECKLIST
-    $cons_it = "SELECT ick.CD_ITEM_VEICULO,
-                       ick.DS_RESPOSTA,
-                       (SELECT iv.DS_ITEM_VEICULO FROM portal_check_car.ITEM_VEICULO iv WHERE iv.CD_ITEM_VEICULO = ick.CD_ITEM_VEICULO) AS DS_ITEM,
-                       (SELECT iv.SN_PADRAO FROM portal_check_car.ITEM_VEICULO iv WHERE iv.CD_ITEM_VEICULO = ick.CD_ITEM_VEICULO) AS SN_PADRAO
-                FROM portal_check_car.ITCHECKLIST ick
-                WHERE ick.CD_CHECKLIST = $var_check
-                ORDER BY ick.CD_ITEM_VEICULO ASC";
+    $cons_it = "SELECT tot.*,
+                    (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = tot.COR) AS DS_COR 
+                    FROM (SELECT res.*,
+                          (SELECT vei.CD_COR FROM portal_check_car.VEICULO vei WHERE vei.CD_VEICULO = res.CD_VEICULO) AS COR
+                          FROM (SELECT ick.CD_ITEM_VEICULO,
+                                       ick.DS_RESPOSTA,
+                                       (SELECT iv.DS_ITEM_VEICULO FROM portal_check_car.ITEM_VEICULO iv WHERE iv.CD_ITEM_VEICULO = ick.CD_ITEM_VEICULO) AS DS_ITEM,
+                                       (SELECT iv.SN_PADRAO FROM portal_check_car.ITEM_VEICULO iv WHERE iv.CD_ITEM_VEICULO = ick.CD_ITEM_VEICULO) AS SN_PADRAO,
+                                       (SELECT ck.CD_VEICULO FROM portal_check_car.CHECKLIST ck WHERE ck.CD_CHECKLIST = ick.CD_CHECKLIST) AS CD_VEICULO
+                                FROM portal_check_car.ITCHECKLIST ick
+                                WHERE ick.CD_CHECKLIST = 234
+                                ORDER BY ick.CD_ITEM_VEICULO ASC)res)tot";
     $res_it = oci_parse($conn_ora, $cons_it);
               oci_execute($res_it);
 
-    $row_it = oci_fetch_array($res_it);
 ?>
 
 
