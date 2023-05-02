@@ -17,28 +17,16 @@
         
     <?php
 
-    echo '<div style="text-align: center;" class="esconde_btn_desktop">';
-    echo 'Bem vindo  <label style="font-weight: bold;">' . $pri_nome . '</label>';
+    echo '<div style="width: 100%;">';
+        echo '<div class="fnd_azul" style=" border-radius: 25px !important; width: 60%; margin: 0 auto; text-align: center;" class="esconde_btn_desktop">';
+        echo 'Bem vindo  <label style="font-weight: bold;">' . $pri_nome . '</label>';
+        echo '</div>';
     echo '</div>';
 
     ?>
 
-    <div class="div_br"> </div>
-    <div class="div_br"> </div>
-
-    <!--DESKTOP-->
-    <div>
-
-        <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-car efeito-zoom" aria-hidden="true"></i> Check Car</h11>
-
-        </div>
-
-    </div>
-
-    <div class="div_br"> </div>
-    <div class="div_br"> </div>
+        <div class="div_br"> </div>
+        <div class="div_br"> </div>
 
     <div>
 

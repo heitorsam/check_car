@@ -82,7 +82,7 @@
             echo '<td onclick="ajax_detalhe_os(' . $row_table['CD_OS'] . ')" class="align-middle" style="text-align: center; cursor: pointer;">   '  .  $row_table['CD_OS'] . '   </td>';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['DT_PEDIDO'] . '</td>';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['NM_USUARIO_SOLICITANTE'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">' . '<button class="btn btn-primary"><i class="fa-solid fa-user"></i></button>' . '</td>';
+            echo '<td class="align-middle" style="text-align: center;">' . '<button class="btn btn-primary" onclick="ajax_lib_mot(' . $row_table['CD_OS'] . ')"><i class="fa-solid fa-user"></i></button>' . '</td>';
 
         echo '</tr>';
 

@@ -49,8 +49,8 @@ include 'cabecalho.php';
     <div id="paginas"></div>  
       
 
-    <!--MODAL-->
-    <div class="modal fade" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--MODAL DETALHE OS-->
+    <div style="margin-top:50%;"  class="modal fade" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -79,7 +79,76 @@ include 'cabecalho.php';
     </div>
 
 
+    <!--MODAL INDICA MOTORISTA-->
+    <div style="margin-top:50%;" class="modal fade " id="indica_motorista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-bell"></i> Escolha um Motorista</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div id="motorista"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Sim</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
 <script>
+
+  
+
+    function ajax_lib_mot(os){
+
+        //ABRINDO MODAL
+        $('#indica_motorista').modal('show')
+
+        //CONSTRUINDO CORPO COM MOTORISTA
+        $('#motorista').load('funcoes/chamados/ajax_constroi_modal_motorista.php?');
+
+    }
+
+    function ajax_insert_lib_mot(){
+
+        var global_cd_os;
+        var motorista = document.getElementById('motorista_indicado').value;
+
+        alert(global_cd_os);
+        alert(motorista);
+
+        /* $.ajax({
+            
+            url: "funcoes/chamados/ajax_insert_lib_mot.php",
+            type: "POST",
+            data: {
+
+                sequence : sequence,
+                tipo : tipo,
+                obs_geral : obs_geral,
+                plantao : plantao
+
+            },
+            
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+            }
+
+        });
+        */
+
+    }
+
 
     global_inicio = 1;
     global_pag = 10;
@@ -162,8 +231,6 @@ include 'cabecalho.php';
 
 
     function ajax_detalhe_os(os){
-
-        alert(os);
 
         $('#detalhe_os_modal').modal('show')
         $('#detalhe_os').load('funcoes/chamados/ajax_constroi_modal_det_chamados.php?os='+os);
