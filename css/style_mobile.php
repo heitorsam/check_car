@@ -20,6 +20,18 @@
 
 @media (max-width: 768px) {
 
+	.column_table_show{
+
+	display: none;
+
+	}
+
+	.column_table_hide{
+
+		display: block;
+
+	}
+
 	.esconde_btn_desktop{
 
 		display:block;
