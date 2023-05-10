@@ -1142,6 +1142,39 @@ display:block;
 }
 
 
+.lista_home_itens_pend {
+
+width: 100%;
+background-color: rgba(229,244,251,1);
+border-radius: 5px 5px 5px 5px;
+border: solid 1px #46A5D4;
+padding: 4px;
+font-size: 13px;
+margin-bottom: 8px;
+}
+
+
+.mini_caixa_chamado{
+
+background-color: #ffffff;
+margin-top: 2px; 
+margin-left: 2px; 
+border: solid 1px #dadada; 
+width: max-content; 
+border-radius: 3px;
+padding: 2px 6px 2px 6px; float: left;
+
+}
+
+.caixa_lista_chamados{
+
+border: solid 1px #46a5d4; 
+padding: 20px 20px 10px 20px; 
+border-radius: 5px;
+
+}
+
+
 
 </style>
 

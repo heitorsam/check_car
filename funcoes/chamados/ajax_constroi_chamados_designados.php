@@ -10,7 +10,10 @@
                                    cd.CD_OS_MV,
                                    TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
                                    cd.CD_CHAMADO_DESIGNADO
-                           FROM portal_check_car.CHAMADOS_DESIGNADOS cd";
+                           FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                           WHERE cd.CD_CHAMADO_DESIGNADO NOT IN (SELECT cdx.CD_CHAMADO_DESIGNADO
+                                      FROM portal_check_car.CHAMADOS_DESIGNADOS cdx
+                                      WHERE cdx.TP_STATUS_CHAMADO = 'C')";
     $res_desig = oci_parse($conn_ora, $cons_chamado_desig);
                  oci_execute($res_desig);
 

@@ -118,6 +118,8 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
     function ajax_modal_update_motorista(cd_chamado_d){
 
+        
+
         //ABRINDO MODAL
         $('#indica_motorista_update').modal('show')
 
@@ -132,6 +134,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
         var js_chamado = document.getElementById('chamado_designado').value;
         var js_cd_motorista = document.getElementById('mot_up').value;
 
+
         $.ajax({
             
             url: "funcoes/chamados/ajax_update_motorista_designado.php",
@@ -140,6 +143,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
                 js_chamado : js_chamado,
                 js_cd_motorista : js_cd_motorista
+                
 
 
             },
@@ -178,6 +182,8 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
         var js_motorista = document.getElementById('motorista_indicado').value;
         var js_os = document.getElementById('os_mv').value;
+        var js_tp_status = 'D'
+        
 
         $.ajax({
             
@@ -187,6 +193,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
                 js_motorista : js_motorista,
                 js_os : js_os,
+                js_tp_status: js_tp_status
 
 
             },
