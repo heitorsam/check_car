@@ -10,14 +10,14 @@ include '../../conexao.php';
 
 //RECEBENDO VARIAVEIS
 
-$var_cor_mob = $_POST['rgba_mobile'];
-$var_nome_mob =  $_POST['nome_cor_mob'];
+$var_cor= $_POST['global_rgba'];
+$var_nome =  $_POST['global_nome'];
 
 $insert_cor = "INSERT INTO portal_check_car.COR
                SELECT 
                portal_check_car.SEQ_CD_COR.NEXTVAL AS CD_COR,
-               UPPER('$var_nome_mob') AS DS_COR,
-               '$var_cor_mob' AS DS_RGB,
+               UPPER('$var_nome') AS DS_COR,
+               '$var_cor' AS DS_RGB,
                '$usuario' AS CD_USUARIO_CADASTRO,
                 SYSDATE AS HR_CADASTRO,
                 NULL AS CD_USUARIO_ULT_ALT,

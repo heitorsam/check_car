@@ -37,7 +37,16 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
 
             echo '<td class="align-middle" style="text-align: center;">'  .  $row['DS_ITEM_VEICULO'] . '</td>';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row['HR_CADASTRO'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">' . '<button onclick="ajax_deleta_item(' . $row['CD_ITEM_VEICULO'] . ')"class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button>' . '</td>';
+
+            
+            ?>
+
+            <td><button onclick="ajax_alert('Deseja excluir este item?','ajax_deleta_item(<?php echo $row['CD_ITEM_VEICULO']; ?>)')" class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button></td>
+
+
+        <?php
+
+            
 
 
             echo '</tr>';

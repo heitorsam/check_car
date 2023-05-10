@@ -4,7 +4,7 @@
     include '../../conexao.php';
 
     //RECEBENDO VARIAVEL OS MV
-    $var_os_mv = $_GET['os'];
+    $chamado = $_GET['chamado'];
 
     //CHAMANDO CONSULTA
     $cons_moto = "SELECT usux.CD_USUARIO,
@@ -20,11 +20,11 @@
 
 ?>
 
-<input type=text class="form form-control" value="<?php echo $var_os_mv;?>" id="os_mv" hidden>
+<input type=text class="form form-control" value="<?php echo $chamado;?>" id="chamado_designado" hidden>
 
 <div class="div_br"> </div> 
 
-<select id="motorista_indicado" class="form form-control">
+<select id="mot_up" class="form form-control">
 
     <option value="All">Selecione</option>
 

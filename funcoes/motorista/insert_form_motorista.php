@@ -18,7 +18,7 @@ if(isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
   }
 
 //RECEBENDO VARIAVEIS
-echo $var_login = $_POST['usu_mv'];
+$var_login = $_POST['usu_mv'];
 $var_plantao = $_POST['plantao'];
 
 $var_foto = base64_encode($var_foto);
@@ -65,7 +65,6 @@ else {
 
 oci_free_statement($res_cons_insere_motorista);
 $blob->free();
-
 
 
 ?>

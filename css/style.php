@@ -1128,6 +1128,20 @@ display: block;
 }
 
 
+.top_modal{
+
+   margin-top:0%;
+
+}
+
+
+.esconde_botão_desktop{
+
+display:block;
+
+}
+
+
 
 </style>
 

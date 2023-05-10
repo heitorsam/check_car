@@ -5,14 +5,16 @@ include '../../conexao.php';
 
 $var_cd = $_GET['cd_usuario'];
 
-$cons_tabela_detalhe = "SELECT usu.NM_USUARIO,
-                               usu.CPF,
-                               usux.BLOB_FOTO,
-                               usu.TP_STATUS
-                               FROM dbasgu.USUARIOS usu
-                               LEFT JOIN portal_check_car.USUARIO usux
-                                      ON usux.CD_USUARIO_MV = usu.CD_USUARIO
-                                WHERE usux.CD_USUARIO = $var_cd ";
+$cons_tabela_detalhe = "SELECT usu_c.CD_USUARIO,
+                                usu_c.CD_USUARIO_MV,
+                                (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usu_c.CD_USUARIO_MV) AS NM_MOTORISTA,
+                                usu_c.TP_STATUS,
+                                usu_c.TP_PLANTAO,
+                                usu_c.BLOB_FOTO,
+                                (SELECT usu.CPF FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usu_c.CD_USUARIO_MV) AS CPF,
+                                (SELECT usu.DS_EMAIL FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usu_c.CD_USUARIO_MV) AS EMAIL
+                            FROM portal_check_car.USUARIO usu_c
+                            WHERE usu_c.CD_USUARIO = $var_cd";
 
 $res_tabela_detalhe = oci_parse($conn_ora, $cons_tabela_detalhe);
                       oci_execute($res_tabela_detalhe);
@@ -50,28 +52,65 @@ $row = oci_fetch_array($res_tabela_detalhe);
 
     ?>
 
-    <div style="width: 100%; text-align: center !important; font-weight: bold; ">
+    <div style="background-color: rgba(229,244,251,1); border: solid 1px #46A5D4;">
 
-        <?php echo $row['NM_USUARIO']; ?>
+        <div class="div_br"> </div>
 
-    </div>
 
-    <div style="width: 100%; text-align: center !important;">
+        <div style="width: 100%; text-align: center !important; font-weight: bold; ">
 
-    <?php 
-    
-        if($row['CPF'] == ''){
+            <?php echo $row['NM_MOTORISTA']; ?>
 
-            echo '<label style="font-weight: bold;">CPF: Não Há!</label> ';
+        </div>
 
-        }else{
-
-            echo '<label style="font-weight: bold;">CPF: </label> ' . $row['CPF'];
-
-        }
         
-    ?>
+        <div style="width: 100%; text-align: center !important; font-weight: bold; ">
+
+            <?php echo $row['EMAIL']; ?>
+
+        </div>
 
 
-    </div>
+        <div style="width: 100%; text-align: center !important;">
+
+            <?php 
+            
+                if($row['CPF'] == ''){
+
+                    echo '<label style="font-weight: bold;">CPF: Não Cadastrado</label> ';
+
+                }else{
+
+                    echo '<label style="font-weight: bold;">CPF: </label> ' . $row['CPF'];
+
+                }
+                
+            ?>
+
+
+        </div>
+
+
+        <div style="width: 100%; text-align: center !important; font-weight: bold; ">
+
+            <?php 
+                
+                if($row['TP_PLANTAO'] == 'D'){
+
+                    echo '<td class="align-middle" style="text-align: center;">'  .  '<span data-tooltip="  Plantão Diurno  "><i style=" color: #e9ca73;" class="fa-solid fa-sun"></i></span>' . '</td>';
+            
+                }else{
+
+                    echo '<td class="align-middle" style="text-align: center;">'  .  '<span data-tooltip="  Plantão Noturno  "><i style="color: #ad4bb9;" class="fa-solid fa-moon"></i></span>' . '</td>';
+
+                }
+                
+            ?>
+
+        </div>
+
+        <div class="div_br"> </div>
+
+
+    <div>
 

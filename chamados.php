@@ -2,6 +2,8 @@
 
 include 'cabecalho.php';
 
+include 'config/mensagem/ajax_mensagem_alert.php';
+
 
 ?>
 
@@ -14,21 +16,7 @@ include 'cabecalho.php';
 
 <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply efeito-zoom" aria-hidden="true"></i> Voltar</a></h27>
 
-<div class="div_br"> </div>  
-
-
-
-    <!--MOBILE-->
-    <div>
-
-        <div class= "title_mob">
-
-        <h11 class="center_desktop"><i  style="cursor: pointer;" class="fa-solid fa-headset efeito-zoom"></i> Chamados</h11>
-
-        </div>
-
-    </div>
-
+    <div class="div_br"> </div>  
     <div class="div_br"> </div>  
     <div class="div_br"> </div>  
 
@@ -38,11 +26,12 @@ include 'cabecalho.php';
     
     <div class="row">
 
-        <div style="background-color: #f9f9f9 !important;" class="col-1"></div>
+        
         <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('1')"><i class="fa-solid fa-circle-plus"></i> Solicitados</div>
-        <div style="background-color: #f9f9f9 !important;" class="col-2"></div>
         <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('2')"><i class="fa-solid fa-circle-check"></i> Designados</div>
-        <div style="background-color: #f9f9f9 !important;" class="col-1"></div>
+        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('3')"><i class="fa-solid fa-circle-plus"></i> Realizadas</div>
+        
+        
 
     </div>
 
@@ -50,7 +39,7 @@ include 'cabecalho.php';
       
 
     <!--MODAL DETALHE OS-->
-    <div style="margin-top:50%;"  class="modal fade" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade top_modal" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,7 +49,6 @@ include 'cabecalho.php';
                         </div>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
@@ -78,9 +66,8 @@ include 'cabecalho.php';
         </div>
     </div>
 
-
     <!--MODAL INDICA MOTORISTA-->
-    <div style="margin-top:50%;" class="modal fade " id="indica_motorista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade top_modal" id="indica_motorista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -95,45 +82,65 @@ include 'cabecalho.php';
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Sim</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Designar</button>
         </div>
         </div>
     </div>
     </div>
+
+    
+    <!--MODAL INDICA MOTORISTA update-->
+    <div class="modal fade top_modal" id="indica_motorista_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-bell"></i> Escolha um Motorista</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div id="motorista_update"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_update_motorista()" >Designar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
 
 <script>
 
-  
-
-    function ajax_lib_mot(os){
+    function ajax_modal_update_motorista(cd_chamado_d){
 
         //ABRINDO MODAL
-        $('#indica_motorista').modal('show')
+        $('#indica_motorista_update').modal('show')
 
         //CONSTRUINDO CORPO COM MOTORISTA
-        $('#motorista').load('funcoes/chamados/ajax_constroi_modal_motorista.php?');
+        $('#motorista_update').load('funcoes/chamados/ajax_motorista_designado.php?&chamado='+cd_chamado_d);
 
     }
 
-    function ajax_insert_lib_mot(){
 
-        var global_cd_os;
-        var motorista = document.getElementById('motorista_indicado').value;
+    function ajax_update_motorista(){
 
-        alert(global_cd_os);
-        alert(motorista);
+        var js_chamado = document.getElementById('chamado_designado').value;
+        var js_cd_motorista = document.getElementById('mot_up').value;
 
-        /* $.ajax({
+        $.ajax({
             
-            url: "funcoes/chamados/ajax_insert_lib_mot.php",
+            url: "funcoes/chamados/ajax_update_motorista_designado.php",
             type: "POST",
             data: {
 
-                sequence : sequence,
-                tipo : tipo,
-                obs_geral : obs_geral,
-                plantao : plantao
+                js_chamado : js_chamado,
+                js_cd_motorista : js_cd_motorista
+
 
             },
             
@@ -142,10 +149,62 @@ include 'cabecalho.php';
 
                 console.log(dataResult);
 
+                //FECHANDO MODAL
+                $('#indica_motorista_update').modal('hide');
+
+                ajax_chama_pagina();
+              
             }
 
         });
-        */
+        
+
+
+    }
+
+    function ajax_lib_mot(os){
+
+        var js_os_mv = os;
+
+        //ABRINDO MODAL
+        $('#indica_motorista').modal('show')
+
+        //CONSTRUINDO CORPO COM MOTORISTA
+        $('#motorista').load('funcoes/chamados/ajax_constroi_modal_motorista.php?&os='+js_os_mv);
+
+    }
+
+    function ajax_insert_lib_mot(){
+
+        var js_motorista = document.getElementById('motorista_indicado').value;
+        var js_os = document.getElementById('os_mv').value;
+
+        $.ajax({
+            
+            url: "funcoes/chamados/ajax_insert_lib_mot.php",
+            type: "POST",
+            data: {
+
+                js_motorista : js_motorista,
+                js_os : js_os,
+
+
+            },
+            
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                //FECHANDO MODAL
+                $('#indica_motorista').modal('hide');
+                pagtabela();
+                
+
+            }
+
+        });
+        
 
     }
 
@@ -221,10 +280,14 @@ include 'cabecalho.php';
 
             $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_solicitados.php');
 
-        }else{
+        }else if(pagina == '2'){
 
             $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_designados.php');
 
+        }else{
+
+            $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_designados.php');
+            
         }
 
     }

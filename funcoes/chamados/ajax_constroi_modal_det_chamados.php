@@ -36,11 +36,22 @@
 
 <div class="div_br"> </div>
 
-<div class="fnd_azul">Observações:</div>
+<div class="fnd_azul">Serviço:</div>
 <div class="row">
 
     <div class="col-md-12">
         <textarea readonly class="textareaa" name="area" id="textarea" cols="50" rows="10" style="word-wrap: break-word"><?php echo $row['DS_SERVICO']; ?></textarea>
+    </div>
+
+</div>
+
+<div class="div_br"> </div>
+
+<div class="fnd_azul">Observações:</div>
+<div class="row">
+
+    <div class="col-md-12">
+        <textarea readonly class="textareaa" name="area" id="textarea" cols="50" rows="10" style="word-wrap: break-word"><?php echo $row['DS_OBSERVACAO']; ?></textarea>
     </div>
 
 </div>

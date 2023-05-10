@@ -9,7 +9,7 @@
     include '../../conexao.php';
 
     //RECEBENDO VARIAVEL
-    $var_item = $_POST['item'];
+    $var_item = $_POST['global_item'];
 
     //EXECUTANDO INSERT
 

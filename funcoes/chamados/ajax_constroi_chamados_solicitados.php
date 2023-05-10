@@ -25,7 +25,9 @@
                                   WHERE sol.CD_OFICINA = 9
                                   AND sol.DT_PEDIDO >= SYSDATE - 7
                                   AND sol.CD_MULTI_EMPRESA = 1
-                                  AND sol.TP_SITUACAO = 'S') res)tot";
+                                  AND sol.TP_SITUACAO = 'S'
+                                  AND sol.CD_OS NOT IN (SELECT cd.CD_OS_MV
+                                                        FROM portal_check_car.CHAMADOS_DESIGNADOS cd)) res)tot";
 
                                     if(!isset($var_inicio) && !isset($var_fim)){
 

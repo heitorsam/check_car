@@ -32,17 +32,6 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 <div class="div_br"> </div>   
 
 
-    <!--DESKTOP-->
-    <div>
-
-        <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-car efeito-zoom" aria-hidden="true"></i> Veiculos</h11>
-
-        </div>
-
-    </div>
-
     <div class="row">
 
         <div class="col-md-3 esconde">
@@ -107,7 +96,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
         <div class='col-md-3 esconde'>
 
             </br>
-            <button onclick="ajax_insert_veiculo_desktop()"class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+            <button onclick="ajax_insert_veiculo('2')"class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
         </div>
 
@@ -197,7 +186,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button onclick="ajax_insert_veiculo(), ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
+            <button onclick="ajax_insert_veiculo('1'), ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>
     </div>
@@ -221,6 +210,154 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
 
     <script>
+
+        //MODALS DA PAGINA
+
+        function ajax_abre_modal(){
+
+            $('#cad_veiculo').modal('show');
+
+        }
+
+        function ajax_fecha_modal(){
+
+            $('#cad_veiculo').modal('hide');
+
+        }
+
+
+        //////////////////////////////////////
+
+        //FUNÇÕES QUE SÃO CARREGADAS COM A PAGINA
+        window.onload = function(){
+
+            ajax_constroi_tabela_veiculos();
+
+        }
+
+
+        function ajax_constroi_tabela_veiculos(){
+
+            $('#veiculos').load('funcoes/veiculos/ajax_tabela_veiculos.php'); 
+
+        }
+
+        //////////////////////////////////////////////
+
+
+        
+        //FUNÇOES DA PAGINA
+        function ajax_insert_veiculo(tp_insert){
+
+            global_cores = '';
+            global_modelo =  '';
+            global_ano  = '';
+            global_placa = '';
+            global_km = '';
+
+
+            if(tp_insert == '1'){
+
+                //MOBILE
+                var cd_cores_mob = document.getElementById('cor_mob').value;
+                var modelo_mob = document.getElementById('modelo_mob').value;
+                var ano_mob = document.getElementById('ano_mob').value;
+                var placa_mob = document.getElementById('Placa_mob').value;
+                var km_mob = document.getElementById('km_mob').value;
+
+                global_cores  = cd_cores_mob;
+                global_modelo = modelo_mob;
+                global_ano   = ano_mob;
+                global_placa = placa_mob;
+                global_km  = km_mob;
+                
+
+
+            }else{
+
+                //DESKTOP
+                var cd_cores_desk = document.getElementById('cor_desktop').value;
+                var modelo_desk = document.getElementById('modelo_desktop').value;
+                var ano_desk = document.getElementById('ano_desktop').value;
+                var placa_desk = document.getElementById('Placa_desktop').value;
+                var km_desk = document.getElementById('km_desktop').value;
+
+                global_cores  = cd_cores_desk;
+                global_modelo = modelo_desk;
+                global_ano   = ano_desk;
+                global_placa = placa_desk;
+                global_km  = km_desk;
+                
+
+
+            }
+
+            $.ajax({
+
+                url: "funcoes/veiculos/ajax_insert_veiculos.php",
+                type: "POST",
+                data: {
+                    
+                    //MOBILE
+                    global_cores : global_cores,
+                    global_modelo : global_modelo,
+                    global_ano : global_ano,
+                    global_placa : global_placa,
+                    global_km : global_km
+                    
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Veiculo%20Cadastrado%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20excluir%20veiculo!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }
+                
+                ajax_constroi_tabela_veiculos();
+
+                //MOBILE
+                document.getElementById('cor_mob').value = '';
+                document.getElementById('modelo_mob').value = '';
+                document.getElementById('ano_mob').value = '';
+                document.getElementById('Placa_mob').value = '';
+                document.getElementById('km_mob').value = '';
+
+                //DESKTOP
+                document.getElementById('cor_desktop').value = '';
+                document.getElementById('modelo_desktop').value = '';
+                document.getElementById('ano_desktop').value = '';
+                document.getElementById('Placa_desktop').value = '';
+                document.getElementById('km_desktop').value = '';
+
+                }
+
+            });  
+
+
+        }
+
 
         //DELETAR VEICULO
         function ajax_inativa_veiculo(cd_veiculo, status){
@@ -274,175 +411,6 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
             
         }
 
-        //EXIBE TABELAS RESULTADOS
-        window.onload = function(){
-
-            ajax_constroi_tabela_veiculos();
-
-        }
-
-
-        function ajax_constroi_tabela_veiculos(){
-
-            $('#veiculos').load('funcoes/veiculos/ajax_tabela_veiculos.php'); 
-
-        }
-
-
-
-        function ajax_abre_modal(){
-
-            $('#cad_veiculo').modal('show');
-
-        }
-
-        function ajax_fecha_modal(){
-
-            $('#cad_veiculo').modal('hide');
-
-        }
-
-        //INSERT MOBILE
-        function ajax_insert_veiculo(){
-
-
-            //MOBILE
-            var cd_cores_mob = document.getElementById('cor_mob').value;
-            var modelo_mob = document.getElementById('modelo_mob').value;
-            var ano_mob = document.getElementById('ano_mob').value;
-            var placa_mob = document.getElementById('Placa_mob').value;
-            var km_mob = document.getElementById('km_mob').value;
-
-
-            $.ajax({
-            
-                url: "funcoes/veiculos/ajax_insert_veiculos.php",
-                type: "POST",
-                data: {
-                    
-                    //MOBILE
-                    cor_mob : cd_cores_mob,
-                    mod_mob : modelo_mob,
-                    ano_mob : ano_mob,
-                    pla_mob : placa_mob,
-                    km_mob : km_mob
-                    
-                },
-
-                cache: false,
-                success: function(dataResult){
-
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Veiculo%20Cadastradi%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }else{
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20excluir%20veiculo!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                }
-                
-                ajax_constroi_tabela_veiculos();
-
-                //MOBILE
-                document.getElementById('cor_mob').value = '';
-                document.getElementById('modelo_mob').value = '';
-                document.getElementById('ano_mob').value = '';
-                document.getElementById('Placa_mob').value = '';
-                document.getElementById('km_mob').value = '';
-
-
-                }
-
-        });  
-
-
-        }
-
-
-        //INSERT DESKTOP
-        function ajax_insert_veiculo_desktop(){
-
-            //DESKTOP
-            var cd_cores_desk = document.getElementById('cor_desktop').value;
-            var modelo_desk = document.getElementById('modelo_desktop').value;
-            var ano_desk = document.getElementById('ano_desktop').value;
-            var placa_desk = document.getElementById('Placa_desktop').value;
-
-            var km_desk = document.getElementById('km_desktop').value;
-
-            $.ajax({
-
-                url: "funcoes/veiculos/ajax_insert_veiculos_desktop.php",
-                type: "POST",
-                data: {
-                    
-                    //DESKTOP
-                    cor_desk : cd_cores_desk,
-                    mod_desk : modelo_desk,
-                    ano_desk : ano_desk,
-                    placa_desk : placa_desk,
-                    km_desk : km_desk
-                    
-                },
-
-                cache: false,
-                success: function(dataResult){
-
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20Deletada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }else{
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                }
-                    ajax_constroi_tabela_veiculos();
-
-                      //DESKTOP
-                      document.getElementById('cor_desktop').value = '';
-                      document.getElementById('modelo_desktop').value = '';
-                      document.getElementById('Placa_desktop').value = '';
-                      document.getElementById('ano_desktop').value = '';
-                      document.getElementById('km_desktop').value = '';
-
-
-            }
-
-            });  
-
-        }
 
 
     </script>

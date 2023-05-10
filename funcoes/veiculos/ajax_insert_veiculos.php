@@ -9,11 +9,11 @@ $usuario = $_SESSION['usuarioLogin'];
 include '../../conexao.php';
 
 //RECEBENDO VARIAVEIS MOBILE 
-$cor_mob = $_POST['cor_mob'];
-$modelo_mob = $_POST['mod_mob'];
-$ano_mob = $_POST['ano_mob'];
-$placa_mob = $_POST['pla_mob'];
-$km_mob = $_POST['km_mob'];
+$cor_mob = $_POST['global_cores'];
+$modelo_mob = $_POST['global_modelo'];
+$ano_mob = $_POST['global_ano'];
+$placa_mob = $_POST['global_placa'];
+$km_mob = $_POST['global_km'];
 
 //INSERT
 

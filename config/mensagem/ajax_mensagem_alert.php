@@ -1,4 +1,4 @@
-<div id="modal_alert" class="modal" tabindex="-1" role="dialog">
+<div id="modal_alert" class="modal top_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width: 100% !important; margin: 0 auto;">
         <div class="modal-header">

@@ -10,24 +10,45 @@
 
     <!--MENSAGENS-->
     <?php
+
         include 'js/mensagens.php';
         include 'js/mensagens_usuario.php';
-    ?>
-
-        
-    <?php
-
-    echo '<div style="width: 100%;">';
-        echo '<div class="fnd_azul" style=" border-radius: 25px !important; width: 60%; margin: 0 auto; text-align: center;" class="esconde_btn_desktop">';
-        echo 'Bem vindo  <label style="font-weight: bold;">' . $pri_nome . '</label>';
-        echo '</div>';
-    echo '</div>';
 
     ?>
+  
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
+
+        <!--DESKTOP-->
+
+        <!--PENDENTES-->
+        <div>
+
+            <div class="esconde_botão_desktop">
+
+            <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Chamados Pendentes</h11>
+
+            </div>
+
+        </div>
 
         <div class="div_br"> </div>
         <div class="div_br"> </div>
 
+        <!--CONCLUIDOS-->    
+        <div>
+
+            <div  class="esconde_botão_desktop">
+
+            <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Concluidos</h11>
+
+            </div>
+
+        </div>
+
+    <!--MOBILE-->
+
+    <!--PENDENTES-->
     <div>
 
         <div class= "title_mob">
@@ -38,10 +59,12 @@
 
     </div>
 
+    <div id="chamados_recebidos_pendentes">
+
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
-   
+    <!--CONCLUIDOS-->    
     <div>
 
         <div class= "title_mob">
@@ -51,6 +74,8 @@
         </div>
 
     </div>
+
+    <div id="chamados_concluidos_pendentes">
 
 
 <?php

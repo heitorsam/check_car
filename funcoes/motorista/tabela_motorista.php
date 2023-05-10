@@ -6,9 +6,14 @@
                                usu.CD_USUARIO_MV,
                                usu.TP_PLANTAO,
                                usu.TP_STATUS,
-                               0 AS QTD_TOTAL,
-                               usu.BLOB_FOTO
+                               usu.BLOB_FOTO,
+                               cdX.QTD_OS_ATENDIDA 
                         FROM portal_check_car.USUARIO usu
+                        LEFT JOIN (SELECT cd.CD_MOTORISTA,
+                                            COUNT(*) AS QTD_OS_ATENDIDA 
+                                   FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                                   GROUP BY cd.CD_MOTORISTA) cdX
+                                   ON cdX.CD_MOTORISTA = usu.CD_USUARIO
                         ORDER BY 1 ASC";
 
     $res_cons_tabela_usu = oci_parse($conn_ora, $cons_tabela_usu);
@@ -82,9 +87,15 @@
 
                 }
 
-                if($row['QTD_TOTAL'] == 0){
+                if($row['QTD_OS_ATENDIDA'] == 0){
 
-                    echo '<td class="align-middle" style="text-align: center;">' . '<button onclick="ajax_deletar_motorista(' . $row['CD_USUARIO'] . ')"class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button>' . '</td>';
+
+                ?>
+
+                    <td><button onclick="ajax_alert('Deseja excluir este motorista?','ajax_deletar_motorista(<?php echo $row['CD_USUARIO']; ?>)')" class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button></td>
+
+
+                <?php
 
                 }else{
 

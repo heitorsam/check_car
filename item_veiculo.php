@@ -1,8 +1,10 @@
 <?php
 
-
+    //CHAMANDO CONEXÃO
     include 'cabecalho.php';
 
+    //CHAMANDO ALERTA
+    include 'config/mensagem/ajax_mensagem_alert.php';
 
 ?>
 
@@ -18,16 +20,6 @@
 
 <!--DESKTOP-->
 
-<div>
-
-    <div class= "title_mob">
-
-    <h11 class="center_desktop"><i  style="cursor: pointer;" class="fa-solid fa-list-ul efeito-zoom"></i> Item Veiculo</h11>
-
-    </div>
-
-</div>
-
 <div class="div_br"> </div> 
 
 <div class="row">
@@ -38,12 +30,11 @@
         <input type="text" class="form-control" id="ds_item">
 
     </div> 
-
     
     <div class='col-md-2 esconde'>
 
         </br>
-        <button onclick="ajax_cadastra_item()" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
+        <button onclick="ajax_cadastra_item('2')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
 
     </div>
 
@@ -56,7 +47,7 @@
 
 <!--MODAL-->
 
-<div class="modal fade" id="item_veiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade top_modal" id="item_veiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -79,7 +70,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button onclick="ajax_cadastra_item_mobile()" type="button" class="btn btn-primary">Cadastrar</button>
+            <button onclick="ajax_cadastra_item('1')" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>
 
@@ -106,10 +97,24 @@
 
 <script>
 
+    //MODALS DA PAGINA
 
-    //DESKTOP & MOBILE 
+    //MOBILE
+    function ajax_abre_modal(){
 
-    
+        $('#item_veiculo').modal('show');
+
+    }
+
+    //MOBILE
+    function ajax_fecha_modal(){
+
+        $('#item_veiculo').modal('hide');
+
+    }
+
+
+    //FUNÇÕES QUE INICIALIZAM COM A PAGINA
     window.onload = function(){
 
         ajax_carrega_tabela_items();
@@ -123,12 +128,22 @@
     }
 
 
-    //DESKTOP
-    function ajax_cadastra_item(){
+    //FUNÇOES DA PAGINA
+    function ajax_cadastra_item(tp_insert){
 
-        //DESKTOP
-        var item = document.getElementById('ds_item').value;
+        var global_item = '';
 
+        if(tp_insert == '1'){
+
+            var item = document.getElementById('ds_item_mobile').value;
+            global_item = item;
+
+        }else{
+
+            var item = document.getElementById('ds_item').value;
+            global_item = item;
+
+        }
 
         $.ajax({
             
@@ -136,7 +151,7 @@
             type: "POST",
             data: {
 
-                item : item
+                global_item : global_item
 
             },
 
@@ -169,9 +184,11 @@
                 }
                 
                 ajax_carrega_tabela_items();
+                ajax_fecha_modal()
 
                 //DESKTOP
                 document.getElementById('ds_item').value = '';
+                document.getElementById('ds_item_mobile').value = '';
 
             }
 
@@ -179,12 +196,10 @@
 
     }
 
-    //DESKTOP
+
     function ajax_deleta_item(cd_item){
 
-        //DESKTOP
         var item = cd_item
-
 
         $.ajax({
             
@@ -235,85 +250,9 @@
 
     }
 
-    //MOBILE
-    function ajax_abre_modal(){
-
-        $('#item_veiculo').modal('show');
-
-    }
-
-        //MOBILE
-        function ajax_fecha_modal(){
-
-        $('#item_veiculo').modal('hide');
-
-        }
-
-    //MOBILE
-    function ajax_cadastra_item_mobile(){
-
-        //MOBILE
-        var item = document.getElementById('ds_item_mobile').value;
-
-
-        $.ajax({
-            
-            url: "funcoes/item/ajax_cadastra_item_mobile.php",
-            type: "POST",
-            data: {
-
-                item : item
-
-            },
-
-            cache: false,
-            success: function(dataResult){
-
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Cor%20Cadastrada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }else{
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                }
-                
-                ajax_carrega_tabela_items();
-                ajax_fecha_modal();
-
-                //DESKTOP
-                document.getElementById('ds_item').value = '';
-
-            }
-
-        });  
-
-    }
 
 
 </script>
-
-
-
-
-
-
 
 
 <?php

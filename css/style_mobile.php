@@ -20,6 +20,18 @@
 
 @media (max-width: 768px) {
 
+	.esconde_botão_desktop{
+
+		display:none;
+
+	}
+
+	.top_modal{
+
+		margin-top:50%;
+
+	}
+
 	.column_table_show{
 
 	display: none;

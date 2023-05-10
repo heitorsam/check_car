@@ -32,7 +32,10 @@
     
     <?php
 
+
         while($row = oci_fetch_array($res_cons_tabela_cor)){
+
+
 
             echo '<tr style="text-align: center;">';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row['DS_COR'] . '</td>';
@@ -43,7 +46,13 @@
 
             
             echo '<td class="align-middle" style="text-align: center;">'  .  $row['DS_RGB'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">' . '<button onclick="ajax_deleta_cor(' . $row['CD_COR'] . ')"class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button>' . '</td>';
+
+            ?>
+
+                <td><button onclick="ajax_alert('Deseja excluir esta cor?','ajax_deleta_cor(<?php echo $row['CD_COR']; ?>)')" class="btn btn-adm"><i class="fa-solid fa-trash-can"></i></button></td>
+
+
+            <?php
 
 
             echo '</tr>';
