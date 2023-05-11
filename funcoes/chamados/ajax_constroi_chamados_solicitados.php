@@ -22,7 +22,8 @@
                                         FROM dbamv.LOCALIDADE loc
                                         WHERE loc.CD_LOCALIDADE = sol.CD_LOCALIDADE) AS NM_LOCALIDADE
                                   FROM dbamv.SOLICITACAO_OS sol
-                                  WHERE sol.CD_OFICINA = 9
+                                 --WHERE sol.CD_OFICINA = 9
+                                  WHERE sol.CD_OFICINA = 34
                                   AND sol.DT_PEDIDO >= SYSDATE - 7
                                   AND sol.CD_MULTI_EMPRESA = 1
                                   AND sol.TP_SITUACAO = 'S'
@@ -39,7 +40,7 @@
 
                                     }
                             
-                            $cons_chamados_solic .= "ORDER BY tot.LINHA ASC";
+                             $cons_chamados_solic .= "ORDER BY tot.LINHA ASC";
     $res_solic = oci_parse($conn_ora, $cons_chamados_solic);
                  oci_execute($res_solic);
 
