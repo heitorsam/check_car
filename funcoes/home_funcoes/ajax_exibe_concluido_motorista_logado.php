@@ -24,7 +24,7 @@
                                 INNER JOIN portal_check_car.USUARIO usu
                                 ON usu.CD_USUARIO = cd.CD_MOTORISTA
                                 WHERE usu.CD_USUARIO_MV = '$var_logado'
-                                AND cd.TP_STATUS_CHAMADO = 'A'";
+                                AND cd.TP_STATUS_CHAMADO = 'C'";
     $res_pendentes = oci_parse($conn_ora, $cons_usuario_pendentes);
                      oci_execute($res_pendentes);
 

@@ -35,7 +35,7 @@
                          WHERE
                          sol.CD_OS = $var_os";
         $res_up_mv = oci_parse($conn_ora, $cons_up_mv);
-                     oci_execute($res_up_mv);
+        $valida = oci_execute($res_up_mv);
 
     ///////////////////////////////////////////////////////
 

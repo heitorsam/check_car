@@ -108,6 +108,9 @@
 
     </div>
 
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
+
     <div id="chamados_concluidos"></div>
 
     <div class="div_br"> </div>
@@ -125,7 +128,74 @@
     </div>
 
 
+    <!--MODAL SAIDA_RETORNO VEICULO-->
+    <div class="modal fade top_modal" id="saida_retorno_veiculo" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+
+                 <div style="width: 100%; text-align: center;">
+
+                    <h5 class="modal-title" id="exampleModalLabel">
+                       <div class="fnd_azul"> Controle de Saida </div>
+                    </h5>
+
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    
+                    </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    
+                    <div class="col-md-3">
+                        Veiculo:
+                        <select class="form form-control">
+
+                            <option value="All">Selecione<option>
+                            
+                        
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ajax_motorista_preenche_s_r_veiculo()" >Iniciar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
 <script>   
+
+    function ajax_motorista_conclui_designacao(chamado, os, usuario){
+
+        alert(chamado);
+        alert(os);
+        alert(usuario);
+
+        js_chamado = chamado;
+        js_os = os;
+        js_usuario = usuario;
+        js_status = 'C';
+
+    }
+
+    function ajax_motorista_preenche_s_r_veiculo(){
+
+        alert('oi');
+
+
+    }
 
     function ajax_motorista_recebe_designacao(chamado, os, usuario){
 
@@ -162,6 +232,8 @@
                     //var_tp_msg = 'alert-primary';
                     $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
+                    $('#saida_retorno_veiculo').modal('show');
+                   
                 }else{
 
 
@@ -188,6 +260,7 @@
 
         ajax_exibe_pendentes_motorista_logado();
         ajax_exibe_andamento_motorista_logado();
+        ajax_exibe_concluido_motorista_logado()
 
     }
 
@@ -208,6 +281,16 @@
         $('#chamados_recebidos_andamanto').load('funcoes/home_funcoes/ajax_exibe_andamento_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
     }
+
+        
+    function ajax_exibe_concluido_motorista_logado(){
+
+        var js_usuario_logado = '<?php echo $var_usuario; ?>'
+
+        $('#chamados_concluidos').load('funcoes/home_funcoes/ajax_exibe_concluido_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
+
+    }
+
 
 
 </script>
