@@ -240,7 +240,6 @@ if(isset($row['BLOB_FOTO'])){
 
                     <a href="check_list.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4; border-top: solid 2px #46a5d4;"><i class="fa-solid fa-check"></i>  Check List</a>
                     <a href="abastecimento.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
-                    <a href="emergencia.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-land-mine-on"></i>  Emergencia</a>
                     <a href="chamados.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-headset"></i>  Chamados</a>
                     <a href="veiculos.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-car"></i>  Veiculo</a>
                     <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>

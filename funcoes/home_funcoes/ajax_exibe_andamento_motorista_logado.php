@@ -24,7 +24,7 @@
                                 INNER JOIN portal_check_car.USUARIO usu
                                 ON usu.CD_USUARIO = cd.CD_MOTORISTA
                                 WHERE usu.CD_USUARIO_MV = '$var_logado'
-                                AND cd.TP_STATUS_CHAMADO = 'D'";
+                                AND cd.TP_STATUS_CHAMADO = 'A'";
     $res_pendentes = oci_parse($conn_ora, $cons_usuario_pendentes);
                      oci_execute($res_pendentes);
 
@@ -40,7 +40,7 @@
 
         while($row_table = oci_fetch_array($res_pendentes)){
     ?>
-            <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_motorista_recebe_designacao(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\' <?php echo $row_table['CD_USUARIO_MV']; ?> \')')" 
+            <div onclick="ajax_alert('Deseja concluir esta corrida?','ajax_motorista_recebe_designacao(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\' <?php echo $row_table['CD_USUARIO_MV']; ?> \')')" 
                  class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
