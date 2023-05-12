@@ -11,6 +11,17 @@
 
     include 'config/mensagem/ajax_mensagem_alert.php';
 
+    include 'conexao.php';
+
+    $consulta_veiculo = "SELECT vei.CD_VEICULO,
+                                vei.DS_MODELO || ' - ' || vei.DS_PLACA AS DS_VEICULO 
+                         FROM portal_check_car.VEICULO vei";
+    $res_veiculo = oci_parse($conn_ora, $consulta_veiculo);
+                   oci_execute($res_veiculo);
+
+
+
+
 ?>
 
     <div class="div_br"> </div>
@@ -155,7 +166,13 @@
                         <select class="form form-control" id="veiculo">
 
                             <option value="All">Selecione<option>
-                            
+                            <?php
+                            while($row_vei = oci_fetch_array($res_veiculo)){
+
+                                echo '<option value="' . $row_vei['CD_VEICULO'] . '">' . $row_vei['DS_VEICULO'] . '</option>';
+
+                            }
+                            ?>
                         
                         </select>
 
@@ -175,7 +192,7 @@
                     
 
                     </div>
-                    
+
                     <div class="col-md-2">
                         Kilometragem:
                         <input type="text" class="form form-control" id="km">
@@ -222,6 +239,55 @@
         js_usuario = usuario;
         js_status = 'C';
 
+        /*$.ajax({
+            
+            url: "funcoes/home_funcoes/ajax_motorista_conclui_designacao.php",
+            type: "POST",
+            data: {
+
+                js_chamado : js_chamado,
+                js_os : js_os,
+                js_usuario : js_usuario,
+                js_status : js_status,
+
+            },
+
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                    
+                    $('#saida_retorno_veiculo').modal('hide');
+                   
+                }else{
+
+
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }
+
+
+            }
+
+        }); 
+
+        */
+       
     }
 
     function ajax_motorista_preenche_s_r_veiculo() {
@@ -260,7 +326,8 @@
                     //var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
                     $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
+                    
+                    $('#saida_retorno_veiculo').modal('hide');
                    
                 }else{
 
@@ -315,14 +382,6 @@
                 console.log(dataResult);
 
                 if(dataResult == 'Sucesso'){
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
                     $('#saida_retorno_veiculo').modal('show');
                    

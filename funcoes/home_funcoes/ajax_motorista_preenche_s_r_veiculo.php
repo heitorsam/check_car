@@ -30,6 +30,24 @@
                     NULL AS CD_USUARIO_ULT_ALT,
                     NULL AS HR_ULT_ALT
                     FROM DUAL";
+    $res_insert = oci_parse($conn_ora, $cons_insert);
+    $valida =     oci_execute($res_insert);
+
+                  
+    //VALIDACAO
+    if (!$valida) {   
+    
+        $erro = oci_error($res_insert_veiculo);																							
+        $msg_erro = htmlentities($erro['message']);
+        //header("Location: $pag_login");
+        //echo $erro;
+        echo $msg_erro;
+
+    }else{
+
+        echo 'Sucesso';
+        
+    }
 
 
 
