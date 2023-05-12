@@ -18,7 +18,8 @@
                                         ON usu.CD_USUARIO = sol.NM_USUARIO
                                     WHERE sol.CD_OS = cd.CD_OS_MV) AS NM_SOLICITANTE,
 
-                                    cd.CD_CHAMADO_DESIGNADO
+                                    cd.CD_CHAMADO_DESIGNADO,
+                                    cd.CD_MOTORISTA
                                     
                                 FROM portal_check_car.CHAMADOS_DESIGNADOS cd
                                 INNER JOIN portal_check_car.USUARIO usu
@@ -40,7 +41,7 @@
 
         while($row_table = oci_fetch_array($res_pendentes)){
     ?>
-            <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_motorista_recebe_designacao(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\')')" 
+            <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_motorista_recebe_designacao(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',<?php echo $row_table['CD_MOTORISTA']; ?>)')" 
                  class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';

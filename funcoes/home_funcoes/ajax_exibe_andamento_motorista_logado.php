@@ -31,9 +31,6 @@
 
 ?>
 
-
-
-
 <div class="row">
 
     <?php
@@ -53,11 +50,7 @@
                     
                     echo '<div style="clear: both;"></div>';
 
-                    
-
-                echo '</div>';
-
-                
+                echo '</div>';              
                 
             echo '</div>';
 

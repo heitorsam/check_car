@@ -1,6 +1,5 @@
 <?php 
 
-
     //CABECALHO
     include 'cabecalho.php';
 
@@ -117,26 +116,6 @@
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
-        
-    <!--NOVA ROTA-->    
-    <div>
-
-        <div class= "title_mob">
-       
-        <h11 class="center_desktop"><i class="fa-solid fa-location-dot efeito-zoom" aria-hidden="true"></i> Nova Rota</h11>
-
-        </div>
-
-    </div>
-
-    <div class="div_br"> </div>
-    <div class="div_br"> </div>
-
-    <div id="mapa"></div>
-
-    <div class="div_br"> </div>
-    <div class="div_br"> </div>
-
     <!--DASHBOARD-->    
     <div>
 
@@ -173,7 +152,7 @@
                     <div class="col-md-2">
 
                         Veiculo:
-                        <select class="form form-control">
+                        <select class="form form-control" id="veiculo">
 
                             <option value="All">Selecione<option>
                             
@@ -196,16 +175,7 @@
                     
 
                     </div>
-
-                    <div class="col-md-2">
-                        Saida:
-                        <input type="time" class="form form-control" id="time">
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-
-                    </div>
-
+                    
                     <div class="col-md-2">
                         Kilometragem:
                         <input type="text" class="form form-control" id="km">
@@ -236,7 +206,7 @@
         </div>
     </div>
 
-
+<div id="mensagem_acoes"></div>
     
 
 <script>   
@@ -256,35 +226,71 @@
 
     function ajax_motorista_preenche_s_r_veiculo() {
 
+        js_veiculo = document.getElementById('veiculo').value;
+        js_destino = document.getElementById('destino').value;
+        js_km = document.getElementById('km').value;
+        js_chamado = js_glob_chamado;
+        js_motorista = js_glob_motorista;
 
-        // Captura o valor digitado no campo input
-        var endereco = document.getElementById('destino').value;
-        console.log('destino:', endereco);
+        $.ajax({
+            
+            url: "funcoes/home_funcoes/ajax_motorista_preenche_s_r_veiculo.php",
+            type: "POST",
+            data: {
 
-        // Cria o link para abrir o Waze com as coordenadas do endereço
-        var url = 'https://embed.waze.com/iframe?zoom=15&lat=&lon=&pin=1&desc=' + encodeURIComponent(endereco);
-        console.log('URL:', url);
+                js_veiculo : js_veiculo,
+                js_destino : js_destino,
+                js_km : js_km,
+                js_chamado : js_chamado,
+                js_motorista : js_motorista
 
-        // Cria o iframe e insere na página
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('src', url);
-        iframe.setAttribute('width', '100%');
-        iframe.setAttribute('height', '500');
-        document.getElementById('mapa').appendChild(iframe);
+            },
 
-        $('#saida_retorno_veiculo').modal('hide');
+            cache: false,
+            success: function(dataResult){
 
-        /*endereco = document.getElementById("destino").value ;
+                console.log(dataResult);
 
-        // Abra o endereço no Google Maps
-        var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(endereco);
-        window.open(url);*/
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                   
+                }else{
 
 
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }
+
+
+            }
+
+        });  
+
+        
     }
 
-    function ajax_motorista_recebe_designacao(chamado, os, usuario){
+    js_glob_chamado = '';
+    js_glob_motorista = '';
 
+    function ajax_motorista_recebe_designacao(chamado, os, usuario, motorista){
+
+        js_glob_chamado = chamado;
+        js_glob_motorista = motorista;
+
+        ///////////////////////////////////////
         js_global_chamado = chamado;
         js_global_os = os;
         js_global_usuario = usuario;
