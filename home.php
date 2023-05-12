@@ -8,6 +8,7 @@
     //include 'acesso_restrito_adm.php';
 
     $var_usuario = $_SESSION['usuarioLogin'];
+    $nm_logado = $_SESSION['usuarioNome'];
 
     include 'config/mensagem/ajax_mensagem_alert.php';
 
@@ -66,7 +67,7 @@
 
     </div>
 
-    <div class="div_br"> </div>
+    
     <div class="div_br"> </div>
 
     <div id="chamados_recebidos_pendentes"></div>
@@ -116,6 +117,26 @@
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
+        
+    <!--NOVA ROTA-->    
+    <div>
+
+        <div class= "title_mob">
+       
+        <h11 class="center_desktop"><i class="fa-solid fa-location-dot efeito-zoom" aria-hidden="true"></i> Nova Rota</h11>
+
+        </div>
+
+    </div>
+
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
+
+    <div id="mapa"></div>
+
+    <div class="div_br"> </div>
+    <div class="div_br"> </div>
+
     <!--DASHBOARD-->    
     <div>
 
@@ -149,7 +170,8 @@
 
                 <div class="row">
                     
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+
                         Veiculo:
                         <select class="form form-control">
 
@@ -158,11 +180,51 @@
                         
                         </select>
 
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+                    
                     </div>
+
 
                     <div class="col-md-3">
 
+                        Destino:
+                        <input type="text" class="form form-control" id="destino">
 
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+                    
+
+                    </div>
+
+                    <div class="col-md-2">
+                        Saida:
+                        <input type="time" class="form form-control" id="time">
+
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        Kilometragem:
+                        <input type="text" class="form form-control" id="km">
+
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+
+                    </div>
+                    
+                    <div class="col-md-3">
+
+                        Motorista:
+                        <input type="text" class="form form-control" id="motorista" value="<?php echo $nm_logado; ?>" readonly>
+
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+
+
+                    </div>
 
                 </div>
 
@@ -174,6 +236,8 @@
         </div>
     </div>
 
+
+    
 
 <script>   
 
@@ -190,9 +254,31 @@
 
     }
 
-    function ajax_motorista_preenche_s_r_veiculo(){
+    function ajax_motorista_preenche_s_r_veiculo() {
 
-        alert('oi');
+
+        // Captura o valor digitado no campo input
+        var endereco = document.getElementById('destino').value;
+        console.log('destino:', endereco);
+
+        // Cria o link para abrir o Waze com as coordenadas do endereço
+        var url = 'https://embed.waze.com/iframe?zoom=15&lat=&lon=&pin=1&desc=' + encodeURIComponent(endereco);
+        console.log('URL:', url);
+
+        // Cria o iframe e insere na página
+        var iframe = document.createElement('iframe');
+        iframe.setAttribute('src', url);
+        iframe.setAttribute('width', '100%');
+        iframe.setAttribute('height', '500');
+        document.getElementById('mapa').appendChild(iframe);
+
+        $('#saida_retorno_veiculo').modal('hide');
+
+        /*endereco = document.getElementById("destino").value ;
+
+        // Abra o endereço no Google Maps
+        var url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(endereco);
+        window.open(url);*/
 
 
     }
