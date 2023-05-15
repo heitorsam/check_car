@@ -6,25 +6,28 @@
     //RECEBENDO VARIAVEL DO USUARIO LOGADO
     $var_logado = $_GET['js_usuario_logado'];
 
-    $cons_usuario_pendentes = "SELECT cd.CD_OS_MV,
-                                    TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_DESIGNACAO,
-
-                                    (SELECT usu.CD_USUARIO_MV 
-                                    FROM portal_check_car.USUARIO usu WHERE usu.CD_USUARIO = cd.CD_MOTORISTA) AS CD_USUARIO_MV,
-                                    
+     $cons_usuario_pendentes = "SELECT * 
+                                FROM (SELECT ROWNUM AS LINHA,
+                                    res.* 
+                                FROM (SELECT cd.CD_OS_MV,
+                                    TO_CHAR(cd.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_DESIGNACAO,
+                                    (SELECT usu.CD_USUARIO_MV
+                                        FROM portal_check_car.USUARIO usu
+                                        WHERE usu.CD_USUARIO = cd.CD_MOTORISTA) AS CD_USUARIO_MV,
                                     (SELECT usu.NM_USUARIO
-                                    FROM dbamv.SOLICITACAO_OS sol 
-                                    INNER JOIN dbasgu.USUARIOS usu
-                                        ON usu.CD_USUARIO = sol.NM_USUARIO
-                                    WHERE sol.CD_OS = cd.CD_OS_MV) AS NM_SOLICITANTE,
-
+                                        FROM dbamv.SOLICITACAO_OS sol
+                                        INNER JOIN dbasgu.USUARIOS usu
+                                            ON usu.CD_USUARIO = sol.NM_USUARIO
+                                        WHERE sol.CD_OS = cd.CD_OS_MV) AS NM_SOLICITANTE,
                                     cd.CD_CHAMADO_DESIGNADO
-                                    
                                 FROM portal_check_car.CHAMADOS_DESIGNADOS cd
                                 INNER JOIN portal_check_car.USUARIO usu
-                                ON usu.CD_USUARIO = cd.CD_MOTORISTA
+                                    ON usu.CD_USUARIO = cd.CD_MOTORISTA
                                 WHERE usu.CD_USUARIO_MV = '$var_logado'
-                                AND cd.TP_STATUS_CHAMADO = 'C'";
+                                AND cd.TP_STATUS_CHAMADO = 'C'
+                                ORDER BY cd.CD_CHAMADO_DESIGNADO DESC) res)tot
+                                WHERE tot.LINHA BETWEEN 1 AND 5
+                                ORDER BY tot.LINHA ASC";
     $res_pendentes = oci_parse($conn_ora, $cons_usuario_pendentes);
                      oci_execute($res_pendentes);
 
