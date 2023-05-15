@@ -246,7 +246,7 @@
                     
 
                     <div class="col-md-2">
-                        Kilometragem sucesso:
+                        Kilometragem:
                         <input type="text" class="form form-control" id="km_retorno">
 
                         <div class="div_br"></div>
@@ -281,13 +281,79 @@
 
 <script>   
 
+    function ajax_finaliza_updates_sistema_checkcar(){
+
+        global_chamados;
+        js_status = 'C';
+        js_km_retorno = document.getElementById('km_retorno').value;
+
+        alert(global_chamados);
+        alert(js_status);
+        alert(js_km_retorno);
+
+        $.ajax({
+            
+            url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
+            type: "POST",
+            data: {
+
+                global_chamados : global_chamados,
+                js_status : js_status,
+                js_km_retorno : js_km_retorno
+
+            },
+
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    $('#retorno_veiculo').modal('hide');
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Corrida%20Finalizada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                   
+                }else{
+
+
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }
+
+                ajax_exibe_andamento_motorista_logado();
+                ajax_exibe_concluido_motorista_logado();
+
+
+            }
+
+        }); 
+
+    }
+
+    global_chamados = '';
+
     function ajax_motorista_conclui_designacao(tp,chamado, os, usuario){
+
+        global_chamados = chamado
+        //////////////////////////////
 
         js_chamado = chamado;
         js_os = os;
         js_usuario = usuario;
         js_status = 'C';
-
 
         $.ajax({
             
@@ -322,6 +388,9 @@
                     $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
                 }
+
+                ajax_exibe_andamento_motorista_logado();
+                ajax_exibe_concluido_motorista_logado();
 
 
             }
@@ -360,6 +429,8 @@
 
                 if(dataResult == 'Sucesso'){
 
+                    $('#saida_retorno_veiculo').modal('hide');
+
                     //alert(var_beep);
                     //MENSAGEM            
                     var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
@@ -367,8 +438,6 @@
                     //var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
                     $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-                    
-                    $('#saida_retorno_veiculo').modal('hide');
                    
                 }else{
 
@@ -452,7 +521,7 @@
 
         ajax_exibe_pendentes_motorista_logado();
         ajax_exibe_andamento_motorista_logado();
-        ajax_exibe_concluido_motorista_logado()
+        ajax_exibe_concluido_motorista_logado();
 
     }
 
