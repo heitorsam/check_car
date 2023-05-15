@@ -1,10 +1,8 @@
 <?php
 
+$datatime1 = DateTime::createFromFormat('d/m/Y H:i:s', $dataIni);
+$datatime2 = DateTime::createFromFormat('d/m/Y H:i:s', $dataFim);
 
-
-
-$datatime1 = new DateTime($dataIni);
-$datatime2 = new DateTime($dataFim);
 
 $intervaloEmMinuto = new DateInterval('PT1M');
 $periodo = new DatePeriod($datatime1, $intervaloEmMinuto, $datatime2);

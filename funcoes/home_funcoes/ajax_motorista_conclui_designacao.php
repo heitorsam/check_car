@@ -45,14 +45,15 @@
     $dataIni = $data_recebimento_serv;
     $dataFim = $data_finalizacao;
 
+
+
     //CALCULOS PARA REALIZAR O INSERT OU UPDATE 
     include '../../calculo_horas.php';
 
     $minutos = $horasUteisEntreDuasDatas->format('%i');
 
-   /*
     //INICIANDO PASSO(1) UPDATE SOLICITACAO_OS
-    echo $cons_update_solicitacao = "UPDATE
+    $cons_update_solicitacao = "UPDATE
                                     dbamv.SOLICITACAO_OS sol
                                 SET
                                     sol.CD_ESPEC = 43,
@@ -67,7 +68,7 @@
  
 
     //INICIANDO PASSO (2) NOVO UPDATE NA SOLICITACAO_OS 
-    echo $cons_update_dois = "UPDATE
+    $cons_update_dois = "UPDATE
                             dbamv.SOLICITACAO_OS sol
                         SET
                             sol.DT_EXECUCAO = SYSDATE,
@@ -98,8 +99,8 @@
     $cons_insert_it = "INSERT INTO dbamv.ITSOLICITACAO_OS
                        SELECT 
                        $var_nextval_serv AS CD_ITSOLICITACAO_OS,
-                       '$dataFim'        AS HR_FINAL,
-                       '$dataIni'        AS HR_INICIO,
+                       TO_DATE('$dataFim','DD/MM/YYYY HH24:MI:SS') AS HR_FINAL,
+                       TO_DATE('$dataIni','DD/MM/YYYY HH24:MI:SS') AS HR_INICIO,
                        '0'               AS VL_TEMPO_GASTO,
                        $var_js_os        AS CD_OS,
                        '$cd_func_mv'     AS CD_FUNC,
@@ -124,8 +125,27 @@
 
                        FROM DUAL";
     $res_insert_it = oci_parse($conn_ora, $cons_insert_it);
-                     oci_execute($res_insert_it);
-    
-    */
+           $valida = oci_execute($res_insert_it);
+
+    ///////////////////////////////////////////////////////////////////
+
+    //VALIDACAO
+    if (!$valida) {   
+        
+        $erro = oci_error($res_insert_it);																							
+        $msg_erro = htmlentities($erro['message']);
+        //header("Location: $pag_login");
+        //echo $erro;
+        echo $msg_erro;
+
+    }else{
+
+        echo 'Sucesso';
+        
+    }
+
+
+        
+
 
 ?>

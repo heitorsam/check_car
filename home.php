@@ -139,7 +139,7 @@
     </div>
 
 
-    <!--MODAL SAIDA_RETORNO VEICULO-->
+    <!--MODAL SAIDA MOTORISTA-->
     <div class="modal fade top_modal" id="saida_retorno_veiculo" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -223,21 +223,71 @@
         </div>
     </div>
 
-<div id="mensagem_acoes"></div>
+    <!--MODAL DE RETORNO MOTORISTA-->
+    <div class="modal fade top_modal" id="retorno_veiculo" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+
+                 <div style="width: 100%; text-align: center;">
+
+                    <h5 class="modal-title" id="exampleModalLabel">
+                       <div class="fnd_azul"> Controle de Retorno </div>
+                    </h5>
+
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    
+                    </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    
+
+                    <div class="col-md-2">
+                        Kilometragem sucesso:
+                        <input type="text" class="form form-control" id="km_retorno">
+
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+
+                    </div>
+                    
+                    <div class="col-md-3">
+
+                        Motorista:
+                        <input type="text" class="form form-control" id="motorista" value="<?php echo $nm_logado; ?>" readonly>
+
+                        <div class="div_br"></div>
+                        <div class="div_br"></div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ajax_finaliza_updates_sistema_checkcar()">Finalizar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+<div id="retorno_veiculo"></div>
     
 
 <script>   
 
-    function ajax_motorista_conclui_designacao(chamado, os, usuario){
-
-        alert(chamado);
-        alert(os);
-        alert(usuario);
+    function ajax_motorista_conclui_designacao(tp,chamado, os, usuario){
 
         js_chamado = chamado;
         js_os = os;
         js_usuario = usuario;
         js_status = 'C';
+
 
         $.ajax({
             
@@ -259,21 +309,13 @@
 
                 if(dataResult == 'Sucesso'){
 
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-                    
-                    $('#saida_retorno_veiculo').modal('hide');
+                    $('#retorno_veiculo').modal('show');
                    
                 }else{
 
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
+                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
