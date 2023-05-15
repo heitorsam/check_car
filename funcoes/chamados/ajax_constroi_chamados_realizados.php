@@ -10,12 +10,9 @@
                                    cd.CD_OS_MV,
                                    TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
                                    cd.CD_CHAMADO_DESIGNADO,
-                                   cd.TP_STATUS_CHAMADO
+                                   cd.CD_OS_MV
                            FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                           WHERE cd.CD_CHAMADO_DESIGNADO NOT IN (SELECT cdx.CD_CHAMADO_DESIGNADO
-                                      FROM portal_check_car.CHAMADOS_DESIGNADOS cdx
-                                      WHERE cdx.TP_STATUS_CHAMADO = 'C')
-                           AND cd.TP_STATUS_CHAMADO IN ('D','A')";
+                           WHERE cd.TP_STATUS_CHAMADO = 'C'";
     $res_desig = oci_parse($conn_ora, $cons_chamado_desig);
                  oci_execute($res_desig);
 
@@ -25,10 +22,9 @@
 
 <thead>
 
-    <th style="text-align: center;"> Motorista</th>
     <th style="text-align: center;"> OS</th>
+    <th style="text-align: center;"> Motorista</th>
     <th style="text-align: center;"> Recebimento</th>
-    <th style="text-align: center;"> Ações</th>
 
 </thead>
 
@@ -42,20 +38,10 @@
 
         echo '<tr style="text-align: center;">';
 
+            echo '<td onclick="ajax_detalhe_os(' . $row_table['CD_OS_MV'] . ')" class="align-middle" style="text-align: center; cursor: pointer;">   '  .  $row_table['CD_OS_MV'] . '   </td>';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['NM_MOTORISTA'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['CD_OS_MV'] . '</td>';
             echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['HR_CADASTRO'] . '</td>';
-
-            if($row_table['TP_STATUS_CHAMADO'] == 'A' || $row_table['TP_STATUS_CHAMADO'] == 'C'){
-
-                echo '<td class="align-middle" style="text-align: center;"><button style="background-color:#b7b7b7 !important;  border-color: #b7b7b7 !important;" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>';
-
-            }else{
-
-                echo '<td class="align-middle" style="text-align: center;"><button onclick="ajax_modal_update_motorista(' . $row_table['CD_CHAMADO_DESIGNADO'] . ')"class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>';
-
-            }
-           
+            
 
         echo '</tr>';
 

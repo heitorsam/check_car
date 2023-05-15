@@ -19,7 +19,9 @@
     $res_veiculo = oci_parse($conn_ora, $consulta_veiculo);
                    oci_execute($res_veiculo);
 
-
+    $data =  date("Y/m/d");
+    $month = date("m", strtotime($data));
+    
 
 
 ?>
@@ -37,41 +39,23 @@
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
-        <!--DESKTOP-->
-
-        <!--PENDENTES-->
-        <div>
-
-            <div class="esconde_botão_desktop">
-
-            <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Chamados Pendentes</h11>
-
-            </div>
-
-        </div>
-
-        <div class="div_br"> </div>
-        <div class="div_br"> </div>
-
-        <!--CONCLUIDOS-->    
-        <div>
-
-            <div  class="esconde_botão_desktop">
-
-            <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Concluidos</h11>
-
-            </div>
-
-        </div>
-
-    <!--MOBILE-->
-
     <!--PENDENTES-->
     <div>
 
         <div class= "title_mob">
 
         <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Pendentes</h11>
+
+        </div>
+
+    </div>
+
+    <!--PENDENTES-->
+    <div>
+
+        <div class="esconde_botão_desktop">
+
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Chamados Pendentes</h11>
 
         </div>
 
@@ -86,16 +70,27 @@
     <div class="div_br"> </div>
 
 
-        <!--ANDAMENTO-->
-        <div>
+    <!--ANDAMENTO-->
+    <div>
 
-            <div class= "title_mob">
+        <div class= "title_mob">
 
-            <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Andamento</h11>
-
-            </div>
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Andamento</h11>
 
         </div>
+
+    </div>
+
+    <!--ANDAMENTOs-->    
+    <div>
+
+        <div  class="esconde_botão_desktop">
+
+        <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Andamento</h11>
+
+        </div>
+
+    </div>
 
     <div class="div_br"> </div>
     <div class="div_br"> </div>
@@ -119,6 +114,17 @@
 
     </div>
 
+    <!--CONCLUIDOS-->    
+    <div>
+
+        <div  class="esconde_botão_desktop">
+
+        <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Concluidos</h11>
+
+        </div>
+
+    </div>
+
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
@@ -137,6 +143,26 @@
         </div>
 
     </div>
+
+    
+    <!--DASHBOARD-->    
+    <div>
+
+        <div  class="esconde_botão_desktop">
+
+        <h11 class="center_desktop"><i class="fa-solid fa-chart-line efeito-zoom" aria-hidden="true"></i> Dashboard</h11>
+
+        </div>
+
+    </div>
+
+    <div class="row">  
+
+        <div class="col-md-12" id="div_dashboard"></div>     
+
+    </div>
+
+
 
 
     <!--MODAL SAIDA MOTORISTA-->
@@ -275,6 +301,7 @@
         </div>
     </div>
 
+    <div id="mensagem_acoes"></div>
     
 
 <script>   
@@ -520,12 +547,21 @@
         ajax_exibe_pendentes_motorista_logado();
         ajax_exibe_andamento_motorista_logado();
         ajax_exibe_concluido_motorista_logado();
+        ajax_exibe_consolidado();
+    }
+
+    function ajax_exibe_consolidado(){
+
+        var js_mes_atual = '<?php echo $month; ?>';
+        var js_usuario_logado = '<?php echo $var_usuario; ?>';
+
+        $('#div_dashboard').load('funcoes/home_funcoes/ajax_dashboard.php?periodo='+js_mes_atual+'&usuario='+js_usuario_logado);
 
     }
 
     function ajax_exibe_pendentes_motorista_logado(){
 
-        var js_usuario_logado = '<?php echo $var_usuario; ?>'
+        var js_usuario_logado = '<?php echo $var_usuario; ?>';
 
         $('#chamados_recebidos_pendentes').load('funcoes/home_funcoes/ajax_exibe_pendentes_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
@@ -535,7 +571,7 @@
     
     function ajax_exibe_andamento_motorista_logado(){
 
-        var js_usuario_logado = '<?php echo $var_usuario; ?>'
+        var js_usuario_logado = '<?php echo $var_usuario; ?>';
 
         $('#chamados_recebidos_andamanto').load('funcoes/home_funcoes/ajax_exibe_andamento_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
@@ -544,7 +580,7 @@
         
     function ajax_exibe_concluido_motorista_logado(){
 
-        var js_usuario_logado = '<?php echo $var_usuario; ?>'
+        var js_usuario_logado = '<?php echo $var_usuario; ?>';
 
         $('#chamados_concluidos').load('funcoes/home_funcoes/ajax_exibe_concluido_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 

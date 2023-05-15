@@ -293,7 +293,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
         }else{
 
-            $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_designados.php');
+            $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_realizados.php');
             
         }
 
