@@ -80,7 +80,18 @@
                             sol.CD_OS = $var_js_os";
     
     $res_update_dois = oci_parse($conn_ora, $cons_update_dois);
-                       oci_execute($res_update_dois);    
+                       oci_execute($res_update_dois);   
+                       
+    //RODANDO UPDATE NA TABELA CHAMADOS_DESIGNADOS 
+    $cons_update_chamados = "UPDATE
+                                portal_check_car.CHAMADOS_DESIGNADOS cd
+                            SET
+                                cd.TP_STATUS_CHAMADO = 'C'
+                            WHERE
+                                cd.CD_CHAMADO_DESIGNADO = $var_js_chamado";
+
+    $res_update_chamados = oci_parse($conn_ora, $cons_update_chamados);
+                           oci_execute($res_update_chamados);
     
     //INICIANDO PASSO (3) INSERT NA TABELA ITSOLICITACAO_OS
 
@@ -105,9 +116,9 @@
                        $var_js_os        AS CD_OS,
                        '$cd_func_mv'     AS CD_FUNC,
                         '11456'          AS CD_SERVICO,
-                        NULL             AS DS_SERVICO,
+                        'Corrida Realizada no Aplicativo checkcar'             AS DS_SERVICO,
                         $minutos         AS VL_TEMPO_GASTO_MIN,
-                        'N'              AS SN_CHECK_LIST,
+                        'S'              AS SN_CHECK_LIST,
                         NULL             AS VL_REAL,
                         NULL             AS CD_BEM,
                         NULL             AS VL_REFERENCIA,

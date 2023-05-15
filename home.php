@@ -275,8 +275,6 @@
         </div>
     </div>
 
-
-<div id="retorno_veiculo"></div>
     
 
 <script>   
