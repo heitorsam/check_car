@@ -239,7 +239,7 @@
         js_usuario = usuario;
         js_status = 'C';
 
-        /*$.ajax({
+        $.ajax({
             
             url: "funcoes/home_funcoes/ajax_motorista_conclui_designacao.php",
             type: "POST",
@@ -286,7 +286,6 @@
 
         }); 
 
-        */
        
     }
 
