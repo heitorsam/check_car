@@ -43,8 +43,8 @@
     <div>
 
         <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Pendentes</h11>
+        
+        <h11 class="center_desktop"><i class="fa-solid fa-clock efeito-zoom" aria-hidden="true"></i> Pendentes</h11>
 
         </div>
 
@@ -74,8 +74,7 @@
     <div>
 
         <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Andamento</h11>
+        <h11 class="center_desktop"><i class="fa-solid fa-play efeito-zoom" aria-hidden="true"></i> Andamento</h11>
 
         </div>
 
@@ -107,8 +106,7 @@
     <div>
 
         <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Concluidos</h11>
+        <h11 class="center_desktop"><i class="fa-solid fa-circle-check efeito-zoom" aria-hidden="true"></i> Concluidos</h11>
 
         </div>
 
@@ -134,33 +132,13 @@
     <div class="div_br"> </div>
 
     <!--DASHBOARD-->    
-    <div>
 
-        <div class= "title_mob">
-        
-        <h11 class="center_desktop"><i class="fa-solid fa-chart-line efeito-zoom" aria-hidden="true"></i> Dashboard</h11>
+    <div class="row">
+        <div class="col-md-12">
+        <div id="div_dashboard"></div> 
+        </div> 
+    </div>     
 
-        </div>
-
-    </div>
-
-    
-    <!--DASHBOARD-->    
-    <div>
-
-        <div  class="esconde_botão_desktop">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-chart-line efeito-zoom" aria-hidden="true"></i> Dashboard</h11>
-
-        </div>
-
-    </div>
-
-    <div class="row">  
-
-        <div class="col-md-12" id="div_dashboard"></div>     
-
-    </div>
 
 
 
