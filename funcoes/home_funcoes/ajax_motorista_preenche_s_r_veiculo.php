@@ -7,7 +7,6 @@
 
     //RECEBENDO VARIAVEL
     $var_veiculo = $_POST['js_veiculo'];
-    $var_destino = $_POST['js_destino'];
     $var_km = $_POST['js_km'];
     $var_chamado = $_POST['js_chamado'];
     $var_motorista = $_POST['js_motorista'];
@@ -20,7 +19,6 @@
                     $var_chamado AS CD_CHAMADO_DESIGNADO,
                     $var_motorista AS CD_MOTORISTA,
                     $var_veiculo AS CD_VEICULO,
-                    '$var_destino' AS DS_DESTINO,
                     SYSDATE AS HR_SAIDA,
                     NULL AS HR_RETORNO,
                     '$var_km' AS KM_SAIDA,

@@ -13,17 +13,9 @@
 
     include 'conexao.php';
 
-    $consulta_veiculo = "SELECT vei.CD_VEICULO,
-                                vei.DS_MODELO || ' - ' || vei.DS_PLACA AS DS_VEICULO 
-                         FROM portal_check_car.VEICULO vei";
-    $res_veiculo = oci_parse($conn_ora, $consulta_veiculo);
-                   oci_execute($res_veiculo);
-
     $data =  date("Y/m/d");
     $month = date("m", strtotime($data));
     
-
-
 ?>
 
     <div class="div_br"> </div>
@@ -166,16 +158,25 @@
                     
                     <div class="col-md-2">
 
+
                         Veiculo:
                         <select class="form form-control" id="veiculo">
 
-                            <option value="All">Selecione<option>
                             <?php
-                            while($row_vei = oci_fetch_array($res_veiculo)){
+                            
+                                $consulta_veiculo = "SELECT vei.CD_VEICULO,
+                                vei.DS_MODELO || ' - ' || vei.DS_PLACA AS DS_VEICULO 
+                                FROM portal_check_car.VEICULO vei";
+                                $res_veiculo = oci_parse($conn_ora, $consulta_veiculo);
+                                oci_execute($res_veiculo);
 
-                                echo '<option value="' . $row_vei['CD_VEICULO'] . '">' . $row_vei['DS_VEICULO'] . '</option>';
+                                
+                                while($row_vei = oci_fetch_array($res_veiculo)){
 
-                            }
+                                    echo '<option value="' . $row_vei['CD_VEICULO'] . '">' . $row_vei['DS_VEICULO'] . '</option>';
+
+                                }
+
                             ?>
                         
                         </select>
@@ -183,18 +184,6 @@
                         <div class="div_br"></div>
                         <div class="div_br"></div>
                     
-                    </div>
-
-
-                    <div class="col-md-3">
-
-                        Destino:
-                        <input type="text" class="form form-control" id="destino">
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-                    
-
                     </div>
 
                     <div class="col-md-2">
@@ -289,66 +278,66 @@
         global_chamados;
         js_status = 'C';
         js_km_retorno = document.getElementById('km_retorno').value;
+   
+            $.ajax({
+                
+                url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
+                type: "POST",
+                data: {
 
-        alert(global_chamados);
-        alert(js_status);
-        alert(js_km_retorno);
+                    global_chamados : global_chamados,
+                    js_status : js_status,
+                    js_km_retorno : js_km_retorno
 
-        $.ajax({
-            
-            url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
-            type: "POST",
-            data: {
+                },
 
-                global_chamados : global_chamados,
-                js_status : js_status,
-                js_km_retorno : js_km_retorno
+                cache: false,
+                success: function(dataResult){
 
-            },
+                    console.log(dataResult);
 
-            cache: false,
-            success: function(dataResult){
+                    if(dataResult == 'Sucesso'){
 
-                console.log(dataResult);
+                        $('#retorno_veiculo').modal('hide');
 
-                if(dataResult == 'Sucesso'){
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Corrida%20Finalizada%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
-                    $('#retorno_veiculo').modal('hide');
-
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Corrida%20Finalizada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                   
-                }else{
+                    
+                    }else{
 
 
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }
+
+                    ajax_exibe_andamento_motorista_logado();
+                    ajax_exibe_concluido_motorista_logado();
+
 
                 }
 
-                ajax_exibe_andamento_motorista_logado();
-                ajax_exibe_concluido_motorista_logado();
+            }); 
 
-
-            }
-
-        }); 
+        
+        
 
     }
 
     global_chamados = '';
 
-    function ajax_motorista_conclui_designacao(tp,chamado, os, usuario){
+    function ajax_motorista_conclui_designacao(tp,chamado, os, usuario, km_saida){
+
 
         global_chamados = chamado
         //////////////////////////////
@@ -400,13 +389,11 @@
 
         }); 
 
-       
     }
 
     function ajax_motorista_preenche_s_r_veiculo() {
 
         js_veiculo = document.getElementById('veiculo').value;
-        js_destino = document.getElementById('destino').value;
         js_km = document.getElementById('km').value;
         js_chamado = js_glob_chamado;
         js_motorista = js_glob_motorista;
@@ -418,7 +405,6 @@
             data: {
 
                 js_veiculo : js_veiculo,
-                js_destino : js_destino,
                 js_km : js_km,
                 js_chamado : js_chamado,
                 js_motorista : js_motorista

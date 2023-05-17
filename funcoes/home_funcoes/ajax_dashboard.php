@@ -46,14 +46,16 @@
 ?>
 
 
-<div style="width: 300px; height: 400px; margin: 0 auto; text-align: center;">
+<div style="max-width:70%; height: 400px !important; margin: 0 auto; text-align: center;">
 
 <div class="div_br"> </div>
 <div class="div_br"> </div>
-<h11><i class="fa-solid fa-chart-column efeito-zoom"></i> Realizados Mês</h11>
+<h11><i class="fa-solid fa-chart-column efeito-zoom"></i> Realizados</h11>
 <div class="div_br"> </div>
 
-<canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
+<canvas id="myChart" style="width: 100%; height: 300px !important;"></canvas>
+
+</div>
 
 </div>
 
@@ -64,21 +66,20 @@
     var data = {
 
         labels: [
-            'Atendidos',
-            'Andamento',
-            'Pendente'
+            ''
         ],
 
         datasets: [
 
             {
-                label: "Atendidos",
-                backgroundColor: "#8ac2b6",
+                label: "Pendente",
+                backgroundColor: "#a2b3fc",
                 data: [<?php 
                             
-                                echo $QTD_CONCLUIDOS.',';
+                                echo $QTD_PENDENTE.',';
                             ?>]
             },
+
             {
                 label: "Andamento",
                 backgroundColor: "#ff9f73",
@@ -87,20 +88,22 @@
                                 echo $QTD_ANDAMENTO.',';
                             ?>]
             },
+            
             {
-                label: "Pendente",
-                backgroundColor: "#a2b3fc",
+                label: "Atendidos",
+                backgroundColor: "#8ac2b6",
                 data: [<?php 
                             
-                                echo $QTD_PENDENTE.',';
+                                echo $QTD_CONCLUIDOS.',';
                             ?>]
             }
+           
            
         ]
     }
 
     var myBarChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: data,
         options: {
             responsive: true,
