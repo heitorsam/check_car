@@ -113,7 +113,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Concluidos Mensal'
+                    text: 'Chamados'
                 }
             }
         },

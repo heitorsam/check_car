@@ -186,7 +186,7 @@ if(isset($row['BLOB_FOTO'])){
                                                                                         background-position: center; 
                                                                                         background-size: cover;
                                                                                         background-size: contain;
-                                                                                        width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #4cafe7; ">
+                                                                                        width: 150px; height: 150px; margin: 0 auto; border-radius: 100px; border: solid 2px #46a5d4; ">
 
                         </div>
 

@@ -20,6 +20,14 @@
 
 @media (max-width: 768px) {
 
+	.esconde_texto_mobile{
+
+		display: none !important;
+
+	}
+
+
+
 	.esconde_botão_desktop{
 
 		display:none;

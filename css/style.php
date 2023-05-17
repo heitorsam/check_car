@@ -1197,6 +1197,12 @@ border-radius: 5px;
 }
 
 
+.esconde_texto_mobile{
+
+    display:block !important;
+
+}
+
 
 </style>
 

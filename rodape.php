@@ -5,7 +5,7 @@
     </main>
 
     <!--RODAPE -->
-    <footer class="footer-bs">
+    <footer class="footer-bs esconde_texto_mobile">
         <div class="row">
         	<div class="col-md-5 footer-brand animated fadeInLeft">
             
@@ -13,10 +13,13 @@
                 Santa Casa de </br>
                     São José dos Campos
                 </h2>
+                
                 <p>Temos toda estrutura para o seu tratamento médico, análise de exames, exames de alta complexabilidade e internações. 
                    Atendemos todas as idades com nosso corpo de médicos e especialistas. Nossas instalações estão prontas para lhe atender e proporcionar o máximo de conforto.</p>
                 <p>Projeto desenvolvido pela equipe de Tecnologia.</p>
+            
             </div>
+            
         	<div class="col-md-4 footer-nav animated fadeInUp">
             	<h4>Menu</h4>
             	<div class="col-md-10">

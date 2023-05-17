@@ -3,6 +3,15 @@
     //CHAMANDO CABECALHO
     include 'cabecalho.php';
 
+    //CHAMANDO CONEXÃO
+    include 'conexao.php';
+
+    $cons_veiculo = "SELECT vei.CD_VEICULO,
+                            vei.DS_MODELO ||' - '|| vei.DS_PLACA AS DS_VEICULO
+                        FROM portal_check_car.VEICULO vei
+                        WHERE vei.TP_STATUS = 'A'";
+    $res_veiculo = oci_parse($conn_ora, $cons_veiculo);
+                   oci_execute($res_veiculo);
 ?>
 
 <div class="div_br"> </div>
@@ -28,11 +37,25 @@
 
     </div>
 
-    <div class="col-md-12 esconde_btn_desktop">
+    <div class="row">
+        <div class="col-md-3">
 
-        Veiculo:
-        <input type="text" id="cd_veiculo" class="form-control" onchange="ajax_exibe_veiculo()">
+            Veiculo:
+            <select class="form form-control" id="cd_veiculo" onchange="ajax_exibe_veiculo()">
+            <option value = "All" >Selecione</option>
+                <?php
 
+                while($row_veiculo = oci_fetch_array($res_veiculo)){
+
+                    echo '<option value = "' . $row_veiculo['CD_VEICULO'] . '">' . $row_veiculo['DS_VEICULO'] . '</option>';
+                    
+
+                }
+
+                ?>
+            </select>
+
+        </div>
     </div>
     
 
@@ -41,13 +64,24 @@
 
 <script>
 
+    function ajax_confirma_abastecimento(){
+
+
+
+        alert('oi');
+
+
+
+    }
 
     function ajax_exibe_veiculo(){
 
-        var cd_veiculo = document.getElementById('cd_veiculo').value;
-        
-        alert(cd_veiculo);
-        $('#detalhes_veiculo').load('funcoes/abastecimento/ajax_detelhe_veiculo.php?cd_veiculo='+cd_veiculo);
+
+
+            var cd_veiculo = document.getElementById('cd_veiculo').value;
+            var veiculo = cd_veiculo;
+
+        $('#detalhes_veiculo').load('funcoes/abastecimento/ajax_detelhe_veiculo.php?cd_veiculo='+veiculo);
 
 
     }

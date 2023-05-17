@@ -30,67 +30,74 @@
 
 ?>
 
-<div class="div_br"> </div>  
+<div class="div_br"> </div> 
 
-<div class="col-md-12 esconde_btn_desktop">
+<div class="row">
 
-    Modelo:
-    <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_MODELO']; ?>" readonly>
+    <div class="col-md-3 ">
+
+        Modelo:
+        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_MODELO']; ?>" readonly>
+        <div class="div_br"> </div>
+    </div>
+
+    <div class="div_br"> </div>
+
+    <div class="col-md-3 ">
+
+        Placa:
+        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_PLACA']; ?>" readonly>
+        <div class="div_br"> </div>
+    </div>
+
+    <div class="div_br"> </div>
+
+    <div class="col-md-3 ">
+
+        Motorista:
+        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $usuarioNome ?>" readonly>
+        <div class="div_br"> </div>
+    </div>
+
+    <div class="div_br"> </div>
+
+    <div class="col-md-3 ">
+
+        Km:
+        <input type="text" style="text-align: center;" class="form-control" id="km_abastacimento">
+        <div class="div_br"> </div>
+    </div>
 
 </div>
 
+<div class="row">
+
+    <div class="div_br"> </div>
+
+    <div class="col-md-3 ">
+
+        Litros:
+        <input type="text" style="text-align: center;" class="form-control" id="litro_abastacimento">
+        <div class="div_br"> </div>
+
+    </div>
+
+    <div class="div_br"> </div>
+
+    <div class="col-md-3 ">
+
+        Valor:
+        <input type="text" style="text-align: center;" class="form-control" id="valor_abastacimento">
+        <div class="div_br"> </div>
+
+    </div>
+
+</div>
 <div class="div_br"> </div>
 
-<div class="col-md-12 esconde_btn_desktop">
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
 
-    Placa:
-    <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_PLACA']; ?>" readonly>
-
-</div>
-
-<div class="div_br"> </div>
-
-<div class="col-md-12 esconde_btn_desktop">
-
-    Motorista:
-    <input type="text" style="text-align: center;" class="form-control" value="<?php echo $usuarioNome ?>" readonly>
+    <button style="margin: 0 auto;" class='btn btn-primary' onclick="ajax_confirma_abastecimento()"><i class="fa-solid fa-check"></i> Confirmar</button>
 
 </div>
 
-<div class="div_br"> </div>
-
-<div class="col-md-12 esconde_btn_desktop">
-
-    Km:
-    <input type="text" style="text-align: center;" class="form-control" id="km_abastacimento">
-
-</div>
-
-<div class="div_br"> </div>
-
-<div class="col-md-12 esconde_btn_desktop">
-
-    Litros:
-    <input type="text" style="text-align: center;" class="form-control" id="litro_abastacimento">
-
-</div>
-
-<div class="div_br"> </div>
-
-<div class="col-md-12 esconde_btn_desktop">
-
-    Valor:
-    <input type="text" style="text-align: center;" class="form-control" id="valor_abastacimento">
-
-</div>
-
-<div class="div_br"> </div>
-
-<div class='col-12 esconde_btn_desktop'>
-
-<div>
-    <button style="width: 50%;" class='btn btn-primary'><i class="fa-solid fa-check"></i> Confirmar</button>
-    
-</div>
-
-</div>
