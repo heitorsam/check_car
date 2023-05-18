@@ -152,7 +152,7 @@
                 if($row_table['TP_STATUS'] == 'A'){
 
 ?>
-                    <div onclick="ajax_inativar_motorista('<?php echo $row_table['CD_USUARIO']; ?>','<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado"><i style=" color: #79c332; cursor: pointer; font-size: 20px; " class="fa-solid fa-toggle-on"></i></div>
+                    <div onclick="ajax_inativar_motorista('<?php echo $row_table['CD_USUARIO']; ?>','<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado"><i style="color: #79c332; cursor: pointer; font-size: 20px; " class="fa-solid fa-toggle-on"></i></div>
 
 <?php
                 
@@ -160,7 +160,7 @@
 ?>
 
 
-                   <div onclick="ajax_inativar_motorista('<?php echo $row_table['CD_USUARIO']; ?>','<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado"><i style=" color: #dd9696; cursor: pointer; font-size: 20px; " class="fa-solid fa-toggle-off"></i></div>
+                   <div onclick="ajax_inativar_motorista('<?php echo $row_table['CD_USUARIO']; ?>','<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado"><i style="color: #dd9696; cursor: pointer; font-size: 20px; " class="fa-solid fa-toggle-off"></i></div>
 
 <?php
                 }
