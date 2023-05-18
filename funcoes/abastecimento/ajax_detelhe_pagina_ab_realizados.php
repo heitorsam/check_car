@@ -13,6 +13,8 @@
 
 ?>
 
+
+
 <div class="row">
 
     <div class="col-md-3">
@@ -54,5 +56,8 @@
 <div class="div_br"></div>
 <div class="div_br"></div>
 
+<h11 class="display_esconder_mobile"><i  style="cursor: pointer;" class="fa-regular fa-clock efeito-zoom"></i> <label class="display_esconder_mobile"> Historico</label></h11>
+
+<div class="div_br"></div>
 
 <div id="realizados"></div>

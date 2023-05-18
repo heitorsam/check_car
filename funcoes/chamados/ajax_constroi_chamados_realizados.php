@@ -18,6 +18,7 @@
 
 ?>
 
+<!--
 <table class="table table-striped " style="text-align: center;">
 
 <thead>
@@ -33,6 +34,7 @@
 
 
 <?php
+/*
 
     while($row_table = oci_fetch_array($res_desig)){
 
@@ -46,12 +48,43 @@
         echo '</tr>';
 
     }
-
+*/
 ?>
 
-
-    
 
 </tbody>
 
 </table>
+-->
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_desig)){
+    ?>
+            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+    <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div onclick="ajax_detalhe_os(' . $row_table['CD_OS_MV'] . ')" class="mini_caixa_chamado"><b>OS: ' . $row_table['CD_OS_MV'] . '</b></div>';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-id-card"></i> ' . $row_table['NM_MOTORISTA'] . '</b></div>';
+
+                    echo '<div style="font-size: 11px !important; "class="mini_caixa_chamado"><i class="fa-regular fa-clock"></i> ' . $row_table['HR_CADASTRO'] . '</div>';  
+
+                    echo '<div style="clear: both;"></div>';
+                    
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>

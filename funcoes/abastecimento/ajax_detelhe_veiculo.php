@@ -21,8 +21,14 @@
                             vei.DS_PLACA,
                             vei.KM
                         FROM portal_check_car.VEICULO vei
-                        WHERE vei.TP_STATUS = 'A'
-                        AND vei.CD_VEICULO = $var_cd_veiculo";
+                        WHERE vei.TP_STATUS = 'A'";
+
+                        if($var_cd_veiculo <> 'All'){
+
+                        $cons_veiculo .=   " AND vei.CD_VEICULO = $var_cd_veiculo";
+
+                        }
+                        
     $res_veiculo = oci_parse($conn_ora, $cons_veiculo);
                    oci_execute($res_veiculo);
     $row_vei = oci_fetch_array($res_veiculo)
@@ -37,7 +43,7 @@
     <div class="col-md-3 ">
 
         Modelo:
-        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_MODELO']; ?>" readonly>
+        <input id="model" type="text" style="text-align: center;" class="form-control" value="<?php if($var_cd_veiculo <> 'All'){ echo $row_vei['DS_MODELO']; }else{ echo '-'; }  ?>" readonly>
         <div class="div_br"> </div>
     </div>
 
@@ -46,7 +52,7 @@
     <div class="col-md-3 ">
 
         Placa:
-        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $row_vei['DS_PLACA']; ?>" readonly>
+        <input id="placa" type="text" style="text-align: center;" class="form-control" value="<?php if($var_cd_veiculo <> 'All'){ echo $row_vei['DS_PLACA']; }else{ echo '-'; }  ?>" readonly>
         <div class="div_br"> </div>
     </div>
 
@@ -55,7 +61,7 @@
     <div class="col-md-3 ">
 
         Motorista:
-        <input type="text" style="text-align: center;" class="form-control" value="<?php echo $usuarioNome ?>" readonly>
+        <input id="Motorista" type="text" style="text-align: center;" class="form-control" value="<?php if($var_cd_veiculo <> 'All'){ echo $usuarioNome; }else{ echo '-'; }  ?>" readonly>
         <div class="div_br"> </div>
     </div>
 
@@ -95,9 +101,36 @@
 </div>
 <div class="div_br"> </div>
 
+<?php 
+if($var_cd_veiculo <> 'All'){
+
+?>
+
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
 
     <button style="margin: 0 auto;" class='btn btn-primary' onclick="ajax_confirma_abastecimento()"><i class="fa-solid fa-check"></i> Confirmar</button>
 
 </div>
 
+
+
+<?php 
+
+}else{
+
+?>
+
+
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+
+    <button style="margin: 0 auto; background-color: #aeb3b9 !important; border-color: #aeb3b9 !important;" class='btn btn-primary'><i class="fa-solid fa-check"></i> Confirmar</button>
+
+</div>
+
+
+
+<?php
+
+}
+
+?>

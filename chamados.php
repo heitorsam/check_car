@@ -26,14 +26,18 @@ include 'config/mensagem/ajax_mensagem_alert.php';
     
     <div class="row">
 
-        
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('1')"><i class="fa-solid fa-circle-plus"></i> Solicitados</div>
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('2')"><i class="fa-solid fa-circle-check"></i> Designados</div>
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('3')"><i class="fa-solid fa-circle-plus"></i> Realizadas</div>
-        
-        
+
+        <div id="botão1"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('1'),ajax_style('1')"><i class="fa-solid fa-circle-plus"></i> Solicitados</div>
+
+        <div id="botão2"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('2'),ajax_style('2')"><i class="fa-solid fa-circle-check"></i> Designados</div>
+
+        <div id="botão3"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('3'),ajax_style('3')"><i class="fa-solid fa-circle-plus"></i> Realizadas</div>
+
 
     </div>
+
+    <div class="div_br"> </div>  
+    <div class="div_br"> </div>  
 
     <div id="paginas"></div>  
       
@@ -116,7 +120,45 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
 <script>
 
+    function ajax_style(btn){
 
+        if (btn == '1') {
+
+            document.getElementById('botão1').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+            document.getElementById('botão2').removeAttribute("style");
+            document.getElementById('botão3').removeAttribute("style");
+
+            // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+            document.getElementById('botão2').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão3').setAttribute("style", "cursor: pointer;");
+
+        } else if (btn == '2') {
+
+            document.getElementById('botão2').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+            document.getElementById('botão1').removeAttribute("style");
+            document.getElementById('botão3').removeAttribute("style");
+
+            // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+            document.getElementById('botão1').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão3').setAttribute("style", "cursor: pointer;");
+            
+        } else {
+
+            document.getElementById('botão3').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+            document.getElementById('botão1').removeAttribute("style");
+            document.getElementById('botão2').removeAttribute("style");
+
+            // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+            document.getElementById('botão1').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão2').setAttribute("style", "cursor: pointer;");
+
+        } 
+
+
+    }
 
     function ajax_modal_update_motorista(cd_chamado_d){
 

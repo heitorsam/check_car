@@ -116,9 +116,9 @@
 
                     echo '<div class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;" onclick="ajax_lib_mot(' . $row_table['CD_OS'] . ')"><i class="fa-solid fa-user"></i></div>';
 
-                    echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-clock"></i> ' . $row_table['DT_PEDIDO'] . '</b></div>';
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-user-plus"></i> ' . $row_table['NM_USUARIO_SOLICITANTE'] . '</b></div>';
 
-                    echo '<div style="font-size: 11px !important; "class="mini_caixa_chamado">' . $row_table['NM_USUARIO_SOLICITANTE'] . '</div>';  
+                    echo '<div style="font-size: 11px !important; "class="mini_caixa_chamado"><i class="fa-regular fa-clock"></i> ' . $row_table['DT_PEDIDO'] . '</div>';  
 
                     echo '<div style="clear: both;"></div>';
                     

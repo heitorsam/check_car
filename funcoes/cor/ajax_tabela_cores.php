@@ -14,7 +14,7 @@
 ?>
 
 
-  
+ <!-- 
 <table class="table table-striped " style="text-align: center;">
 
     <thead>
@@ -31,7 +31,7 @@
 
     
     <?php
-
+        /*
 
         while($row = oci_fetch_array($res_cons_tabela_cor)){
 
@@ -59,14 +59,53 @@
 
         }
 
+        */
     ?>
-
-
-        
 
     </tbody>
 
 </table>
+
+-->
+
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_cons_tabela_cor)){
+    ?>
+            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+    <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-palette"></i> ' . $row_table['DS_COR'] . '</b></div>';
+    ?>
+
+
+                <div onclick="ajax_alert('Deseja excluir esta cor?','ajax_deleta_cor(<?php echo $row_table['CD_COR']; ?>)')" class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-trash"></i></div>
+    
+    <?php
+                    echo '<div class="mini_caixa_chamado"><i style="text-shadow: 1px 1px 1px #4f5050ab; color:' . $row_table['DS_RGB']. ' " class="fa-solid fa-droplet"></i></div>';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-eye-dropper"></i> ' . $row_table['DS_RGB'] . '</b></div>';
+
+                    echo '<div style="clear: both;"></div>';
+                    
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>
+
 
 
 

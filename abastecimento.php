@@ -17,14 +17,19 @@
 
     <div class="row">
 
-        
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-6" onclick="ajax_chama_pagina_abastecimento('1')"><i class="fa-solid fa-circle-plus"></i> Abastecer</div>
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-6" onclick="ajax_chama_pagina_abastecimento('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
-        
+        <div class="col-1"></div>
+        <div id="bota_x" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina_abastecimento('1'),ajax_style('1')"><i class="fa-solid fa-circle-plus"></i> Abastecer</div>
+        <div class="col-1"></div>
+        <div class="col-1"></div>
+        <div id="bota_z" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina_abastecimento('2'),ajax_style('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
+        <div class="col-1"></div>
         
 
     </div>
-    
+
+    <div class="div_br"> </div>  
+    <div class="div_br"> </div>
+
     <div id="detalhes_paginas"></div>
 
 
@@ -33,6 +38,32 @@
 
 
 <script>
+        function ajax_style(btn){
+
+            if (btn == '1') {
+
+                document.getElementById('bota_x').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+                document.getElementById('bota_z').removeAttribute("style");
+
+
+                // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+                document.getElementById('bota_z').setAttribute("style", "cursor: pointer;");
+
+
+            }else{
+
+                document.getElementById('bota_z').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+                document.getElementById('bota_x').removeAttribute("style");
+
+                // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+                document.getElementById('bota_x').setAttribute("style", "cursor: pointer;");
+
+      
+            } 
+
+        }
 
     window.onload = function(){
 
@@ -44,9 +75,6 @@
 
         var periodo = document.getElementById('periodo').value;
         var veiculo = document.getElementById('cd_veiculo_ab').value;
-
-        alert(periodo);
-        alert(veiculo);
         
         $('#realizados').load('funcoes/abastecimento/ajax_exibe_ab_realizados.php?periodo='+periodo+'&veiculo='+veiculo);
 
@@ -76,11 +104,6 @@
         var km_abastacimento = document.getElementById('km_abastacimento').value;
         var litro_abastecimento = document.getElementById('litro_abastacimento').value;
         var valor_abastecimento = document.getElementById('valor_abastacimento').value;
-
-        alert(cd_veiculo);
-        alert(km_abastacimento);
-        alert(litro_abastecimento);
-        alert(valor_abastecimento);
 
         $.ajax({
             
@@ -114,6 +137,10 @@
                     document.getElementById('km_abastacimento').value = '';
                     document.getElementById('litro_abastacimento').value = '';
                     document.getElementById('valor_abastacimento').value = '';
+
+                    document.getElementById('model').value = '';
+                    document.getElementById('placa').value = '';
+                    document.getElementById('Motorista').value = '';
 
                     }else{
 

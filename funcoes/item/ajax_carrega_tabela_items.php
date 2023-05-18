@@ -15,6 +15,7 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
 
 ?>
 
+<!--
 <table class="table table-striped " style="text-align: center;">
 
     <thead>
@@ -31,6 +32,7 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
     
     <?php
 
+        /*
         while($row = oci_fetch_array($res_tabela)){
 
             echo '<tr style="text-align: center;">';
@@ -53,6 +55,7 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
 
         }
 
+        */
     ?>
 
 
@@ -61,3 +64,38 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
     </tbody>
 
 </table>
+-->
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_tabela)){
+
+    ?>
+
+            <div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+   
+   <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-screwdriver"></i> ' . $row_table['DS_ITEM_VEICULO'] . '</b></div>';
+    ?>           
+                    <div onclick="ajax_alert('Deseja excluir este item?','ajax_deleta_item(<?php echo $row_table['CD_ITEM_VEICULO']; ?>)')" class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-trash"></i></div>
+    <?php              
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-clock"></i> ' . $row_table['HR_CADASTRO'] . '</b></div>';
+
+                    echo '<div style="clear: both;"></div>';
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>
