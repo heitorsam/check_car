@@ -21,6 +21,7 @@
 
 ?>
 
+<!--
 <table class="table table-striped " style="text-align: center;">
 
 <thead>
@@ -37,7 +38,7 @@
 
 
 <?php
-
+/*
     while($row_table = oci_fetch_array($res_desig)){
 
         echo '<tr style="text-align: center;">';
@@ -52,7 +53,7 @@
 
             }else{
 
-                echo '<td class="align-middle" style="text-align: center;"><button onclick="ajax_modal_update_motorista(' . $row_table['CD_CHAMADO_DESIGNADO'] . ')"class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>';
+                echo '<td class="align-middle" style="text-align: center;"><button onclick="ajax_modal_update_motorista(' . $row_table['CD_CHAMADO_DESIGNADO'] . ')" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button></td>';
 
             }
            
@@ -60,12 +61,57 @@
         echo '</tr>';
 
     }
-
+    */
 ?>
 
 
-    
 
 </tbody>
 
 </table>
+
+-->
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_desig)){
+    ?>
+            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+    <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div onclick="ajax_detalhe_os(' . $row_table['CD_OS_MV'] . ')" class="mini_caixa_chamado"><b>OS: ' . $row_table['CD_OS_MV'] . '</b></div>';
+                    
+                    if($row_table['TP_STATUS_CHAMADO'] == 'A' || $row_table['TP_STATUS_CHAMADO'] == 'C'){
+
+                        echo '<div class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-car"></i></div>';
+
+                    }else{
+
+                        echo '<div class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;" onclick="ajax_modal_update_motorista(' . $row_table['CD_CHAMADO_DESIGNADO'] . ')"><i class="fa-solid fa-pen-to-square"></i></div>';
+                    
+                    }
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-id-card"></i> ' . $row_table['NM_MOTORISTA'] . '</b></div>';
+
+                    echo '<div style="font-size: 12px !important; "class="mini_caixa_chamado"><b><i class="fa-regular fa-clock"></i></b> ' . $row_table['HR_CADASTRO'] . '</div>';  
+
+                    echo '<div style="clear: both;"></div>';
+                    
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>
+
+

@@ -31,10 +31,6 @@
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
-    <audio id="audio-notificacao">
-        <source src="audios/uatizap.mp3" type="audio/mpeg">
-    </audio>
-
 
     <!--PENDENTES-->
     <div>
@@ -542,16 +538,9 @@
 
         var js_usuario_logado = '<?php echo $var_usuario; ?>';
 
-        $("#chamados_recebidos_pendentes").load('funcoes/home_funcoes/ajax_exibe_pendentes_motorista_logado.php?js_usuario_logado='+js_usuario_logado, function() {
-        
-        // Reproduzir o efeito sonoro quando a nova linha for carregada
-        var audio = document.getElementById("audio-notificacao");
-        audio.play();
-
-        });
+        $('#chamados_recebidos_andamanto').load('funcoes/home_funcoes/ajax_exibe_andamento_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
     }
-
     
 
         

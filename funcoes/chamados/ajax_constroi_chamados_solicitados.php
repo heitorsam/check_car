@@ -60,7 +60,7 @@
 
 <div class="div_br"> </div>
 
-
+<!--
 <table class="table table-striped " style="text-align: center;">
 
 <thead>
@@ -78,6 +78,7 @@
 
 <?php
 
+/*
     while($row_table = oci_fetch_array($res_solic)){
 
         echo '<tr style="text-align: center;">';
@@ -90,12 +91,50 @@
         echo '</tr>';
 
     }
+*/
 
 ?>
 
 
-    
-
 </tbody>
 
 </table>
+
+-->
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_solic)){
+    ?>
+            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+    <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div onclick="ajax_detalhe_os(' . $row_table['CD_OS'] . ')" class="mini_caixa_chamado"><b>OS: ' . $row_table['CD_OS'] . '</b></div>';
+
+                    echo '<div class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;" onclick="ajax_lib_mot(' . $row_table['CD_OS'] . ')"><i class="fa-solid fa-user"></i></div>';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-clock"></i> ' . $row_table['DT_PEDIDO'] . '</b></div>';
+
+                    echo '<div style="font-size: 11px !important; "class="mini_caixa_chamado">' . $row_table['NM_USUARIO_SOLICITANTE'] . '</div>';  
+
+                    echo '<div style="clear: both;"></div>';
+                    
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>
+
+
+    

@@ -50,7 +50,7 @@
 
 <div class="div_br"> </div>
 <div class="div_br"> </div>
-<h11><i class="fa-solid fa-chart-column efeito-zoom"></i> Realizados</h11>
+<h11><i class="fa-solid fa-chart-column efeito-zoom"></i> Dashboard</h11>
 <div class="div_br"> </div>
 
 <canvas id="myChart" style="width: 100%; height: 300px !important;"></canvas>

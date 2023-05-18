@@ -109,7 +109,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
     <!--MODAL-->
 
-    <div class="modal fade top_modal" id="cad_veiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cad_veiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -192,7 +192,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
     </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="background-color: #f9f9f9">
 
         <div class="col-md-3 col-12 esconde_btn" style="text-align: center;">
 

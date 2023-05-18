@@ -3,15 +3,6 @@
     //CHAMANDO CABECALHO
     include 'cabecalho.php';
 
-    //CHAMANDO CONEXÃO
-    include 'conexao.php';
-
-    $cons_veiculo = "SELECT vei.CD_VEICULO,
-                            vei.DS_MODELO ||' - '|| vei.DS_PLACA AS DS_VEICULO
-                        FROM portal_check_car.VEICULO vei
-                        WHERE vei.TP_STATUS = 'A'";
-    $res_veiculo = oci_parse($conn_ora, $cons_veiculo);
-                   oci_execute($res_veiculo);
 ?>
 
 <div class="div_br"> </div>
@@ -23,66 +14,135 @@
     <h27><a href="home.php" style="color: #444444; text-decoration: none;"><i class="fa fa-reply efeito-zoom" aria-hidden="true"></i> Voltar</a></h27>
 
     <div class="div_br"> </div>  
-    
-
-
-    <!--DESKTOP-->
-    <div>
-
-        <div class= "title_mob">
-
-        <h11 class="center_desktop"><i class="fa-solid fa-gas-pump efeito-zoom" aria-hidden="true"></i> Abastecimento</h11>
-
-        </div>
-
-    </div>
 
     <div class="row">
-        <div class="col-md-3">
 
-            Veiculo:
-            <select class="form form-control" id="cd_veiculo" onchange="ajax_exibe_veiculo()">
-            <option value = "All" >Selecione</option>
-                <?php
+        
+        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-6" onclick="ajax_chama_pagina_abastecimento('1')"><i class="fa-solid fa-circle-plus"></i> Abastecer</div>
+        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-6" onclick="ajax_chama_pagina_abastecimento('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
+        
+        
 
-                while($row_veiculo = oci_fetch_array($res_veiculo)){
-
-                    echo '<option value = "' . $row_veiculo['CD_VEICULO'] . '">' . $row_veiculo['DS_VEICULO'] . '</option>';
-                    
-
-                }
-
-                ?>
-            </select>
-
-        </div>
     </div>
     
+    <div id="detalhes_paginas"></div>
 
-    <div id="detalhes_veiculo"></div>
+
+    
+    <div id="mensagem_acoes"></div>
 
 
 <script>
 
+    window.onload = function(){
+
+        ajax_chama_pagina_abastecimento('1');
+
+    }
+
+    function ajax_exibe_ab_realizados(){
+
+        var periodo = document.getElementById('periodo').value;
+        var veiculo = document.getElementById('cd_veiculo_ab').value;
+
+        alert(periodo);
+        alert(veiculo);
+        
+        $('#realizados').load('funcoes/abastecimento/ajax_exibe_ab_realizados.php?periodo='+periodo+'&veiculo='+veiculo);
+
+    }
+
+    
+    function ajax_chama_pagina_abastecimento(tp_pagina){
+
+        if(tp_pagina == '1'){
+
+            $('#detalhes_paginas').load('funcoes/abastecimento/ajax_detelhe_pagina_abastecer.php');
+
+        }else{
+
+            
+            $('#detalhes_paginas').load('funcoes/abastecimento/ajax_detelhe_pagina_ab_realizados.php');
+
+        }
+
+
+    }
+
+
     function ajax_confirma_abastecimento(){
 
+        var cd_veiculo = document.getElementById('cd_veiculo').value;
+        var km_abastacimento = document.getElementById('km_abastacimento').value;
+        var litro_abastecimento = document.getElementById('litro_abastacimento').value;
+        var valor_abastecimento = document.getElementById('valor_abastacimento').value;
+
+        alert(cd_veiculo);
+        alert(km_abastacimento);
+        alert(litro_abastecimento);
+        alert(valor_abastecimento);
+
+        $.ajax({
+            
+            url: "funcoes/abastecimento/ajax_insert_abastecimento.php",
+            type: "POST",
+            data: {
+
+                cd_veiculo : cd_veiculo,
+                km_abastacimento : km_abastacimento,
+                litro_abastecimento: litro_abastecimento,
+                valor_abastecimento: valor_abastecimento
+
+            },
+            
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Abastecimento%20Cadastrado%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    document.getElementById('cd_veiculo').value = 'All';
+                    document.getElementById('km_abastacimento').value = '';
+                    document.getElementById('litro_abastacimento').value = '';
+                    document.getElementById('valor_abastacimento').value = '';
+
+                    }else{
 
 
-        alert('oi');
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20Cadastrar%20abastecimento!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
+                }
+
+
+            }
+
+        });
+        
+        
 
 
     }
 
     function ajax_exibe_veiculo(){
 
-
-
-            var cd_veiculo = document.getElementById('cd_veiculo').value;
-            var veiculo = cd_veiculo;
+        var cd_veiculo = document.getElementById('cd_veiculo').value;
+        var veiculo = cd_veiculo;
 
         $('#detalhes_veiculo').load('funcoes/abastecimento/ajax_detelhe_veiculo.php?cd_veiculo='+veiculo);
-
 
     }
 

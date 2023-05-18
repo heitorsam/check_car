@@ -39,7 +39,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
       
 
     <!--MODAL DETALHE OS-->
-    <div class="modal fade top_modal" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detalhe_os_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,6 +115,8 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
 
 <script>
+
+
 
     function ajax_modal_update_motorista(cd_chamado_d){
 
@@ -278,6 +280,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
         $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_solicitados.php');
         $('#linhas').load('funcoes/chamados/ajax_quantidade_linhas_solicitados.php?');
+        $('[data-toggle="tooltip"]').tooltip();
 
     }
 

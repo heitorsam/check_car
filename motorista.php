@@ -180,7 +180,7 @@ include 'config/mensagem/ajax_mensagem_alert.php';
 
     <!--BOTÃO MOBILE QUE ABRE A MODAL-->
 
-    <div class="row">
+    <div class="row" style="background-color: #f9f9f9">
 
         <div class="col-md-3 col-12 esconde_btn" style="text-align: center;">
 
