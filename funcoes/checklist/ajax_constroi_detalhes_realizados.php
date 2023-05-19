@@ -85,7 +85,9 @@ while($row_realizados = oci_fetch_array($res_realizados)){
         </button>
       </div>
       <div class="modal-body">
+
         <div id="checklist_det"></div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

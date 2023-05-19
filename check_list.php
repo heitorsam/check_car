@@ -66,7 +66,8 @@ $row_seq = oci_fetch_array($res_seq);
         //ABRE MODAL COM DETALHES DO QUE FOI FEITO NO CHECKLIST
         function ajax_modal_check_list(checklist){
 
-            $('#checklist').modal('show')
+            $('#checklist').modal('show');
+            
             $('#checklist_det').load('funcoes/checklist/ajax_det_checklist.php?cd_checklist='+checklist);
 
         }

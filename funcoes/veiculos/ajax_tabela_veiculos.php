@@ -18,6 +18,7 @@
 
 ?>
 
+<!--
   
 <table class="table table-striped " style="text-align: center;">
 
@@ -38,6 +39,7 @@
     
     <?php
 
+        /*
         while($row = oci_fetch_array($res_cons_tabela_veiculo)){
 
             echo '<tr style="text-align: center;">';
@@ -84,6 +86,8 @@
 
         }
 
+        */
+
     ?>
 
 
@@ -92,3 +96,62 @@
     </tbody>
 
 </table>
+
+-->
+
+
+<div class="row">
+
+    <?php
+
+        while($row_table = oci_fetch_array($res_cons_tabela_veiculo)){
+    ?>
+            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+    <?php
+                echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-caret-right"></i> ' . $row_table['DS_MODELO'] . '</b></div>';
+            
+    
+                    if($row_table['TP_STATUS'] == 'A'){
+    ?>
+
+                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO']; ?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #79c332 !important; background-color: #ffffff !important;"><i style=" color: #79c332; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-off"></i></div>
+   
+   <?php
+
+                    }else{
+    ?>
+
+
+                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO'];?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #dd9696 !important; background-color: #ffffff !important;"><i style=" color: #dd9696; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-on"></i></div>
+
+    <?php
+
+                    }
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-calendar-days"></i> ' . $row_table['DS_ANO'] . '</b></div>';
+                    
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-square-parking"></i> ' . $row_table['DS_PLACA'] . '</b></div>';
+
+                    echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-road"></i> ' . $row_table['KM'] . '</b></div>';
+
+                    echo '<div class="mini_caixa_chamado" ><b><i style="text-shadow: 1px 1px 1px #4f5050ab; color:' . $row_table['RGB'] . '"class="fa-solid fa-car"></i></b></div>';
+
+                    echo '<div style="clear: both;"></div>';
+                    
+                    
+
+                echo '</div>';
+
+                
+                
+            echo '</div>';
+
+        }
+
+    ?>
+
+</div>
+
+
