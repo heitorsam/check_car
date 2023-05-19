@@ -3,8 +3,8 @@
     //CONEXÃO
     include '../../conexao.php';
 
-      //RECEBENDO VARIAVEL
-      $var_check = $_GET['cd_checklist'];
+    //RECEBENDO VARIAVEL
+    $var_check = $_GET['cd_checklist'];
 
     //WHILE SELECT PEGAR ITENS 
     $cons_while = "SELECT CD_ITEM_VEICULO 
@@ -109,6 +109,16 @@
                                 WHERE tot.SN_PADRAO = 'N'";
     $res_itens = oci_parse($conn_ora, $cons_items);
                  oci_execute($res_itens);
+
+    $cons_obs = "SELECT ck.OBS_GERAL 
+                FROM portal_check_car.CHECKLIST ck
+                WHERE ck.CD_CHECKLIST = $var_check";
+
+    $res_cons_obs = oci_parse($conn_ora, $cons_obs);
+    oci_execute($res_cons_obs);
+    
+    $row_obs = oci_fetch_array($res_cons_obs);
+
 
 ?>
 
@@ -601,7 +611,7 @@
         <div class='col-md-12 col-12'>
 
              Observações:
-            <input type="text" class="form-control" id="obs_geral_final">
+            <input type="text" class="form-control" id="obs_geral_final" readonly value="<?php echo $row_obs['OBS_GERAL']; ?>">
 
         </div>
 
