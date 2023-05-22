@@ -199,7 +199,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
     <div class="row" style="background-color: #f9f9f9">
 
-        <div class="col-md-3 col-12 esconde_btn" style="text-align: center;">
+        <div class="col-md-3 col-12 esconde_btn" style="text-align: center; background-color: #f9f9f9 !important;">
 
             <button onclick="ajax_abre_modal()" class="botao_home" type="submit"><i class="fa-solid fa-plus"></i> Veiculos</button>
 

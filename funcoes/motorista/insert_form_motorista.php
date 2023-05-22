@@ -20,10 +20,24 @@ if(isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
 //RECEBENDO VARIAVEIS
 $var_login = $_POST['usu_mv'];
 $var_plantao = $_POST['plantao'];
-
 $var_foto = base64_encode($var_foto);
 
-echo $cons_insere_motorista = "INSERT INTO portal_check_car.USUARIO 
+//CRIANDO VALIDAÇÃO ANTES DE INSERIR 
+$validacao = "SELECT COUNT(*) AS NR_EXISTE
+              FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = '$var_login'";
+$res_validacao = oci_parse($conn_ora, $validacao);
+                 oci_execute($res_validacao);
+
+$row_valid = oci_fetch_array($res_validacao);
+
+header('Content-Type: application/json');
+
+echo json_encode(array('NR_EXISTE' => $row_valid['NR_EXISTE']));
+
+
+if($row_valid['NR_EXISTE'] == '1'){
+
+$cons_insere_motorista = "INSERT INTO portal_check_car.USUARIO 
                                    (CD_USUARIO,
                                    CD_USUARIO_MV,
                                    TP_PLANTAO,
@@ -66,5 +80,7 @@ else {
 oci_free_statement($res_cons_insere_motorista);
 $blob->free();
 
+
+}
 
 ?>

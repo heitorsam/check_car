@@ -261,6 +261,8 @@
 
                 </div>
 
+                <div id="mensagem_return"></div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="ajax_finaliza_updates_sistema_checkcar()">Finalizar</button>
@@ -276,10 +278,23 @@
 
     function ajax_finaliza_updates_sistema_checkcar(){
 
+        global_km_ini;
         global_chamados;
         js_status = 'C';
         js_km_retorno = document.getElementById('km_retorno').value;
-   
+
+        if(js_km_retorno <= global_km_ini){
+
+            //alert(var_beep);
+            //MENSAGEM            
+            var_ds_msg = 'informe%20uma%20kilometragem%20valida!';
+            //var_tp_msg = 'alert-success';
+            var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+        }else{
+
             $.ajax({
                 
                 url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
@@ -329,24 +344,29 @@
                 }
 
             }); 
+            
 
-        
+        }
         
 
     }
 
     global_chamados = '';
+    global_km_ini = '';
 
     function ajax_motorista_conclui_designacao(tp,chamado, os, usuario, km_saida){
 
 
         global_chamados = chamado
+        global_km_ini = km_saida;
         //////////////////////////////
 
         js_chamado = chamado;
         js_os = os;
         js_usuario = usuario;
         js_status = 'C';
+
+
 
         $.ajax({
             

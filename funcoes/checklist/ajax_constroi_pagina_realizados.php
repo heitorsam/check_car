@@ -16,7 +16,7 @@
 
 ?>
 
-<div class="col-md-3 col-12">
+<div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
     Veiculo:
     <select class="form-control" id="veiculo_realizados">
@@ -38,7 +38,7 @@
 
 </div>
 
-<div class="col-md-3 col-12">
+<div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
     Periodo:
     <input type="month" class="form-control" id="data_realizados" onchange="ajax_constroi_realizados()">
 

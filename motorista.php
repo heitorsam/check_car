@@ -138,6 +138,9 @@ include 'acesso_restrito.php';
                         </div>
 
                     </form>
+
+                        <!--GLOBAL MENSAGEM AÇÕES-->
+                        <div id="mensagem_error"></div>
                                     
                                
                 </div>
@@ -186,7 +189,7 @@ include 'acesso_restrito.php';
 
     <div class="row" style="background-color: #f9f9f9">
 
-        <div class="col-md-3 col-12 esconde_btn" style="text-align: center;">
+        <div class="col-md-3 col-12 esconde_btn" style="text-align: center; background-color: #f9f9f9 !important;">
 
             <button onclick="ajax_abre_modal()" class="botao_home" type="submit"><i class="fa-solid fa-plus"></i> Motorista</button>
 
@@ -267,11 +270,49 @@ include 'acesso_restrito.php';
                 processData: false,
                 contentType: false
 
-            }).then(response => console.log("- Dados enviados", response.form));
+            }).done(function(response) {
 
-            ajax_fecha_modal();
+                console.log(response.NR_EXISTE);
 
-            location.reload();
+                if (response.NR_EXISTE == '0') {
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Informe%20um%20usuario%20valido!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_error').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Motorista%20Cadastrado%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+
+                    $('#mensagem_error').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                    
+                    setTimeout(function() {
+
+                        $('#motorista').modal('hide');
+                        
+                    }, 2000);
+
+                    ajax_tabela_motorista();
+             
+                }
+
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+
+                console.error("Erro na requisição AJAX:", textStatus, errorThrown);
+
+            });
+
+
 
         }
 

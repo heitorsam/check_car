@@ -32,7 +32,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 <div class="row" style="background-color: #f9f9f9">
         
     
-    <div class="col-md-3 col-12">
+    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Tipo:
         <select class="form-control" id="tp_status">
@@ -43,7 +43,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 
     </div> 
 
-    <div class="col-md-3 col-12">
+    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Veiculo:
         <select class="form-control" id="veiculo">
@@ -66,7 +66,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
     </div>
 
 
-    <div class="col-md-3 col-12">
+    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Condutor:
         <select class="form-control" id="condutor">
@@ -96,7 +96,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
     </div>
 
                 
-    <div class='col-12 esconde_btn_desktop'>
+    <div class='col-12 esconde_btn_desktop' style="background-color: #f9f9f9 !important;">
 
         </br>
         <button style="width: 50%;" onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>

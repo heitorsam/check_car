@@ -22,12 +22,12 @@
 
     <div class="row">
 
-        <div class="col-1"></div>
+        <div class="col-1" style="background-color: #f9f9f9 !important;"></div>
         <div id="bota_x" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina_abastecimento('1'),ajax_style('1')"><i class="fa-solid fa-circle-plus"></i> Abastecer</div>
-        <div class="col-1"></div>
-        <div class="col-1"></div>
+        <div class="col-1" style="background-color: #f9f9f9 !important;"></div>
+        <div class="col-1" style="background-color: #f9f9f9 !important;"></div>
         <div id="bota_z" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina_abastecimento('2'),ajax_style('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
-        <div class="col-1"></div>
+        <div class="col-1" style="background-color: #f9f9f9 !important;"></div>
         
 
     </div>

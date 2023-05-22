@@ -135,8 +135,13 @@ if(isset($row['BLOB_FOTO'])){
 
                             <!--MENU-->      
 
-                                <a class="dropdown-item" href="check_list.php"><i class="fas fa-file-import"></i>  Check List</a>
-                            
+                                <a class="dropdown-item" href="check_list.php"><i class="fa-solid fa-check"></i>  Check List</a>
+                                <a class="dropdown-item" href="abastecimento.php"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
+                                <a class="dropdown-item" href="chamados.php"><i class="fa-solid fa-headset"></i>  Chamados</a>
+                                <a class="dropdown-item" href="veiculos.php"><i class="fa-solid fa-car"></i>  Veiculo</a>
+                                <a class="dropdown-item" href="item_veiculo.php"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
+                                <a class="dropdown-item" href="motorista.php"><i class="fa-solid fa-user"></i>  Motorista</a>
+                                <a class="dropdown-item" href="cor.php"><i class="fa-solid fa-palette"></i>  Cores</a>
 
 
                             </div>
@@ -248,6 +253,7 @@ if(isset($row['BLOB_FOTO'])){
                     <div style="position: absolute; bottom: 60px;">
                         <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-person-running"></i> Sair</a>
                     </div>
+
                 </div>
                 
             </nav>
