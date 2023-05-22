@@ -6,7 +6,7 @@
     $var_os = $_GET['os'];
 
     //CONSULTA
-    $cons_modal_os = "SELECT
+    echo $cons_modal_os = "SELECT
                         sol.CD_OS,
                         TO_CHAR(sol.DT_PEDIDO, 'DD/MM/YYYY HH24:MI:SS') AS DT_PEDIDO,
                         sol.DS_SERVICO,

@@ -5,8 +5,7 @@
     $cons_chamado_desig = "SELECT (SELECT 
                                          (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usux.CD_USUARIO_MV) AS NM_USU 
                                    FROM portal_check_car.USUARIO usux
-                                   WHERE usux.TP_STATUS = 'A'
-                                   AND usux.CD_USUARIO = cd.CD_MOTORISTA) NM_MOTORISTA,
+                                   WHERE usux.CD_USUARIO = cd.CD_MOTORISTA) NM_MOTORISTA,
                                    cd.CD_OS_MV,
                                    TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
                                    cd.CD_CHAMADO_DESIGNADO,

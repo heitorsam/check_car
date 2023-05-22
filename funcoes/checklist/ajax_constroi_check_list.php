@@ -28,7 +28,8 @@ $row = oci_fetch_array($res_cons_veiculo);
 $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
                      itvei.DS_ITEM_VEICULO
               FROM portal_check_car.item_veiculo itvei
-              WHERE itvei.SN_PADRAO <> 'S'";
+              WHERE itvei.SN_PADRAO <> 'S'
+              ORDER BY itvei.CD_ITEM_VEICULO ASC";
 
 $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);

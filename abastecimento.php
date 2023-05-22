@@ -48,22 +48,22 @@
 
             if (btn == '1') {
 
-                document.getElementById('bota_x').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+                document.getElementById('bota_x').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
                 document.getElementById('bota_z').removeAttribute("style");
                 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-                document.getElementById('bota_z').setAttribute("style", "cursor: pointer;");
+                document.getElementById('bota_z').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
 
             }else{
 
-                document.getElementById('bota_z').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+                document.getElementById('bota_z').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
                 document.getElementById('bota_x').removeAttribute("style");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-                document.getElementById('bota_x').setAttribute("style", "cursor: pointer;");
+                document.getElementById('bota_x').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
       
             } 

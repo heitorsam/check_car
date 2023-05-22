@@ -38,9 +38,8 @@
                         
                         (SELECT (SELECT usux.NM_USUARIO 
                                 FROM dbasgu.USUARIOS usux WHERE usux.CD_USUARIO = usu.CD_USUARIO_MV) AS NM_USUARIO
-                        FROM portal_check_car.USUARIO usu 
-                        WHERE usu.TP_STATUS = 'A'
-                        AND usu.CD_USUARIO = cd.CD_MOTORISTA) AS NM_MOTORISTA
+                        FROM portal_check_car.USUARIO usu
+                        WHERE usu.CD_USUARIO = cd.CD_MOTORISTA) AS NM_MOTORISTA
                         
                     FROM portal_check_car.CHAMADOS_DESIGNADOS cd
                     WHERE cd.CD_CHAMADO_DESIGNADO = $var_chamado)res)tot";

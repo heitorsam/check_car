@@ -75,22 +75,23 @@ $row_seq = oci_fetch_array($res_seq);
 
             if (btn == '1') {
 
-                document.getElementById('botao_xX').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+                document.getElementById('botao_xX').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
-                document.getElementById('bota_zZ').removeAttribute("style");
+
+                document.getElementById('bota_zZ').removeAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-                document.getElementById('bota_zZ').setAttribute("style", "cursor: pointer;");
+                document.getElementById('bota_zZ').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
 
             }else{
 
-                document.getElementById('bota_zZ').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+                document.getElementById('bota_zZ').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
-                document.getElementById('botao_xX').removeAttribute("style");
+                document.getElementById('botao_xX').removeAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-                document.getElementById('botao_xX').setAttribute("style", "cursor: pointer;");
+                document.getElementById('botao_xX').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
 
             } 

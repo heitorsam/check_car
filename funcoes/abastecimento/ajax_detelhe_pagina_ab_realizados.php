@@ -6,8 +6,7 @@
 
     $cons_veiculo = "SELECT vei.CD_VEICULO,
                             vei.DS_MODELO ||' - '|| vei.DS_PLACA AS DS_VEICULO
-                        FROM portal_check_car.VEICULO vei
-                        WHERE vei.TP_STATUS = 'A'";
+                        FROM portal_check_car.VEICULO vei";
     $res_veiculo = oci_parse($conn_ora, $cons_veiculo);
                    oci_execute($res_veiculo);
 

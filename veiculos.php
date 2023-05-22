@@ -166,21 +166,21 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
             <div class="col-md-2">
 
                 Ano:
-                <input type="number" id="ano_mob" class="form form-control">
+                <input type="number" id="ano_mob" class="form form-control" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;">
 
             </div>
             <div class="div_br"> </div> 
             <div class="col-md-2">
 
                 Placa:
-                <input type="text" id="Placa_mob" class="form form-control">
+                <input type="text" id="Placa_mob" class="form form-control" maxlength="10">
 
             </div>
             <div class="div_br"> </div> 
             <div class="col-md-2 ">
 
                 Km:
-                <input type="number" id="km_mob" class="form form-control">
+                <input type="number" id="km_mob" class="form form-control" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;">
 
             </div>
 

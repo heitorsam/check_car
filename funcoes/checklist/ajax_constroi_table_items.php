@@ -14,7 +14,8 @@ $cons_item_tab = "SELECT iv.CD_ITEM_VEICULO,
                   INNER JOIN portal_check_car.ITEM_VEICULO iv
                      ON iv.CD_ITEM_VEICULO = itc.CD_ITEM_VEICULO
                   WHERE itc.CD_CHECKLIST = $var_seq
-                  AND iv.SN_PADRAO = 'N'";
+                  AND iv.SN_PADRAO = 'N'
+                  ORDER BY iv.CD_ITEM_VEICULO ASC";
 
 $res_item_tab  = oci_parse($conn_ora, $cons_item_tab);
              oci_execute($res_item_tab);

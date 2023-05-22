@@ -19,12 +19,14 @@ $consulta = "SELECT *
                  res.DS_KM,
                  res.DS_LITROS,
                  res.DS_VALOR,
+                 TO_CHAR(res.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
                  res.MES || '/' || res.ANO AS PERIODO
              FROM (
              SELECT abas.CD_VEICULO,
                  abas.DS_KM,
                  abas.DS_LITROS,
                  abas.DS_VALOR,
+                 abas.HR_CADASTRO,
                  CASE 
                      WHEN LENGTH(EXTRACT(MONTH FROM abas.HR_CADASTRO)) <= 1THEN LPAD(EXTRACT(MONTH FROM abas.HR_CADASTRO),2,0)
                      ELSE TO_CHAR(EXTRACT(MONTH FROM abas.HR_CADASTRO))
@@ -58,6 +60,8 @@ $execute = oci_parse($conn_ora, $consulta);
                     echo '<div class="mini_caixa_chamado"><b>Litros:</b> ' . $row_table['DS_LITROS'] . '</div>';
 
                     echo '<div class="mini_caixa_chamado"><b>Valor:</b> R$' . $row_table['DS_VALOR'] . '</div>';
+
+                    echo '<div class="mini_caixa_chamado"><b>Data:</b> ' . $row_table['HR_CADASTRO'] . '</div>';
                     
                     echo '<div style="clear: both;"></div>';
 

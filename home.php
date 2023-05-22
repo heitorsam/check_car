@@ -189,7 +189,7 @@
 
                     <div class="col-md-2">
                         Kilometragem:
-                        <input type="text" class="form form-control" id="km">
+                        <input type="number" class="form form-control" id="km" maxlength="100">
 
                         <div class="div_br"></div>
                         <div class="div_br"></div>
@@ -241,7 +241,7 @@
 
                     <div class="col-md-2">
                         Kilometragem:
-                        <input type="text" class="form form-control" id="km_retorno">
+                        <input type="number" class="form form-control" id="km_retorno" maxlength="100">
 
                         <div class="div_br"></div>
                         <div class="div_br"></div>

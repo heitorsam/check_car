@@ -89,6 +89,9 @@ include 'acesso_restrito.php';
 
             <div id="motorista"></div>
 
+
+            <div id="mensagem_updates_indica"></div>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -112,6 +115,8 @@ include 'acesso_restrito.php';
         <div class="modal-body">
 
             <div id="motorista_update"></div>
+
+            <div id="mensagem_updates"></div>
 
         </div>
         <div class="modal-footer">
@@ -150,6 +155,7 @@ include 'acesso_restrito.php';
     </div>
     </div>
 
+    <div id="mensagem_acoes"></div>
 
 <script>
 
@@ -167,36 +173,36 @@ include 'acesso_restrito.php';
 
         if (btn == '1') {
 
-            document.getElementById('botão1').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+            document.getElementById('botão1').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
             document.getElementById('botão2').removeAttribute("style");
             document.getElementById('botão3').removeAttribute("style");
 
             // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-            document.getElementById('botão2').setAttribute("style", "cursor: pointer;");
-            document.getElementById('botão3').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+            document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
         } else if (btn == '2') {
 
-            document.getElementById('botão2').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+            document.getElementById('botão2').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
             document.getElementById('botão1').removeAttribute("style");
             document.getElementById('botão3').removeAttribute("style");
 
             // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-            document.getElementById('botão1').setAttribute("style", "cursor: pointer;");
-            document.getElementById('botão3').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão1').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+            document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
             
         } else {
 
-            document.getElementById('botão3').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+            document.getElementById('botão3').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
             document.getElementById('botão1').removeAttribute("style");
             document.getElementById('botão2').removeAttribute("style");
 
             // ADICIONA O CURSOR APÓS RETIRAR O STYLE
-            document.getElementById('botão1').setAttribute("style", "cursor: pointer;");
-            document.getElementById('botão2').setAttribute("style", "cursor: pointer;");
+            document.getElementById('botão1').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+            document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
         } 
 
@@ -205,7 +211,6 @@ include 'acesso_restrito.php';
 
     function ajax_modal_update_motorista(cd_chamado_d){
 
-        
 
         //ABRINDO MODAL
         $('#indica_motorista_update').modal('show')
@@ -221,34 +226,55 @@ include 'acesso_restrito.php';
         var js_chamado = document.getElementById('chamado_designado').value;
         var js_cd_motorista = document.getElementById('mot_up').value;
 
+        if(js_cd_motorista == 'All'){
 
-        $.ajax({
-            
-            url: "funcoes/chamados/ajax_update_motorista_designado.php",
-            type: "POST",
-            data: {
+            //alert(var_beep);
+            //MENSAGEM            
+            var_ds_msg = 'Selecione%20um%20Motorista!%20';
+            //var_tp_msg = 'alert-success';
+            var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_updates').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
-                js_chamado : js_chamado,
-                js_cd_motorista : js_cd_motorista
+
+        }else{
+
+            $.ajax({
                 
+                url: "funcoes/chamados/ajax_update_motorista_designado.php",
+                type: "POST",
+                data: {
+
+                    js_chamado : js_chamado,
+                    js_cd_motorista : js_cd_motorista
+                    
 
 
-            },
-            
-            cache: false,
-            success: function(dataResult){
+                },
+                
+                cache: false,
+                success: function(dataResult){
 
-                console.log(dataResult);
+                    console.log(dataResult);
 
-                //FECHANDO MODAL
-                $('#indica_motorista_update').modal('hide');
+                    //FECHANDO MODAL
+                    $('#indica_motorista_update').modal('hide');
 
-                ajax_chama_pagina();
-              
-            }
+                    ajax_chama_pagina('2');
 
-        });
+                      //alert(var_beep);
+                      //MENSAGEM            
+                      var_ds_msg = 'Motorista%20designado%20com%20sucesso!';
+                      var_tp_msg = 'alert-success';
+                      //var_tp_msg = 'alert-danger';
+                      //var_tp_msg = 'alert-primary';
+                      $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                
+                }
+
+            });
         
+        }
 
 
     }
@@ -270,35 +296,48 @@ include 'acesso_restrito.php';
         var js_motorista = document.getElementById('motorista_indicado').value;
         var js_os = document.getElementById('os_mv').value;
         var js_tp_status = 'D'
-        
 
-        $.ajax({
-            
-            url: "funcoes/chamados/ajax_insert_lib_mot.php",
-            type: "POST",
-            data: {
+        if(js_motorista == 'All'){ 
 
-                js_motorista : js_motorista,
-                js_os : js_os,
-                js_tp_status: js_tp_status
+            //alert(var_beep);
+            //MENSAGEM            
+            var_ds_msg = 'Indique%20um%20Motorista!%20';
+            //var_tp_msg = 'alert-success';
+            var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_updates_indica').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
+        }else {
 
-            },
-            
-            cache: false,
-            success: function(dataResult){
-
-                console.log(dataResult);
-
-                //FECHANDO MODAL
-                $('#indica_motorista').modal('hide');
-                pagtabela();
+            $.ajax({
                 
+                url: "funcoes/chamados/ajax_insert_lib_mot.php",
+                type: "POST",
+                data: {
 
-            }
+                    js_motorista : js_motorista,
+                    js_os : js_os,
+                    js_tp_status: js_tp_status
 
-        });
-        
+
+                },
+                
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    //FECHANDO MODAL
+                    $('#indica_motorista').modal('hide');
+                    pagtabela();
+                    
+
+                }
+
+            });
+
+        }
+            
 
     }
 
@@ -391,6 +430,7 @@ include 'acesso_restrito.php';
     function ajax_detalhe_os(os){
 
         $('#detalhe_os_modal').modal('show')
+        
         $('#detalhe_os').load('funcoes/chamados/ajax_constroi_modal_det_chamados.php?os='+os);
 
 

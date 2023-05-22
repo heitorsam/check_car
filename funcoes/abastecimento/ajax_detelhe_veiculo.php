@@ -70,7 +70,7 @@
     <div class="col-md-3 ">
 
         Km:
-        <input type="text" style="text-align: center;" class="form-control" id="km_abastacimento">
+        <input type="number" style="text-align: center;" class="form-control" id="km_abastacimento" maxlength="100">
         <div class="div_br"> </div>
     </div>
 
@@ -83,7 +83,7 @@
     <div class="col-md-3 ">
 
         Litros:
-        <input type="text" style="text-align: center;" class="form-control" id="litro_abastacimento">
+        <input type="number" style="text-align: center;" class="form-control" id="litro_abastacimento" maxlength="100">
         <div class="div_br"> </div>
 
     </div>
@@ -93,7 +93,7 @@
     <div class="col-md-3 ">
 
         Valor:
-        <input type="text" style="text-align: center;" class="form-control" id="valor_abastacimento">
+        <input type="number" style="text-align: center;" class="form-control" id="valor_abastacimento" maxlength="100">
         <div class="div_br"> </div>
 
     </div>
