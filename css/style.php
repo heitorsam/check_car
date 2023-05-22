@@ -1230,5 +1230,18 @@ border-radius: 5px;
 }
 
 
+.padding_desk{
+
+    padding-left: 25px !important;
+	padding-right: 25px !important;
+
+}
+
+.padding_top_desk{
+
+    padding-top: 30px !important;
+    
+}
+
 </style>
 

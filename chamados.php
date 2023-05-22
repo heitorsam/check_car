@@ -5,6 +5,11 @@ include 'cabecalho.php';
 include 'config/mensagem/ajax_mensagem_alert.php';
 
 
+//ACESSO RESTRITO
+include 'acesso_restrito.php';
+
+
+
 ?>
 
 
@@ -117,8 +122,46 @@ include 'config/mensagem/ajax_mensagem_alert.php';
     </div>
     </div>
 
+    <!--MODAL DETALHE CHAMADO-->
+    <div class="modal fade" id="detalhe_chamado_rea" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="width: 100%; text-align: center;">
+                <div style="margin: 0 auto; background-color: #46A5D4; color: white; width: 60%; border-radius: 25px;">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalhes da Corrida</h5>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+
+            <div class="modal-body">
+                        
+                <div id="detalhe_chamado_realizados"></div>
+                            
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
 
 <script>
+
+    function ajax_detalhe_chamado(cd_chamado_d){
+
+        //ABRINDO MODAL
+        $('#detalhe_chamado_rea').modal('show')
+
+        //CONSTRUINDO CORPO COM MOTORISTA
+        $('#detalhe_chamado_realizados').load('funcoes/chamados/ajax_detalhe_chamado_rea.php?chamado='+cd_chamado_d);
+
+    }
 
     function ajax_style(btn){
 

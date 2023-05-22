@@ -3,8 +3,8 @@
     //CABECALHO
     include 'cabecalho.php';
 
-    //ACESSO ADM
-    //include 'acesso_restrito_adm.php';
+    //ACESSO RESTRITO
+    include 'acesso_restrito.php';
 
     $var_usuario = $_SESSION['usuarioLogin'];
     $nm_logado = $_SESSION['usuarioNome'];

@@ -9,6 +9,11 @@ include 'conexao.php';
 //AJAX ALERTA
 include 'config/mensagem/ajax_mensagem_alert.php';
 
+
+//ACESSO RESTRITO
+include 'acesso_restrito.php';
+
+
 $cons_tabela_cor = "SELECT cor.CD_COR,
                             cor.DS_COR,
                             cor.DS_RGB

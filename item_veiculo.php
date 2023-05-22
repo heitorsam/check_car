@@ -5,6 +5,10 @@
 
     //CHAMANDO ALERTA
     include 'config/mensagem/ajax_mensagem_alert.php';
+    
+    //ACESSO RESTRITO
+    include 'acesso_restrito.php';
+
 
 ?>
 

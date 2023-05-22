@@ -5,6 +5,10 @@ include 'cabecalho.php';
 
 //ALERT DE MENSAGENS
 include 'config/mensagem/ajax_mensagem_alert.php';
+
+//ACESSO RESTRITO
+include 'acesso_restrito.php';
+
 ?>
 
 <div class="div_br"> </div>

@@ -8,36 +8,47 @@
     $var_periodo = $_GET['periodo'];
 
     //STATUS
-    $cons_total_status= "SELECT
-                                (SELECT COUNT(res.CD_CHAMADO_DESIGNADO)   
-                                 FROM (SELECT cd.*, EXTRACT(MONTH FROM cd.HR_CADASTRO) AS MONTH_1
-                                       FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                                       INNER JOIN portal_check_car.USUARIO usu
+    $cons_total_status= "SELECT (SELECT COUNT(res.CD_CHAMADO_DESIGNADO)
+                                FROM (SELECT cd.*, EXTRACT(MONTH FROM cd.HR_CADASTRO) AS MONTH_1
+                                        FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                                    INNER JOIN portal_check_car.USUARIO usu
                                         ON usu.CD_USUARIO = cd.CD_MOTORISTA
-                                       WHERE usu.CD_USUARIO_MV = 'LDPGOMES'
-                                       AND cd.TP_STATUS_CHAMADO = 'C') res
-                                WHERE res.MONTH_1 = 05) AS QTD_CONCLUIDOS,
-
-                                    (SELECT COUNT(cd.CD_CHAMADO_DESIGNADO)
-                                    FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                                INNER JOIN portal_check_car.USUARIO usu
-                                    ON usu.CD_USUARIO = cd.CD_MOTORISTA
-                                WHERE usu.CD_USUARIO_MV = 'LDPGOMES'
-                                AND cd.TP_STATUS_CHAMADO = 'A') AS QTD_ANDAMENTO,
+                                    WHERE usu.CD_USUARIO_MV = '$var_usuario'
+                                        AND cd.TP_STATUS_CHAMADO = 'C') res
+                            WHERE res.MONTH_1 = $var_periodo) AS QTD_CONCLUIDOS,
+                            
+                            (SELECT res.QTD
+                            FROM (SELECT COUNT(cd.CD_CHAMADO_DESIGNADO) AS QTD,
+                                    EXTRACT(MONTH FROM cd.HR_CADASTRO) AS MONTH_2
+                                FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                            INNER JOIN portal_check_car.USUARIO usu
+                                ON usu.CD_USUARIO = cd.CD_MOTORISTA
+                            WHERE usu.CD_USUARIO_MV = '$var_usuario'
+                                AND cd.TP_STATUS_CHAMADO = 'A'
+                                GROUP BY
+                                EXTRACT(MONTH FROM cd.HR_CADASTRO) ) res
+                            WHERE res.MONTH_2 = $var_periodo) AS QTD_ANDAMENTO,
                                 
-                                (SELECT COUNT(cd.CD_CHAMADO_DESIGNADO)
-                                 FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                                 INNER JOIN portal_check_car.USUARIO usu
-                                    ON usu.CD_USUARIO = cd.CD_MOTORISTA
-                                 WHERE usu.CD_USUARIO_MV = 'LDPGOMES'
-                                 AND cd.TP_STATUS_CHAMADO = 'D') AS QTD_PENDENTE
-                                    
+                                    (SELECT res.QTD
+                            FROM (SELECT COUNT(cd.CD_CHAMADO_DESIGNADO) AS QTD,
+                                    EXTRACT(MONTH FROM cd.HR_CADASTRO) AS MONTH_2
+                                FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                            INNER JOIN portal_check_car.USUARIO usu
+                                ON usu.CD_USUARIO = cd.CD_MOTORISTA
+                            WHERE usu.CD_USUARIO_MV = '$var_usuario'
+                                AND cd.TP_STATUS_CHAMADO = 'D'
+                                GROUP BY
+                                EXTRACT(MONTH FROM cd.HR_CADASTRO) ) res
+                            WHERE res.MONTH_2 = $var_periodo) AS QTD_PENDENTE
+                                
+                                
                             FROM DUAL";
 
     $res_total_status = oci_parse($conn_ora, $cons_total_status);
     oci_execute($res_total_status);
 
     while($valores = oci_fetch_array($res_total_status)){
+
         $QTD_CONCLUIDOS = $valores['QTD_CONCLUIDOS'];
         $QTD_ANDAMENTO = $valores['QTD_ANDAMENTO'];
         $QTD_PENDENTE = $valores['QTD_PENDENTE'];

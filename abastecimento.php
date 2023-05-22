@@ -3,6 +3,11 @@
     //CHAMANDO CABECALHO
     include 'cabecalho.php';
 
+    
+    //ACESSO RESTRITO
+    include 'acesso_restrito.php';
+
+
 ?>
 
 <div class="div_br"> </div>

@@ -69,6 +69,8 @@
 
                     echo '<div onclick="ajax_detalhe_os(' . $row_table['CD_OS_MV'] . ')" class="mini_caixa_chamado"><b>OS: ' . $row_table['CD_OS_MV'] . '</b></div>';
 
+                    echo '<div onclick="ajax_detalhe_chamado(' . $row_table['CD_CHAMADO_DESIGNADO'] . ')" class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-car"></i></div>';
+                    
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-id-card"></i> ' . $row_table['NM_MOTORISTA'] . '</b></div>';
 
                     echo '<div style="font-size: 11px !important; "class="mini_caixa_chamado"><i class="fa-regular fa-clock"></i> ' . $row_table['HR_CADASTRO'] . '</div>';  

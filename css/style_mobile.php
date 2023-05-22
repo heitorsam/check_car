@@ -20,6 +20,23 @@
 
 @media (max-width: 768px) {
 
+	.padding_top_desk{
+
+	padding-top: 0px !important;
+
+	}
+
+
+	.padding_desk{
+
+	padding-left: 25px !important;
+	padding-right: 25px !important;
+
+
+
+	}
+
+
 	.esconde_texto_mobile{
 
 		display: none !important;

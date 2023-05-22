@@ -145,52 +145,52 @@
 
                 if(@$row_pivot['H2'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
                   
-                    echo '<div style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" ></div>';
+                    echo '<div onclick="return false;" style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" ></div>';
                     
                 }
 
                 if(@$row_pivot['H3'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
                   
-                    echo '<div style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox"></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox"></div>';
                     
                 }
 
                 if(@$row_pivot['H4'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
                   
-                    echo '<div style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox"></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox"></div>';
                     
                 }
 
                 if(@$row_pivot['H5'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
                   
-                    echo '<div style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox"></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox"></div>';
                    
                     
                 }
 
                 if(@$row_pivot['H6'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
                   
-                    echo '<div style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox"></div>';
+                    echo '<div onclick="return false;" style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox"></div>';
                    
                     
                 }
@@ -212,11 +212,11 @@
                 
                 <?php if(@$row_pivot['H1'] == 'DANIFICADO'){
 
-                    echo '<div style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" checked></div>';
                 
                 }else{
 
-                    echo '<div style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox"></div>';
+                    echo '<div onclick="return false;" style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox"></div>';
 
                 }
 
@@ -233,11 +233,11 @@
 
                 <?php if(@$row_pivot['H7'] == 'DANIFICADO'){
 
-                    echo '<div style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" checked></div>';
+                    echo '<div onclick="return false;" style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                    echo '<div style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" ></div>';
+                    echo '<div onclick="return false;" style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" ></div>';
 
                     }
 
@@ -254,53 +254,53 @@
 
                     if(@$row_pivot['H12'] == 'DANIFICADO'){
 
-                        echo '<div style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" checked></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                        echo '<div style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox"></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox"></div>';
 
                     }
 
                     if(@$row_pivot['H11'] == 'DANIFICADO'){
 
-                        echo '<div style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" checked></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                        echo '<div style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox"></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox"></div>';
 
                     }
 
                     
                     if(@$row_pivot['H10'] == 'DANIFICADO'){
 
-                        echo '<div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" checked></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                        echo '<div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox"></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox"></div>';
 
                     }
 
                                         
                     if(@$row_pivot['H9'] == 'DANIFICADO'){
 
-                        echo '<div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" checked></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                        echo '<div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox"></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox"></div>';
 
                     }
 
                     if(@$row_pivot['H8'] == 'DANIFICADO'){
 
-                        echo '<div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" checked></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" checked></div>';
 
                     }else{
 
-                        echo '<div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox"></div>';
+                        echo '<div onclick="return false;" style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox"></div>';
 
                     }
 

@@ -1,6 +1,10 @@
 <?php 
-
+    
 include 'cabecalho.php';
+
+//ACESSO RESTRITO
+include 'acesso_restrito.php';
+
 
 $datahoje = date('Y-m-d', time());
 
