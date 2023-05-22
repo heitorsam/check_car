@@ -27,8 +27,14 @@ $row = oci_fetch_array($res_cons_veiculo);
 //CONSULTA ITEM PARA SELECT 
 $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
                      itvei.DS_ITEM_VEICULO
-                 FROM portal_check_car.item_veiculo itvei
-                 WHERE itvei.SN_PADRAO <> 'S'";
+              FROM portal_check_car.item_veiculo itvei
+              WHERE itvei.SN_PADRAO <> 'S'
+              AND itvei.CD_ITEM_VEICULO NOT IN (SELECT res.CD_ITEM_VEICULO 
+                                                FROM (SELECT itc.CD_ITEM_VEICULO,
+                                                    (SELECT iv.SN_PADRAO FROM portal_check_car.ITEM_VEICULO iv WHERE iv.CD_ITEM_VEICULO = itc.CD_ITEM_VEICULO) AS SN_PADRAO
+                                            FROM portal_check_car.ITCHECKLIST itc
+                                            WHERE CD_CHECKLIST = $seq)res
+                                            WHERE res.SN_PADRAO = 'N')";
 
 $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);

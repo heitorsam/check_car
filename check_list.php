@@ -47,9 +47,13 @@ $row_seq = oci_fetch_array($res_seq);
     <div class="row">
 
         <div style="background-color: #f9f9f9 !important;" class="col-1"></div>
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('1')"><i class="fa-solid fa-circle-plus"></i> Novo</div>
+
+        <div id="botao_xX" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('1'),ajax_style('1')"><i class="fa-solid fa-circle-plus"></i> Novo</div>
+       
         <div style="background-color: #f9f9f9 !important;" class="col-2"></div>
-        <div style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
+        
+        <div id="bota_zZ" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-4" onclick="ajax_chama_pagina('2'),ajax_style('2')"><i class="fa-solid fa-circle-check"></i> Realizados</div>
+        
         <div style="background-color: #f9f9f9 !important;" class="col-1"></div>
 
     </div>
@@ -66,6 +70,33 @@ $row_seq = oci_fetch_array($res_seq);
     <div id="mensagem_acoes"></div>
 
     <script>
+
+        function ajax_style(btn){
+
+            if (btn == '1') {
+
+                document.getElementById('botao_xX').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+                document.getElementById('bota_zZ').removeAttribute("style");
+
+                // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+                document.getElementById('bota_zZ').setAttribute("style", "cursor: pointer;");
+
+
+            }else{
+
+                document.getElementById('bota_zZ').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+                document.getElementById('botao_xX').removeAttribute("style");
+
+                // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+                document.getElementById('botao_xX').setAttribute("style", "cursor: pointer;");
+
+
+            } 
+
+        }
+
         
         //ABRE MODAL COM DETALHES DO QUE FOI FEITO NO CHECKLIST
         function ajax_modal_check_list(checklist){

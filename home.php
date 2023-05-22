@@ -339,6 +339,7 @@
 
                     ajax_exibe_andamento_motorista_logado();
                     ajax_exibe_concluido_motorista_logado();
+                    ajax_exibe_consolidado();
 
 
                 }
@@ -404,6 +405,7 @@
 
                 ajax_exibe_andamento_motorista_logado();
                 ajax_exibe_concluido_motorista_logado();
+                ajax_exibe_consolidado();
 
 
             }
@@ -519,6 +521,7 @@
 
                 ajax_exibe_pendentes_motorista_logado();
                 ajax_exibe_andamento_motorista_logado();
+                ajax_exibe_consolidado();
 
             }
 
