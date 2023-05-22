@@ -6,7 +6,17 @@ include '../../conexao.php';
 //CONSULTA
 $cons_tabela = "SELECT vei.CD_ITEM_VEICULO,
                        vei.DS_ITEM_VEICULO,
-                       TO_CHAR(vei.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO 
+                       TO_CHAR(vei.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
+                       CASE 
+                            WHEN vei.CD_ITEM_VEICULO IN ( SELECT res.CD_ITEM_VEICULO
+                                                            FROM (
+                                                            SELECT itc.CD_ITEM_VEICULO,
+                                                                    (SELECT vei.SN_PADRAO 
+                                                                    FROM portal_check_car.item_veiculo vei WHERE vei.CD_ITEM_VEICULO = itc.CD_ITEM_VEICULO) AS SN_PADRAO
+                                                            FROM portal_check_car.ITCHECKLIST itc) res
+                                                            WHERE res.SN_PADRAO = 'N') THEN 1 
+                            ELSE 0
+                        END AS SN_VINCULO
                 FROM portal_check_car.item_veiculo vei
                 WHERE vei.SN_PADRAO <> 'S'
                 ORDER BY 1 ASC";
@@ -80,9 +90,16 @@ $res_tabela = oci_parse($conn_ora, $cons_tabela);
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
 
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-screwdriver"></i> ' . $row_table['DS_ITEM_VEICULO'] . '</b></div>';
+
+                    if($row_table['SN_VINCULO'] == '0'){
+
+                    
     ?>           
                     <div onclick="ajax_alert('Deseja excluir este item?','ajax_deleta_item(<?php echo $row_table['CD_ITEM_VEICULO']; ?>)')" class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-trash"></i></div>
     <?php              
+
+                    }
+
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-regular fa-clock"></i> ' . $row_table['HR_CADASTRO'] . '</b></div>';
 
                     echo '<div style="clear: both;"></div>';

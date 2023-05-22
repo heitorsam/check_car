@@ -4,7 +4,11 @@
 
     $cons_tabela_cor = "SELECT cor.CD_COR,
                                cor.DS_COR,
-                               cor.DS_RGB
+                               cor.DS_RGB,
+                               CASE WHEN cor.CD_COR IN (SELECT vei.CD_COR 
+                                FROM portal_check_car.VEICULO vei)  THEN 1
+                                        ELSE 0
+                               END AS SN_VINCULO
                         FROM portal_check_car.COR cor
                         ORDER BY 1 ASC";
 
@@ -80,12 +84,17 @@
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
 
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-palette"></i> ' . $row_table['DS_COR'] . '</b></div>';
+    
+                if($row_table['SN_VINCULO'] == '0'){
     ?>
 
 
                 <div onclick="ajax_alert('Deseja excluir esta cor?','ajax_deleta_cor(<?php echo $row_table['CD_COR']; ?>)')" class="mini_caixa_chamado" style="float: right !important; color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-trash"></i></div>
     
     <?php
+
+                }
+
                     echo '<div class="mini_caixa_chamado"><i style="text-shadow: 1px 1px 1px #4f5050ab; color:' . $row_table['DS_RGB']. ' " class="fa-solid fa-droplet"></i></div>';
 
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-eye-dropper"></i> ' . $row_table['DS_RGB'] . '</b></div>';

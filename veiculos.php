@@ -210,14 +210,64 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
     <div class="div_br"> </div>  
     
     <div id="mensagem_acoes"></div>
+
     <div id="veiculos"></div>
 
 
 
     <script>
 
-        //MODALS DA PAGINA
+        //FUNÇÃO PARA DELETAR O VEICULO
+        function ajax_deleta_veiculo(cd_veiculo){
 
+            $.ajax({
+
+            url: "funcoes/veiculos/ajax_deletar_veiculos.php",
+            type: "POST",
+            data: {
+                
+                //VARIAVEIS
+                cd_veiculo : cd_veiculo,
+                
+            },
+
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Veiculo%20deletado%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }else{
+
+                    //alert(var_beep);
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20excluir%20veiculo!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }
+
+                ajax_constroi_tabela_veiculos();
+
+            }
+
+            });  
+
+        }
+
+
+        //MODALS DA PAGINA
         function ajax_abre_modal(){
 
             $('#cad_veiculo').modal('show');

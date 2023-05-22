@@ -9,7 +9,11 @@
                                vei.TP_STATUS,
                                vei.KM || ' Km' AS KM,
                                (SELECT cor.DS_COR FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) COR,
-                               (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) RGB
+                               (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) RGB,
+                                CASE WHEN vei.CD_VEICULO IN (SELECT srv.CD_VEICULO
+                                                             FROM portal_check_car.SAI_RET_VEICULO srv) THEN 1
+                                        ELSE 0
+                                END AS SN_VINCULO
                             FROM portal_check_car.VEICULO vei
                             ORDER BY 1 ASC";
 
@@ -106,7 +110,7 @@
 
         while($row_table = oci_fetch_array($res_cons_tabela_veiculo)){
     ?>
-            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+            <div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
 
@@ -137,6 +141,16 @@
                     echo '<div class="mini_caixa_chamado"><b><i class="fa-solid fa-road"></i> ' . $row_table['KM'] . '</b></div>';
 
                     echo '<div class="mini_caixa_chamado" ><b><i style="text-shadow: 1px 1px 1px #4f5050ab; color:' . $row_table['RGB'] . '"class="fa-solid fa-car"></i></b></div>';
+
+                    if($row_table['SN_VINCULO'] == '0'){
+    
+    ?>
+
+                    <div onclick="ajax_alert('Deseja excluir este veiculo?','ajax_deleta_veiculo(<?php echo $row_table['CD_VEICULO']; ?>)')" class="mini_caixa_chamado" style="color: #f64848 !important; background-color: #ffffff !important;"><i class="fa-solid fa-trash"></i></div>
+
+
+    <?php
+                    }
 
                     echo '<div style="clear: both;"></div>';
                     

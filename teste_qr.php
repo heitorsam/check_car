@@ -11,7 +11,7 @@
 
 <div id="qrcode"></div>
 
-<button onclick="gerarQRCode('fred chupa pingola')">+</button>
+<button onclick="gerarQRCode('ME DA UMA BOLACHINHA?')">+</button>
 
 
 <script>
