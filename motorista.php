@@ -34,7 +34,7 @@ include 'acesso_restrito.php';
             <div class="col-md-2 esconde">
 
                 Login Mv:
-                <input type="text" onchange="ajax_constroi_nome()" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
+                <input type="text" onchange="ajax_constroi_nome('1')" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
 
             </div>
 
@@ -48,7 +48,7 @@ include 'acesso_restrito.php';
 
             <div class="div_br"> </div> 
 
-            <div class="col-md-3 esconde">
+            <div class="col-md-2 esconde">
                 
                 Plantão:
                 <select class="form-control" name="plantao" id="tp_plantao">
@@ -110,11 +110,19 @@ include 'acesso_restrito.php';
                         <div class="col-md-3">
 
                             Login Mv:
-                            <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
+                            <input onchange="ajax_constroi_nome('2')" type="text" name="usu_mv" id="usu_mv_mob" class="form form-control" placeholder="Informe o Usuário MV">
 
                         </div>
 
                         <div class="div_br"> </div> 
+
+                            <div class="col-md-3" style="display: none;" id="nome_moto_mobile">
+
+                            <div id="nome_mobile"></div> 
+
+                            </div>
+
+                        <div class="div_br"> </div>
 
                         <div class="col-md-3">
                             
@@ -215,14 +223,73 @@ include 'acesso_restrito.php';
 
 <script>
 
-    function ajax_constroi_nome(){
+    function ajax_constroi_nome(tp) {
 
-       usuario = document.getElementById('usu_mv').value;
+        global_usu = '';
 
-       $('#nome').load('funcoes/motorista/nome_motorista.php?usuario='+usuario);
+        
 
-       document.getElementById("nome_moto").style.display = "block";
+        if(tp == '2'){
 
+            var usuario = document.getElementById('usu_mv_mob').value;
+            global_usu = usuario;
+
+
+        }else{
+
+            var usuario = document.getElementById('usu_mv').value;
+            global_usu = usuario;
+
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: 'funcoes/motorista/nome_motorista.php',
+            data: { usuario: usuario },
+
+            success: function(response) {
+
+                if (response.trim() !== "") {
+
+                    if(tp == '2'){
+
+                        document.getElementById("nome_moto_mobile").style.display = "block";
+
+                        document.getElementById("nome_mobile").innerHTML = response;
+
+                    }else{
+
+                        document.getElementById("nome_moto").style.display = "block";
+
+                        document.getElementById("nome").innerHTML = response;
+
+
+
+                    }
+
+                } else {
+
+                    
+                    if(tp == '2'){
+
+                        document.getElementById("nome_moto_mobile").style.display = "none";;
+
+                        document.getElementById("nome_mobile").innerHTML = "";
+
+                    }else{
+
+                        document.getElementById("nome_moto").style.display = "none";;
+
+                        document.getElementById("nome").innerHTML = "";
+
+
+                    }
+
+                
+                }
+            },
+
+        });
     }
 
     //FUNÇÃO PARA MUDAR PLANTÃO DO MOTORISTA

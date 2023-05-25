@@ -42,7 +42,7 @@
 
             $varcontrole = $varcontrole + 1 
     ?>
-            <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_motorista_recebe_designacao(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',<?php echo $row_table['CD_MOTORISTA']; ?>)')" 
+            <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_abre_modal_inicio(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',<?php echo $row_table['CD_MOTORISTA']; ?>)')" 
                  class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';

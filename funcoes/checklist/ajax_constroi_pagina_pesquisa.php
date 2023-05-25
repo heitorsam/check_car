@@ -29,7 +29,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 
 
 <!--DESKTOP-->
-<div class="row" style="background-color: #f9f9f9">
+<div class="row" style="background-color: #f9f9f9 !important">
         
     
     <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
@@ -88,7 +88,7 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 
     </div>
 
-    <div class='col-md-3 col-12 esconde'>
+    <div class='col-md-3 col-12 esconde' style="background-color: #f9f9f9 !important;">
 
         </br>
         <button onclick="ajax_constroi_check_list() , ajax_insert_tabela_checklist()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>

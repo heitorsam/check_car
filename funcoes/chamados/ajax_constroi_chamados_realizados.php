@@ -17,44 +17,6 @@
 
 ?>
 
-<!--
-<table class="table table-striped " style="text-align: center;">
-
-<thead>
-
-    <th style="text-align: center;"> OS</th>
-    <th style="text-align: center;"> Motorista</th>
-    <th style="text-align: center;"> Recebimento</th>
-
-</thead>
-
-
-<tbody>
-
-
-<?php
-/*
-
-    while($row_table = oci_fetch_array($res_desig)){
-
-        echo '<tr style="text-align: center;">';
-
-            echo '<td onclick="ajax_detalhe_os(' . $row_table['CD_OS_MV'] . ')" class="align-middle" style="text-align: center; cursor: pointer;">   '  .  $row_table['CD_OS_MV'] . '   </td>';
-            echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['NM_MOTORISTA'] . '</td>';
-            echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['HR_CADASTRO'] . '</td>';
-            
-
-        echo '</tr>';
-
-    }
-*/
-?>
-
-
-</tbody>
-
-</table>
--->
 
 <div class="row">
 

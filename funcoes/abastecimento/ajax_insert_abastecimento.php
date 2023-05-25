@@ -7,7 +7,6 @@
 
     //RECEBENDO VARIAVEIS
     $var_cd_veiculo = $_POST['cd_veiculo'];
-    $var_km_abastacimento = $_POST['km_abastacimento'];
     $var_litro_abastecimento = $_POST['litro_abastecimento'];
     $var_valor_abastecimento = $_POST['valor_abastecimento'];
 
@@ -18,8 +17,7 @@
     $cons_abastecimento = "INSERT INTO portal_check_car.ABASTECIMENTO
                            SELECT 
                            portal_check_car.SEQ_CD_ABASTECIMENTO.NEXTVAL AS CD_ABASTECIMENTO,
-                           $var_cd_veiculo AS CD_VEICULO,
-                           '$var_km_abastacimento' AS DS_KM,         
+                           $var_cd_veiculo AS CD_VEICULO,     
                            '$var_litro_abastecimento' AS DS_LITROS,        
                            '$var_valor_abastecimento' AS DS_VALOR,        
                            '$usuario' AS CD_USUARIO_CADASTRO,  

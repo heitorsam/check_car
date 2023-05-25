@@ -125,6 +125,16 @@ $row_seq = oci_fetch_array($res_seq);
 
             $('#paginas').load('funcoes/checklist/ajax_constroi_pagina_pesquisa.php');
 
+            ajax_style('1');
+
+            document.getElementById('botao_xX').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
+
+            document.getElementById('bota_zZ').removeAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer;");
+
+            // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+            document.getElementById('bota_zZ').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+
+
         }
 
         

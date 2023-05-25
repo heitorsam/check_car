@@ -57,23 +57,23 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
     <div>
 
-        <div class="carro_check" style="margin: 0 auto; ">
+        <div class="carro_check" style="margin: 0 auto; background-color: #f9f9f9 !important;">
 
             <div class="row">
-                <div style="text-align: center; "class="col-1"></div>
-                <div style="text-align: center; "class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('2','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('3','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('4','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('5','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('6','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;"class="col-1"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;"class="col-2"> 02 <input id="2" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('2','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">03 <input id="3" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('3','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">04 <input id="4" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('4','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">05 <input id="5" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('5','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">06 <input id="6" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('6','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-1"></div>
             </div>
 
             <div class="row">
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('1','DANIFICADO')"></div>
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-1"></div>
+                <div style="text-align: center; background-color: #f9f9f9 !important;line-height: 60px; " class="col-2">01 <input id="1" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('1','DANIFICADO')"></div>
 
-                <div  class="col-6">
+                <div  class="col-6" style="background-color: #f9f9f9 !important;">
                     <br><br>
                     <div style=" background-color: <?php echo $row['COR']; ?>; width: 150px; height: 60px; margin: 0 auto;">
                         <img src="img/car.png">
@@ -81,18 +81,18 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
                 </div>
                 
-                <div style=" text-align: center; line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('7','DANIFICADO')"></div>
-                <div style=" text-align: center; " class="col-1"></div>
+                <div style=" text-align: center;background-color: #f9f9f9 !important;line-height: 60px; " class="col-2">07 <input id="7" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('7','DANIFICADO')"></div>
+                <div style=" text-align: center;background-color: #f9f9f9 !important;" class="col-1"></div>
             </div>
 
             <div class="row">
-                <div style="text-align: center; " class="col-1"></div>
-                <div style="text-align: center; " class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('12','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('11','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('10','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('9','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('8','DANIFICADO')"></div>
-                <div style="text-align: center; " class="col-1"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-1"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">12 <input id="12" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('12','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">11 <input id="11" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('11','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">10 <input id="10" style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('10','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">09 <input id="9"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('9','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-2">08 <input id="8"  style="zoom: 2.0;" type="checkbox" onclick="ajax_insert_tabela_itchecklist('8','DANIFICADO')"></div>
+                <div style="text-align: center;background-color: #f9f9f9 !important;" class="col-1"></div>
             </div>
 
         </div>
@@ -117,11 +117,11 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
             <div class="row">
                 
-                <div style="text-align: center; " class="col-4"></div>
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-4"></div>
 
-                <div style="text-align: center; " class="col-8">
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-8">
 
-                    <div style="float: left; width: 50%;" >
+                    <div style="float: left; width: 50%; background-color: #f9f9f9 !important;" >
 
                         <select class="form-control" id="select_pneu_13" onchange="ajax_insert_tabela_itchecklist('13','PNEU')">
 
@@ -137,7 +137,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
                     </div>
 
-                    <div style="float: left; width: 50%;">
+                    <div style="float: left; width: 50%; background-color: #f9f9f9 !important;">
 
                         <select class="form-control" id="select_pneu_14" onchange="ajax_insert_tabela_itchecklist('14','PNEU')">
 
@@ -159,7 +159,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
             <div class="row">
 
-                <div style="text-align: center; " class="col-4">
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-4">
                     <div class="div_br"> </div> 
                     <select class="form-control" id="select_pneu_17" onchange="ajax_insert_tabela_itchecklist('17','PNEU')">
 
@@ -175,10 +175,10 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
                 </div>
 
-                <div class="col-8">
+                <div class="col-8" style="background-color: #f9f9f9 !important;">
 
                     <div class="div_br"> </div> 
-                    <div style=" width: 150px; height: 60px; margin: 0 auto;">
+                    <div style=" width: 150px; height: 60px; margin: 0 auto; background-color: #f9f9f9 !important;">
                         <img src="img/chassi.png">
                     </div>
 
@@ -190,9 +190,9 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
             <div class="row">
                 
-                <div style="text-align: center; " class="col-4"></div>
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-4"></div>
 
-                <div style="text-align: center; " class="col-8">
+                <div style="text-align: center; background-color: #f9f9f9 !important;" class="col-8">
 
                     <div style="float: left; width: 50%;" >
 
@@ -210,7 +210,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
                     </div>
 
-                    <div style="float: left; width: 50%;">
+                    <div style="float: left; width: 50%; background-color: #f9f9f9 !important;">
 
                         <select class="form-control" id="select_pneu_15" onchange="ajax_insert_tabela_itchecklist('15','PNEU')">
 
@@ -287,7 +287,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
     <div class="row">
 
-        <div class="col-md-3 col-12">
+        <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
             Items:
             <select class="form-control" id="tp_item_cadastrado">
@@ -308,7 +308,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
         </div> 
 
         
-        <div class='col-md-3 col-12 esconde'>
+        <div class='col-md-3 col-12 esconde' style="background-color: #f9f9f9 !important;">
 
             </br>
             <button onclick="ajax_insert_tabela_itchecklist('0')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
@@ -316,7 +316,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
         </div>
 
                         
-        <div class='col-12 esconde_btn_desktop'>
+        <div class='col-12 esconde_btn_desktop' style="background-color: #f9f9f9 !important;">
 
             <div>
                 <button style="width: 50%;" onclick="ajax_insert_tabela_itchecklist('0')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
@@ -335,7 +335,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
     <div class="row">
 
-        <div class='col-md-12 col-12'>
+        <div class='col-md-12 col-12' style="background-color: #f9f9f9 !important;">
 
              Observações:
             <input type="text" class="form-control" id="obs_geral_final">
@@ -348,7 +348,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
 
     <div class="row">
 
-        <div class='col-md-2 esconde'>
+        <div class='col-md-2 esconde' style="background-color: #f9f9f9 !important;">
 
             </br>
             <button onclick="ajax_alert('Deseja confirmar o Checklist?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>
@@ -356,7 +356,7 @@ $res_plantao  = oci_parse($conn_ora, $cons_plantao);
         </div>
 
                                 
-        <div class='col-12 esconde_btn_desktop'>
+        <div class='col-12 esconde_btn_desktop' style="background-color: #f9f9f9 !important;">
 
             <div>
                 <button style="width: 50%;" onclick="ajax_alert('Deseja confirmar o Checklist?','ajax_roda_update()')" class='btn btn-primary'><i class="fa-solid fa-check"></i> Finalizar</button>

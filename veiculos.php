@@ -381,7 +381,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
                     //alert(var_beep);
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20excluir%20veiculo!';
+                    var_ds_msg = 'Erro%20ao%20cadastrar%20veiculo!';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';

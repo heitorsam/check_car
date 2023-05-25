@@ -16,34 +16,39 @@
 
 ?>
 
-<div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
-
-    Veiculo:
-    <select class="form-control" id="veiculo_realizados">
-
-        <option value="">Selecione</option>
-        
-        <?php
-
-            while($row = oci_fetch_array($res_cons_veiculo)){
-
-                echo '<option value="'. $row['CD_VEICULO'] .'">'. $row['DS_MODELO'] . ' / ' . $row['DS_PLACA'] .'</option>';
-
-            }
-
-        ?>
+<div class="row">
 
 
-    </select>
+    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
+
+        Veiculo:
+        <select class="form-control" id="veiculo_realizados">
+
+            <option value="">Selecione</option>
+            
+            <?php
+
+                while($row = oci_fetch_array($res_cons_veiculo)){
+
+                    echo '<option value="'. $row['CD_VEICULO'] .'">'. $row['DS_MODELO'] . ' / ' . $row['DS_PLACA'] .'</option>';
+
+                }
+
+            ?>
+
+
+        </select>
+
+    </div>
+
+    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
+
+        Periodo:
+        <input type="month" class="form-control" id="data_realizados" onchange="ajax_constroi_realizados()">
+
+    </div>
 
 </div>
-
-<div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
-    Periodo:
-    <input type="month" class="form-control" id="data_realizados" onchange="ajax_constroi_realizados()">
-
-</div>
-
 
 <!--DESKTOP-->
 <div>

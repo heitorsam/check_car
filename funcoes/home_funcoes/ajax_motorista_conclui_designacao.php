@@ -8,8 +8,11 @@
 
     //RECEBENDO VARIAVEIS
     $var_js_os = $_POST['js_os'];
+    '</br>';
     $var_js_usuario = $_POST['js_usuario'];
+    '</br>';
     $var_js_status = $_POST['js_status'];
+    '</br>';
     $var_js_chamado = $_POST['js_chamado'];
 
     //VERIFICANDO USUARIO NA TABALA DBAMV.FUNCIONARIOS

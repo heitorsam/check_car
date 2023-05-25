@@ -73,6 +73,13 @@
     window.onload = function(){
 
         ajax_chama_pagina_abastecimento('1');
+        
+        document.getElementById('bota_x').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
+
+        document.getElementById('bota_z').removeAttribute("style");
+
+        // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+        document.getElementById('bota_z').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
     }
 
@@ -106,64 +113,75 @@
     function ajax_confirma_abastecimento(){
 
         var cd_veiculo = document.getElementById('cd_veiculo').value;
-        var km_abastacimento = document.getElementById('km_abastacimento').value;
         var litro_abastecimento = document.getElementById('litro_abastacimento').value;
         var valor_abastecimento = document.getElementById('valor_abastacimento').value;
 
-        $.ajax({
-            
-            url: "funcoes/abastecimento/ajax_insert_abastecimento.php",
-            type: "POST",
-            data: {
+        if(litro_abastecimento == '' || valor_abastecimento == ''){
 
-                cd_veiculo : cd_veiculo,
-                km_abastacimento : km_abastacimento,
-                litro_abastecimento: litro_abastecimento,
-                valor_abastecimento: valor_abastecimento
+            //alert(var_beep);
+            //MENSAGEM            
+            var_ds_msg = 'Preencha%20o%20campo%20necessario!';
+            //var_tp_msg = 'alert-success';
+            var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
-            },
-            
-            cache: false,
-            success: function(dataResult){
+        }else{
 
-                console.log(dataResult);
+            $.ajax({
+                
+                url: "funcoes/abastecimento/ajax_insert_abastecimento.php",
+                type: "POST",
+                data: {
 
-                if(dataResult == 'Sucesso'){
+                    cd_veiculo : cd_veiculo,
+                    litro_abastecimento: litro_abastecimento,
+                    valor_abastecimento: valor_abastecimento
 
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Abastecimento%20Cadastrado%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                },
+                
+                cache: false,
+                success: function(dataResult){
 
-                    document.getElementById('cd_veiculo').value = 'All';
-                    document.getElementById('km_abastacimento').value = '';
-                    document.getElementById('litro_abastacimento').value = '';
-                    document.getElementById('valor_abastacimento').value = '';
+                    console.log(dataResult);
 
-                    document.getElementById('model').value = '';
-                    document.getElementById('placa').value = '';
-                    document.getElementById('Motorista').value = '';
+                    if(dataResult == 'Sucesso'){
 
-                    }else{
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Abastecimento%20Cadastrado%20com%20sucesso!';
+                        var_tp_msg = 'alert-success';
+                        //var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                        document.getElementById('cd_veiculo').value = 'All';
+                        document.getElementById('km_abastacimento').value = '';
+                        document.getElementById('litro_abastacimento').value = '';
+                        document.getElementById('valor_abastacimento').value = '';
+
+                        document.getElementById('model').value = '';
+                        document.getElementById('placa').value = '';
+                        document.getElementById('Motorista').value = '';
+
+                        }else{
 
 
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20Cadastrar%20abastecimento!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20Cadastrar%20abastecimento!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }
+
 
                 }
 
-
-            }
-
-        });
-        
+            });
+            
+        }
         
 
 

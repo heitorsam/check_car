@@ -120,7 +120,7 @@
                     if($row_table['TP_STATUS'] == 'A'){
     ?>
 
-                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO']; ?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #79c332 !important; background-color: #ffffff !important;"><i style=" color: #79c332; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-off"></i></div>
+                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO']; ?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #79c332 !important; background-color: #ffffff !important;"><i style=" color: #79c332; cursor: pointer; font-size: 15px;" class="fa-solid fa-toggle-off"></i></div>
    
    <?php
 
@@ -128,7 +128,7 @@
     ?>
 
 
-                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO'];?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #dd9696 !important; background-color: #ffffff !important;"><i style=" color: #dd9696; cursor: pointer; font-size: 20px;" class="fa-solid fa-toggle-on"></i></div>
+                    <div onclick="ajax_inativa_veiculo(<?php echo $row_table['CD_VEICULO'];?>,'<?php echo $row_table['TP_STATUS']; ?>')" class="mini_caixa_chamado" style="float: right !important; color: #dd9696 !important; background-color: #ffffff !important;"><i style=" color: #dd9696; cursor: pointer; font-size: 15px;" class="fa-solid fa-toggle-on"></i></div>
 
     <?php
 

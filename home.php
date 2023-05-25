@@ -1,3 +1,5 @@
+
+
 <?php 
 
     //CABECALHO
@@ -155,59 +157,7 @@
             </div>
             <div class="modal-body">
 
-                <div class="row">
-                    
-                    <div class="col-md-2">
-
-
-                        Veiculo:
-                        <select class="form form-control" id="veiculo">
-
-                            <?php
-                            
-                                $consulta_veiculo = "SELECT vei.CD_VEICULO,
-                                vei.DS_MODELO || ' - ' || vei.DS_PLACA AS DS_VEICULO 
-                                FROM portal_check_car.VEICULO vei";
-                                $res_veiculo = oci_parse($conn_ora, $consulta_veiculo);
-                                oci_execute($res_veiculo);
-
-                                
-                                while($row_vei = oci_fetch_array($res_veiculo)){
-
-                                    echo '<option value="' . $row_vei['CD_VEICULO'] . '">' . $row_vei['DS_VEICULO'] . '</option>';
-
-                                }
-
-                            ?>
-                        
-                        </select>
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-                    
-                    </div>
-
-                    <div class="col-md-2">
-                        Kilometragem:
-                        <input type="number" class="form form-control" id="km" maxlength="100">
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-
-                    </div>
-                    
-                    <div class="col-md-3">
-
-                        Motorista:
-                        <input type="text" class="form form-control" id="motorista" value="<?php echo $nm_logado; ?>" readonly>
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-
-
-                    </div>
-
-                </div>
+                 <div id="saida_veiculo"></div>
 
             </div>
             <div class="modal-footer">
@@ -236,30 +186,7 @@
             </div>
             <div class="modal-body">
 
-                <div class="row">
-                    
-
-                    <div class="col-md-2">
-                        Kilometragem:
-                        <input type="number" class="form form-control" id="km_retorno" maxlength="100">
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-
-                    </div>
-                    
-                    <div class="col-md-3">
-
-                        Motorista:
-                        <input type="text" class="form form-control" id="motorista" value="<?php echo $nm_logado; ?>" readonly>
-
-                        <div class="div_br"></div>
-                        <div class="div_br"></div>
-
-
-                    </div>
-
-                </div>
+                <div id="retorno_corrida_veiculo"></div>
 
                 <div id="mensagem_return"></div>
 
@@ -276,141 +203,21 @@
 
 <script>   
 
-    function ajax_finaliza_updates_sistema_checkcar(){
-
-        global_km_ini;
-        global_chamados;
-        js_status = 'C';
-        js_km_retorno = document.getElementById('km_retorno').value;
-
-        if(js_km_retorno <= global_km_ini){
-
-            //alert(var_beep);
-            //MENSAGEM            
-            var_ds_msg = 'informe%20uma%20kilometragem%20valida!';
-            //var_tp_msg = 'alert-success';
-            var_tp_msg = 'alert-danger';
-            //var_tp_msg = 'alert-primary';
-            $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-        }else{
-
-            $.ajax({
-                
-                url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
-                type: "POST",
-                data: {
-
-                    global_chamados : global_chamados,
-                    js_status : js_status,
-                    js_km_retorno : js_km_retorno
-
-                },
-
-                cache: false,
-                success: function(dataResult){
-
-                    console.log(dataResult);
-
-                    if(dataResult == 'Sucesso'){
-
-                        $('#retorno_veiculo').modal('hide');
-
-                        //alert(var_beep);
-                        //MENSAGEM            
-                        var_ds_msg = 'Corrida%20finalizada%20com%20sucesso!';
-                        var_tp_msg = 'alert-success';
-                        //var_tp_msg = 'alert-danger';
-                        //var_tp_msg = 'alert-primary';
-                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                    
-                    }else{
+    global_chamado = '';
+    global_os = '';
+    global_usuario_mv = '';
+    global_motorista = '';
 
 
-                        //MENSAGEM            
-                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
-                        //var_tp_msg = 'alert-success';
-                        var_tp_msg = 'alert-danger';
-                        //var_tp_msg = 'alert-primary';
-                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+    function ajax_abre_modal_inicio(chamado, os_mv, usuario_mv, motorista){
 
-                    }
+        global_chamado = chamado;
+        global_motorista = motorista;
+        global_os = os_mv;
+        global_usuario_mv = usuario_mv;
 
-                    ajax_exibe_andamento_motorista_logado();
-                    ajax_exibe_concluido_motorista_logado();
-                    ajax_exibe_consolidado();
-
-
-                }
-
-            }); 
-            
-
-        }
-        
-
-    }
-
-    global_chamados = '';
-    global_km_ini = '';
-
-    function ajax_motorista_conclui_designacao(tp,chamado, os, usuario, km_saida){
-
-
-        global_chamados = chamado
-        global_km_ini = km_saida;
-        //////////////////////////////
-
-        js_chamado = chamado;
-        js_os = os;
-        js_usuario = usuario;
-        js_status = 'C';
-
-
-
-        $.ajax({
-            
-            url: "funcoes/home_funcoes/ajax_motorista_conclui_designacao.php",
-            type: "POST",
-            data: {
-
-                js_chamado : js_chamado,
-                js_os : js_os,
-                js_usuario : js_usuario,
-                js_status : js_status,
-
-            },
-
-            cache: false,
-            success: function(dataResult){
-
-                console.log(dataResult);
-
-                if(dataResult == 'Sucesso'){
-
-                    $('#retorno_veiculo').modal('show');
-                   
-                }else{
-
-
-                    //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-                }
-
-                ajax_exibe_andamento_motorista_logado();
-                ajax_exibe_concluido_motorista_logado();
-                ajax_exibe_consolidado();
-
-
-            }
-
-        }); 
+        $('#saida_retorno_veiculo').modal('show');
+        $('#saida_veiculo').load('funcoes/home_funcoes/ajax_modal_saida.php');
 
     }
 
@@ -418,8 +225,10 @@
 
         js_veiculo = document.getElementById('veiculo').value;
         js_km = document.getElementById('km').value;
-        js_chamado = js_glob_chamado;
-        js_motorista = js_glob_motorista;
+        js_chamado = global_chamado;
+        js_motorista = global_motorista;
+        js_usuario_mv = global_usuario_mv;
+        js_os_mv = global_os;
 
         $.ajax({
             
@@ -443,14 +252,8 @@
 
                     $('#saida_retorno_veiculo').modal('hide');
 
-                    //alert(var_beep);
-                    //MENSAGEM            
-                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
-                    var_tp_msg = 'alert-success';
-                    //var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-                   
+                    ajax_motorista_recebe_designacao(js_chamado, js_os_mv, js_usuario_mv, js_motorista);
+
                 }else{
 
 
@@ -468,18 +271,12 @@
 
         });  
 
-        
+
     }
 
-    js_glob_chamado = '';
-    js_glob_motorista = '';
 
     function ajax_motorista_recebe_designacao(chamado, os, usuario, motorista){
 
-        js_glob_chamado = chamado;
-        js_glob_motorista = motorista;
-
-        ///////////////////////////////////////
         js_global_chamado = chamado;
         js_global_os = os;
         js_global_usuario = usuario;
@@ -505,10 +302,15 @@
 
                 if(dataResult == 'Sucesso'){
 
-                    $('#saida_retorno_veiculo').modal('show');
+                    //MENSAGEM            
+                    var_ds_msg = 'Corrida%20iniciada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
                    
                 }else{
-
 
                     //MENSAGEM            
                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
@@ -529,6 +331,156 @@
 
 
     }
+
+    js_global_chamado_fim = '';
+    js_global_os_fim = '';
+    js_global_usuario_fim = '';
+    js_global_km_ini = '';
+
+    function ajax_abre_modal_fim(tp, chamado, os, usuario, km_ini_corrida){
+
+        js_global_chamado_fim = chamado;
+        js_global_os_fim = os;
+        js_global_usuario_fim = usuario;
+        js_global_km_ini = km_ini_corrida;
+
+        $('#retorno_veiculo').modal('show');
+        $('#retorno_corrida_veiculo').load('funcoes/home_funcoes/ajax_abre_modal_fim.php');
+
+    }
+
+    function ajax_finaliza_updates_sistema_checkcar(){
+
+        js_global_km_ini;
+        js_global_chamado_fim;
+        js_global_os_fim;
+        js_global_usuario_fim;
+        js_status = 'C';
+        js_km_retorno = document.getElementById('km_retorno').value;
+
+        if(js_km_retorno <= js_global_km_ini){
+
+            //alert(var_beep);
+            //MENSAGEM            
+            var_ds_msg = 'informe%20uma%20kilometragem%20valida!';
+            //var_tp_msg = 'alert-success';
+            var_tp_msg = 'alert-danger';
+            //var_tp_msg = 'alert-primary';
+            $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+        }else{
+
+            $.ajax({
+                
+                url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
+                type: "POST",
+                data: {
+
+                    js_global_chamado_fim : js_global_chamado_fim,
+                    js_status : js_status,
+                    js_km_retorno : js_km_retorno
+
+                },
+
+                cache: false,
+                success: function(dataResult){
+
+                    console.log(dataResult);
+
+                    if(dataResult == 'Sucesso'){
+
+                        $('#retorno_veiculo').modal('hide');
+
+                        ajax_motorista_conclui_designacao(js_global_chamado_fim, js_global_os_fim, js_global_usuario_fim, js_global_km_ini);
+
+                    
+                    }else{
+
+                        //MENSAGEM            
+                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    }
+
+                    ajax_exibe_andamento_motorista_logado();
+                    ajax_exibe_concluido_motorista_logado();
+                    ajax_exibe_consolidado();
+
+
+                }
+
+            }); 
+            
+
+        }
+
+
+    }
+
+
+    function ajax_motorista_conclui_designacao(chamado, os, usuario, km_saida){
+
+        js_chamado = chamado;
+        js_os = os;
+        js_usuario = usuario;
+        js_status = 'C';
+
+        $.ajax({
+            
+            url: "funcoes/home_funcoes/ajax_motorista_conclui_designacao.php",
+            type: "POST",
+            data: {
+
+                js_chamado : js_chamado,
+                js_os : js_os,
+                js_usuario : js_usuario,
+                js_status : js_status,
+
+            },
+
+            cache: false,
+            success: function(dataResult){
+
+                console.log(dataResult);
+
+                if(dataResult == 'Sucesso'){
+
+                    //MENSAGEM            
+                    var_ds_msg = 'Corrida%20finalizada%20com%20sucesso!';
+                    var_tp_msg = 'alert-success';
+                    //var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                    
+                   
+                }else{
+
+
+                    //MENSAGEM            
+                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                }
+
+                ajax_exibe_andamento_motorista_logado();
+                ajax_exibe_concluido_motorista_logado();
+                ajax_exibe_consolidado();
+
+
+            }
+
+        }); 
+
+    }
+
+  
 
     window.onload = function(){
 

@@ -67,13 +67,6 @@
 
     <div class="div_br"> </div>
 
-    <div class="col-md-3 ">
-
-        Km:
-        <input type="number" style="text-align: center;" class="form-control" id="km_abastacimento" maxlength="100">
-        <div class="div_br"> </div>
-    </div>
-
 </div>
 
 <div class="row">

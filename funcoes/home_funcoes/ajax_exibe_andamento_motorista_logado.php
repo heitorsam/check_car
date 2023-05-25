@@ -36,6 +36,8 @@
 
 <div class="row">
 
+
+<!--ajax_motorista_conclui_designacao(\'<?php //echo 'f1'; ?>\',<?php //echo $row_table['CD_CHAMADO_DESIGNADO'];?>,<?php //echo $row_table['CD_OS_MV']; ?>,\'<?php //echo $row_table['CD_USUARIO_MV']; ?>\',\'<?php //echo $row_table['KM_INI_CORRIDA']; ?>\')-->
     <?php
 
         $varcontrole = 0;
@@ -44,7 +46,7 @@
 
             $varcontrole = $varcontrole + 1 
     ?>
-            <div onclick="ajax_alert('Deseja concluir esta corrida?','ajax_motorista_conclui_designacao(\'<?php echo 'f1'; ?>\',<?php echo $row_table['CD_CHAMADO_DESIGNADO'];?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',\'<?php echo $row_table['KM_INI_CORRIDA']; ?>\')')" 
+            <div onclick="ajax_alert('Deseja concluir esta corrida?','ajax_abre_modal_fim(\'<?php echo 'f1'; ?>\',<?php echo $row_table['CD_CHAMADO_DESIGNADO'];?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',\'<?php echo $row_table['KM_INI_CORRIDA']; ?>\')')" 
                  class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_andamento" style="cursor:pointer;">';

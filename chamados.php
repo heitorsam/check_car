@@ -406,6 +406,18 @@ include 'acesso_restrito.php';
         $('#linhas').load('funcoes/chamados/ajax_quantidade_linhas_solicitados.php?');
         $('[data-toggle="tooltip"]').tooltip();
 
+            ajax_style('1')
+
+            document.getElementById('botão1').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
+
+            document.getElementById('botão2').removeAttribute("style");
+            document.getElementById('botão3').removeAttribute("style");
+
+            // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+            document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+            document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+
+
     }
 
     function ajax_chama_pagina(pagina){

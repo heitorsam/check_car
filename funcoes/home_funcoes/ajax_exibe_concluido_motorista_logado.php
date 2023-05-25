@@ -6,7 +6,7 @@
     //RECEBENDO VARIAVEL DO USUARIO LOGADO
     $var_logado = $_GET['js_usuario_logado'];
 
-     $cons_usuario_pendentes = "SELECT * 
+    $cons_usuario_pendentes = "SELECT * 
                                 FROM (SELECT ROWNUM AS LINHA,
                                     res.* 
                                 FROM (SELECT cd.CD_OS_MV,
@@ -19,7 +19,11 @@
                                         INNER JOIN dbasgu.USUARIOS usu
                                             ON usu.CD_USUARIO = sol.NM_USUARIO
                                         WHERE sol.CD_OS = cd.CD_OS_MV) AS NM_SOLICITANTE,
-                                    cd.CD_CHAMADO_DESIGNADO
+                                    cd.CD_CHAMADO_DESIGNADO,
+                                    (SELECT (SELECT vei.DS_MODELO FROM portal_check_car.VEICULO vei WHERE vei.CD_VEICULO = srv.CD_VEICULO) 
+                                    FROM portal_check_car.SAI_RET_VEICULO srv 
+                                    WHERE srv.CD_CHAMADO_DESIGNADO = cd.CD_CHAMADO_DESIGNADO) AS NM_VEICULO
+                          
                                 FROM portal_check_car.CHAMADOS_DESIGNADOS cd
                                 INNER JOIN portal_check_car.USUARIO usu
                                     ON usu.CD_USUARIO = cd.CD_MOTORISTA
@@ -43,7 +47,7 @@
 
         while($row_table = oci_fetch_array($res_pendentes)){
     ?>
-            <div class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+            <div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
     <?php
                 echo '<div class="lista_home_itens_concluido" style="cursor:pointer;">';
 
@@ -52,6 +56,8 @@
                     echo '<div class="mini_caixa_chamado">' . $row_table['HR_DESIGNACAO'] . '</div>';  
 
                     echo '<div class="mini_caixa_chamado">' . $row_table['NM_SOLICITANTE'] . '</div>';
+
+                    echo '<div class="mini_caixa_chamado"><i class="fa-solid fa-car"></i> ' . $row_table['NM_VEICULO'] . '</div>';
                     
                     echo '<div style="clear: both;"></div>';
 

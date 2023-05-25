@@ -5,7 +5,7 @@
     include '../../conexao.php';
 
     //RECEBENDO VARIAVEIS
-    $var_chamado = $_POST['global_chamados'];
+    $var_chamado = $_POST['js_global_chamado_fim'];
     $status = $_POST['js_status'];
     $var_km = $_POST['js_km_retorno'];
     $usuario = $_SESSION['usuarioLogin'];
