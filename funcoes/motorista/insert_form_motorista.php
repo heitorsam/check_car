@@ -24,7 +24,7 @@ $var_foto = base64_encode($var_foto);
 
 //CRIANDO VALIDAÇÃO ANTES DE INSERIR 
 $validacao = "SELECT COUNT(*) AS NR_EXISTE
-              FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = '$var_login'";
+              FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = UPPER('$var_login')";
 $res_validacao = oci_parse($conn_ora, $validacao);
                  oci_execute($res_validacao);
 
@@ -50,7 +50,7 @@ $cons_insere_motorista = "INSERT INTO portal_check_car.USUARIO
                                    )
                             VALUES 
                                    (portal_check_car.SEQ_CD_USUARIO.NEXTVAL,
-                                   '$var_login',
+                                   UPPER('$var_login'),
                                    '$var_plantao',
                                    empty_blob(),
                                    'A',

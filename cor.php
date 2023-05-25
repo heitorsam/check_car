@@ -32,7 +32,7 @@ include 'acesso_restrito.php';
             <div class="col-md-3 esconde">
 
                 Cor:
-                <input type="text" id="cor_desktop" class="form form-control" placeholder="Digite o Nome da Cor">
+                <input type="text" id="cor_desktop" class="form form-control" placeholder="Informe o nome da cor">
 
             </div>
 
@@ -77,7 +77,7 @@ include 'acesso_restrito.php';
                 <div class="col-md-3">
 
                     Cor:
-                    <input type="text" id="cor" class="form form-control" placeholder="Digite o Nome da Cor">
+                    <input type="text" id="cor" class="form form-control" placeholder="Informe o nome da cor">
 
                 </div>
                 <div class="div_br"> </div> 
@@ -207,7 +207,7 @@ include 'acesso_restrito.php';
 
                             //alert(var_beep);
                             //MENSAGEM            
-                            var_ds_msg = 'Cor%20Cadastrada%20com%20sucesso!';
+                            var_ds_msg = 'Cor%20cadastrada%20com%20sucesso!';
                             var_tp_msg = 'alert-success';
                             //var_tp_msg = 'alert-danger';
                             //var_tp_msg = 'alert-primary';
@@ -228,7 +228,7 @@ include 'acesso_restrito.php';
 
                             //alert(var_beep);
                             //MENSAGEM            
-                            var_ds_msg = 'Erro%20Contate%20o%20Suporte!';
+                            var_ds_msg = 'Erro%20contate%20o%2sSuporte!';
                             //var_tp_msg = 'alert-success';
                             var_tp_msg = 'alert-danger';
                             //var_tp_msg = 'alert-primary';

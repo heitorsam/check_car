@@ -31,7 +31,7 @@
     <div class="col-md-3 esconde">
 
         Item:
-        <input type="text" class="form-control" id="ds_item">
+        <input type="text" class="form-control" id="ds_item" placeholder="Informe o nome do item">
 
     </div> 
     
@@ -65,7 +65,7 @@
             <div class="col-md-3">
 
                 Item:
-                <input type="text" id="ds_item_mobile" class="form form-control" placeholder="Digite o Nome do item">
+                <input type="text" id="ds_item_mobile" class="form form-control" placeholder="Informe o nome do item">
 
             </div>
             <div class="div_br"> </div> 

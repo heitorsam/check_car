@@ -31,10 +31,18 @@ include 'acesso_restrito.php';
         
         <div class="row">
 
-            <div class="col-md-3 esconde">
+            <div class="col-md-2 esconde">
 
                 Login Mv:
-                <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
+                <input type="text" onchange="ajax_constroi_nome()" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
+
+            </div>
+
+            <div class="div_br"> </div> 
+
+            <div class="col-md-3 esconde" style="display: none;" id="nome_moto">
+
+                <div id="nome"></div> 
 
             </div>
 
@@ -61,7 +69,7 @@ include 'acesso_restrito.php';
                     <label style="padding-top: 10px;"class="btn btn-default btn-sm center-block btn-file">
 
                         <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
-                        Selecine um Arquivo!
+                        Selecine um Arquivo
                         <input name="foto" type="file" id="foto_usuario" style="display: none;">
 
                     </label>
@@ -71,7 +79,7 @@ include 'acesso_restrito.php';
             
         
 
-            <div class='col-md-3 esconde'>
+            <div class='col-md-2 esconde'>
                 
                 </br>
                 <button onclick="ajax_insert_form_motorista('2')" class='btn btn-primary'><i class="fa-solid fa-plus"></i></button>
@@ -102,7 +110,7 @@ include 'acesso_restrito.php';
                         <div class="col-md-3">
 
                             Login Mv:
-                            <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV!">
+                            <input type="text" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
 
                         </div>
 
@@ -129,7 +137,7 @@ include 'acesso_restrito.php';
                                 <label style="padding-top: 10px;"class="btn btn-default btn-sm center-block btn-file">
 
                                     <i class="fa fa-upload fa-1x" aria-hidden="true"></i>
-                                    Selecine um Arquivo!
+                                    Selecine um Arquivo
                                     <input name="foto" type="file" id="foto_usuario" style="display: none;">
 
                                 </label>
@@ -152,6 +160,7 @@ include 'acesso_restrito.php';
             </div>
         </div>
     </div>
+
 
     <!--DETALHES MOTORISTA-->
 
@@ -205,6 +214,79 @@ include 'acesso_restrito.php';
 
 
 <script>
+
+    function ajax_constroi_nome(){
+
+       usuario = document.getElementById('usu_mv').value;
+
+       $('#nome').load('funcoes/motorista/nome_motorista.php?usuario='+usuario);
+
+       document.getElementById("nome_moto").style.display = "block";
+
+    }
+
+    //FUNÇÃO PARA MUDAR PLANTÃO DO MOTORISTA
+    function ajax_edita_plantao(tp_status, motorista){
+
+        status = '';
+
+        if(tp_status == 1){
+
+            status = 'N'
+
+        }else{
+
+            status = 'D'
+
+        }
+
+        $.ajax({
+                    
+        url: "funcoes/motorista/ajax_update_plantao.php",
+        type: "POST",
+        data: {
+
+            status : status,
+            motorista : motorista
+
+        },
+
+        cache: false,
+        success: function(dataResult){
+
+            console.log(dataResult);
+
+            if(dataResult == 'Sucesso'){
+
+                //alert(var_beep);
+                //MENSAGEM            
+                var_ds_msg = 'Plantão%20alterado%20com%20sucesso!';
+                var_tp_msg = 'alert-success';
+                //var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                
+                ajax_tabela_motorista();
+
+            }else{
+
+                 //alert(var_beep);
+                //MENSAGEM            
+                var_ds_msg = 'Erro%20ao%20alterar%20plantão!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+            }
+            
+        }
+
+    });  
+
+
+        
+    }
 
     //FUNÇÕES QUE INICIALIZAM COM A PAGINA
 
@@ -287,9 +369,11 @@ include 'acesso_restrito.php';
                     
                 }else{
 
+                    if(tp_insert == '1'){
+
                     //alert(var_beep);
                     //MENSAGEM            
-                    var_ds_msg = 'Motorista%20Cadastrado%20com%20sucesso!';
+                    var_ds_msg = 'Motorista%20cadastrado%20com%20sucesso!';
                     var_tp_msg = 'alert-success';
                     //var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -303,7 +387,32 @@ include 'acesso_restrito.php';
                     }, 2000);
 
                     ajax_tabela_motorista();
-             
+
+                    }else{
+
+                        setTimeout(function() {
+
+                            //alert(var_beep);
+                            //MENSAGEM            
+                            var_ds_msg = 'Motorista%20cadastrado%20com%20sucesso!';
+                            var_tp_msg = 'alert-success';
+                            //var_tp_msg = 'alert-danger';
+                            //var_tp_msg = 'alert-primary';
+
+                            $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+                            ajax_tabela_motorista();
+
+                            setTimeout(function() {
+
+                                data.submit(); // Substitua "tp_form" pelo formulário correto
+                                
+                            }, 60000);
+
+
+                        }, 0);
+
+                    }
                 }
 
             }).fail(function(jqXHR, textStatus, errorThrown) {
@@ -345,7 +454,7 @@ include 'acesso_restrito.php';
 
                             //alert(var_beep);
                             //MENSAGEM            
-                            var_ds_msg = 'Motorista%20Deletado%20com%20sucesso!';
+                            var_ds_msg = 'Motorista%20deletado%20com%20sucesso!';
                             var_tp_msg = 'alert-success';
                             //var_tp_msg = 'alert-danger';
                             //var_tp_msg = 'alert-primary';

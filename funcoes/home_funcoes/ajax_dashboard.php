@@ -101,7 +101,7 @@
             },
             
             {
-                label: "Atendidos",
+                label: "Concluidos",
                 backgroundColor: "#8ac2b6",
                 data: [<?php 
                             

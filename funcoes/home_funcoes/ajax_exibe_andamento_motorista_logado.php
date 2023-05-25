@@ -38,7 +38,11 @@
 
     <?php
 
+        $varcontrole = 0;
+
         while($row_table = oci_fetch_array($res_pendentes)){
+
+            $varcontrole = $varcontrole + 1 
     ?>
             <div onclick="ajax_alert('Deseja concluir esta corrida?','ajax_motorista_conclui_designacao(\'<?php echo 'f1'; ?>\',<?php echo $row_table['CD_CHAMADO_DESIGNADO'];?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',\'<?php echo $row_table['KM_INI_CORRIDA']; ?>\')')" 
                  class="col-12 col-md-3" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
@@ -59,13 +63,31 @@
 
         }
 
+        if($varcontrole == 0){
+
+            ?>
+    
+               <div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+            
+            <?php
+            
+                     echo '<div class="lista_home_itens_pend" style="cursor:pointer; text-align: left;">';
+    
+                        echo '<div style="padding-left: 6px !important;">Você não possui chamados em andamento</div>';
+                        
+                        echo '<div style="clear: both;"></div>';
+    
+                       
+    
+                    echo '</div>';
+    
+                    
+                    
+                echo '</div>';
+    
+     
+            }
+
     ?>
 
 </div>
-
-<!--
-                echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['CD_OS_MV'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['HR_DESIGNACAO'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;">'  .  $row_table['NM_SOLICITANTE'] . '</td>';
-                echo '<td class="align-middle" style="text-align: center;"><button onclick="ajax_inicia_corrida_motorista(' . $row_table['CD_OS_MV'] . ')"class="btn btn-primary"><i class="fa-solid fa-car-side"></i></button></td>';
--->

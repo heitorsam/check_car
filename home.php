@@ -78,7 +78,7 @@
 
         <div  class="esconde_botão_desktop">
 
-        <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Andamento</h11>
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Chamados Andamento</h11>
 
         </div>
 
@@ -110,7 +110,7 @@
 
         <div  class="esconde_botão_desktop">
 
-        <h11 class="center_desktop"><i class="fa-solid fa-list-check efeito-zoom" aria-hidden="true"></i> Chamados Concluidos</h11>
+        <h11 class="center_desktop"><i class="fa-solid fa-list efeito-zoom" aria-hidden="true"></i> Chamados Concluidos</h11>
 
         </div>
 
@@ -318,7 +318,7 @@
 
                         //alert(var_beep);
                         //MENSAGEM            
-                        var_ds_msg = 'Corrida%20Finalizada%20com%20sucesso!';
+                        var_ds_msg = 'Corrida%20finalizada%20com%20sucesso!';
                         var_tp_msg = 'alert-success';
                         //var_tp_msg = 'alert-danger';
                         //var_tp_msg = 'alert-primary';
