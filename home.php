@@ -159,6 +159,8 @@
 
                  <div id="saida_veiculo"></div>
 
+                 <div id="mensagem_return"></div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="ajax_motorista_preenche_s_r_veiculo()" >Iniciar</button>
@@ -188,7 +190,7 @@
 
                 <div id="retorno_corrida_veiculo"></div>
 
-                <div id="mensagem_return"></div>
+                <div id="mensagem_teste"></div>
 
             </div>
             <div class="modal-footer">
@@ -202,6 +204,7 @@
     
 
 <script>   
+
 
     global_chamado = '';
     global_os = '';
@@ -223,7 +226,7 @@
 
     function ajax_motorista_preenche_s_r_veiculo() {
 
-        js_veiculo = document.getElementById('veiculo').value;
+        js_veiculo = document.getElementById('veiculo_saida').value;
         js_km = document.getElementById('km').value;
         js_chamado = global_chamado;
         js_motorista = global_motorista;
@@ -248,14 +251,35 @@
 
                 console.log(dataResult);
 
-                if(dataResult == 'Sucesso'){
+                if(dataResult == 'KM_INI'){
+
+                     //MENSAGEM            
+                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }else if(dataResult == 'KM_FIN'){
+
+                     //MENSAGEM            
+                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                }else if(dataResult == 'Sucesso'){
+
 
                     $('#saida_retorno_veiculo').modal('hide');
 
-                    ajax_motorista_recebe_designacao(js_chamado, js_os_mv, js_usuario_mv, js_motorista);
+                    ajax_motorista_recebe_designacao(js_chamado, js_os_mv, js_usuario_mv, js_motorista, js_veiculo);
+
 
                 }else{
-
 
                     //MENSAGEM            
                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
@@ -279,7 +303,7 @@
 
         js_global_chamado = chamado;
         js_global_os = os;
-        js_global_usuario = usuario;
+        js_global_usuario = usuario; 
         js_tp_status = 'A'
 
         $.ajax({
@@ -337,6 +361,7 @@
     js_global_usuario_fim = '';
     js_global_km_ini = '';
 
+
     function ajax_abre_modal_fim(tp, chamado, os, usuario, km_ini_corrida){
 
         js_global_chamado_fim = chamado;
@@ -358,18 +383,6 @@
         js_status = 'C';
         js_km_retorno = document.getElementById('km_retorno').value;
 
-        if(js_km_retorno <= js_global_km_ini){
-
-            //alert(var_beep);
-            //MENSAGEM            
-            var_ds_msg = 'informe%20uma%20kilometragem%20valida!';
-            //var_tp_msg = 'alert-success';
-            var_tp_msg = 'alert-danger';
-            //var_tp_msg = 'alert-primary';
-            $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-        }else{
-
             $.ajax({
                 
                 url: "funcoes/home_funcoes/ajax_finaliza_updates_sistema_checkcar.php",
@@ -387,7 +400,27 @@
 
                     console.log(dataResult);
 
-                    if(dataResult == 'Sucesso'){
+                    if(dataResult == 'KM_INI'){
+
+                    //MENSAGEM            
+                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_teste').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }else if(dataResult == 'KM_FIN'){
+
+                    //MENSAGEM            
+                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    //var_tp_msg = 'alert-success';
+                    var_tp_msg = 'alert-danger';
+                    //var_tp_msg = 'alert-primary';
+                    $('#mensagem_teste').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }else if(dataResult == 'Sucesso'){
 
                         $('#retorno_veiculo').modal('hide');
 
@@ -414,8 +447,7 @@
 
             }); 
             
-
-        }
+            
 
 
     }
