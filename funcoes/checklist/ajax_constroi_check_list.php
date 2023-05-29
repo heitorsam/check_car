@@ -10,6 +10,8 @@ include '../../conexao.php';
 include '../../config/mensagem/ajax_mensagem_alert.php';
 
 //RECEBENDO VARIAVEIS
+$var_sobe_git = 'S';
+
 $var_cd_veiculo = $_GET['cd_veiculo'];
 $seq = $_GET['cd_seq'];
 $cd_condutor = $_SESSION['usuarioLogin'];
@@ -37,6 +39,7 @@ $cons_item = "SELECT itvei.CD_ITEM_VEICULO,
 
 $res_item  = oci_parse($conn_ora, $cons_item);
              oci_execute($res_item);
+
 
 
 //CONSULTA PARA PEGAR PLANTÃO DO MOTORISTA
