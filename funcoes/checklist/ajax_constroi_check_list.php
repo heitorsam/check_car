@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-
-
 //CONEXÃO
 include '../../conexao.php';
 
@@ -12,7 +9,7 @@ include '../../config/mensagem/ajax_mensagem_alert.php';
 //RECEBENDO VARIAVEIS
 $var_cd_veiculo = $_GET['cd_veiculo'];
 $seq = $_GET['cd_seq'];
-$cd_condutor = $_SESSION['usuarioLogin'];
+$cd_condutor = $_GET['condutor'];
 
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
@@ -22,7 +19,6 @@ $cons_veiculo = "SELECT vei.CD_VEICULO,
                         (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
                         FROM portal_check_car.VEICULO vei
                         WHERE vei.CD_VEICULO = $var_cd_veiculo";
-
 $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     oci_execute($res_cons_veiculo);
 
@@ -42,11 +38,9 @@ $res_item  = oci_parse($conn_ora, $cons_item);
 //CONSULTA PARA PEGAR PLANTÃO DO MOTORISTA
 $cons_plantao ="SELECT usu.TP_PLANTAO
                   FROM portal_check_car.USUARIO usu
-                  WHERE usu.CD_USUARIO_MV = '$cd_condutor'";
-
+                WHERE usu.CD_USUARIO = $cd_condutor";
 $res_plantao  = oci_parse($conn_ora, $cons_plantao);
                 oci_execute($res_plantao);
-
      $row_plantao = oci_fetch_array($res_plantao);
 
 ?>
