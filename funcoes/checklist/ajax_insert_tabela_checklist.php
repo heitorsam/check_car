@@ -12,7 +12,6 @@
     //RECEBENDO VARIAVEIS 
     $var_tipo = $_POST['tipo'];
     $var_veiculo = $_POST['veiculo'];
-    $var_condutor = $_POST['condutor'];
     $var_sequence = $_POST['sequence'];
 
     if($var_tipo == 'S'){
