@@ -1,7 +1,14 @@
 
 <?php 
 
+session_start();
+
+
 include '../../conexao.php';
+
+$var_nome = $_SESSION['usuarioNome'];
+
+
 
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
@@ -64,27 +71,11 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
         </select>
 
     </div>
-
-
+    
     <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
-        Condutor:
-        <select class="form-control" id="condutor">
-
-            <option value="">Selecione</option>
-                            
-            <?php
-
-                while($row_motorista = oci_fetch_array($res_cons_motorista)){
-
-                    echo '<option value="'. $row_motorista['CD_USUARIO'] .'">'. $row_motorista['NM_USUARIO'] .'</option>';
-
-                }
-
-            ?>
-
-
-        </select>
+        Condutor:   
+        <input type="text" class="form form-control" value="<?php echo  $var_nome; ?>" readonly>
 
     </div>
 
