@@ -311,7 +311,6 @@ $row_seq = oci_fetch_array($res_seq);
 
             tipo = document.getElementById('tp_status').value;
             veiculo = document.getElementById('veiculo').value;
-            condutor = document.getElementById('condutor').value;
             sequence = document.getElementById('seq').value;
 
             $.ajax({
@@ -322,7 +321,6 @@ $row_seq = oci_fetch_array($res_seq);
 
                     tipo : tipo,
                     veiculo : veiculo,
-                    condutor : condutor,
                     sequence : sequence
 
 
@@ -345,24 +343,20 @@ $row_seq = oci_fetch_array($res_seq);
 
             var seq = document.getElementById('seq').value;
 
-            var condutor = document.getElementById('condutor').value;
-            if(condutor == ''){
-                document.getElementById('condutor').focus();
-            }
-
             var veiculo = document.getElementById('veiculo').value;
             if(veiculo == ''){
                 document.getElementById('veiculo').focus();
             }
             
             var status = document.getElementById('tp_status').value;
+
             if(status == ''){
                 document.getElementById('tp_status').focus();
             }
 
-            if(status != ''  && veiculo != '' && condutor != ''){
+            if(status != ''  && veiculo != ''){
 
-                $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo+'&cd_seq='+seq+'&condutor='+condutor);
+                $('#restante_check_list').load('funcoes/checklist/ajax_constroi_check_list.php?cd_veiculo='+veiculo+'&cd_seq='+seq);
 
             }
            
