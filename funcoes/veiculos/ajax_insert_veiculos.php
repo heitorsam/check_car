@@ -14,6 +14,7 @@ $modelo_mob = $_POST['global_modelo'];
 $ano_mob = $_POST['global_ano'];
 $placa_mob = $_POST['global_placa'];
 $km_mob = $_POST['global_km'];
+$email = $_POST['global_email'];
 
 //INSERT
 
@@ -29,7 +30,8 @@ $insert_veiculo = "INSERT INTO portal_check_car.VEICULO
                     '$usuario' AS CD_USUARIO_CADASTRO,
                     SYSDATE AS HR_CADASTRO,
                     NULL AS CD_USUARIO_ULT_ALT,
-                    NULL AS HR_ULT_ALT
+                    NULL AS HR_ULT_ALT,
+                    '$email' AS EMAIL
                     FROM DUAL";
 
 $res_insert_veiculo = oci_parse($conn_ora, $insert_veiculo);

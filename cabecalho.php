@@ -45,6 +45,39 @@ if(isset($row['BLOB_FOTO'])){
 }
 
 
+$cons_tabela_carro = "SELECT vc.*, cor.DS_RGB
+                      FROM portal_check_car.CHECKLIST ck
+                      INNER JOIN portal_check_car.VEICULO vc
+                        ON vc.CD_VEICULO = ck.CD_VEICULO
+                      INNER JOIN portal_check_car.COR cor
+                        ON cor.CD_COR = vc.CD_COR
+                      WHERE ck.CD_CHECKLIST IN (SELECT MAX(ack.CD_CHECKLIST)
+                                              FROM portal_check_car.CHECKLIST ack
+                                              WHERE ack.CD_USUARIO_CADASTRO = '$var_usuario')
+                      AND ck.TP_CHECKLIST = 'S'";
+
+$res_tabela_carro = oci_parse($conn_ora, $cons_tabela_carro);
+oci_execute($res_tabela_carro);
+
+$row_carro = oci_fetch_array($res_tabela_carro);
+
+//echo $row_carro['DS_MODELO'] . ' | ' . $row_carro['DS_PLACA'] . ' | ' . $row_carro['DS_RGB'];
+
+$carro_codigo = $row_carro['CD_VEICULO'];
+
+if(isset($row_carro['DS_MODELO'])){
+
+    $carro_modelo = $row_carro['DS_MODELO'];
+
+}else{
+
+    $carro_modelo = 'Selecione';
+
+}
+
+$carro_placa = $row_carro['DS_PLACA'];
+$carro_rgb = $row_carro['DS_RGB'];
+
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +154,12 @@ if(isset($row['BLOB_FOTO'])){
                     <li class="nav-item active">
                         <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
                     </li>
-                    <div class="menu_azul_claro">
+                    <div class="menu_azul_claro" style="border-right: solid 1px rgba(255,255,255,0.40); cursor: pointer;">
+                        <li class="nav-item">
+                        <h10><a class="nav-link" href="check_list.php"><i style="color: <?php echo $carro_rgb; ?>; text-shadow: 0.40px 0.40px white;" class="fa-solid fa-car-side fa-flip-horizontal"></i> <?php echo $carro_modelo . ' ' . $carro_placa; ?></a></h10>
+                        </li>
+                    </div>
+                    <div class="menu_azul_claro" style="cursor: pointer;">
                         <li class="nav-item">
                             <h10><a class="nav-link" onclick="ajax_redireciona_easter_egg('1')"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Faq</a></h10>
                         </li>
@@ -142,6 +180,7 @@ if(isset($row['BLOB_FOTO'])){
                                 <a class="dropdown-item" href="item_veiculo.php"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
                                 <a class="dropdown-item" href="motorista.php"><i class="fa-solid fa-user"></i>  Motorista</a>
                                 <a class="dropdown-item" href="cor.php"><i class="fa-solid fa-palette"></i>  Cores</a>
+                                <a class="dropdown-item" href="relatorios_checkcar.php"><i class="fa-solid fa-clipboard"></i>  Relatórios</a>
 
 
                             </div>
@@ -248,7 +287,7 @@ if(isset($row['BLOB_FOTO'])){
                     <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
                     <a href="motorista.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-user"></i>  Motorista</a>
                     <a href="cor.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-palette"></i>  Cores</a>
-                    
+                    <a href="relatorios_checkcar.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-clipboard"></i>  Relatórios</a>
 
                     <div style="position: absolute; bottom: 60px;">
                         <a href="sair.php" style="background-color: #404145; font-size: 20px; color: white; "><i class="fa-solid fa-person-running"></i> Sair</a>

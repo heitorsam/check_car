@@ -11,7 +11,8 @@
                                    cd.CD_CHAMADO_DESIGNADO,
                                    cd.CD_OS_MV
                            FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                           WHERE cd.TP_STATUS_CHAMADO = 'C'";
+                           WHERE cd.TP_STATUS_CHAMADO = 'C'
+                           ORDER BY cd.CD_CHAMADO_DESIGNADO DESC";
     $res_desig = oci_parse($conn_ora, $cons_chamado_desig);
                  oci_execute($res_desig);
 

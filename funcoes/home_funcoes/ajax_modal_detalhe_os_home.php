@@ -3,7 +3,7 @@
     include '../../conexao.php';
 
     //RECEBENDO VARIAVEL
-    $var_os = $_GET['os'];
+    $var_os = $_GET['os_mv'];
 
     //CONSULTA
     $cons_modal_os = "SELECT
@@ -19,6 +19,7 @@
                     AND sol.CD_MULTI_EMPRESA = 1
                     AND sol.TP_SITUACAO = 'S'
                     AND sol.CD_OS = $var_os";
+
     $res_modal_os = oci_parse($conn_ora, $cons_modal_os);
                     oci_execute($res_modal_os);
     $row = oci_fetch_array($res_modal_os);

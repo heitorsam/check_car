@@ -1,5 +1,3 @@
-
-
 <?php 
 
     //CABECALHO
@@ -33,7 +31,15 @@
     <div class="div_br"> </div>
     <div class="div_br"> </div>
 
+<?php 
 
+if(isset($row_carro['DS_MODELO'])){
+
+    $carro_modelo = $row_carro['DS_MODELO'];
+
+
+
+?>
     <!--PENDENTES-->
     <div>
 
@@ -63,6 +69,31 @@
 
     <div class="div_br"> </div>
     <div class="div_br"> </div>
+
+<?php
+
+}else{
+
+            echo'<div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">';
+        
+
+                 echo '<div class="lista_home_itens_pend" style="cursor:pointer; text-align: left;">';
+
+                    echo '<div>Faça Check-in em um veiculo</div>';
+                    
+                    echo '<div style="clear: both;"></div>';
+
+                echo '</div>';
+
+
+            echo '</div>';
+
+
+
+}
+
+?>
+
 
 
     <!--ANDAMENTO-->
@@ -134,10 +165,6 @@
         </div> 
     </div>     
 
-
-
-
-
     <!--MODAL SAIDA MOTORISTA-->
     <div class="modal fade top_modal" id="saida_retorno_veiculo" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -196,6 +223,34 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="ajax_finaliza_updates_sistema_checkcar()">Finalizar</button>
             </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL DETALHE OS-->
+    <div class="modal fade" id="detalhe_os_modal_home" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="width: 100%; text-align: center;">
+                    <div style="margin: 0 auto; background-color: #46A5D4; color: white; width: 50%; border-radius: 25px;">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalhes OS</h5>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                            
+                    <div id="detalhe_os_home"></div>
+                               
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+                </div>
             </div>
         </div>
     </div>
@@ -556,6 +611,18 @@
         var js_usuario_logado = '<?php echo $var_usuario; ?>';
 
         $('#chamados_concluidos').load('funcoes/home_funcoes/ajax_exibe_concluido_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
+
+    }
+
+    function ajax_exite_det_os(os){
+
+        os_mv = os;
+
+        $('#detalhe_os_modal_home').modal('show')
+        $('#detalhe_os_home').load('funcoes/home_funcoes/ajax_modal_detalhe_os_home.php?os_mv='+os_mv);
+
+
+
 
     }
 

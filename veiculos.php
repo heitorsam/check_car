@@ -60,6 +60,13 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
         </div>
 
+        <div class="col-md-3 esconde">
+
+            E-mail:
+            <input type="text" id="email_carro_desktop" class="form form-control" placeholder="E-mail do veiculo">
+
+        </div>
+
     </div>
 
     <div class="div_br"> </div> 
@@ -174,6 +181,13 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
                 Placa:
                 <input type="text" id="Placa_mob" class="form form-control" maxlength="10">
+
+            </div>
+            <div class="div_br"> </div> 
+            <div class="col-md-2">
+
+                E-mail:
+                <input type="text" id="email_carro_mob" class="form form-control" maxlength="10" placeholder="E-mail do veiculo">
 
             </div>
             <div class="div_br"> </div> 
@@ -309,6 +323,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
             global_ano  = '';
             global_placa = '';
             global_km = '';
+            global_email = '';
 
 
             if(tp_insert == '1'){
@@ -319,12 +334,15 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                 var ano_mob = document.getElementById('ano_mob').value;
                 var placa_mob = document.getElementById('Placa_mob').value;
                 var km_mob = document.getElementById('km_mob').value;
+                var emailmob = document.getElementById('email_carro_mob').value;
 
                 global_cores  = cd_cores_mob;
                 global_modelo = modelo_mob;
                 global_ano   = ano_mob;
                 global_placa = placa_mob;
                 global_km  = km_mob;
+                global_email = emailmob;
+
                 
 
 
@@ -336,12 +354,14 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                 var ano_desk = document.getElementById('ano_desktop').value;
                 var placa_desk = document.getElementById('Placa_desktop').value;
                 var km_desk = document.getElementById('km_desktop').value;
+                var emaildesk = document.getElementById('email_carro_desktop').value;
 
                 global_cores  = cd_cores_desk;
                 global_modelo = modelo_desk;
                 global_ano   = ano_desk;
                 global_placa = placa_desk;
                 global_km  = km_desk;
+                global_email = emaildesk;
                 
 
 
@@ -358,7 +378,8 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                     global_modelo : global_modelo,
                     global_ano : global_ano,
                     global_placa : global_placa,
-                    global_km : global_km
+                    global_km : global_km,
+                    global_email : global_email
                     
                 },
 
@@ -398,6 +419,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                 document.getElementById('ano_mob').value = '';
                 document.getElementById('Placa_mob').value = '';
                 document.getElementById('km_mob').value = '';
+                document.getElementById('email_carro_mob').value = '';
 
                 //DESKTOP
                 document.getElementById('cor_desktop').value = '';
@@ -405,6 +427,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
                 document.getElementById('ano_desktop').value = '';
                 document.getElementById('Placa_desktop').value = '';
                 document.getElementById('km_desktop').value = '';
+                document.getElementById('email_carro_desktop').value = '';
 
                 }
 

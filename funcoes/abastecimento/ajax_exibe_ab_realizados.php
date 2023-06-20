@@ -16,19 +16,17 @@ $consulta = "SELECT *
              SELECT res.CD_VEICULO,
                  (SELECT vei.DS_MODELO || ' - ' || vei.DS_PLACA AS DS_VEICULOS
                      FROM portal_check_car.VEICULO vei WHERE vei.CD_VEICULO = res.CD_VEICULO) AS DS_VEICULOS,
-                 res.DS_KM,
                  res.DS_LITROS,
                  res.DS_VALOR,
                  TO_CHAR(res.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO,
                  res.MES || '/' || res.ANO AS PERIODO
              FROM (
              SELECT abas.CD_VEICULO,
-                 abas.DS_KM,
                  abas.DS_LITROS,
                  abas.DS_VALOR,
                  abas.HR_CADASTRO,
                  CASE 
-                     WHEN LENGTH(EXTRACT(MONTH FROM abas.HR_CADASTRO)) <= 1THEN LPAD(EXTRACT(MONTH FROM abas.HR_CADASTRO),2,0)
+                     WHEN LENGTH(EXTRACT(MONTH FROM abas.HR_CADASTRO)) <= 1 THEN LPAD(EXTRACT(MONTH FROM abas.HR_CADASTRO),2,0)
                      ELSE TO_CHAR(EXTRACT(MONTH FROM abas.HR_CADASTRO))
                  END AS MES,
                  
@@ -54,8 +52,6 @@ $execute = oci_parse($conn_ora, $consulta);
                 echo '<div class="lista_home_itens_pend" style="cursor:pointer;">';
 
                     echo '<div class="mini_caixa_chamado"><b>Veiculo: ' . $row_table['DS_VEICULOS'] . '</b></div>';
-
-                    echo '<div class="mini_caixa_chamado"><b>Km:</b> ' . $row_table['DS_KM'] . '</div>';  
 
                     echo '<div class="mini_caixa_chamado"><b>Litros:</b> ' . $row_table['DS_LITROS'] . '</div>';
 
