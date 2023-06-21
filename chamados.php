@@ -4,11 +4,8 @@ include 'cabecalho.php';
 
 include 'config/mensagem/ajax_mensagem_alert.php';
 
-
 //ACESSO RESTRITO
 include 'acesso_restrito.php';
-
-
 
 ?>
 
@@ -158,6 +155,25 @@ include 'acesso_restrito.php';
     <div id="mensagem_acoes"></div>
 
 <script>
+
+
+    function ajax_chama_caixa_chamado_realizados(tp_botao){
+
+        var data1 = document.getElementById('data1').value;
+        var data2 = document.getElementById('data2').value;
+
+        if(tp_botao == '1'){
+
+            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2);
+
+        }else{
+
+            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2);
+
+        }
+        
+
+    }
 
     function ajax_detalhe_chamado(cd_chamado_d){
 

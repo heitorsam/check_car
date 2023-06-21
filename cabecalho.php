@@ -71,7 +71,7 @@ if(isset($row_carro['DS_MODELO'])){
 
 }else{
 
-    $carro_modelo = 'Selecione';
+    $carro_modelo = ' Selecione';
 
 }
 
@@ -274,6 +274,36 @@ $carro_rgb = $row_carro['DS_RGB'];
                         <?php echo $pri_nome;?>
 
                     </div>
+
+                    <div class="div_br"> </div>
+                    
+                    <?php
+
+                        if(isset($carro_modelo)){
+
+
+                        
+
+                    ?>
+                    <div>
+                        
+                        <a class="nav-link" href="check_list.php" style="font-size: 25px;"><i style="color: <?php echo $carro_rgb; ?>; text-shadow: 0.40px 0.40px white;" class="fa-solid fa-car-side fa-flip-horizontal"></i> <?php echo $carro_modelo . ' ' . $carro_placa; ?></a>
+
+                    </div>
+
+                    <?php
+                    
+                    }else{
+
+                    ?>
+
+
+
+                    <?php
+
+                    }
+
+                    ?>
 
                     <div class="div_br"> </div>
 
