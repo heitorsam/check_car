@@ -27,13 +27,23 @@ oci_execute($res_tabela_carro);
 $row_carro = oci_fetch_array($res_tabela_carro);
 
 //CONSULTA VEICULO
-$cons_veiculo = "SELECT vei.CD_VEICULO,
-                        vei.DS_MODELO,
-                        vei.DS_PLACA,
-                        vei.CD_COR,
-                        (SELECT cor.DS_RGB FROM portal_check_car.COR cor WHERE cor.CD_COR = vei.CD_COR) AS COR
-                        FROM portal_check_car.VEICULO vei
-                        WHERE vei.TP_STATUS <> 'I' ";
+$cons_veiculo = "SELECT * 
+                FROM(
+                SELECT vei.CD_VEICULO,
+                    vei.DS_MODELO,
+                    vei.DS_PLACA,
+                    vei.CD_COR,
+                    (SELECT cor.DS_RGB
+                        FROM portal_check_car.COR cor
+                        WHERE cor.CD_COR = vei.CD_COR) AS COR,
+                    (SELECT ck.TP_CHECKLIST 
+                        FROM portal_check_car.CHECKLIST ck
+                        WHERE ck.CD_CHECKLIST IN (SELECT MAX(ckx.CD_CHECKLIST) AS CD_CHECKLIST
+                                        FROM portal_check_car.CHECKLIST ckx
+                                        WHERE ckx.CD_VEICULO = vei.CD_VEICULO)) AS SN_SAI_RET -- S (USANDO O VEICULO) R- RETORNOU COM VEICULO
+                FROM portal_check_car.VEICULO vei
+                WHERE vei.TP_STATUS <> 'I')res
+                WHERE res.SN_SAI_RET <> 'S'";
 $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     oci_execute($res_cons_veiculo);
 
