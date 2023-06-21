@@ -3,12 +3,28 @@
 
 session_start();
 
-
 include '../../conexao.php';
 
 $var_nome = $_SESSION['usuarioNome'];
 
+$var_usuario_login = $_SESSION['usuarioLogin'];
 
+//CONSULTA PARA VERIFICAR SE HÁ CHECKLIST
+$cons_tabela_carro = "SELECT vc.*, cor.DS_RGB
+                      FROM portal_check_car.CHECKLIST ck
+                      INNER JOIN portal_check_car.VEICULO vc
+                        ON vc.CD_VEICULO = ck.CD_VEICULO
+                      INNER JOIN portal_check_car.COR cor
+                        ON cor.CD_COR = vc.CD_COR
+                      WHERE ck.CD_CHECKLIST IN (SELECT MAX(ack.CD_CHECKLIST)
+                                              FROM portal_check_car.CHECKLIST ack
+                                              WHERE ack.CD_USUARIO_CADASTRO = '$var_usuario_login')
+                      AND ck.TP_CHECKLIST = 'S'";
+
+$res_tabela_carro = oci_parse($conn_ora, $cons_tabela_carro);
+oci_execute($res_tabela_carro);
+
+$row_carro = oci_fetch_array($res_tabela_carro);
 
 //CONSULTA VEICULO
 $cons_veiculo = "SELECT vei.CD_VEICULO,
@@ -38,8 +54,30 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 <!--DESKTOP-->
 <div class="row" style="background-color: #f9f9f9 !important">
         
-    
-    <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
+    <?php 
+
+        if(isset($row_carro['DS_MODELO'])){
+
+    ?>
+
+        <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
+
+        Tipo:
+        <select class="form-control" id="tp_status">
+            <option value="">Selecione</option>
+            <option value="R">Retorno</option>
+        </select>
+
+        </div> 
+
+
+    <?php 
+
+        }else{
+
+    ?>
+
+        <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Tipo:
         <select class="form-control" id="tp_status">
@@ -48,9 +86,49 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
             <option value="R">Retorno</option>
         </select>
 
-    </div> 
+        </div> 
+
+
+    <?php   
+
+        }
+    ?>
+
+    <?php
+
+        if(isset($row_carro['DS_MODELO'])){
+
+    ?>
 
     <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
+
+        Veiculo:
+        <select class="form-control" id="veiculo">
+
+            <option value="">Selecione</option>
+            
+            <?php
+
+                    
+                echo '<option value="'. $row_carro['CD_VEICULO'] .'">'. $row_carro['DS_MODELO'] . ' / ' . $row_carro['DS_PLACA'] .'</option>';
+
+
+
+            ?>
+
+
+        </select>
+
+    </div>
+
+    <?php
+
+        }else{
+
+    ?>
+
+            
+        <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Veiculo:
         <select class="form-control" id="veiculo">
@@ -70,7 +148,14 @@ $res_cons_motorista = oci_parse($conn_ora, $cons_motorista);
 
         </select>
 
-    </div>
+        </div>
+
+
+    <?php
+
+        }
+
+    ?>
     
     <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 

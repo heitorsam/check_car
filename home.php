@@ -35,9 +35,6 @@
 
 if(isset($row_carro['DS_MODELO'])){
 
-    $carro_modelo = $row_carro['DS_MODELO'];
-
-
 
 ?>
     <!--PENDENTES-->
@@ -74,26 +71,30 @@ if(isset($row_carro['DS_MODELO'])){
 
 }else{
 
-            echo'<div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">';
-        
+?>
 
-                 echo '<div class="lista_home_itens_pend" style="cursor:pointer; text-align: left;">';
+    <div class="col-12 col-md-6" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px; padding-left: 0px;">
+ 
+<?php
+ 
+          echo '<div class="lista_home_itens_pend" style="cursor:pointer; text-align: left;">';
 
-                    echo '<div>Faça Check-in em um veiculo</div>';
-                    
-                    echo '<div style="clear: both;"></div>';
+             echo '<div style="padding-left: 6px !important;">Realize o check-in em um veiculo para visualizar suas demandas</div>';
+             
+             echo '<div style="clear: both;"></div>';
 
-                echo '</div>';
+            
 
+         echo '</div>';
 
-            echo '</div>';
-
-
-
+         
+         
+        echo '</div>';
 }
 
 ?>
 
+    <div class="div_br"> </div>
 
 
     <!--ANDAMENTO-->

@@ -297,6 +297,7 @@ include 'acesso_restrito.php';
         var js_os = document.getElementById('os_mv').value;
         var js_tp_status = 'D'
 
+        
         if(js_motorista == 'All'){ 
 
             //alert(var_beep);
@@ -327,16 +328,32 @@ include 'acesso_restrito.php';
 
                     console.log(dataResult);
 
-                    //FECHANDO MODAL
-                    $('#indica_motorista').modal('hide');
-                    pagtabela();
+                    if(dataResult == 1){
+
+                        //alert(var_beep);
+                        //MENSAGEM            
+                        var_ds_msg = 'Motorista%20não%20possui%20check-in%20em%20veiculo!';
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_updates_indica').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+                    }else{
+
+                        //FECHANDO MODAL
+                        $('#indica_motorista').modal('hide');
+                        pagtabela();
+
                     
+                    }
 
                 }
 
             });
 
         }
+        
             
 
     }
