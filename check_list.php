@@ -38,7 +38,7 @@ $res_verificacao = oci_parse($conn_ora, $verificacao);
                    oci_execute($res_verificacao);
 $row_verifi = oci_fetch_array($res_verificacao);
 
-$row_verifi['TP_STATUS_CHAMADO'];
+@$row_verifi['TP_STATUS_CHAMADO'];
 
 ?>
 
@@ -68,7 +68,7 @@ $row_verifi['TP_STATUS_CHAMADO'];
 
 <?php
 
-if($row_verifi['TP_STATUS_CHAMADO'] == 'A'){
+if(@$row_verifi['TP_STATUS_CHAMADO'] == 'A'){
 
 ?>
 
