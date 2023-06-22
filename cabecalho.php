@@ -63,7 +63,7 @@ $row_carro = oci_fetch_array($res_tabela_carro);
 
 //echo $row_carro['DS_MODELO'] . ' | ' . $row_carro['DS_PLACA'] . ' | ' . $row_carro['DS_RGB'];
 
-$carro_codigo = $row_carro['CD_VEICULO'];
+@$carro_codigo = $row_carro['CD_VEICULO'];
 
 if(isset($row_carro['DS_MODELO'])){
 
@@ -75,8 +75,8 @@ if(isset($row_carro['DS_MODELO'])){
 
 }
 
-$carro_placa = $row_carro['DS_PLACA'];
-$carro_rgb = $row_carro['DS_RGB'];
+@$carro_placa = $row_carro['DS_PLACA'];
+@$carro_rgb = $row_carro['DS_RGB'];
 
 ?>
 
@@ -176,8 +176,8 @@ $carro_rgb = $row_carro['DS_RGB'];
                                 <a class="dropdown-item" href="check_list.php"><i class="fa-solid fa-check"></i>  Check List</a>
                                 <a class="dropdown-item" href="abastecimento.php"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
                                 <a class="dropdown-item" href="chamados.php"><i class="fa-solid fa-headset"></i>  Chamados</a>
-                                <a class="dropdown-item" href="veiculos.php"><i class="fa-solid fa-car"></i>  Veiculo</a>
-                                <a class="dropdown-item" href="item_veiculo.php"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
+                                <a class="dropdown-item" href="veiculos.php"><i class="fa-solid fa-car"></i>  Veículo</a>
+                                <a class="dropdown-item" href="item_veiculo.php"><i class="fa-solid fa-list-ul"></i>  Item Veículo</a>
                                 <a class="dropdown-item" href="motorista.php"><i class="fa-solid fa-user"></i>  Motorista</a>
                                 <a class="dropdown-item" href="cor.php"><i class="fa-solid fa-palette"></i>  Cores</a>
                                 <a class="dropdown-item" href="relatorios_checkcar.php"><i class="fa-solid fa-clipboard"></i>  Relatórios</a>
@@ -313,8 +313,8 @@ $carro_rgb = $row_carro['DS_RGB'];
                     <a href="check_list.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4; border-top: solid 2px #46a5d4;"><i class="fa-solid fa-check"></i>  Check List</a>
                     <a href="abastecimento.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-gas-pump"></i>  Abastecimento</a>
                     <a href="chamados.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-headset"></i>  Chamados</a>
-                    <a href="veiculos.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-car"></i>  Veiculo</a>
-                    <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-list-ul"></i>  Item Veiculo</a>
+                    <a href="veiculos.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-car"></i>  Veículo</a>
+                    <a href="item_veiculo.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-list-ul"></i>  Item Veículo</a>
                     <a href="motorista.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-user"></i>  Motorista</a>
                     <a href="cor.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-palette"></i>  Cores</a>
                     <a href="relatorios_checkcar.php" style="font-size: 20px; color: white; border-bottom: solid 2px #46a5d4;"><i class="fa-solid fa-clipboard"></i>  Relatórios</a>

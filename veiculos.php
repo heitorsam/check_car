@@ -28,7 +28,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
 
 <div class="div_br"> </div>
     
-    <h11 class="display_esconder_mobile"><i  style="cursor: pointer;" class="fa-solid fa-car efeito-zoom"></i> <label class="display_esconder_mobile"> Veiculos</label></h11>
+    <h11 class="display_esconder_mobile"><i  style="cursor: pointer;" class="fa-solid fa-car efeito-zoom"></i> <label class="display_esconder_mobile"> Veículos</label></h11>
 
     <div class='espaco_pequeno'></div>
 

@@ -1,5 +1,5 @@
 <?php 
-    
+
 include 'cabecalho.php';
 
 //ACESSO RESTRITO
@@ -7,6 +7,8 @@ include 'acesso_restrito.php';
 
 
 $datahoje = date('Y-m-d', time());
+
+$var_usuario_login = $_SESSION['usuarioLogin'];
 
 //CONEXÃO
 include 'conexao.php';
@@ -19,9 +21,28 @@ $res_seq = oci_parse($conn_ora, $cons_seq);
            oci_execute($res_seq);
 $row_seq = oci_fetch_array($res_seq);
 
+
+//VERIFICANDO SE HÁ CORRIDAS PENDENTES DE FINALIZAÇÃO
+$verificacao = "SELECT * 
+              FROM (
+              SELECT  cd.CD_CHAMADO_DESIGNADO,
+                      cd.TP_STATUS_CHAMADO,
+                      (SELECT usu.CD_USUARIO_MV 
+                       FROM portal_check_car.USUARIO usu WHERE usu.CD_USUARIO = cd.CD_MOTORISTA) AS USUARIO_MV
+              FROM portal_check_car.CHAMADOS_DESIGNADOS cd)res
+              WHERE res.USUARIO_MV = '$var_usuario_login'
+              AND res.CD_CHAMADO_DESIGNADO IN (SELECT MAX(cdx.CD_CHAMADO_DESIGNADO) AS CD_CHAMADO_DESIGNADO
+                                                FROM portal_check_car.CHAMADOS_DESIGNADOS cdx
+                                                WHERE cdx.TP_STATUS_CHAMADO = 'A')";
+$res_verificacao = oci_parse($conn_ora, $verificacao);
+                   oci_execute($res_verificacao);
+$row_verifi = oci_fetch_array($res_verificacao);
+
+$row_verifi['TP_STATUS_CHAMADO'];
+
 ?>
-    
-    <div class="div_br"> </div>
+
+<div class="div_br"> </div>
 
     <h11 class="display_esconder_mobile"><i  style="cursor: pointer;" class="fa-solid fa-list-check efeito-zoom"></i> <label class="display_esconder_mobile"> Check List</label></h11>
 
@@ -40,7 +61,39 @@ $row_seq = oci_fetch_array($res_seq);
 
         </div>
 
+</div>
+
+<div class="div_br"> </div>
+
+
+<?php
+
+if($row_verifi['TP_STATUS_CHAMADO'] == 'A'){
+
+?>
+
+    <div class="col-12 col-md-4" style="background-color: rgba(0,0,0,0) !important; padding-top: 0px; padding-bottom: 0px;">
+ 
+ 
+ 
+        <div class="lista_home_itens_pend" style="cursor:pointer; text-align: left;">
+
+            <div style="padding-left: 6px !important;">Você possui chamados pendentes de finalização</div>
+             
+            <div style="clear: both;"></div>
+
+        </div>
+
+         
+         
     </div>
+<?php
+
+}else{
+
+
+?>
+
 
     <div class="div_br"> </div>  
 
@@ -68,7 +121,12 @@ $row_seq = oci_fetch_array($res_seq);
     <div id="restante_check_list"></div>
 
     <div id="mensagem_acoes"></div>
+<?php
 
+
+}
+
+?>
     <script>
 
         function ajax_style(btn){
