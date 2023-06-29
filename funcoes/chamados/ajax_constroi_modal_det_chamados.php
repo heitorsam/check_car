@@ -14,7 +14,8 @@
                         (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = sol.NM_SOLICITANTE) AS NM_USUARIO_SOLICITANTE,
                         (SELECT loc. DS_LOCALIDADE FROM dbamv.LOCALIDADE loc WHERE loc.CD_LOCALIDADE = sol.CD_LOCALIDADE) AS NM_LOCALIDADE
                     FROM dbamv.SOLICITACAO_OS sol
-                    WHERE sol.CD_OFICINA = 34
+                    WHERE sol.CD_OFICINA = 9
+                    --WHERE sol.CD_OFICINA = 34
                     --AND sol.DT_PEDIDO >= SYSDATE - 7
                     AND sol.CD_MULTI_EMPRESA = 1
                     AND sol.TP_SITUACAO = 'S'
