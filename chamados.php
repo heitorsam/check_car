@@ -548,9 +548,16 @@ include 'acesso_restrito.php';
 
             $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_designados.php');
 
+            var div = document.getElementById('solic');
+            div.innerHTML = ''; // Limpa o conteúdo da div
+
         }else{
 
+            var div = document.getElementById('paginas');
+            div.innerHTML = ''; // Limpa o conteúdo da div
+
             $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_realizados.php');
+
             
         }
 

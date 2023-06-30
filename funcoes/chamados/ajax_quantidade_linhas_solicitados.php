@@ -32,6 +32,7 @@
                             AND sol.CD_OS NOT IN (SELECT cd.CD_OS_MV
                                                     FROM portal_check_car.CHAMADOS_DESIGNADOS cd)
                             AND TRUNC(sol.DT_PEDIDO) BETWEEN TO_DATE('$data_correta1', 'DD/MM/YYYY') AND TO_DATE('$data_correta2', 'DD/MM/YYYY')                        
+                            ORDER BY sol.DT_PEDIDO DESC
                                                     ) res   
                                                     )tot";
                         $cons_linha .= " ORDER BY tot.LINHA ASC";

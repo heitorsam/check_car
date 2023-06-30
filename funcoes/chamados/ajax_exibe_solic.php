@@ -39,7 +39,7 @@
                                                         FROM portal_check_car.CHAMADOS_DESIGNADOS cd)
 
                                   AND TRUNC(sol.DT_PEDIDO) BETWEEN TO_DATE('$data_correta1', 'DD/MM/YYYY') AND TO_DATE('$data_correta2', 'DD/MM/YYYY')                      
-                                                        
+                                  ORDER BY sol.DT_PEDIDO DESC                     
                                                         ) res                    
                                                         )tot";
 
@@ -53,7 +53,7 @@
 
                                     }
                             
-                             $cons_chamados_solic .= " ORDER BY tot.LINHA ASC";
+                            $cons_chamados_solic .= " ORDER BY tot.LINHA ASC";
     $res_solic = oci_parse($conn_ora, $cons_chamados_solic);
                  oci_execute($res_solic);
 
