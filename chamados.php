@@ -42,6 +42,7 @@ include 'acesso_restrito.php';
     <div class="div_br"> </div>  
 
     <div id="paginas"></div>  
+    <div id="solic"></div>
       
 
     <!--MODAL DETALHE OS-->
@@ -155,6 +156,87 @@ include 'acesso_restrito.php';
     <div id="mensagem_acoes"></div>
 
 <script>
+
+    global_dt_solic1 = '';
+    global_dt_solic2 = '';
+
+    function ajax_exibe_solic(tp_btn){
+
+        
+        var data1 = document.getElementById('data1solic').value;
+        var data2 = document.getElementById('data2solic').value;
+
+        global_dt_solic1 = data1;
+        global_dt_solic2 = data2;
+
+        if(tp_btn == '1'){
+
+            if(data1 == ''){
+
+                //alert(var_beep);
+                //MENSAGEM            
+                var_ds_msg = 'Preencha%20os%20campos%20necessarios!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+            }else if(data2 == ''){
+
+                //alert(var_beep);
+                //MENSAGEM
+                var_ds_msg = 'Preencha%20os%20campos%20necessarios!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+
+            }else{
+
+                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2);
+
+            }
+
+            
+
+        }else{
+
+            if(data1 == ''){
+
+                //alert(var_beep);
+                //MENSAGEM            
+                var_ds_msg = 'Preencha%20os%20campos%20necessarios!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+            }else if(data2 == ''){
+
+                //alert(var_beep);
+                //MENSAGEM
+                var_ds_msg = 'Preencha%20os%20campos%20necessarios!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+
+
+            }else{
+
+
+                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2);
+            
+            }
+
+        }
+        
+    }
 
 
     function ajax_chama_caixa_chamado_realizados(tp_botao){
@@ -382,6 +464,9 @@ include 'acesso_restrito.php';
     //FUNÇÃO QUE CONSTROI A TABELA E A PAGINAÇÃO
     function pagtabela(direcao){
 
+        global_dt_solic1;
+        global_dt_solic2;
+
         var_direcao = direcao;
         var_tot_linha = document.getElementById('linhas_tot').value;
 
@@ -412,10 +497,10 @@ include 'acesso_restrito.php';
 
         }
            
-        $('#paginas').load('funcoes/chamados/ajax_constroi_chamados_solicitados.php?global_inicio='+global_inicio+'&global_fim='+global_fim);
+        $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?global_inicio='+global_inicio+'&global_fim='+global_fim+'&data1='+global_dt_solic1+'&data2='+global_dt_solic2);
         
         //CHAMANDO CONSULTA AUXILIAR PARA VERIFICAR QUANTIDADE DE LINHAS
-        $('#linhas').load('funcoes/chamados/ajax_quantidade_linhas_solicitados.php?');
+        $('#linhas').load('funcoes/chamados/ajax_quantidade_linhas_solicitados.php?data1='+global_dt_solic1+'&data2='+global_dt_solic2);
 
     };
 

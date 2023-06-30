@@ -43,7 +43,7 @@ $cons_veiculo = "SELECT *
                                         WHERE ckx.CD_VEICULO = vei.CD_VEICULO)) AS SN_SAI_RET -- S (USANDO O VEICULO) R- RETORNOU COM VEICULO
                 FROM portal_check_car.VEICULO vei
                 WHERE vei.TP_STATUS <> 'I')res
-                WHERE res.SN_SAI_RET <> 'S'";
+                WHERE res.SN_SAI_RET <> 'S' OR res.SN_SAI_RET IS NULL";
 $res_cons_veiculo = oci_parse($conn_ora, $cons_veiculo);
                     oci_execute($res_cons_veiculo);
 
