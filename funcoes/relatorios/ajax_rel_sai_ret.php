@@ -37,7 +37,8 @@
                     FROM portal_check_car.SAI_RET_VEICULO srt
                     ORDER BY srt.CD_SAI_RET DESC)res
                     WHERE res.SN_CONCLUIDO = '1'
-                    AND TO_CHAR(res.HR_SAIDA,'DD/MM/YYYY') BETWEEN '$ini_date' AND '$fim_date'";
+                    AND TRUNC(res.HR_SAIDA) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')";
+
     $res_rel = oci_parse($conn_ora, $consulta_rel);
                oci_execute($res_rel);
 
@@ -114,7 +115,7 @@
        
         <?php
 
-            while($row = oci_fetch_array($res_rel)){
+            while($row = @oci_fetch_array($res_rel)){
 
                 echo '<tr>';
 

@@ -25,7 +25,7 @@
                         FROM dbasgu.USUARIOS usu
                         WHERE usu.CD_USUARIO = abas.CD_USUARIO_CADASTRO) AS MOTORISTA
                   FROM portal_check_car.ABASTECIMENTO abas
-                  WHERE TO_CHAR(abas.HR_CADASTRO,'DD/MM/YYYY') BETWEEN '$ini_date' AND '$fim_date'
+                  WHERE TRUNC(res.abas.HR_CADASTRO) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')
                   ORDER BY abas.CD_ABASTECIMENTO DESC";
 
     $res_abas = oci_parse($conn_ora, $cons_abas);
