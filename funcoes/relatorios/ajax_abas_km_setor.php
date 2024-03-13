@@ -61,7 +61,7 @@
             <th style="text-align: center; border: solid 2px #3185c1;" >Código</th> 
             <th style="text-align: center; border: solid 2px #3185c1;" >Setor</th>
             <th style="text-align: center; border: solid 2px #3185c1;" >KM</th>
-            <th style="text-align: center; border: solid 2px #3185c1;" >Opções</th>
+            <!--<th style="text-align: center; border: solid 2px #3185c1;" >Opções</th>-->
 
             
         </thead>
@@ -77,7 +77,7 @@
                     echo '<td class="align-middle">'  .  $row['CD_SETOR'] . '</td>';
                     echo '<td class="align-middle">'  .  $row['NM_SETOR'] . '</td>';
                     echo '<td class="align-middle">'  .  $row['QTD_KM_TOTAL'] . '</td>';
-                    echo '<td class="align-middle">'  .  'Botão aqui' .  '</td>';
+                    //echo '<td class="align-middle">'  .  'Botão aqui' .  '</td>';
               
                 
                 echo '</tr>';
