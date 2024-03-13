@@ -6,7 +6,6 @@
     //RECEBENDO VARIAVEL
     $data_ini = $_GET['data1'];
     $data_fim = $_GET['data2'];
-    $pesquisa = $_GET['pesquisa'];
 
     $data_format_1 = $data_ini;
     $data_format_2 = $data_fim;
@@ -14,7 +13,6 @@
     $ini_date = date("d/m/Y", strtotime($data_format_1));
 
     $fim_date = date("d/m/Y", strtotime($data_format_2));
-
 
     //INICIANDO CONSULTA
     $cons_abas = "SELECT 
@@ -25,7 +23,7 @@
                         FROM dbasgu.USUARIOS usu
                         WHERE usu.CD_USUARIO = abas.CD_USUARIO_CADASTRO) AS MOTORISTA
                   FROM portal_check_car.ABASTECIMENTO abas
-                  WHERE TRUNC(res.abas.HR_CADASTRO) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')
+                  WHERE TRUNC(abas.HR_CADASTRO) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')
                   ORDER BY abas.CD_ABASTECIMENTO DESC";
 
     $res_abas = oci_parse($conn_ora, $cons_abas);
@@ -36,13 +34,6 @@
 <div class="div_br"></div>
 <div class="div_br"></div>
 
-
-
-<?php 
-
-    if($pesquisa == '1'){
-
-?>
     
 <div class="row">
 
@@ -75,54 +66,3 @@
     ?>
 
 </div>
-
-<?php
-
-    }else{
-
-
-    
-?>
-
-<table class='table table-striped' style='text-align: center'>
-
-        <thead>
-
-            <th style="text-align: center; border: solid 2px #3185c1;" >Veiculo</th> 
-            <th style="text-align: center; border: solid 2px #3185c1;" >Litros</th>
-            <th style="text-align: center; border: solid 2px #3185c1;" >Valor</th>
-            <th style="text-align: center; border: solid 2px #3185c1;" >Motorista</th>
-
-            
-        </thead>
-
-        <tbody>
-       
-        <?php
-
-            while($row = oci_fetch_array($res_abas)){
-
-                echo '<tr>';
-
-                    echo '<td class="align-middle">'  .  $row['NM_VEICULO'] . '</td>';
-                    echo '<td class="align-middle">'  .  $row['LITROS'] . '</td>';
-                    echo '<td class="align-middle">'  .  $row['VALOR'] . '</td>';
-                    echo '<td class="align-middle">'  .  $row['MOTORISTA'] . '</td>';
-              
-                
-                echo '</tr>';
-
-                
-            }
-
-
-        ?>
-
-        </tbody>
-
-    </table>
-<?php
-
-    }
-
-?>
