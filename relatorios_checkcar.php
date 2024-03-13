@@ -288,8 +288,13 @@ include 'acesso_restrito.php';
             $('#modal_rateio').modal('show')
 
             //CONSTRUINDO CORPO COM MOTORISTA
-            $('#rateio').load('funcoes/chamados/ajax_constroi_modal_motorista.php?&os='+js_os_mv);
+            $('#rateio').load('funcoes/chamados/ajax_constroi_modal_rateio.php?&os='+js_os_mv);
 
+        }
+
+        function ajax_insert_rateio(){
+
+            alert('Rateio');
         }
 
     </script>
@@ -314,7 +319,7 @@ include 'acesso_restrito.php';
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Designar</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_insert_rateio()">Ratear</button>
         </div>
         </div>
     </div>
