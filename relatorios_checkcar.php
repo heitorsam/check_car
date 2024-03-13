@@ -280,10 +280,45 @@ include 'acesso_restrito.php';
 
         }
 
+        function ajax_lib_mot(os){
 
+            var js_os_mv = os;
 
+            //ABRINDO MODAL
+            $('#modal_rateio').modal('show')
+
+            //CONSTRUINDO CORPO COM MOTORISTA
+            $('#rateio').load('funcoes/chamados/ajax_constroi_modal_motorista.php?&os='+js_os_mv);
+
+        }
 
     </script>
+
+<!--MODAL RATEIO-->
+<div class="modal fade top_modal" id="modal_rateio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-divide"></i> Rateio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div id="rateio"></div>
+
+
+            <div id="mensagem_updates_indica"></div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Designar</button>
+        </div>
+        </div>
+    </div>
+</div>
 
 
 <?php

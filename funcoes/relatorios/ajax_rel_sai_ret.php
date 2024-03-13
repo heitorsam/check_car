@@ -128,7 +128,10 @@
                     echo '<td class="align-middle">'  .  $row['HR_RETORNO'] . '</td>';
                     echo '<td class="align-middle">'  .  $row['KM_RETORNO'] . ' Km</td>';
                     echo '<td class="align-middle">'  .  $row['DIFERENCA_KM_RODADO'] . ' Km</td>';
-                    echo '<td class="align-middle">'  .  'Botão Modal Rateio' . '</td>';
+
+                    echo '<td class="align-middle">';
+                    echo '<button class="btn btn-primary" onclick="ajax_lib_mot(' . $row['CD_OS_MV'] . ')"><i class="fas fa-divide"></i></button>';
+                    echo '</td>';
                 
                 echo '</tr>';
 
