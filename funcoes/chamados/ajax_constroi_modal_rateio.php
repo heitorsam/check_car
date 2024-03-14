@@ -7,6 +7,7 @@
 
     //RECEBENDO VARIAVEL OS MV
     $var_os_mv = $_GET['os'];
+    echo $var_sn_rateio = $_GET['sn_rateio'];
     $usuario = $_SESSION['usuarioLogin'];
 
     //CHAMANDO CONSULTA

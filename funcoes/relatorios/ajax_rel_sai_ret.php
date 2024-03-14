@@ -15,7 +15,13 @@
 
     $fim_date = date("d/m/Y", strtotime($data_format_2));
 
-    $consulta_rel = "SELECT 
+    $consulta_rel = "SELECT ttt.*,   
+                     (SELECT CASE WHEN SUM(rt.CD_OS) > 0 THEN 'S' ELSE 'N' END AS SN_RATEIO
+                      FROM portal_check_car.RATEIO rt
+                      WHERE rt.CD_OS = ttt.CD_OS_MV
+                     ) AS SN_RATEIO
+                    FROM(
+                    SELECT 
                     (SELECT cdx.CD_OS_MV FROM portal_check_car.CHAMADOS_DESIGNADOS cdx WHERE cdx.CD_CHAMADO_DESIGNADO = res.CD_CHAMADO_DESIGNADO) AS CD_OS_MV,
                     (SELECT 
                         (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usu_c.CD_USUARIO_MV) AS NM_MOTORISTA
@@ -27,6 +33,7 @@
                     TO_CHAR(res.HR_RETORNO, 'DD/MM/YYYY HH24:MI:SS') AS HR_RETORNO,
                     res.KM_RETORNO,
                     CAST(res.KM_RETORNO AS INT) - CAST(res.KM_SAIDA AS INT) AS DIFERENCA_KM_RODADO
+                  
                     FROM (
                     SELECT srt.*,
                         CASE
@@ -35,9 +42,11 @@
                                                                 WHERE cd.TP_STATUS_CHAMADO = 'C') THEN '1' ELSE '0'
                         END AS SN_CONCLUIDO
                     FROM portal_check_car.SAI_RET_VEICULO srt
-                    ORDER BY srt.CD_SAI_RET DESC)res
+                    )res
                     WHERE res.SN_CONCLUIDO = '1'
-                    AND TRUNC(res.HR_SAIDA) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')";
+                    AND TRUNC(res.HR_SAIDA) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')
+                    ) ttt
+                    ORDER BY ttt.HR_SAIDA";
 
     $res_rel = oci_parse($conn_ora, $consulta_rel);
                oci_execute($res_rel);
@@ -130,7 +139,7 @@
                     echo '<td class="align-middle">'  .  $row['DIFERENCA_KM_RODADO'] . ' Km</td>';
 
                     echo '<td class="align-middle">';
-                    echo '<button class="btn btn-primary" onclick="ajax_lib_mot(' . $row['CD_OS_MV'] . ')"><i class="fas fa-divide"></i></button>';
+                    echo '<button class="btn btn-primary" onclick="ajax_rateio_modal(' . $row['CD_OS_MV'] . ",'" . $row['SN_RATEIO'] . "'" . ')"><i class="fas fa-divide"></i></button>';
                     echo '</td>';
                 
                 echo '</tr>';
