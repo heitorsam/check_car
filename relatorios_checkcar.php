@@ -292,11 +292,6 @@ include 'acesso_restrito.php';
 
         }
 
-        function ajax_insert_rateio(){
-
-            alert('Rateio');
-        }
-
     </script>
 
 <!--MODAL RATEIO-->
@@ -324,6 +319,8 @@ include 'acesso_restrito.php';
         </div>
     </div>
 </div>
+
+
 
 
 <?php

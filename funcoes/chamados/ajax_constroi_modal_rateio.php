@@ -1,5 +1,4 @@
 <?php
-
     //CHAMANDO CONEXÃO
     include '../../conexao.php';
 
@@ -7,37 +6,104 @@
     $var_os_mv = $_GET['os'];
 
     //CHAMANDO CONSULTA
-    $cons_moto = "SELECT usux.CD_USUARIO,
-                         usux.CD_USUARIO_MV,
-                         (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = usux.CD_USUARIO_MV) AS NM_USU 
-                  FROM portal_check_car.USUARIO usux
-                  WHERE usux.TP_STATUS = 'A'";
-    $res_moto = oci_parse($conn_ora, $cons_moto);
-                oci_execute($res_moto);
-
-    
-
-
+    $cons_setor = "SELECT st.CD_SETOR, st.NM_SETOR 
+                   FROM dbamv.SETOR st
+                   WHERE st.SN_ATIVO = 'S'
+                   ORDER BY st.NM_SETOR";
+    $res_setor = oci_parse($conn_ora, $cons_setor);
+    oci_execute($res_setor);
 ?>
 
-<input type=text class="form form-control" value="<?php echo $var_os_mv;?>" id="os_mv" hidden>
+<div class="row mt-4">
+    <div class="col-md-6">
+        <select id="filtro-setor" class="form-control">
+            <option value="All">Todos</option>
+            <?php
+                oci_execute($res_setor); // Executando novamente para garantir que os resultados sejam pegos do início
+                while($row_setor = oci_fetch_array($res_setor)){
+                    echo '<option value="'.$row_setor['CD_SETOR'].'">'.$row_setor['NM_SETOR'].'</option>';
+                }
+            ?>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <button onclick="adicionarSetor()" class="btn btn-primary">Adicionar</button>
+    </div>
+</div>
 
-<div class="div_br"> </div> 
-oioioioioi
+<div class="row mt-4">
+    <div class="col-md-10">
+        <table id="tabela-setores" class="table table-bordered">
+            <thead>
+                <tr style="text-align: center;">
+                    <th>Código do Setor</th>
+                    <th>Nome do Setor</th>
+                    <th style="width: 100px;">%</th>
+                    <th style="width: 100px;">Opções</th>
+                </tr>
+            </thead>
+            <tbody style="text-align: center;">
+                <!-- Aqui serão adicionadas as linhas dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<select id="motorista_indicado" class="form form-control">
+<!-- Adicione os scripts JavaScript do Bootstrap ou qualquer outro framework que esteja usando -->
+<script>
 
-    <option value="All">Selecione</option>
+    function adicionarSetor() {
+        var select = document.getElementById('filtro-setor');
+        var selectedOption = select.options[select.selectedIndex];
+        var codigoSetor = selectedOption.value;
+        var nomeSetor = selectedOption.text;
+        var table = document.getElementById('tabela-setores').getElementsByTagName('tbody')[0];
+        var exists = false;
 
-    <?php
-
-        while($row_motorista = oci_fetch_array($res_moto)){
-
-            echo '<option value="'. $row_motorista['CD_USUARIO'] . '">'. $row_motorista['NM_USU'] . '</option>';
-
+        // Verifica se o setor já está na tabela
+        var rows = table.getElementsByTagName("tr");
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            if (cells.length > 0 && cells[0].innerText === codigoSetor) {
+                exists = true;
+                break;
+            }
         }
 
+        // Se o setor ainda não estiver na tabela, adiciona
+        if (!exists) {
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
 
-    ?>
+            cell1.innerHTML = '<span style="display: inline-block; vertical-align: middle; margin-top:10px;">' + codigoSetor + '</span>';
+            cell2.innerHTML = '<span style="display: inline-block; vertical-align: middle;  margin-top:10px;">' + nomeSetor + '</span>';
+            cell3.innerHTML = '<input type="number" class="form-control percent-input" data-setor-id="' + codigoSetor + '" value="0">';
+            cell4.innerHTML = '<button onclick="removerSetor(this)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>';
+        } else {
+            alert('Setor já adicionado.');
+        }
+    }
 
-<select>
+    function removerSetor(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+
+    function ajax_insert_rateio() {
+        var totalPercent = 0;
+        var inputs = document.querySelectorAll('.percent-input');
+        inputs.forEach(function(input) {
+            totalPercent += parseInt(input.value);
+        });
+
+        if (totalPercent === 100) {
+            alert('A soma das porcentagens é 100.');
+        } else {
+            alert('A porcentagem total deve ser 100%.');
+        }
+    }
+  
+</script>

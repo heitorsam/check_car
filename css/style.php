@@ -1243,6 +1243,12 @@ border-radius: 5px;
     
 }
 
+.centered-vertical {
+
+    vertical-align: middle !important;
+    
+}
+
 
 </style>
 
