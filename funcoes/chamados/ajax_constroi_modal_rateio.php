@@ -1,9 +1,13 @@
 <?php
+
+    session_start();	
+
     //CHAMANDO CONEXÃO
-    include '../../conexao.php';
+    include '../../conexao.php';    
 
     //RECEBENDO VARIAVEL OS MV
     $var_os_mv = $_GET['os'];
+    $usuario = $_SESSION['usuarioLogin'];
 
     //CHAMANDO CONSULTA
     $cons_setor = "SELECT st.CD_SETOR, st.NM_SETOR 
@@ -27,7 +31,7 @@
         </select>
     </div>
     <div class="col-md-6">
-        <button onclick="adicionarSetor()" class="btn btn-primary">Adicionar</button>
+        <button onclick="adicionarSetor()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
     </div>
 </div>
 
@@ -93,17 +97,36 @@
     }
 
     function ajax_insert_rateio() {
-        var totalPercent = 0;
+        var data = [];
         var inputs = document.querySelectorAll('.percent-input');
         inputs.forEach(function(input) {
-            totalPercent += parseInt(input.value);
+            data.push({
+                cd_os: <?php echo $var_os_mv; ?>, 
+                cd_setor: input.getAttribute('data-setor-id'),
+                porcentagem: parseInt(input.value),
+                cd_usuario_cadastro: '<?php echo $usuario; ?>'
+            });
         });
 
-        if (totalPercent === 100) {
-            alert('A soma das porcentagens é 100.');
-        } else {
-            alert('A porcentagem total deve ser 100%.');
-        }
+        // Fazendo a requisição AJAX
+        fetch('funcoes/chamados/inserir_rateio.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ dados: data }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Valores inseridos com sucesso na tabela RATEIO.');
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+        });
     }
   
 </script>
