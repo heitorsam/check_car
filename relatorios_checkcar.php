@@ -284,13 +284,25 @@ include 'acesso_restrito.php';
 
             var js_os_mv = os;
             var js_sn_rateio = sn_rateio;
-
-
+            
             //ABRINDO MODAL
             $('#modal_rateio').modal('show')
 
             //CONSTRUINDO CORPO COM MOTORISTA
             $('#rateio').load('funcoes/chamados/ajax_constroi_modal_rateio.php?&os='+js_os_mv+'&sn_rateio='+js_sn_rateio);
+
+
+            var botao = document.getElementById('ratearBtn');
+            console.log(botao);
+
+            if(js_sn_rateio == 'S'){
+
+                botao.style.display = 'none';
+
+            }else{
+
+                botao.style.display = 'block';
+            }
 
         }
 
@@ -316,7 +328,7 @@ include 'acesso_restrito.php';
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" onclick="ajax_insert_rateio()">Ratear</button>
+            <button type="button"  id="ratearBtn"  class="btn btn-primary" onclick="ajax_insert_rateio()">Ratear</button>
         </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
 
     //RECEBENDO VARIAVEL OS MV
     $var_os_mv = $_GET['os'];
-    echo $var_sn_rateio = $_GET['sn_rateio'];
+    $var_sn_rateio = $_GET['sn_rateio'];
     $usuario = $_SESSION['usuarioLogin'];
 
     //CHAMANDO CONSULTA
@@ -17,42 +17,97 @@
                    ORDER BY st.NM_SETOR";
     $res_setor = oci_parse($conn_ora, $cons_setor);
     oci_execute($res_setor);
+
+    echo '<b> OS ' .  $var_os_mv . '</b>';
 ?>
 
-<div class="row mt-4">
-    <div class="col-md-6">
-        <select id="filtro-setor" class="form-control">
-            <option value="All">Todos</option>
-            <?php
-                oci_execute($res_setor); // Executando novamente para garantir que os resultados sejam pegos do início
-                while($row_setor = oci_fetch_array($res_setor)){
-                    echo '<option value="'.$row_setor['CD_SETOR'].'">'.$row_setor['NM_SETOR'].'</option>';
-                }
-            ?>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <button onclick="adicionarSetor()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-    </div>
-</div>
+<?php if($var_sn_rateio == 'S'){ 
+    
+    //CHAMANDO CONSULTA
+    $cons_rateio = "SELECT rt.CD_OS, rt.CD_SETOR, st.NM_SETOR, rt.PORCENTAGEM, 
+    (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu
+    WHERE usu.CD_USUARIO = 'ARIPEREIRA') AS NM_USUARIO,
+    TO_CHAR(rt.HR_CADASTRO, 'DD/MM/YYYY HH24:MI:SS') AS HR_CADASTRO
+    FROM portal_check_car.RATEIO rt
+    LEFT JOIN dbamv.SETOR st
+    ON st.CD_SETOR = rt.CD_SETOR
+    WHERE rt.CD_OS = $var_os_mv
+    ORDER BY st.NM_SETOR ASC";
 
-<div class="row mt-4">
-    <div class="col-md-10">
-        <table id="tabela-setores" class="table table-bordered">
-            <thead>
-                <tr style="text-align: center;">
-                    <th>Código do Setor</th>
-                    <th>Nome do Setor</th>
-                    <th style="width: 100px;">%</th>
-                    <th style="width: 100px;">Opções</th>
-                </tr>
-            </thead>
-            <tbody style="text-align: center;">
-                <!-- Aqui serão adicionadas as linhas dinamicamente -->
-            </tbody>
-        </table>
+    $res_rateio = oci_parse($conn_ora, $cons_rateio);
+    oci_execute($res_rateio);
+    
+    
+?>       
+    <div class="row mt-4">
+        <div class="col-md-10">
+            <table id="tabela-setores" class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>Código do Setor</th>
+                        <th>Nome do Setor</th>
+                        <th style="width: 100px;">%</th>
+                        <th>Usuário</th>
+                        <th>Data Hora</th>
+                        
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                <?php
+                    while($row_rateio = oci_fetch_array($res_rateio)){
+                        echo '<tr>';
+                            echo '<td>' . $row_rateio['CD_OS'] . '</td>';
+                            echo '<td>' . $row_rateio['NM_SETOR'] . '</td>';
+                            echo '<td>' . $row_rateio['PORCENTAGEM'] . '</td>';
+                            echo '<td>' . $row_rateio['NM_USUARIO'] . '</td>';
+                            echo '<td>' . $row_rateio['HR_CADASTRO'] . '</td>';
+                        echo '</tr>';
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+
+
+<?php }else{ ?>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <select id="filtro-setor" class="form-control">
+                <option value="All">Todos</option>
+                <?php
+                    oci_execute($res_setor); // Executando novamente para garantir que os resultados sejam pegos do início
+                    while($row_setor = oci_fetch_array($res_setor)){
+                        echo '<option value="'.$row_setor['CD_SETOR'].'">'.$row_setor['NM_SETOR'].'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <button onclick="adicionarSetor()" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-10">
+            <table id="tabela-setores" class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>Código do Setor</th>
+                        <th>Nome do Setor</th>
+                        <th style="width: 100px;">%</th>
+                        <th style="width: 100px;">Opções</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <!-- Aqui serão adicionadas as linhas dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<?php } ?>
 
 <!-- Adicione os scripts JavaScript do Bootstrap ou qualquer outro framework que esteja usando -->
 <script>

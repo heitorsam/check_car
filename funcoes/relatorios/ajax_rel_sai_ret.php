@@ -117,7 +117,7 @@
             <th style="text-align: center; border: solid 2px #3185c1;" >Hr Retorno</th>
             <th style="text-align: center; border: solid 2px #3185c1;" >Km Retorno</th>
             <th style="text-align: center; border: solid 2px #3185c1;" >Diferença Km</th>
-            <th style="text-align: center; border: solid 2px #3185c1;" >Opções</th>
+            <th style="text-align: center; border: solid 2px #3185c1;" >Rateio</th>
             
         </thead>
 
@@ -139,7 +139,19 @@
                     echo '<td class="align-middle">'  .  $row['DIFERENCA_KM_RODADO'] . ' Km</td>';
 
                     echo '<td class="align-middle">';
-                    echo '<button class="btn btn-primary" onclick="ajax_rateio_modal(' . $row['CD_OS_MV'] . ",'" . $row['SN_RATEIO'] . "'" . ')"><i class="fas fa-divide"></i></button>';
+                    echo '<button class="btn btn-primary" onclick="ajax_rateio_modal(' . $row['CD_OS_MV'] . ",'" . $row['SN_RATEIO'] . "'" . ')">';
+
+                    if($row['SN_RATEIO'] == 'S'){
+
+                        echo '<i class="far fa-eye"></i>';
+
+                    }else{
+
+                        echo '<i class="fas fa-divide"></i>';
+                    }
+                    
+                    
+                    echo '</button>';
                     echo '</td>';
                 
                 echo '</tr>';
