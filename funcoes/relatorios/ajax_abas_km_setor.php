@@ -17,34 +17,78 @@
 
 
     //INICIANDO CONSULTA
-    $cons_abas = "SELECT tot.CD_SETOR, tot.NM_SETOR,
-    SUM(DIFERENCA_KM_RODADO) AS QTD_KM_TOTAL
+    $cons_abas = "SELECT res.CD_SETOR, res.NM_SETOR, SUM(res.QTD_KM_TOTAL) AS QTD_KM_TOTAL
     FROM (
     
-      SELECT 
-      so.CD_SETOR, st.NM_SETOR,
-      CAST(res.KM_RETORNO AS INT) - CAST(res.KM_SAIDA AS INT) AS DIFERENCA_KM_RODADO
-      FROM (
-      SELECT srt.*,
-          CASE
-              WHEN srt.CD_CHAMADO_DESIGNADO IN ( SELECT cd.CD_CHAMADO_DESIGNADO
-                                                  FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                                                  WHERE cd.TP_STATUS_CHAMADO = 'C') THEN '1' ELSE '0'
-          END AS SN_CONCLUIDO
-      FROM portal_check_car.SAI_RET_VEICULO srt
-      ORDER BY srt.CD_SAI_RET DESC)res
-    
-      INNER JOIN portal_check_car.CHAMADOS_DESIGNADOS cd
-        ON cd.CD_CHAMADO_DESIGNADO = res.CD_CHAMADO_DESIGNADO
-      INNER JOIN dbamv.SOLICITACAO_OS so
-        ON so.CD_OS = cd.CD_OS_MV
-      INNER JOIN dbamv.SETOR st
-        ON st.CD_SETOR = so.CD_SETOR  
-      WHERE res.SN_CONCLUIDO = '1'
-      AND TRUNC(res.HR_SAIDA) BETWEEN TO_DATE('$ini_date','DD/MM/YYYY') AND TO_DATE('$fim_date','DD/MM/YYYY')
-    
-    ) tot
-    GROUP BY tot.CD_SETOR, tot.NM_SETOR";
+    SELECT tot.CD_SETOR, tot.NM_SETOR, 'SEM RATEIO' AS TIPO, SUM(DIFERENCA_KM_RODADO) AS QTD_KM_TOTAL
+      FROM (SELECT so.CD_SETOR,
+                   st.NM_SETOR,
+                   CAST(res.KM_RETORNO AS INT) - CAST(res.KM_SAIDA AS INT) AS DIFERENCA_KM_RODADO
+              FROM (SELECT srt.*,
+                           CASE
+                             WHEN srt.CD_CHAMADO_DESIGNADO IN
+                                  (SELECT cd.CD_CHAMADO_DESIGNADO
+                                     FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                                    WHERE cd.TP_STATUS_CHAMADO = 'C') THEN
+                              '1'
+                             ELSE
+                              '0'
+                           END AS SN_CONCLUIDO
+                      FROM portal_check_car.SAI_RET_VEICULO srt
+                     ORDER BY srt.CD_SAI_RET DESC) res
+             INNER JOIN portal_check_car.CHAMADOS_DESIGNADOS cd
+                ON cd.CD_CHAMADO_DESIGNADO = res.CD_CHAMADO_DESIGNADO
+             INNER JOIN dbamv.SOLICITACAO_OS so
+                ON so.CD_OS = cd.CD_OS_MV
+             INNER JOIN dbamv.SETOR st
+                ON st.CD_SETOR = so.CD_SETOR
+             WHERE res.SN_CONCLUIDO = '1'
+               AND TRUNC(res.HR_SAIDA) BETWEEN
+                   TO_DATE('$ini_date', 'DD/MM/YYYY') AND
+                   TO_DATE('$fim_date', 'DD/MM/YYYY')
+                    AND so.CD_OS NOT IN (SELECT rt.CD_OS FROM portal_check_car.RATEIO rt)) tot
+              
+     GROUP BY tot.CD_SETOR, tot.NM_SETOR
+     
+     
+     UNION ALL
+     
+     SELECT tot.CD_SETOR, tot.NM_SETOR,
+     
+     'COM RATEIO' AS TIPO, SUM(DIFERENCA_KM_RODADO) AS QTD_KM_TOTAL
+      FROM (SELECT st.CD_SETOR,
+                   st.NM_SETOR,
+                   (CAST(res.KM_RETORNO AS INT) - CAST(res.KM_SAIDA AS INT)) * (rt.PORCENTAGEM/100) AS DIFERENCA_KM_RODADO
+              FROM (SELECT srt.*,
+                           CASE
+                             WHEN srt.CD_CHAMADO_DESIGNADO IN
+                                  (SELECT cd.CD_CHAMADO_DESIGNADO
+                                     FROM portal_check_car.CHAMADOS_DESIGNADOS cd
+                                    WHERE cd.TP_STATUS_CHAMADO = 'C') THEN
+                              '1'
+                             ELSE
+                              '0'
+                           END AS SN_CONCLUIDO
+                      FROM portal_check_car.SAI_RET_VEICULO srt
+                     ORDER BY srt.CD_SAI_RET DESC) res
+             INNER JOIN portal_check_car.CHAMADOS_DESIGNADOS cd
+                ON cd.CD_CHAMADO_DESIGNADO = res.CD_CHAMADO_DESIGNADO
+             INNER JOIN dbamv.SOLICITACAO_OS so
+                ON so.CD_OS = cd.CD_OS_MV
+             INNER JOIN portal_check_car.RATEIO rt
+               ON rt.CD_OS = so.CD_OS
+             INNER JOIN dbamv.SETOR st
+               ON st.CD_SETOR = rt.CD_SETOR
+             WHERE res.SN_CONCLUIDO = '1'
+               AND TRUNC(res.HR_SAIDA) BETWEEN
+                   TO_DATE('$ini_date', 'DD/MM/YYYY') AND
+                   TO_DATE('$fim_date', 'DD/MM/YYYY')
+                     ) tot
+              
+     GROUP BY tot.CD_SETOR, tot.NM_SETOR
+    ) res
+    GROUP BY res.CD_SETOR, res.NM_SETOR 
+    ORDER BY res.NM_SETOR ASC";
 
     $res_abas = oci_parse($conn_ora, $cons_abas);
                 oci_execute($res_abas);

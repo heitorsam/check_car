@@ -21,7 +21,20 @@
     echo '<b> OS ' .  $var_os_mv . '</b>';
 ?>
 
-<?php if($var_sn_rateio == 'S'){ 
+<?php 
+
+    //CHAMANDO CONSULTA SE HA RATEIO
+    $cons_qtd = "SELECT COUNT(*) AS QTD
+    FROM portal_check_car.RATEIO rt
+    WHERE rt.CD_OS = $var_os_mv";
+
+    $res_qtd = oci_parse($conn_ora, $cons_qtd);
+    oci_execute($res_qtd);
+
+    $row_qtd = oci_fetch_assoc($res_qtd);
+    $qtd = $row_qtd['QTD'];
+
+    if($qtd > 0){ 
     
     //CHAMANDO CONSULTA
     $cons_rateio = "SELECT rt.CD_OS, rt.CD_SETOR, st.NM_SETOR, rt.PORCENTAGEM, 
@@ -35,10 +48,13 @@
     ORDER BY st.NM_SETOR ASC";
 
     $res_rateio = oci_parse($conn_ora, $cons_rateio);
-    oci_execute($res_rateio);
+    oci_execute($res_rateio); 
     
-    
-?>       
+?>   
+
+    </br></br>
+    <button class="btn btn-danger" onclick="ajax_delete_rateio()"><i class="fas fa-trash"></i> Excluir</button>    
+
     <div class="row mt-4">
         <div class="col-md-10">
             <table id="tabela-setores" class="table table-bordered">
@@ -175,7 +191,15 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Valores inseridos com sucesso na tabela RATEIO.');
+                alert('Rateio realizado com sucesso.');
+
+                //CONSTRUINDO MODAL RATEIO
+                $('#rateio').load('funcoes/chamados/ajax_constroi_modal_rateio.php?&os='+<?php echo $var_os_mv; ?>+'&sn_rateio=S');
+
+                var botao = document.getElementById('ratearBtn');
+                console.log(botao);
+                botao.style.display = 'none';
+                
             } else {
                 alert(data.message);
             }
@@ -183,6 +207,46 @@
         .catch((error) => {
             console.error('Erro:', error);
         });
+    }
+
+    function ajax_delete_rateio() {
+
+        // Exibir uma caixa de diálogo de confirmação
+        var confirmacao = confirm("Tem certeza de que deseja excluir o rateio?");
+
+        // Verificar se o usuário confirmou a exclusão
+        if (confirmacao) {
+
+            // Fazendo a requisição AJAX
+            fetch('funcoes/chamados/excluir_rateio.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ cd_os: <?php echo $var_os_mv; ?> }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Rateio excluído com sucesso.');
+
+                    //CONSTRUINDO MODAL RATEIO
+                    $('#rateio').load('funcoes/chamados/ajax_constroi_modal_rateio.php?&os='+<?php echo $var_os_mv; ?>+'&sn_rateio=S');
+
+                    var botao = document.getElementById('ratearBtn');
+                    console.log(botao);
+                    botao.style.display = 'none';
+                    
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+
+        }
+
     }
   
 </script>

@@ -286,9 +286,9 @@ include 'acesso_restrito.php';
             var js_sn_rateio = sn_rateio;
             
             //ABRINDO MODAL
-            $('#modal_rateio').modal('show')
+            $('#modal_rateio').modal('show');
 
-            //CONSTRUINDO CORPO COM MOTORISTA
+            //CONSTRUINDO MODAL RATEIO
             $('#rateio').load('funcoes/chamados/ajax_constroi_modal_rateio.php?&os='+js_os_mv+'&sn_rateio='+js_sn_rateio);
 
 

@@ -3,7 +3,7 @@
     include '../../conexao.php';
 
     //RECEBENDO VARIAVEL OS MV
-    $var_os_mv = $_GET['os'];
+    $var_os_mv = @$_GET['os'];
 
     //CHAMANDO CONSULTA
     $cons_setor = "SELECT st.CD_SETOR, st.NM_SETOR 
