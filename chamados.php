@@ -163,8 +163,10 @@ include 'acesso_restrito.php';
     function ajax_exibe_solic(tp_btn){
 
         
-        var data1 = document.getElementById('data1solic').value;
-        var data2 = document.getElementById('data2solic').value;
+        var data1 = document.getElementById('data1').value;
+        var data2 = document.getElementById('data2').value;
+        var setor = document.getElementById('filtro-setor').value;
+        var solicitante = document.getElementById('filtro-solicitante').value;
 
         global_dt_solic1 = data1;
         global_dt_solic2 = data2;
@@ -196,7 +198,7 @@ include 'acesso_restrito.php';
 
             }else{
 
-                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2);
+                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2+'&setor='+setor+'&solicitante='+solicitante);
 
             }
 
@@ -230,7 +232,7 @@ include 'acesso_restrito.php';
             }else{
 
 
-                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2);
+                $('#solic').load('funcoes/chamados/ajax_exibe_solic.php?data1='+data1+'&data2='+data2+'&setor='+setor+'&solicitante='+solicitante);
             
             }
 
