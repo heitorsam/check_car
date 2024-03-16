@@ -25,12 +25,13 @@ include 'acesso_restrito.php';
     <div class="row">
 
 
-    <div id="botão1"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('1'),ajax_style('1')"><i class="fa-solid fa-car"></i> Saida & Retorno</div>
+    <div id="botão1" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('1'),ajax_style('1')"><i class="fa-solid fa-car"></i> Saida & Retorno</div>
 
-    <div id="botão2"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('2'),ajax_style('2')"><i class="fa-solid fa-gas-pump"></i> KM Setor</div>
+    <div id="botão2" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('2'),ajax_style('2')"><i class="fas fa-road"></i> KM Setor</div>
 
-    <div id="botão3"style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('3'),ajax_style('3')"><i class="fa-solid fa-gas-pump"></i> Abastecimento</div>
+    <div id="botão3" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('3'),ajax_style('3')"><i class="fa-solid fa-gas-pump"></i> Abastecimento</div>
 
+    <div id="botão4" style="background-color: #f9f9f9 !important; cursor: pointer;" class="col-2" onclick="ajax_pagina_botoes('4'),ajax_style('4')"><i class="fas fa-car-side"></i> Consumo</div>
 
     </div>
 
@@ -74,32 +75,57 @@ include 'acesso_restrito.php';
 
                 document.getElementById('botão2').removeAttribute("style");
                 document.getElementById('botão3').removeAttribute("style");
+                document.getElementById('botão4').removeAttribute("style");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
                 document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
                 document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+                document.getElementById('botão4').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
-            } else if (btn == '2') {
+            } 
+            
+            if (btn == '2') {
 
                 document.getElementById('botão2').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
                 document.getElementById('botão1').removeAttribute("style");
                 document.getElementById('botão3').removeAttribute("style");
+                document.getElementById('botão4').removeAttribute("style");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
                 document.getElementById('botão1').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
                 document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+                document.getElementById('botão4').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
                 
-            } else {
+            } 
+            
+            if (btn == '3') {
 
                 document.getElementById('botão3').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
 
                 document.getElementById('botão1').removeAttribute("style");
                 document.getElementById('botão2').removeAttribute("style");
+                document.getElementById('botão4').removeAttribute("style");
 
                 // ADICIONA O CURSOR APÓS RETIRAR O STYLE
                 document.getElementById('botão1').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
                 document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+                document.getElementById('botão4').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+
+            } 
+
+            if (btn == '4') {
+
+                document.getElementById('botão4').setAttribute("style", "border-bottom: solid 2px #17a2b8; cursor: pointer; background-color: #f9f9f9 !important;");
+
+                document.getElementById('botão1').removeAttribute("style");
+                document.getElementById('botão2').removeAttribute("style");
+                document.getElementById('botão3').removeAttribute("style");
+
+                // ADICIONA O CURSOR APÓS RETIRAR O STYLE
+                document.getElementById('botão1').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+                document.getElementById('botão2').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
+                document.getElementById('botão3').setAttribute("style", "cursor: pointer; background-color: #f9f9f9 !important;");
 
             } 
 
@@ -194,6 +220,15 @@ include 'acesso_restrito.php';
                 document.getElementById("constroi_relatorio_abas").style.display = "block";
 
             }
+
+            if(tp_botao == '4'){
+
+                $('#constroi_botoes').load('funcoes/relatorios/pagina_consumo_carro.php');
+
+                document.getElementById("constroi_relatorio").style.display = "none";
+                document.getElementById("constroi_relatorio_abas").style.display = "block";
+
+            }
             
 
         }
@@ -244,6 +279,18 @@ include 'acesso_restrito.php';
 
             $('#constroi_relatorio_abas').load('funcoes/relatorios/ajax_abas_km_setor.php?data1='+data_inicial+'&data2='+data_final);
 
+
+        }
+
+        function ajax_abas_consumo_carro(){
+
+            var data_inicial = document.getElementById('data_abas_1').value;
+            var data_final = document.getElementById('data_abas_2').value;
+
+            console.log('Data inicial: ', data_inicial);
+            console.log('Data final: ', data_final);
+
+            $('#constroi_relatorio_abas').load('funcoes/relatorios/ajax_abas_consumo_carro.php?data1='+data_inicial+'&data2='+data_final);
 
         }
 
