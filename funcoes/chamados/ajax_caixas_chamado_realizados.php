@@ -5,6 +5,8 @@
     //RECEBENDO VARIAVEIS
     $data1 = $_GET['data1'];
     $data2 = $_GET['data2'];
+    $setor = $_GET['setor'];
+    $solicitante = $_GET['solicitante'];
 
     $data_format_1 = $data1;
     $data_format_2 = $data2;
@@ -22,8 +24,23 @@
                                    cd.CD_CHAMADO_DESIGNADO,
                                    cd.CD_OS_MV
                            FROM portal_check_car.CHAMADOS_DESIGNADOS cd
-                           WHERE cd.TP_STATUS_CHAMADO = 'C'
-                           AND TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY') BETWEEN '$ini_date' AND '$fim_date'
+                           INNER JOIN dbamv.SOLICITACAO_OS os
+                             ON os.CD_OS = cd.CD_OS_MV
+                           WHERE cd.TP_STATUS_CHAMADO = 'C'";
+
+                           if($setor > 0){
+
+                             $cons_chamado_desig .=" AND os.CD_SETOR = $setor ";
+
+                           }  
+                           
+                           if($solicitante > 0){
+
+                            $cons_chamado_desig .=" AND os.NM_USUARIO = $solicitante ";
+
+                          }   
+
+                           $cons_chamado_desig .=" AND TO_CHAR(cd.HR_CADASTRO,'DD/MM/YYYY') BETWEEN '$ini_date' AND '$fim_date'
                            ORDER BY cd.CD_CHAMADO_DESIGNADO DESC";
     $res_desig = oci_parse($conn_ora, $cons_chamado_desig);
                  oci_execute($res_desig);

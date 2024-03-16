@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         
         Inicio:
         <input type="date" class="form form-control" id="data1solic">
@@ -8,7 +8,7 @@
     </div>
 
   
-    <div class="col-md-3">
+    <div class="col-md-2">
         
         Fim:
         <input type="date" class="form form-control" id="data2solic">

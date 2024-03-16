@@ -243,14 +243,16 @@ include 'acesso_restrito.php';
 
         var data1 = document.getElementById('data1').value;
         var data2 = document.getElementById('data2').value;
+        var setor = document.getElementById('filtro-setor').value;
+        var solicitante = document.getElementById('filtro-solicitante').value;
 
         if(tp_botao == '1'){
 
-            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2);
+            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2+'&setor='+setor+'&solicitante='+solicitante);
 
         }else{
 
-            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2);
+            $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2+'&setor='+setor+'&solicitante='+solicitante);
 
         }
         
