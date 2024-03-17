@@ -248,6 +248,9 @@ include 'acesso_restrito.php';
         var setor = document.getElementById('filtro-setor').value;
         var solicitante = document.getElementById('filtro-solicitante').value;
 
+        console.log(setor);
+        console.log(solicitante);
+
         if(tp_botao == '1'){
 
             $('#caixas_chamado').load('funcoes/chamados/ajax_caixas_chamado_realizados.php?data1='+data1+'&data2='+data2+'&setor='+setor+'&solicitante='+solicitante);

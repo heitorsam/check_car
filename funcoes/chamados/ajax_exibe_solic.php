@@ -10,6 +10,8 @@
     //RECEBENDO VARIAVEL DE DATA
     $data = $_GET['data1'];
     $data2 = $_GET['data2'];
+    $setor = $_GET['setor'];
+    $solicitante = $_GET['solicitante'];
 
     $data_format_1 = $data;
     $data_correta1 = date("d/m/Y", strtotime($data_format_1));
@@ -33,8 +35,22 @@
                                         WHERE loc.CD_LOCALIDADE = sol.CD_LOCALIDADE) AS NM_LOCALIDADE
                                   FROM dbamv.SOLICITACAO_OS sol
                                  WHERE sol.CD_OFICINA = 9
-                                  AND sol.CD_MULTI_EMPRESA = 1
-                                  AND sol.TP_SITUACAO = 'S'
+                                  AND sol.CD_MULTI_EMPRESA = 1";
+
+                                    if($setor > 0){
+
+                                        $cons_chamados_solic .=" AND sol.CD_SETOR = $setor ";
+
+                                    }  
+                                    
+                                    if($solicitante > 0){
+
+                                    $cons_chamados_solic .=" AND sol.NM_SOLICITANTE = '$solicitante' ";
+
+                                    }   
+
+
+                                  $cons_chamados_solic .=" AND sol.TP_SITUACAO = 'S'
                                   AND sol.CD_OS NOT IN (SELECT cd.CD_OS_MV
                                                         FROM portal_check_car.CHAMADOS_DESIGNADOS cd)
 
@@ -53,7 +69,7 @@
 
                                     }
                             
-                            $cons_chamados_solic .= " ORDER BY tot.LINHA ASC";
+                                    $cons_chamados_solic .= " ORDER BY tot.LINHA ASC";
     $res_solic = oci_parse($conn_ora, $cons_chamados_solic);
                  oci_execute($res_solic);
 

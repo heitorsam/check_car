@@ -36,7 +36,7 @@
                            
                            if($solicitante > 0){
 
-                            $cons_chamado_desig .=" AND os.NM_USUARIO = $solicitante ";
+                            $cons_chamado_desig .=" AND os.NM_SOLICITANTE = '$solicitante' ";
 
                           }   
 
