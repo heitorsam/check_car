@@ -79,15 +79,96 @@
         $res_insert = oci_parse($conn_ora, $cons_insert);
         $valida =     oci_execute($res_insert);
 
+        //INICIANDO INSERT ITSOLICITACAO_OS 
+        $cons_insert_it = "INSERT INTO dbamv.ITSOLICITACAO_OS itsol
+        SELECT
+          dbamv.SEQ_ITOS.NEXTVAL AS CD_ITSOLICITACAO_OS, 
+          SYSDATE - INTERVAL '15' MINUTE AS HR_FINAL, 
+          SYSDATE - INTERVAL '5' MINUTE AS HR_INICIO, 
+          1 AS VL_TEMPO_GASTO, 
+          (SELECT cdaux.CD_OS_MV FROM portal_check_car.CHAMADOS_DESIGNADOS cdaux WHERE cdaux.CD_CHAMADO_DESIGNADO = $var_chamado) AS CD_OS,
+          (SELECT faux.CD_FUNC FROM dbamv.FUNCIONARIO faux WHERE faux.CD_USUARIO = '$usuario') AS CD_FUNC,
+          11479 AS CD_SERVICO, 
+          NULL AS DS_SERVICO, 
+          10 AS VL_TEMPO_GASTO_MIN, 
+          'S' AS SN_CHECK_LIST, 
+          NULL AS VL_REAL, 
+          NULL AS CD_BEM, 
+          NULL AS VL_REFERENCIA, 
+          NULL AS CD_LEITURA, 
+          1 AS VL_HORA, 
+          NULL AS VL_HORA_EXTRA, 
+          NULL AS VL_EXTRA, 
+          NULL AS VL_EXTRA_MIN, 
+          NULL AS DS_FUNCIONARIO, 
+          NULL AS CD_ITSOLICITACAO_OS_INTEGRA, 
+          NULL AS CD_SEQ_INTEGRA, 
+          NULL AS DT_INTEGRA, 
+          NULL AS CD_ITSOLICITACAO_OS_FILHA, 
+          NULL AS CD_TIPO_PROCEDIMENTO_PLANO
+        FROM DUAL";
+        $res_insert_it = oci_parse($conn_ora, $cons_insert_it);
+        $valida_it =     oci_execute($res_insert);
+
+        //INICIANDO INSERT ITSOLICITACAO_OS 
+        $cons_insert_it = "INSERT INTO dbamv.ITSOLICITACAO_OS itsol
+        SELECT
+          dbamv.SEQ_ITOS.NEXTVAL AS CD_ITSOLICITACAO_OS, 
+          SYSDATE - INTERVAL '15' MINUTE AS HR_FINAL, 
+          SYSDATE - INTERVAL '5' MINUTE AS HR_INICIO, 
+          1 AS VL_TEMPO_GASTO, 
+          (SELECT cdaux.CD_OS_MV FROM portal_check_car.CHAMADOS_DESIGNADOS cdaux WHERE cdaux.CD_CHAMADO_DESIGNADO = $var_chamado) AS CD_OS,
+          (SELECT faux.CD_FUNC FROM dbamv.FUNCIONARIO faux WHERE faux.CD_USUARIO = '$usuario') AS CD_FUNC,
+          11479 AS CD_SERVICO, 
+          NULL AS DS_SERVICO, 
+          10 AS VL_TEMPO_GASTO_MIN, 
+          'S' AS SN_CHECK_LIST, 
+          NULL AS VL_REAL, 
+          NULL AS CD_BEM, 
+          NULL AS VL_REFERENCIA, 
+          NULL AS CD_LEITURA, 
+          1 AS VL_HORA, 
+          NULL AS VL_HORA_EXTRA, 
+          NULL AS VL_EXTRA, 
+          NULL AS VL_EXTRA_MIN, 
+          NULL AS DS_FUNCIONARIO, 
+          NULL AS CD_ITSOLICITACAO_OS_INTEGRA, 
+          NULL AS CD_SEQ_INTEGRA, 
+          NULL AS DT_INTEGRA, 
+          NULL AS CD_ITSOLICITACAO_OS_FILHA, 
+          NULL AS CD_TIPO_PROCEDIMENTO_PLANO
+        FROM DUAL";
+        $res_insert_it = oci_parse($conn_ora, $cons_insert_it);
+        $valida_it = oci_execute($res_insert_it);
+
+         //INICIANDO UPDATE SOLICITACAO_OS 
+         $cons_update_os = "UPDATE dbamv.SOLICITACAO_OS so
+         SET 
+           so.DT_EXECUCAO = SYSDATE + INTERVAL '5' MINUTE,
+           so.TP_SITUACAO = 'C',
+           so.CD_ESPEC = 43,
+           so.DT_ULTIMA_ATUALIZACAO = SYSDATE + INTERVAL '10' MINUTE,
+           so.TP_LOCAL = 'I',
+           so.CD_MOT_SERV = 54,
+           so.SN_RECEBIDA = 'S',
+           so.CD_RESPONSAVEL = '$usuario',
+           so.CD_USUARIO_RECEBE_SOL_SERV = '$usuario',
+           so.DT_USUARIO_RECEBE_SOL_SERV = SYSDATE + INTERVAL '5' MINUTE,
+           so.CD_USUARIO_FECHA_OS = '$usuario',
+           so.DT_USUARIO_FECHA_OS = SYSDATE + INTERVAL '10' MINUTE
+         WHERE so.CD_OS = (SELECT cdaux.CD_OS_MV FROM portal_check_car.CHAMADOS_DESIGNADOS cdaux WHERE cdaux.CD_CHAMADO_DESIGNADO = $var_chamado)";
+         $res_update_os = oci_parse($conn_ora, $cons_update_os);
+         $valida_update_os = oci_execute($res_update_os);
+
                     
         //VALIDACAO
-        if (!$valida) {   
+        if (!$valida && !$valida_it && !$valida_update_os) {   
         
-            $erro = oci_error($res_insert_veiculo);																							
-            $msg_erro = htmlentities($erro['message']);
-            //header("Location: $pag_login");
-            //echo $erro;
-            echo $msg_erro;
+            //$erro = oci_error($res_insert_veiculo);																							
+            //$msg_erro = htmlentities($erro['message']);
+            //echo $msg_erro;
+
+            echo 'Ocorreu um erro';
 
         }else{
 
