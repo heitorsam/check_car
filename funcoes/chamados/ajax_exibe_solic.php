@@ -8,10 +8,10 @@
     @$var_fim = $_GET['global_fim'];
 
     //RECEBENDO VARIAVEL DE DATA
-    $data = $_GET['data1'];
-    $data2 = $_GET['data2'];
-    $setor = $_GET['setor'];
-    $solicitante = $_GET['solicitante'];
+    $data = @$_GET['data1'];
+    $data2 = @$_GET['data2'];
+    $setor = @$_GET['setor'];
+    $solicitante = @$_GET['solicitante'];
 
     $data_format_1 = $data;
     $data_correta1 = date("d/m/Y", strtotime($data_format_1));
