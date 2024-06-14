@@ -20,7 +20,7 @@
 
                                     cd.CD_CHAMADO_DESIGNADO,
 
-                                    (SELECT srv.KM_SAIDA
+                                    (SELECT MAX(srv.KM_SAIDA)
                                      FROM portal_check_car.SAI_RET_VEICULO srv WHERE srv.CD_CHAMADO_DESIGNADO = cd.CD_CHAMADO_DESIGNADO) AS KM_INI_CORRIDA
                                     
                                 FROM portal_check_car.CHAMADOS_DESIGNADOS cd

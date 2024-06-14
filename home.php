@@ -339,7 +339,7 @@ if(isset($row_carro['DS_MODELO'])){
                 }else{
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
+                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!(1)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -394,7 +394,7 @@ if(isset($row_carro['DS_MODELO'])){
                 }else{
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!';
+                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!(2)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -487,7 +487,7 @@ if(isset($row_carro['DS_MODELO'])){
                     }else{
 
                         //MENSAGEM            
-                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!(3)';
                         //var_tp_msg = 'alert-success';
                         var_tp_msg = 'alert-danger';
                         //var_tp_msg = 'alert-primary';
@@ -550,7 +550,7 @@ if(isset($row_carro['DS_MODELO'])){
 
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!';
+                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!(4)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
