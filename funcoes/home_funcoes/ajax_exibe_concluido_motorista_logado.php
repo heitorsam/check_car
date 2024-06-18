@@ -20,7 +20,7 @@
                                             ON usu.CD_USUARIO = sol.NM_USUARIO
                                         WHERE sol.CD_OS = cd.CD_OS_MV) AS NM_SOLICITANTE,
                                     cd.CD_CHAMADO_DESIGNADO,
-                                    (SELECT (SELECT vei.DS_MODELO FROM portal_check_car.VEICULO vei WHERE vei.CD_VEICULO = srv.CD_VEICULO) 
+                                    (SELECT MAX((SELECT vei.DS_MODELO FROM portal_check_car.VEICULO vei WHERE vei.CD_VEICULO = srv.CD_VEICULO)) 
                                     FROM portal_check_car.SAI_RET_VEICULO srv 
                                     WHERE srv.CD_CHAMADO_DESIGNADO = cd.CD_CHAMADO_DESIGNADO) AS NM_VEICULO
                           

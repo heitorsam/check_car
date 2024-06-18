@@ -59,14 +59,14 @@
 
     if($var_km < $variavel_KM_INI){
 
-        $mensagem = 'KM_INI';
+        $mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
         echo $mensagem;
 
 
     }elseif($var_km > $variavel_KM_FIN){
 
 
-        $mensagem = 'KM_FIN';
+        $mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
         echo $mensagem;
 
     }elseif($var_km >= $variavel_KM_INI &&  $var_km <= $variavel_KM_FIN){
