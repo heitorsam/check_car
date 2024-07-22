@@ -73,7 +73,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             <button onclick="ajax_cadastra_item('1')" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>

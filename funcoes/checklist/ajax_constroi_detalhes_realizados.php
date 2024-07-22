@@ -65,7 +65,8 @@ $cons_realizados = "SELECT * FROM (
                     $cons_realizados .= "AND res.CD_USUARIO_CADASTRO = '$usuario'";
 
                 }
-               
+
+//echo $cons_realizados;
 
 $res_realizados = oci_parse ($conn_ora, $cons_realizados);
                   oci_execute($res_realizados);
@@ -90,7 +91,7 @@ while($row_realizados = oci_fetch_array($res_realizados)){
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
       </div>
     </div>
   </div>

@@ -14,18 +14,29 @@
                         (SELECT usu.NM_USUARIO FROM dbasgu.USUARIOS usu WHERE usu.CD_USUARIO = sol.NM_SOLICITANTE) AS NM_USUARIO_SOLICITANTE,
                         (SELECT loc. DS_LOCALIDADE FROM dbamv.LOCALIDADE loc WHERE loc.CD_LOCALIDADE = sol.CD_LOCALIDADE) AS NM_LOCALIDADE
                     FROM dbamv.SOLICITACAO_OS sol
-                    --WHERE sol.CD_OFICINA = 34
                     WHERE sol.CD_OFICINA = 9
-                    --AND sol.DT_PEDIDO >= SYSDATE - 7
                     AND sol.CD_MULTI_EMPRESA = 1
-                    AND sol.TP_SITUACAO = 'S'
+                    --AND sol.TP_SITUACAO = 'S'
                     AND sol.CD_OS = $var_os";
+
+    //echo $cons_modal_os;
 
     $res_modal_os = oci_parse($conn_ora, $cons_modal_os);
                     oci_execute($res_modal_os);
     $row = oci_fetch_array($res_modal_os);
 
 ?>
+
+<div class="fnd_azul">OS</div>
+<div class="row">
+
+    <div class="col-md-12">
+        <input readonly type="text" class="form form-control" value="<?php echo $row['CD_OS']; ?>">
+    </div>
+    
+</div>
+
+<div class="div_br"> </div>
 
 <div class="fnd_azul">Localidade</div>
 <div class="row">

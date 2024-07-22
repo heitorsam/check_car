@@ -12,6 +12,6 @@
 ?>
 <script>
 
-    $(".alert").delay(6000).fadeOut(1200);
+    $(".alert").delay(10000).fadeOut(1200);
 
 </script>

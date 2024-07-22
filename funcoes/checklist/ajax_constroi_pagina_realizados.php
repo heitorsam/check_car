@@ -22,7 +22,7 @@
     <div class="col-md-3 col-12" style="background-color: #f9f9f9 !important;">
 
         Veiculo:
-        <select class="form-control" id="veiculo_realizados">
+        <select class="form-control" id="veiculo_realizados" onchange="ajax_constroi_realizados()">
 
             <option value="">Selecione</option>
             

@@ -49,8 +49,7 @@
                     AND so.CD_OS NOT IN (SELECT rt.CD_OS FROM portal_check_car.RATEIO rt)) tot
               
      GROUP BY tot.CD_SETOR, tot.NM_SETOR
-     
-     
+          
      UNION ALL
      
      SELECT tot.CD_SETOR, tot.NM_SETOR,
@@ -89,6 +88,8 @@
     ) res
     GROUP BY res.CD_SETOR, res.NM_SETOR 
     ORDER BY res.NM_SETOR ASC";
+
+    //echo $cons_abas;
 
     $res_abas = oci_parse($conn_ora, $cons_abas);
                 oci_execute($res_abas);

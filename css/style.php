@@ -1249,6 +1249,46 @@ border-radius: 5px;
     
 }
 
+#loadButton {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.loading-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.loading-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+#loadingDots {
+    font-weight: bold;
+}
+
 
 </style>
 

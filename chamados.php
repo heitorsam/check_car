@@ -66,7 +66,7 @@ include 'acesso_restrito.php';
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
 
                 </div>
             </div>
@@ -91,9 +91,9 @@ include 'acesso_restrito.php';
             <div id="mensagem_updates_indica"></div>
 
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()">Designar</button>
+        <div class="modal-footer">           
+            <button type="button" class="btn btn-primary" onclick="ajax_insert_lib_mot()"><i class="fa-solid fa-check"></i> Designar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
         </div>
         </div>
     </div>
@@ -118,7 +118,7 @@ include 'acesso_restrito.php';
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             <button type="button" class="btn btn-primary" onclick="ajax_update_motorista()" >Designar</button>
         </div>
         </div>
@@ -146,7 +146,7 @@ include 'acesso_restrito.php';
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
 
             </div>
         </div>

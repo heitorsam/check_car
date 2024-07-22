@@ -51,13 +51,13 @@
     <?php
                 echo '<div class="lista_home_itens_concluido" style="cursor:pointer;">';
 
-                    echo '<div class="mini_caixa_chamado"><b>OS ' . $row_table['CD_OS_MV'] . '</b></div>';
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado"><b>OS ' . $row_table['CD_OS_MV'] . '</b></div>';
 
-                    echo '<div class="mini_caixa_chamado">' . $row_table['HR_DESIGNACAO'] . '</div>';  
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado">' . $row_table['HR_DESIGNACAO'] . '</div>';  
 
-                    echo '<div class="mini_caixa_chamado">' . $row_table['NM_SOLICITANTE'] . '</div>';
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado">' . $row_table['NM_SOLICITANTE'] . '</div>';
 
-                    echo '<div class="mini_caixa_chamado"><i class="fa-solid fa-car"></i> ' . $row_table['NM_VEICULO'] . '</div>';
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado"><i class="fa-solid fa-car"></i> ' . $row_table['NM_VEICULO'] . '</div>';
                     
                     echo '<div style="clear: both;"></div>';
 

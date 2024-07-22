@@ -188,11 +188,10 @@ if(isset($row_carro['DS_MODELO'])){
 
                  <div id="saida_veiculo"></div>
 
-                 <div id="mensagem_return"></div>
-
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="ajax_motorista_preenche_s_r_veiculo()" >Iniciar</button>
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-primary" onclick="ajax_motorista_preenche_s_r_veiculo()" ><i class="fa-solid fa-check"></i> Iniciar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             </div>
             </div>
         </div>
@@ -219,11 +218,10 @@ if(isset($row_carro['DS_MODELO'])){
 
                 <div id="retorno_corrida_veiculo"></div>
 
-                <div id="mensagem_teste"></div>
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="ajax_finaliza_updates_sistema_checkcar()">Finalizar</button>
+                <button type="button" class="btn btn-primary" onclick="ajax_finaliza_updates_sistema_checkcar()"><i class="fa-solid fa-check"></i> Finalizar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             </div>
             </div>
         </div>
@@ -250,14 +248,14 @@ if(isset($row_carro['DS_MODELO'])){
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="mensagem_acoes"></div>
+    <div id="mensagem_acoes" style="position: fixed; z-index: 2000; !important;"></div>
     
 
 <script>   
@@ -282,6 +280,10 @@ if(isset($row_carro['DS_MODELO'])){
     }
 
     function ajax_motorista_preenche_s_r_veiculo() {
+
+        console.log('ajax_motorista_preenche_s_r_veiculo');
+
+        carrega_load_carro();
 
         js_veiculo = document.getElementById('veiculo_saida').value;
         js_km = document.getElementById('km').value;
@@ -308,24 +310,15 @@ if(isset($row_carro['DS_MODELO'])){
 
                 console.log(dataResult);
 
-                if(dataResult == 'KM_INI'){
+                if(dataResult != 'Sucesso'){
 
-                     //MENSAGEM            
-                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    //MENSAGEM            
+                    //var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                    var_ds_msg = dataResult;
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
-                    $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                }else if(dataResult == 'KM_FIN'){
-
-                     //MENSAGEM            
-                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_return').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                    $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
 
                 }else if(dataResult == 'Sucesso'){
@@ -339,7 +332,7 @@ if(isset($row_carro['DS_MODELO'])){
                 }else{
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!(1)';
+                    var_ds_msg = 'Erro%20generico%20ao%20iniciar%20corrida!(1)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -352,11 +345,14 @@ if(isset($row_carro['DS_MODELO'])){
 
         });  
 
+        finaliza_load_carro();
+
 
     }
 
-
     function ajax_motorista_recebe_designacao(chamado, os, usuario, motorista){
+
+        carrega_load_carro();
 
         js_global_chamado = chamado;
         js_global_os = os;
@@ -394,7 +390,7 @@ if(isset($row_carro['DS_MODELO'])){
                 }else{
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20iniciar%20corrida!(2)';
+                    var_ds_msg = 'Erro%20generico%20ao%20iniciar%20corrida!(2)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -410,6 +406,7 @@ if(isset($row_carro['DS_MODELO'])){
 
         });  
 
+        finaliza_load_carro();
 
     }
 
@@ -432,6 +429,8 @@ if(isset($row_carro['DS_MODELO'])){
     }
 
     function ajax_finaliza_updates_sistema_checkcar(){
+
+        carrega_load_carro();
 
         js_global_km_ini;
         js_global_chamado_fim;
@@ -457,24 +456,15 @@ if(isset($row_carro['DS_MODELO'])){
 
                     console.log(dataResult);
 
-                    if(dataResult == 'KM_INI'){
+                    if(dataResult != 'Sucesso'){
 
-                    //MENSAGEM            
-                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_teste').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
-
-
-                    }else if(dataResult == 'KM_FIN'){
-
-                    //MENSAGEM            
-                     var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
-                    //var_tp_msg = 'alert-success';
-                    var_tp_msg = 'alert-danger';
-                    //var_tp_msg = 'alert-primary';
-                    $('#mensagem_teste').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+                        //MENSAGEM            
+                        //var_ds_msg = 'Erro%20ao%20iniciar%20corrida%20informe%20um%20km%20valido!';
+                        var_ds_msg = dataResult;
+                        //var_tp_msg = 'alert-success';
+                        var_tp_msg = 'alert-danger';
+                        //var_tp_msg = 'alert-primary';
+                        $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
 
                     }else if(dataResult == 'Sucesso'){
@@ -482,12 +472,11 @@ if(isset($row_carro['DS_MODELO'])){
                         $('#retorno_veiculo').modal('hide');
 
                         ajax_motorista_conclui_designacao(js_global_chamado_fim, js_global_os_fim, js_global_usuario_fim, js_global_km_ini);
-
                     
                     }else{
 
                         //MENSAGEM            
-                        var_ds_msg = 'Erro%20ao%20finalizar%20corrida!(3)';
+                        var_ds_msg = 'Erro%20generico%20ao%20finalizar%20corrida!(3)';
                         //var_tp_msg = 'alert-success';
                         var_tp_msg = 'alert-danger';
                         //var_tp_msg = 'alert-primary';
@@ -504,13 +493,13 @@ if(isset($row_carro['DS_MODELO'])){
 
             }); 
             
-            
-
+        finaliza_load_carro();
 
     }
 
-
     function ajax_motorista_conclui_designacao(chamado, os, usuario, km_saida){
+
+        carrega_load_carro();
 
         js_chamado = chamado;
         js_os = os;
@@ -550,7 +539,7 @@ if(isset($row_carro['DS_MODELO'])){
 
 
                     //MENSAGEM            
-                    var_ds_msg = 'Erro%20ao%20finalizar%20corrida!(4)';
+                    var_ds_msg = 'Erro%20generico%20ao%20finalizar%20corrida!(4)';
                     //var_tp_msg = 'alert-success';
                     var_tp_msg = 'alert-danger';
                     //var_tp_msg = 'alert-primary';
@@ -567,9 +556,9 @@ if(isset($row_carro['DS_MODELO'])){
 
         }); 
 
-    }
+        finaliza_load_carro();
 
-  
+    } 
 
     window.onload = function(){
 
@@ -595,8 +584,6 @@ if(isset($row_carro['DS_MODELO'])){
         $('#chamados_recebidos_pendentes').load('funcoes/home_funcoes/ajax_exibe_pendentes_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
     }
-
-
     
     function ajax_exibe_andamento_motorista_logado(){
 
@@ -605,9 +592,7 @@ if(isset($row_carro['DS_MODELO'])){
         $('#chamados_recebidos_andamanto').load('funcoes/home_funcoes/ajax_exibe_andamento_motorista_logado.php?js_usuario_logado='+js_usuario_logado);
 
     }
-    
-
-        
+            
     function ajax_exibe_concluido_motorista_logado(){
 
         var js_usuario_logado = '<?php echo $var_usuario; ?>';
@@ -618,21 +603,16 @@ if(isset($row_carro['DS_MODELO'])){
 
     function ajax_exite_det_os(os){
 
+        console.log('ajax_exite_det_os, valor os:', os);
+
         os_mv = os;
 
         $('#detalhe_os_modal_home').modal('show')
         $('#detalhe_os_home').load('funcoes/home_funcoes/ajax_modal_detalhe_os_home.php?os_mv='+os_mv);
 
-
-
-
     }
 
-
-
 </script>
-
-
 
 <?php
     //RODAPE

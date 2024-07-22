@@ -95,7 +95,7 @@ include 'acesso_restrito.php';
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
                 <button onclick="ajax_insert_tabela_cor('1'), ajax_fecha_modal()"type="button" class="btn btn-primary">Cadastrar</button>
             </div>
             </div>

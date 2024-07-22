@@ -48,15 +48,17 @@
 
     if($var_km < $variavel_KM_INI){
 
-        $mensagem = 'KM_INI';
-        echo $mensagem;
+        //$mensagem = 'KM_INI';
+        //echo $mensagem;
 
+        echo 'Erro,%20o%20km%20deve%20estar%20entre%20' . number_format($variavel_KM_INI, 0, ',', '.') . '%20e%20' . number_format($variavel_KM_FIN, 0, ',', '.');
 
     }elseif($var_km > $variavel_KM_FIN){
 
+        //$mensagem = 'KM_FIN';
+        //echo $mensagem;
 
-        $mensagem = 'KM_FIN';
-        echo $mensagem;
+        echo 'Erro,%20o%20km%20deve%20estar%20entre%20' . number_format($variavel_KM_INI, 0, ',', '.') . '%20e%20' . number_format($variavel_KM_FIN, 0, ',', '.');
 
     }elseif($var_km >= $variavel_KM_INI &&  $var_km <= $variavel_KM_FIN){
         
@@ -77,38 +79,22 @@
                         NULL AS HR_ULT_ALT
                         FROM DUAL";
         $res_insert = oci_parse($conn_ora, $cons_insert);
-        $valida =     oci_execute($res_insert);
+        $valida = oci_execute($res_insert);
 
-        //INICIANDO INSERT ITSOLICITACAO_OS 
-        $cons_insert_it = "INSERT INTO dbamv.ITSOLICITACAO_OS itsol
-        SELECT
-          dbamv.SEQ_ITOS.NEXTVAL AS CD_ITSOLICITACAO_OS, 
-          SYSDATE - INTERVAL '15' MINUTE AS HR_FINAL, 
-          SYSDATE - INTERVAL '5' MINUTE AS HR_INICIO, 
-          1 AS VL_TEMPO_GASTO, 
-          (SELECT cdaux.CD_OS_MV FROM portal_check_car.CHAMADOS_DESIGNADOS cdaux WHERE cdaux.CD_CHAMADO_DESIGNADO = $var_chamado) AS CD_OS,
-          (SELECT faux.CD_FUNC FROM dbamv.FUNCIONARIO faux WHERE faux.CD_USUARIO = '$usuario' AND faux.SN_ATIVO = 'A') AS CD_FUNC,
-          11479 AS CD_SERVICO, 
-          NULL AS DS_SERVICO, 
-          10 AS VL_TEMPO_GASTO_MIN, 
-          'S' AS SN_CHECK_LIST, 
-          NULL AS VL_REAL, 
-          NULL AS CD_BEM, 
-          NULL AS VL_REFERENCIA, 
-          NULL AS CD_LEITURA, 
-          1 AS VL_HORA, 
-          NULL AS VL_HORA_EXTRA, 
-          NULL AS VL_EXTRA, 
-          NULL AS VL_EXTRA_MIN, 
-          NULL AS DS_FUNCIONARIO, 
-          NULL AS CD_ITSOLICITACAO_OS_INTEGRA, 
-          NULL AS CD_SEQ_INTEGRA, 
-          NULL AS DT_INTEGRA, 
-          NULL AS CD_ITSOLICITACAO_OS_FILHA, 
-          NULL AS CD_TIPO_PROCEDIMENTO_PLANO
-        FROM DUAL";
-        $res_insert_it = oci_parse($conn_ora, $cons_insert_it);
-        $valida_it =     oci_execute($res_insert);
+        ///////////////////////////
+        ///////////////////////////
+        //AQUI FAZ O UPDATE DO KM//
+        ///////////////////////////
+        ///////////////////////////
+
+        //INICIANDO UPDATE KM
+        $cons_update_km = "UPDATE portal_check_car.veiculo vc
+                           SET vc.KM = '$var_km'
+                           WHERE vc.CD_VEICULO = $var_veiculo";
+
+        $res_update_km = oci_parse($conn_ora, $cons_update_km);
+        $valida_update_km = oci_execute($res_update_km);
+        
 
         //INICIANDO INSERT ITSOLICITACAO_OS 
         $cons_insert_it = "INSERT INTO dbamv.ITSOLICITACAO_OS itsol

@@ -33,7 +33,7 @@ include 'acesso_restrito.php';
 
             <div class="col-md-2 esconde">
 
-                Login Mv:
+                Login MV:
                 <input type="text" onchange="ajax_constroi_nome('1')" name="usu_mv" id="usu_mv" class="form form-control" placeholder="Informe o Usuário MV">
 
             </div>
@@ -109,7 +109,7 @@ include 'acesso_restrito.php';
 
                         <div class="col-md-3">
 
-                            Login Mv:
+                            MV:
                             <input onchange="ajax_constroi_nome('2')" type="text" name="usu_mv" id="usu_mv_mob" class="form form-control" placeholder="Informe o Usuário MV">
 
                         </div>
@@ -162,7 +162,7 @@ include 'acesso_restrito.php';
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
                     <button onclick="ajax_insert_form_motorista('1')" type="button" class="btn btn-primary">Cadastrar</button>
                 </div>
             </div>
@@ -195,7 +195,7 @@ include 'acesso_restrito.php';
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
 
                 </div>
             </div>

@@ -11,7 +11,7 @@
     $usuario = $_SESSION['usuarioLogin'];
 
     //CHAMANDO CONSULTA
-    $cons_setor = "SELECT st.CD_SETOR, st.NM_SETOR 
+    $cons_setor = "SELECT st.CD_SETOR,st.NM_SETOR || ' (COD. ' || st.CD_SETOR || ')' AS NM_SETOR
                    FROM dbamv.SETOR st
                    WHERE st.SN_ATIVO = 'S'
                    ORDER BY st.NM_SETOR";

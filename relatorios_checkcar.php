@@ -59,7 +59,7 @@ include 'acesso_restrito.php';
                 <div id="det_sai_ret"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             </div>
             </div>
         </div>
@@ -374,7 +374,7 @@ include 'acesso_restrito.php';
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             <button type="button"  id="ratearBtn"  class="btn btn-primary" onclick="ajax_insert_rateio()">Ratear</button>
         </div>
         </div>

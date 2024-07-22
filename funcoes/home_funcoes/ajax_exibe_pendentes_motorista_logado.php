@@ -25,7 +25,11 @@
                                 INNER JOIN portal_check_car.USUARIO usu
                                 ON usu.CD_USUARIO = cd.CD_MOTORISTA
                                 WHERE usu.CD_USUARIO_MV = '$var_logado'
+                                AND (SELECT solaux.TP_SITUACAO
+                                    FROM dbamv.SOLICITACAO_OS solaux
+                                    WHERE solaux.CD_OS = cd.CD_OS_MV) = 'S'                                     
                                 AND cd.TP_STATUS_CHAMADO = 'D'";
+                                
     $res_pendentes = oci_parse($conn_ora, $cons_usuario_pendentes);
     oci_execute($res_pendentes);
 
@@ -48,12 +52,12 @@
 
                     echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado"><b>OS ' . $row_table['CD_OS_MV'] . '</b></div>';
 
-                    echo '<div class="mini_caixa_chamado">' . $row_table['HR_DESIGNACAO'] . '</div>';  
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado">' . $row_table['HR_DESIGNACAO'] . '</div>';  
     ?>
                     <div onclick="ajax_alert('Deseja começar esta corrida?','ajax_abre_modal_inicio(<?php echo $row_table['CD_CHAMADO_DESIGNADO']; ?>,<?php echo $row_table['CD_OS_MV']; ?>,\'<?php echo $row_table['CD_USUARIO_MV']; ?>\',<?php echo $row_table['CD_MOTORISTA']; ?>)')" class="mini_caixa_chamado" style="position: relative; float: right;"><i style="color: #ff7070;" class="fa-solid fa-play"></i></div>
 
     <?php
-                    echo '<div class="mini_caixa_chamado">' . $row_table['NM_SOLICITANTE'] . '</div>';
+                    echo '<div onclick="ajax_exite_det_os('. $row_table['CD_OS_MV'] .')" class="mini_caixa_chamado">' . $row_table['NM_SOLICITANTE'] . '</div>';
                     
                     echo '<div style="clear: both;"></div>';
 

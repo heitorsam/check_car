@@ -44,7 +44,6 @@ if(isset($row['BLOB_FOTO'])){
 
 }
 
-
 $cons_tabela_carro = "SELECT vc.*, cor.DS_RGB
                       FROM portal_check_car.CHECKLIST ck
                       INNER JOIN portal_check_car.VEICULO vc
@@ -77,6 +76,7 @@ if(isset($row_carro['DS_MODELO'])){
 
 @$carro_placa = $row_carro['DS_PLACA'];
 @$carro_rgb = $row_carro['DS_RGB'];
+@$carro_km = number_format($row_carro['KM'], 0, ',', '.');
 
 ?>
 
@@ -157,6 +157,11 @@ if(isset($row_carro['DS_MODELO'])){
                     <div class="menu_azul_claro" style="border-right: solid 1px rgba(255,255,255,0.40); cursor: pointer;">
                         <li class="nav-item">
                         <h10><a class="nav-link" href="check_list.php"><i style="color: <?php echo $carro_rgb; ?>; text-shadow: 0.40px 0.40px white;" class="fa-solid fa-car-side fa-flip-horizontal"></i> <?php echo $carro_modelo . ' ' . $carro_placa; ?></a></h10>
+                        </li>
+                    </div>
+                    <div class="menu_azul_claro" style="border-right: solid 1px rgba(255,255,255,0.40); cursor: pointer;">
+                        <li class="nav-item">
+                        <h10><a class="nav-link"><i class="fas fa-tachometer-alt"></i> <?php echo $carro_km . ' KM' ?></a></h10>
                         </li>
                     </div>
                     <div class="menu_azul_claro" style="cursor: pointer;">
@@ -311,7 +316,7 @@ if(isset($row_carro['DS_MODELO'])){
 
                     ?>
                     <div>
-                        
+
                         <a class="nav-link" href="check_list.php" style="font-size: 25px;"><i style="color: <?php echo $carro_rgb; ?>; text-shadow: 0.40px 0.40px white;" class="fa-solid fa-car-side fa-flip-horizontal"></i> <?php echo $carro_modelo . ' ' . $carro_placa; ?></a>
 
                     </div>
@@ -329,6 +334,8 @@ if(isset($row_carro['DS_MODELO'])){
                     }
 
                     ?>
+
+                    <a class="nav-link" style="font-size: 25px; color: #ffffff;"><i style="color: #ffffff; text-shadow: 0.40px 0.40px white;" class="fas fa-tachometer-alt"></i> <?php echo $carro_km . ' KM' ?></a>
 
                     <div class="div_br"> </div>
 
@@ -382,7 +389,7 @@ if(isset($row_carro['DS_MODELO'])){
 
     </header>
     <main>
-
+            
         <div class="conteudo">
             <div class="container">
 

@@ -204,7 +204,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Fechar</button>
             <button onclick="ajax_insert_veiculo('1'), ajax_fecha_modal()" type="button" class="btn btn-primary">Cadastrar</button>
         </div>
         </div>
@@ -437,7 +437,7 @@ $res_cons_tabela_cor = oci_parse($conn_ora, $cons_tabela_cor);
         }
 
 
-        //DELETAR VEICULO
+        //INATIVAR VEICULO
         function ajax_inativa_veiculo(cd_veiculo, status){
                 
                 $.ajax({

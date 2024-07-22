@@ -56,6 +56,13 @@
 
     </footer>
 
+    <div id="overlay" class="overlay" style="position: fixed; z-index: 2000; !important;">
+        <div class="loading-content">
+            <i class="fas fa-car-side loading-icon"></i>
+            <p class="loading-text">Carregando<span id="loadingDots"></span></p>
+        </div>
+    </div>
+
     <!--POPPER-->    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -74,5 +81,40 @@
  if(navigator.userAgent.match(/Android/i)){
     window.scrollTo(0,1);
  }
+
+
+    function carrega_load_carro(){
+
+        console.log('chamou carrega_load_carro');
+
+        document.getElementById('overlay').style.display = 'block';
+        let dots = '';
+        let count = 0;
+        const loadingDots = document.getElementById('loadingDots');
+        
+        const interval = setInterval(() => {
+            dots = '.'.repeat(count % 4);
+            loadingDots.textContent = dots;
+            count++;
+        }, 500);
+        
+        /*
+        setTimeout(() => {
+            finaliza_load_carro();
+        }, 5000);
+        */
+        
+    };
+
+    function finaliza_load_carro(){
+
+        console.log('chamou finaliza_load_carro');
+
+        setTimeout(() => {
+            document.getElementById('overlay').style.display = 'none';
+        }, 5000);       
+        
+    };
+
 
 </script>

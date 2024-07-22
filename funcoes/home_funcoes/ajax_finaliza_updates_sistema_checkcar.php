@@ -59,17 +59,41 @@
 
     if($var_km < $variavel_KM_INI){
 
-        $mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
-        echo $mensagem;
+        //$mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
+        //echo $mensagem;
 
+        //$mensagem = 'KM_INI';
+        //echo $mensagem;
+
+        echo 'Erro,%20o%20km%20deve%20estar%20entre%20' . number_format($variavel_KM_INI, 0, ',', '.') . '%20e%20' . number_format($variavel_KM_FIN, 0, ',', '.');
 
     }elseif($var_km > $variavel_KM_FIN){
+        
 
+        //$mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
+        //echo $mensagem;
 
-        $mensagem = 'valor ' . $var_km  . ' deve estar entre ' . $variavel_KM_INI . ' - ' . $variavel_KM_FIN;
-        echo $mensagem;
+        //$mensagem = 'KM_INI';
+        //echo $mensagem;
+
+        echo 'Erro,%20o%20km%20deve%20estar%20entre%20' . number_format($variavel_KM_INI, 0, ',', '.') . '%20e%20' . number_format($variavel_KM_FIN, 0, ',', '.');
+
 
     }elseif($var_km >= $variavel_KM_INI &&  $var_km <= $variavel_KM_FIN){
+
+        ///////////////////////////
+        ///////////////////////////
+        //AQUI FAZ O UPDATE DO KM//
+        ///////////////////////////
+        ///////////////////////////
+
+        //INICIANDO UPDATE KM
+        $cons_update_km = "UPDATE portal_check_car.veiculo vc
+                           SET vc.KM = '$var_km'
+                           WHERE vc.CD_VEICULO = $veiculo";
+
+        $res_update_km = oci_parse($conn_ora, $cons_update_km);
+        $valida_update_km = oci_execute($res_update_km);
 
         $cons_update_sai_ret = "UPDATE
                                 portal_check_car.SAI_RET_VEICULO srv

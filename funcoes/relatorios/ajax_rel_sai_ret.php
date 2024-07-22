@@ -48,6 +48,8 @@
                     ) ttt
                     ORDER BY ttt.HR_SAIDA";
 
+    //echo $consulta_rel;
+
     $res_rel = oci_parse($conn_ora, $consulta_rel);
                oci_execute($res_rel);
 
