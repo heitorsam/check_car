@@ -18,7 +18,7 @@
             
         </br>
         <button onclick="ajax_constroi_km_setor()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
-        <button onclick="ajax_emite_excel_abas()" class='btn btn-primary'><i class="fa-solid fa-file-excel"></i></button>
+        <button onclick="ajax_emite_excel_km_setor()" class='btn btn-primary'><i class="fa-solid fa-file-excel"></i></button>
 
     </div>
 

@@ -17,7 +17,8 @@
     $cons_abastecimento = "INSERT INTO portal_check_car.ABASTECIMENTO
                            SELECT 
                            portal_check_car.SEQ_CD_ABASTECIMENTO.NEXTVAL AS CD_ABASTECIMENTO,
-                           $var_cd_veiculo AS CD_VEICULO,     
+                           $var_cd_veiculo AS CD_VEICULO,
+                           0 AS DS_KM,       
                            '$var_litro_abastecimento' AS DS_LITROS,        
                            '$var_valor_abastecimento' AS DS_VALOR,        
                            '$usuario' AS CD_USUARIO_CADASTRO,  
@@ -26,6 +27,9 @@
                            NULL AS HR_ULT_ALT         
                            
                            FROM DUAL";
+
+    //echo $cons_abastecimento;
+
     $res_abastecimento = oci_parse($conn_ora, $cons_abastecimento);
                $valida = oci_execute($res_abastecimento);
 

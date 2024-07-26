@@ -327,6 +327,68 @@ include 'acesso_restrito.php';
 
         }
 
+        function ajax_emite_excel_km_setor(){
+
+            var data_inicial = document.getElementById('data_abas_1').value;
+            var data_final = document.getElementById('data_abas_2').value;
+
+            if(data_inicial == ''){
+
+                //MENSAGEM            
+                var_ds_msg = 'Selecione%20uma%20data!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+            }else if(data_final == ''){
+
+                //MENSAGEM            
+                var_ds_msg = 'Selecione%20uma%20data!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+            }else{
+
+                window.location.href = 'funcoes/relatorios/excel/gera_excel_km_setor.php?dt_ini='+ data_inicial + '&dt_fim=' + data_final;
+
+            }
+
+        }
+
+        function ajax_emite_excel_consumo(){
+
+            var data_inicial = document.getElementById('data_abas_1').value;
+            var data_final = document.getElementById('data_abas_2').value;
+
+            if(data_inicial == ''){
+
+                //MENSAGEM            
+                var_ds_msg = 'Selecione%20uma%20data!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+            }else if(data_final == ''){
+
+                //MENSAGEM            
+                var_ds_msg = 'Selecione%20uma%20data!';
+                //var_tp_msg = 'alert-success';
+                var_tp_msg = 'alert-danger';
+                //var_tp_msg = 'alert-primary';
+                $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
+
+            }else{
+
+                window.location.href = 'funcoes/relatorios/excel/gera_excel_consumo.php?dt_ini='+ data_inicial + '&dt_fim=' + data_final;
+
+            }
+
+        }
+
         function ajax_rateio_modal(os,sn_rateio){
 
             var js_os_mv = os;

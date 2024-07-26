@@ -149,26 +149,27 @@
 
                         //alert(var_beep);
                         //MENSAGEM            
-                        var_ds_msg = 'Abastecimento%20Cadastrado%20com%20sucesso!';
+                        var_ds_msg = 'Abastecimento%20Cadastrado%20com%20Sucesso!';
                         var_tp_msg = 'alert-success';
                         //var_tp_msg = 'alert-danger';
                         //var_tp_msg = 'alert-primary';
                         $('#mensagem_acoes').load('config/mensagem/ajax_mensagem_acoes.php?ds_msg='+var_ds_msg+'&tp_msg='+var_tp_msg);
 
-                        document.getElementById('cd_veiculo').value = 'All';
-                        document.getElementById('km_abastacimento').value = '';
+                        //document.getElementById('cd_veiculo').value = 'All';
+                        //document.getElementById('km_abastacimento').value = '';
+
                         document.getElementById('litro_abastacimento').value = '';
                         document.getElementById('valor_abastacimento').value = '';
 
-                        document.getElementById('model').value = '';
-                        document.getElementById('placa').value = '';
-                        document.getElementById('Motorista').value = '';
+                        //document.getElementById('model').value = '';
+                        //document.getElementById('placa').value = '';
+                        //document.getElementById('Motorista').value = '';
 
                         }else{
 
 
                         //MENSAGEM            
-                        var_ds_msg = 'Erro%20ao%20Cadastrar%20abastecimento!';
+                        var_ds_msg = 'Erro%20ao%20Cadastrar%20Abastecimento!';
                         //var_tp_msg = 'alert-success';
                         var_tp_msg = 'alert-danger';
                         //var_tp_msg = 'alert-primary';

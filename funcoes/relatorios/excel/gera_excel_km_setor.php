@@ -1,12 +1,16 @@
 <?php
 
-    //CHAMANDO CONEXÃO
-    include '../../conexao.php';
+    header("Content-Type: application/vnd.ms-excel; charset=utf-8");
+    header("Content-Disposition: attachment; filename=km_setor.xls");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    header("Cache-Control: private",false);
+
+    include '../../../conexao.php';
 
     //RECEBENDO VARIAVEL
-    $data_ini = $_GET['data1'];
-    $data_fim = $_GET['data2'];
-    //$pesquisa = $_GET['pesquisa'];
+    $data_ini = $_GET['dt_ini'];
+
+    $data_fim = $_GET['dt_fim'];
 
     $data_format_1 = $data_ini;
     $data_format_2 = $data_fim;
@@ -15,9 +19,7 @@
 
     $fim_date = date("d/m/Y", strtotime($data_format_2));
 
-
-    //INICIANDO CONSULTA
-    $cons_abas = "SELECT 0 AS CD_SETOR, 'Total' AS NM_SETOR, SUM(res.QTD_KM_TOTAL) AS QTD_KM_TOTAL
+    $consulta_rel = "SELECT 0 AS CD_SETOR, 'Total' AS NM_SETOR, SUM(res.QTD_KM_TOTAL) AS QTD_KM_TOTAL
     FROM (
     
     SELECT tot.CD_SETOR, tot.NM_SETOR, 'SEM RATEIO' AS TIPO, SUM(DIFERENCA_KM_RODADO) AS QTD_KM_TOTAL
@@ -163,50 +165,40 @@
     GROUP BY res.CD_SETOR, res.NM_SETOR 
     ORDER BY res.NM_SETOR ASC ) dados";
 
-    //echo $cons_abas;
+    $res_rel = oci_parse($conn_ora, $consulta_rel);
+               oci_execute($res_rel);
 
-    $res_abas = oci_parse($conn_ora, $cons_abas);
-                oci_execute($res_abas);
-                
+
 ?>
 
-<div class="div_br"></div>
-<div class="div_br"></div>
+<table class="table table-striped" cellspacing="0" cellpadding="0">
 
-<table class='table table-striped' style='text-align: center'>
-
-        <thead>
-
+    <tr>
             <th style="text-align: center; border: solid 2px #3185c1;" >Código</th> 
             <th style="text-align: center; border: solid 2px #3185c1;" >Setor</th>
             <th style="text-align: center; border: solid 2px #3185c1;" >KM</th>
-            <!--<th style="text-align: center; border: solid 2px #3185c1;" >Opções</th>-->
 
-            
-        </thead>
 
-        <tbody>
-       
+    </tr>
+
+    <tbody>
+
         <?php
 
-            while($row = @oci_fetch_array($res_abas)){
+            while($row = oci_fetch_array($res_rel)){
 
                 echo '<tr>';
+                   
+                echo '<td class="align-middle">'  .  $row['CD_SETOR'] . '</td>';
+                echo '<td class="align-middle">'  .  $row['NM_SETOR'] . '</td>';
+                echo '<td class="align-middle">'  .  $row['QTD_KM_TOTAL'] . '</td>';
 
-                    echo '<td class="align-middle">'  .  $row['CD_SETOR'] . '</td>';
-                    echo '<td class="align-middle">'  .  $row['NM_SETOR'] . '</td>';
-                    echo '<td class="align-middle">'  .  $row['QTD_KM_TOTAL'] . '</td>';
-                    //echo '<td class="align-middle">'  .  'Botão aqui' .  '</td>';
-              
-                
                 echo '</tr>';
-
                 
             }
 
-
         ?>
 
-        </tbody>
+    </tbody>
 
-    </table>
+</table>

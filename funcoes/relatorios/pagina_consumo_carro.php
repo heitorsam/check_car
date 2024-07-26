@@ -18,7 +18,7 @@
             
         </br>
         <button onclick="ajax_abas_consumo_carro()" class='btn btn-primary'><i class="fa-solid fa-magnifying-glass"></i></button>
-        <button onclick="ajax_emite_excel_abas()" class='btn btn-primary'><i class="fa-solid fa-file-excel"></i></button>
+        <button onclick="ajax_emite_excel_consumo()" class='btn btn-primary'><i class="fa-solid fa-file-excel"></i></button>
 
     </div>
 
