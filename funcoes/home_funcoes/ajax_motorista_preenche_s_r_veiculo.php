@@ -22,18 +22,21 @@
                     FROM portal_check_car.VEICULO vei
                     WHERE vei.CD_VEICULO = $var_veiculo
 
-                    UNION ALL 
+                    --UNION ALL 
 
-                    SELECT 'ULTIMO KM' AS DESCRICAO,
-                        CAST(srv.KM_RETORNO AS INT) AS KM
-                    FROM portal_check_car.SAI_RET_VEICULO srv
-                    WHERE srv.CD_VEICULO = $var_veiculo
-                    AND srv.CD_SAI_RET IN (SELECT MAX(srvX.CD_SAI_RET)  AS CD_SAI_RET
-                                        FROM portal_check_car.SAI_RET_VEICULO srvX
-                                        WHERE srvX.CD_VEICULO = srv.CD_VEICULO))res";
+                    --SELECT 'ULTIMO KM' AS DESCRICAO,
+                     --   CAST(srv.KM_RETORNO AS INT) AS KM
+                    --FROM portal_check_car.SAI_RET_VEICULO srv
+                    --WHERE srv.CD_VEICULO = $var_veiculo
+                    --AND srv.CD_SAI_RET IN (SELECT MAX(srvX.CD_SAI_RET)  AS CD_SAI_RET
+                      --                  FROM portal_check_car.SAI_RET_VEICULO srvX
+                        --                WHERE srvX.CD_VEICULO = srv.CD_VEICULO)
+    )res";
                                         
     $res_valid = oci_parse($conn_ora, $cons_valid);
                  oci_execute($res_valid);
+
+    //echo  $cons_valid;
 
     $mensagem = '';
     $variavel_KM_INI = '';
